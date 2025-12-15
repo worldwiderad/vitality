@@ -1,7 +1,6 @@
-/* Import variables first */
+/* --- 1. IMPORTS & RESET --- */
 @import 'variables.css';
 
-/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,16 +11,24 @@ body {
     font-family: var(--font-body);
     color: var(--text-dark);
     line-height: 1.6;
+    background-color: #fff;
 }
 
-/* NAVIGATION (The part you will copy-paste later) */
+/* --- 2. UTILITIES --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 3. NAVIGATION --- */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 20px 5%;
     background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -44,34 +51,141 @@ nav a {
     text-decoration: none;
     color: var(--secondary-color);
     font-weight: 600;
+    font-size: 0.95rem;
     transition: color 0.3s;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
     color: var(--primary-color);
 }
 
-/* HERO SECTION (Placeholder styling) */
+nav .btn-nav {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+nav .btn-nav:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- 4. HERO SECTION --- */
 header.hero {
     background-color: var(--secondary-color);
     color: var(--text-light);
-    padding: 100px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
 
 header.hero h1 {
     font-size: 3.5rem;
+    line-height: 1.1;
     margin-bottom: 20px;
+    font-weight: 800;
 }
 
-/* BUTTONS */
+header.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* --- 5. BUTTONS --- */
 .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 14px 35px;
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
-    margin-top: 20px;
+    transition: transform 0.2s, background-color 0.2s;
+    border: 2px solid var(--primary-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background-color: #e64a19; /* Slightly darker orange */
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--secondary-color);
+}
+
+/* --- 6. SECTIONS --- */
+section {
+    padding: 100px 0;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+p.lead {
+    font-size: 1.2rem;
+    color: #546E7A;
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+/* --- 7. GRIDS & CARDS --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card, .feature {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.feature h3, .card h3 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+}
+
+/* --- 8. FOOTER --- */
+footer {
+    background-color: var(--secondary-color);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 40px;
+    font-size: 0.9rem;
+}
+
+/* --- 9. MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    header.hero h1 { font-size: 2.5rem; }
+    .grid-2, .features-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; } /* Quick fix to hide menu on small phones */
 }

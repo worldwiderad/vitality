@@ -1,0 +1,16 @@
+:root {
+    /* BRAND COLORS */
+    --primary-color: #FF5722;   /* "Safety Orange" - Attention grabbing, emergency feel */
+    --secondary-color: #263238; /* "Slate Dark" - Professional, hardware feel */
+    --accent-color: #ECEFF1;    /* Light Grey - Backgrounds */
+    --text-dark: #102027;       /* Nearly black for reading */
+    --text-light: #ffffff;      /* White text */
+
+    /* FONTS (We will load these in HTML) */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* SPACING */
+    --section-padding: 80px 20px;
+    --max-width: 1200px;
+}

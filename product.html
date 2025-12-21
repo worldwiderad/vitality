@@ -340,6 +340,7 @@
     </footer>
 
     <script>
+        // 1. SCROLL ANIMATION
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -351,7 +352,13 @@
                 }
             }
         }
-        reveal(); 
+        reveal();
+
+        // 2. MOBILE MENU TOGGLE (NEW)
+        function toggleMenu() {
+            var menu = document.getElementById("nav-links");
+            menu.classList.toggle("active");
+        }
     </script>
 
 </body>

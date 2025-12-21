@@ -1,12 +1,12 @@
 :root {
     /* BRAND COLORS */
-    --primary-color: #FF5722;   /* "Safety Orange" - Attention grabbing, emergency feel */
-    --secondary-color: #263238; /* "Slate Dark" - Professional, hardware feel */
-    --accent-color: #ECEFF1;    /* Light Grey - Backgrounds */
-    --text-dark: #102027;       /* Nearly black for reading */
-    --text-light: #ffffff;      /* White text */
+    --primary-color: #FF5722;   /* Safety Orange */
+    --secondary-color: #263238; /* Slate Dark */
+    --accent-color: #F5F7FA;    /* NEW: A premium "Ice White" instead of grey */
+    --text-dark: #102027;
+    --text-light: #ffffff;
 
-    /* FONTS (We will load these in HTML) */
+    /* FONTS */
     --font-heading: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
 

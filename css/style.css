@@ -1,5 +1,4 @@
 /* --- 1. IMPORTS & RESET --- */
-/* THIS IS THE MISSING LINK: Connects your colors to this file */
 @import 'variables.css';
 
 * {
@@ -74,7 +73,6 @@ nav .btn-nav:hover {
 
 /* --- 4. HERO SECTION (Standard) --- */
 header.hero {
-    /* Uses the image with a dark Navy overlay */
     background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('../assets/img/hero.png');
     background-size: cover;
     background-position: center;
@@ -166,14 +164,13 @@ p.lead {
     margin-top: 40px;
 }
 
-/* Force cards to be white with dark text so they POP */
 .card, .feature {
     background: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* slightly stronger shadow */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.05);
-    color: var(--text-dark); /* Ensure text is readable inside cards */
+    color: var(--text-dark);
 }
 
 .feature h3, .card h3 {
@@ -189,13 +186,6 @@ footer {
     text-align: center;
     padding: 40px;
     font-size: 0.9rem;
-}
-
-/* --- 9. MOBILE RESPONSIVE --- */
-@media (max-width: 768px) {
-    header.hero h1 { font-size: 2.5rem; }
-    .grid-2, .features-grid { grid-template-columns: 1fr; }
-    nav ul { display: none; } 
 }
 
 /* --- 10. PRICING TABLE --- */
@@ -288,8 +278,7 @@ header.hero-home {
     transform: translateY(0);
 }
 
-/* CLEAN SECTIONS (No muddy gradients) */
-/* This makes every other section a very light, clean blue-grey */
+/* CLEAN SECTIONS */
 section:nth-child(even) {
     background-color: #F8FAFC; 
     border-top: 1px solid rgba(0,0,0,0.05);
@@ -301,13 +290,83 @@ section:nth-child(odd) {
 }
 
 /* GLOBAL IMPACT SECTION - DARK NAVY */
-/* This specific rule forces the impact section to be dark with white text */
 #impact {
     background-color: var(--secondary-color) !important;
     color: white !important;
 }
 
-/* Force the headers and text inside Impact to be white */
 #impact h2, #impact p, #impact h3 {
     color: white !important;
+}
+
+/* --- 13. MOBILE RESPONSIVENESS (THE FIX) --- */
+/* This replaces the old mobile section to fix text, menus, and tables */
+@media (max-width: 768px) {
+    
+    /* 1. FIX THE HUGE HERO TEXT */
+    /* We use !important to override the inline HTML styles */
+    header.hero h1, 
+    header.hero-home h1 { 
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+        margin-top: 20px;
+    }
+    
+    header.hero p,
+    header.hero-home p {
+        font-size: 1.1rem !important;
+        padding: 0 10px;
+    }
+
+    /* 2. FIX THE MENU (STACK IT) */
+    nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        display: flex; /* Ensure it is visible */
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+        background: #f8fafc;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    nav a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 5px 0;
+    }
+
+    /* 3. FIX THE TABLES (FORCE SCROLL) */
+    div[style*="overflow-x: auto"] {
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .comparison-table, .software-table {
+        min-width: 600px; /* Forces scroll on small screens */
+    }
+    
+    /* 4. GENERAL CLEANUP */
+    section {
+        padding: 60px 0;
+    }
+    
+    .grid-2, .features-grid { 
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero-label {
+        display: none;
+    }
+    
+    .scroll-indicator {
+        bottom: 50px;
+    }
 }

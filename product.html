@@ -43,7 +43,7 @@
         </div>
     </header>
 
-    <section id="ecosystem">
+    <section id="ecosystem" class="reveal">
         <div class="container">
             <h2>Three Devices. One Network.</h2>
             <p class="lead">A complete platform for real-world operations.</p>
@@ -65,7 +65,7 @@
         </div>
     </section>
 
-    <section id="economics" style="background-color: var(--accent-color);">
+    <section id="economics" class="reveal">
         <div class="container">
             <h2>The Economics of Safety</h2>
             <p class="lead">Technology matters, but economics decide who can use it. We deliver military-grade capability for 90% less cost.</p>
@@ -117,6 +117,27 @@
     <footer>
         <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Trigger once on load
+        reveal(); 
+    </script>
 
 </body>
 </html>

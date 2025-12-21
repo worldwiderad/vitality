@@ -31,7 +31,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .product-img-container {
-            height: 250px; /* Taller to fit image nicely */
+            height: 250px; 
             background-color: white;
             display: flex;
             align-items: center;
@@ -71,6 +71,30 @@
             gap: 5px;
         }
         .learn-more-link:hover { text-decoration: underline; }
+
+        /* Software Table Styles (Dark Mode) */
+        .software-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .software-table th, .software-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.9);
+        }
+        .software-table th {
+            background-color: rgba(255,255,255,0.05);
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 20%; /* Fixed width for labels */
+        }
+        .software-table td {
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
@@ -191,36 +215,40 @@
 
     <section class="reveal" style="background-color: var(--secondary-color); color: white;">
         <div class="container">
-            <div class="grid-2" style="align-items: center;">
-                <div>
-                    <h2 style="color: white;">Aegis Command</h2>
-                    <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 20px;">The "Brains" of the operation.</p>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">
-                        A SaaS dashboard that runs on the Aegis Hub. It gives commanders a real-time "Common Operating Picture" of the entire disaster zone.
-                    </p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> Live GPS Asset Tracking
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> Network Health Monitoring (Battery/Signal)
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> Encrypted Message Logs
-                        </li>
-                    </ul>
-                    <br>
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; border-left: 4px solid var(--primary-color);">
-                        <strong>Subscription Model:</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Tiered pricing for NGOs ($500/mo) and Governments ($5,000/yr).</span>
-                    </div>
-                </div>
-                <div>
-                    <div style="background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 20px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
-                        <span style="color: #64748b;">[Software Dashboard Screenshot]</span>
-                    </div>
-                </div>
+            <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
+            
+            <div style="overflow-x: auto;">
+                <table class="software-table">
+                    <tbody>
+                        <tr>
+                            <th>Tier</th>
+                            <td style="font-weight: bold; color: white;">[A] TACTICAL</td>
+                            <td style="font-weight: bold; color: white;">[B] PROFESSIONAL</td>
+                            <td style="font-weight: bold; color: white;">[C] STRATEGIC (GOV)</td>
+                        </tr>
+                        <tr>
+                            <th>Market</th>
+                            <td>Small SAR Teams, NGOs</td>
+                            <td>Cities, Industrial (Mines)</td>
+                            <td>National Governments</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">(One-Time Fee)</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">/ month / hub</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">/ year (per 10-module "block")</span></td>
+                        </tr>
+                        <tr>
+                            <th>Features</th>
+                            <td>Basic Map & Messaging</td>
+                            <td>Advanced Analytics, Support</td>
+                            <td>On-Premise Hosting, API, 24/7 Support</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </section>
 

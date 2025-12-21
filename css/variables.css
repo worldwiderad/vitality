@@ -1,10 +1,16 @@
 :root {
     /* BRAND COLORS */
     --primary-color: #FF5722;   /* Safety Orange */
-    --secondary-color: #263238; /* Slate Dark */
-    --accent-color: #F5F7FA;    /* NEW: A premium "Ice White" instead of grey */
-    --text-dark: #102027;
-    --text-light: #ffffff;
+    
+    /* THE FIX: Changed 'Slate Dark' to 'Midnight Navy' (Cooler, deeper) */
+    --secondary-color: #0F172A; 
+
+    /* THE ACCENT: Used to be white/grey. Now it's a slightly lighter Navy for contrast. */
+    /* This ensures white text will definitely show up on it. */
+    --accent-color: #1E293B;    
+
+    --text-dark: #F1F5F9;       /* IMPORTANT: Changed text to White/Light Grey since background is dark */
+    --text-light: #ffffff;      /* White text */
 
     /* FONTS */
     --font-heading: 'Inter', sans-serif;

@@ -7,7 +7,7 @@
     
     <meta property="og:title" content="Contact Vitality | Aegis">
     <meta property="og:description" content="Get in touch with the team behind the Aegis mesh network.">
-    <meta property="og:image" content="https://signalvitality.com/assets/img/hero.jpg">
+    <meta property="og:image" content="https://signalvitality.com/assets/img/hero.png">
     
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     
@@ -27,14 +27,14 @@
         </ul>
     </nav>
 
-    <header class="hero" style="background-color: var(--secondary-color); padding: 80px 20px;">
+    <header class="hero" style="padding: 80px 20px;">
         <div class="container">
             <h1>Get in Touch.</h1>
             <p>Interested in our technology or the Conrad Challenge? Reach out.</p>
         </div>
     </header>
 
-    <section>
+    <section class="reveal">
         <div class="container">
             <div class="grid-2">
                 
@@ -73,6 +73,27 @@
     <footer>
         <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Trigger once on load
+        reveal(); 
+    </script>
 
 </body>
 </html>

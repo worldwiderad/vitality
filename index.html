@@ -159,24 +159,25 @@
     </footer>
 
     <script>
+        // 1. SCROLL ANIMATION
         window.addEventListener('scroll', reveal);
-
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
-
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 150) {
                     reveals[i].classList.add('active');
                 }
             }
         }
-        
-        // Trigger once on load
-        reveal(); 
+        reveal();
+
+        // 2. MOBILE MENU TOGGLE (NEW)
+        function toggleMenu() {
+            var menu = document.getElementById("nav-links");
+            menu.classList.toggle("active");
+        }
     </script>
 
 </body>

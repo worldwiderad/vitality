@@ -3,59 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Architecture | Aegis</title>
+    <title>The Ecosystem | Aegis</title>
     
-    <meta property="og:title" content="Aegis Technical Architecture">
-    <meta property="og:description" content="Deep dive into LoRa modulation, Mesh Topology, and AES-256 Encryption.">
+    <meta property="og:title" content="Aegis Products">
+    <meta property="og:description" content="Hardware and software for resilient communication.">
     <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
     
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* Tech-Specific Styles */
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-        
-        .spec-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1); /* Subtle borders for dark mode */
-        }
-        
-        .spec-table td:first-child {
-            font-weight: 700;
-            color: var(--primary-color);
-            width: 30%;
-        }
-
-        /* Comparison Chart for LoRa Section */
-        .tech-compare {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        /* Product Specific Styles */
+        .product-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        .tech-compare th {
-            background: var(--secondary-color);
-            color: white;
-            padding: 15px;
-            text-align: left;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .tech-compare td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            color: var(--text-dark);
+        .product-img-placeholder {
+            height: 200px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-weight: 600;
         }
+        .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin: 10px 0;
+        }
+        .learn-more-link {
+            margin-top: auto;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .learn-more-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -64,110 +69,110 @@
         <div class="logo">VITALITY</div>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="product.html" class="active">The Tech</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="product.html" class="active">Products</a></li>
+            <li><a href="tech.html">The Tech</a></li> <li><a href="mission.html">Our Mission</a></li>
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--secondary-color);">
-        <div class="container" style="text-align: left;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// ENGINEERING DOCUMENTATION</p>
-            <h1 style="font-size: 3.5rem;">System Architecture.</h1>
-            <p style="max-width: 600px; opacity: 0.8;">A breakdown of the physics, topology, and security protocols powering the Aegis ecosystem.</p>
+    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: var(--secondary-color);">
+        <div class="container">
+            <h1 style="font-size: 3rem;">The Aegis Platform</h1>
+            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">A complete ecosystem of ruggedized hardware and command software. Deploy a city-wide network in hours.</p>
         </div>
     </header>
 
     <section class="reveal">
         <div class="container">
-            <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
-            <p class="lead">How do we get 20km range without huge antennas? Physics.</p>
+            <h2 style="text-align: center; margin-bottom: 50px;">The Hardware</h2>
             
-            <div class="grid-2">
-                <div>
-                    <h3 style="color: var(--secondary-color);">The "Whisper" Technique</h3>
-                    <p>Standard radios (like Wi-Fi) scream loudly but have poor hearing. They need a "line of sight" and high power.</p>
-                    <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
-                    <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
-                </div>
+            <div class="features-grid">
                 
-                <div>
-                    <table class="tech-compare">
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Standard Wi-Fi</th>
-                                <th>Aegis (LoRa)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Range</strong></td>
-                                <td>~100 meters</td>
-                                <td><strong>15 - 20 km (Wilderness)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Autonomy</strong></td>
-                                <td>Hours</td>
-                                <td><strong>Months(Battery)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Environment</strong></td>
-                                <td>Indoor / Urban</td>
-                                <td><strong>Forests & Mountains</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Bandwidth</strong></td>
-                                <td>High (Video/Voice)</td>
-                                <td><strong>Low (Text/GPS Only)</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from a valley where sat-phones fail.</p>
+                <div class="product-card">
+                    <div class="product-img-placeholder">
+                        [Image: Aegis Node]
+                    </div>
+                    <div class="product-content">
+                        <h3>Aegis Public Node</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
+                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                            <li>80,000mAh Battery</li>
+                            <li>Integrated Screen & Keyboard</li>
+                            <li>Wi-Fi Bridge for Civilians</li>
+                        </ul>
+                        <a href="#" class="learn-more-link" style="opacity: 0.5; cursor: default;">Deep Dive Coming Soon &rarr;</a>
+                    </div>
                 </div>
+
+                <div class="product-card">
+                    <div class="product-img-placeholder">
+                        [Image: Aegis Handheld]
+                    </div>
+                    <div class="product-content">
+                        <h3>Aegis Handheld</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
+                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                            <li>Pocket-Sized Form Factor</li>
+                            <li>GPS Tracking Enabled</li>
+                            <li>Tactile "Glove-Ready" Buttons</li>
+                        </ul>
+                        <a href="#" class="learn-more-link" style="opacity: 0.5; cursor: default;">Deep Dive Coming Soon &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-placeholder">
+                        [Image: Solar Repeater]
+                    </div>
+                    <div class="product-content">
+                        <h3>Solar Repeater</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
+                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                            <li>100% Solar Autonomous</li>
+                            <li>Weatherproof IP67</li>
+                            <li>Zero Maintenance</li>
+                        </ul>
+                        <a href="#" class="learn-more-link" style="opacity: 0.5; cursor: default;">Deep Dive Coming Soon &rarr;</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <section class="reveal" style="background-color: var(--secondary-color); color: white;">
         <div class="container">
-            <h2 style="color: white;">2. The Topology: Distributed Mesh</h2>
-            <p class="lead" style="color: rgba(255,255,255,0.7);">Why the network survives when half the devices are destroyed.</p>
-
-            <div class="grid-2">
+            <div class="grid-2" style="align-items: center;">
                 <div>
-                    <h3 style="color: var(--primary-color);">The "Self-Healing" Concept</h3>
-                    <p>In a standard network (like 4G), if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong>—a single point of failure.</p>
-                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device (Node) acts as a router/repeater for everyone else.</p>
-                    
-                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--primary-color);">
-                        <strong style="color: white;">Scenario: The "Broken Bridge"</strong>
-                        <p style="font-size: 0.9rem; margin-top: 10px; color: rgba(255,255,255,0.8);">
-                            1. Rescuer A wants to message Command Post Z.<br>
-                            2. The direct path is blocked by a mountain.<br>
-                            3. The message automatically hops to <strong>Node B</strong>, then <strong>Node C</strong>, then to <strong>Z</strong>.<br>
-                            4. If Node B runs out of battery? The network instantly re-routes through <strong>Node D</strong>.
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 style="color: var(--primary-color);">Infinite Scalability</h3>
-                    <p>Unlike localized systems, Aegis is designed for country-scale deployment.</p>
-                    <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Infinite Hopping:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">To get a message from one side of Japan to the other, the packet simply keeps hopping. There is no artificial limit to the network's size.</span>
+                    <h2 style="color: white;">Aegis Command</h2>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 20px;">The "Brains" of the operation.</p>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">
+                        A SaaS dashboard that runs on the Aegis Hub. It gives commanders a real-time "Common Operating Picture" of the entire disaster zone.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> Live GPS Asset Tracking
                         </li>
-                        <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Packet Deduplication:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent "echoes," ensuring efficiency even when hopping thousands of times.</span>
+                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> Network Health Monitoring (Battery/Signal)
                         </li>
-                        <li>
-                            <strong style="color: white;">Store & Forward:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">If a node is alone, it holds the message until it reconnects with another node, then delivers it.</span>
+                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> Encrypted Message Logs
                         </li>
                     </ul>
+                    <br>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; border-left: 4px solid var(--primary-color);">
+                        <strong>Subscription Model:</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Tiered pricing for NGOs ($500/mo) and Governments ($5,000/yr).</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 20px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #64748b;">[Software Dashboard Screenshot]</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,89 +180,52 @@
 
     <section class="reveal">
         <div class="container">
-            <h2 style="font-size: 2rem;">3. Security Architecture</h2>
-            <p class="lead">In a conflict zone, metadata is as dangerous as the content. We protect both.</p>
-            
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>Physical Isolation (Air-Gapped)</h3>
-                    <p><strong>You have to be there to hack it.</strong> Unlike the internet, which can be attacked from anywhere in the world, an attacker must be physically within range of our radio signals to even attempt an intercept.</p>
-                </div>
-                <div class="feature">
-                    <h3>AES-256 Encryption</h3>
-                    <p>Every packet is encrypted using AES-256. Even if a hostile actor is in range and records the signal, they will see nothing but random noise.</p>
-                </div>
-                <div class="feature">
-                    <h3>Zero-Trust Keys</h3>
-                    <p>Encryption keys are pre-shared physically or generated locally. We (Vitality) do not hold a "master key." If we are subpoenaed, we cannot unlock your data.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h2>The Market Gap</h2>
+            <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
 
-    <section class="reveal" style="background-color: #1E293B; color: white;">
-        <div class="container">
-            <h2 style="color: white; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 10px;">Technical Specifications</h2>
-            
-            <div class="grid-2">
-                <div>
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">Aegis Public Node (V4)</h3>
-                    <table class="spec-table" style="color: rgba(255,255,255,0.8);">
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
                         <tr>
-                            <td>MCU</td>
-                            <td>Quad-Core ARM Cortex-A53 @ 1GHz</td>
+                            <th>Feature</th>
+                            <th>Hobbyist (Meshtastic)</th>
+                            <th>Professional DMR (Motorola)</th>
+                            <th>Vitality 'Aegis'</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Handset Cost</strong></td>
+                            <td>~$50</td>
+                            <td>$1,150 - $2,500</td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$100</td>
                         </tr>
                         <tr>
-                            <td>Radio Module</td>
-                            <td>SX1262 LoRa Transceiver</td>
+                            <td><strong>Infrastructure</strong></td>
+                            <td>None (DIY)</td>
+                            <td>$10,000+ (Repeater Base)</td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$150 (Public Node)</td>
                         </tr>
                         <tr>
-                            <td>Frequency</td>
-                            <td>915 MHz (US/Asia) / 868 MHz (EU)</td>
+                            <td><strong>Reliability</strong></td>
+                            <td>Low (Unvetted Hardware)</td>
+                            <td>High (Single Point of Failure)</td>
+                            <td style="color: var(--primary-color); font-weight: bold;">High (Decentralized Mesh)</td>
                         </tr>
                         <tr>
-                            <td>Sensitivity</td>
-                            <td>-148 dBm (High Sensitivity)</td>
+                            <td><strong>Setup Time</strong></td>
+                            <td>Hours (Requires Assembly)</td>
+                            <td>Weeks (Licensing/Training)</td>
+                            <td><strong>Instant (Turnkey)</strong></td>
                         </tr>
-                        <tr>
-                            <td>Power Source</td>
-                            <td>80,000mAh LiFePO4 + 20W Solar Input</td>
-                        </tr>
-                        <tr>
-                            <td>Operational Endurance</td>
-                            <td><strong>Months (Battery) / Years (Solar)</strong></td>
-                        </tr>
-                    </table>
-                </div>
-                
-                <div>
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">Efficiency & Limits</h3>
-                    <table class="spec-table" style="color: rgba(255,255,255,0.8);">
-                        <tr>
-                            <td>Tx Efficiency</td>
-                            <td>100+ Msgs/day with negligible drain.</td>
-                        </tr>
-                        <tr>
-                            <td>Main Power Draw</td>
-                            <td>OLED Screen (Active only during user input)</td>
-                        </tr>
-                        <tr>
-                            <td>IP Rating</td>
-                            <td>IP67 (Dust Tight, Immersion up to 1m)</td>
-                        </tr>
-                        <tr>
-                            <td>Encryption</td>
-                            <td>AES-256 GCM</td>
-                        </tr>
-                    </table>
-                    
-                    <div style="margin-top: 30px; border: 1px solid var(--primary-color); padding: 15px; border-radius: 4px;">
-                        <p style="color: var(--primary-color); font-weight: bold; margin-bottom: 5px;">NOTE ON PROPRIETARY TECH:</p>
-                        <p style="font-size: 0.8rem; opacity: 0.7;">Specific antenna tuning parameters and our "Pulse" battery management logic are omitted from public documentation to protect intellectual property.</p>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
             
+            <br>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="tech.html" class="btn btn-outline" style="color: var(--secondary-color); border-color: var(--secondary-color);">See How It Works (Technical) &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -267,16 +235,12 @@
 
     <script>
         window.addEventListener('scroll', reveal);
-
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
-
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 150) {
                     reveals[i].classList.add('active');
                 }
             }

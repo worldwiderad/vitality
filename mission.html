@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Mission | Vitality Communications</title>
+    
+    <meta property="og:title" content="Our Mission | Vitality Communications">
+    <meta property="og:description" content="Reliable communication shouldn't be a luxury. Meet the team behind Aegis.">
+    <meta property="og:image" content="https://signalvitality.com/assets/img/hero.png">
+    
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
-    <meta property="og:title" content="Our Mission | Vitality Communications">
-    <meta property="og:description" content="Reliable communication shouldn't be a luxury. Meet the team behind Aegis.">
 </head>
 <body>
 
@@ -25,14 +27,14 @@
         </ul>
     </nav>
 
-    <header class="hero" style="background-color: var(--secondary-color); padding: 100px 20px;">
+    <header class="hero" style="padding: 100px 20px;">
         <div class="container">
             <h1>We Are Vitality.</h1>
             <p>Students. Engineers. Innovators.</p>
         </div>
     </header>
 
-    <section>
+    <section class="reveal">
         <div class="container">
             <h2>Our Belief</h2>
             <p class="lead">"Reliable communication shouldn't be a luxury—it should be a basic human necessity."</p>
@@ -40,7 +42,7 @@
         </div>
     </section>
 
-    <section style="background-color: var(--accent-color);">
+    <section class="reveal">
         <div class="container">
             <h2>Meet the Team</h2>
             <div class="grid-2">
@@ -71,6 +73,27 @@
     <footer>
         <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Trigger once on load
+        reveal(); 
+    </script>
 
 </body>
 </html>

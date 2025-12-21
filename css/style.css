@@ -305,16 +305,13 @@ section:nth-child(odd) { background-color: white; }
         line-height: 1.2 !important;
     }
     
-    /* FIX 3: TECH PAGE OVERFLOW (The alignment issue) */
-    /* This forces code blocks and comparison charts to scroll internally */
-    /* instead of breaking the whole page width */
+    /* FIX 3: TECH PAGE OVERFLOW */
     .code-block, .tech-diagram, .tech-compare, div[style*="overflow-x: auto"] {
         max-width: 100vw;
         overflow-x: auto !important;
-        white-space: nowrap; /* Forces scroll for tables */
+        white-space: nowrap; 
     }
     
-    /* Allow code blocks to wrap text on mobile so they don't scroll infinitely */
     .code-block {
         white-space: pre-wrap !important;
         word-break: break-word !important; 
@@ -322,7 +319,14 @@ section:nth-child(odd) { background-color: white; }
 
     /* General Layout Fixes */
     .grid-2, .features-grid { grid-template-columns: 1fr; gap: 40px; }
+    
+    /* REMOVED: .hero-label is hidden */
     .hero-label { display: none; }
-    .scroll-indicator { bottom: 50px; }
+    
+    /* UPDATED: COMPLETELY HIDE SCROLL INDICATOR ON MOBILE */
+    .scroll-indicator { 
+        display: none !important; 
+    }
+
     section { padding: 60px 0; }
 }

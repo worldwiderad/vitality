@@ -81,14 +81,14 @@
     <section class="reveal">
         <div class="container">
             <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
-            <p class="lead">How do we get 5km+ range without huge antennas? Physics.</p>
+            <p class="lead">How do we get 20km range without huge antennas? Physics.</p>
             
             <div class="grid-2">
                 <div>
                     <h3 style="color: var(--secondary-color);">The "Whisper" Technique</h3>
                     <p>Standard radios (like Wi-Fi) scream loudly but have poor hearing. They need a "line of sight" and high power.</p>
                     <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
-                    <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through concrete rubble.</p>
+                    <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
                 </div>
                 
                 <div>
@@ -102,19 +102,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Range (Urban)</strong></td>
+                                <td><strong>Range</strong></td>
                                 <td>~100 meters</td>
-                                <td><strong>2 - 5 km</strong></td>
+                                <td><strong>15 - 20 km (Wilderness)</strong></td>
                             </tr>
                             <tr>
-                                <td><strong>Power Usage</strong></td>
-                                <td>High (Hours)</td>
-                                <td><strong>Ultra-Low (Weeks)</strong></td>
+                                <td><strong>Autonomy</strong></td>
+                                <td>Hours</td>
+                                <td><strong>Months(Battery)</strong></td>
                             </tr>
                             <tr>
-                                <td><strong>Penetration</strong></td>
-                                <td>Stopped by 2 walls</td>
-                                <td><strong>Passes through buildings</strong></td>
+                                <td><strong>Environment</strong></td>
+                                <td>Indoor / Urban</td>
+                                <td><strong>Forests & Mountains</strong></td>
                             </tr>
                             <tr>
                                 <td><strong>Bandwidth</strong></td>
@@ -123,7 +123,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from under a collapsed building.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from a valley where sat-phones fail.</p>
                 </div>
             </div>
         </div>
@@ -152,16 +152,16 @@
                 </div>
 
                 <div>
-                    <h3 style="color: var(--primary-color);">Technical Implementation</h3>
-                    <p>We utilize a "Managed Flooding" protocol to ensure reliability without clogging the airwaves.</p>
+                    <h3 style="color: var(--primary-color);">Infinite Scalability</h3>
+                    <p>Unlike localized systems, Aegis is designed for country-scale deployment.</p>
                     <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
                         <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Packet Deduplication:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">Nodes remember the last 50 message IDs. If they hear a duplicate, they ignore it. This stops "echoes."</span>
+                            <strong style="color: white;">Infinite Hopping:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">To get a message from one side of Japan to the other, the packet simply keeps hopping. There is no artificial limit to the network's size.</span>
                         </li>
                         <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Hop Limit (TTL):</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">Every message has a "fuel tank" of 3-7 hops. Once it runs out, it stops spreading. This keeps the network clear for new traffic.</span>
+                            <strong style="color: white;">Packet Deduplication:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent "echoes," ensuring efficiency even when hopping thousands of times.</span>
                         </li>
                         <li>
                             <strong style="color: white;">Store & Forward:</strong><br>
@@ -180,16 +180,16 @@
             
             <div class="features-grid">
                 <div class="feature">
+                    <h3>Physical Isolation (Air-Gapped)</h3>
+                    <p><strong>You have to be there to hack it.</strong> Unlike the internet, which can be attacked from anywhere in the world, an attacker must be physically within range of our radio signals to even attempt an intercept.</p>
+                </div>
+                <div class="feature">
                     <h3>AES-256 Encryption</h3>
-                    <p>Every packet is encrypted using AES-256 (Advanced Encryption Standard). Even if a hostile actor intercepts the radio wave, they see only random noise.</p>
+                    <p>Every packet is encrypted using AES-256. Even if a hostile actor is in range and records the signal, they will see nothing but random noise.</p>
                 </div>
                 <div class="feature">
                     <h3>Zero-Trust Keys</h3>
                     <p>Encryption keys are pre-shared physically or generated locally. We (Vitality) do not hold a "master key." If we are subpoenaed, we cannot unlock your data.</p>
-                </div>
-                <div class="feature">
-                    <h3>Metadata Obfuscation</h3>
-                    <p>Our proprietary header protocol minimizes visible metadata. To an outsider, a "Heartbeat" ping looks identical to a distress signal.</p>
                 </div>
             </div>
         </div>
@@ -224,26 +224,26 @@
                             <td>80,000mAh LiFePO4 + 20W Solar Input</td>
                         </tr>
                         <tr>
-                            <td>Standby Time</td>
-                            <td>6 Months (No Sun) / Indefinite (Sun)</td>
+                            <td>Operational Endurance</td>
+                            <td><strong>Months (Battery) / Years (Solar)</strong></td>
                         </tr>
                     </table>
                 </div>
                 
                 <div>
-                    <h3 style="color: var(--primary-color); margin-top: 30px;">Environmental Limits</h3>
+                    <h3 style="color: var(--primary-color); margin-top: 30px;">Efficiency & Limits</h3>
                     <table class="spec-table" style="color: rgba(255,255,255,0.8);">
                         <tr>
-                            <td>Op. Temperature</td>
-                            <td>-20°C to +60°C</td>
+                            <td>Tx Efficiency</td>
+                            <td>100+ Msgs/day with negligible drain.</td>
+                        </tr>
+                        <tr>
+                            <td>Main Power Draw</td>
+                            <td>OLED Screen (Active only during user input)</td>
                         </tr>
                         <tr>
                             <td>IP Rating</td>
                             <td>IP67 (Dust Tight, Immersion up to 1m)</td>
-                        </tr>
-                        <tr>
-                            <td>Chassis</td>
-                            <td>Impact-Resistant ASA Polymer</td>
                         </tr>
                         <tr>
                             <td>Encryption</td>

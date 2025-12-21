@@ -14,21 +14,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        // Trigger once on load in case user is already scrolled down
-        reveal();
-    </script>
 </head>
 <body>
 
@@ -62,7 +47,7 @@
         </div>
     </header>
 
-    <section id="problem">
+    <section id="problem" class="reveal">
         <div class="container">
             <h2>The Silence is Deadly.</h2>
             <p class="lead">The problem is not just an inconvenience; it's a catastrophic failure. During the 2011 Japan earthquake, <strong>29,000 mobile base stations</strong> were knocked offline. You can't save what you can't reach.</p>
@@ -80,7 +65,7 @@
         </div>
     </section>
 
-    <section id="solution" style="background-color: var(--accent-color);">
+    <section id="solution" class="reveal">
         <div class="container">
             <h2>Enter Aegis.</h2>
             <p class="lead">A decentralized survival network designed to be "set and forgotten"—until it saves your life.</p>
@@ -105,7 +90,7 @@
         </div>
     </section>
 
-    <section id="how-it-works">
+    <section id="how-it-works" class="reveal">
         <div class="container">
             <h2>How It Works</h2>
             <p class="lead">We don't just react to disasters. We prepare for them.</p>
@@ -127,7 +112,7 @@
         </div>
     </section>
 
-    <section id="impact" style="background-color: #263238; color: white;">
+    <section id="impact" class="reveal" style="background-color: #263238; color: white;">
         <div class="container">
             <h2 style="color: white;">Global Impact</h2>
             <p class="lead" style="color: rgba(255,255,255,0.7);">Our mission aligns directly with the UN Sustainable Development Goals.</p>
@@ -145,7 +130,7 @@
         </div>
     </section>
 
-    <section id="scenarios" style="background-color: #f4f4f4;">
+    <section id="scenarios" class="reveal">
         <div class="container">
             <h2>Deployment Scenarios</h2>
             <div class="grid-2">
@@ -164,6 +149,27 @@
     <footer>
         <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Trigger once on load
+        reveal(); 
+    </script>
 
 </body>
 </html>

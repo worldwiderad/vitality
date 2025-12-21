@@ -1,5 +1,6 @@
 /* --- 1. IMPORTS & RESET --- */
-/* Note: Variables are loaded from variables.css in the HTML */
+/* THIS IS THE MISSING LINK: Connects your colors to this file */
+@import 'variables.css';
 
 * {
     margin: 0;

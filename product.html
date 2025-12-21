@@ -16,17 +16,6 @@
     
     <style>
         /* Tech-Specific Styles */
-        .tech-diagram {
-            background: #F8FAFC;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 40px;
-            text-align: center;
-            font-family: 'Courier Prime', monospace;
-            color: var(--secondary-color);
-            margin: 20px 0;
-        }
-        
         .spec-table {
             width: 100%;
             border-collapse: collapse;
@@ -37,24 +26,35 @@
         
         .spec-table td {
             padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255,255,255,0.1); /* Subtle borders for dark mode */
         }
         
         .spec-table td:first-child {
             font-weight: 700;
-            color: var(--secondary-color);
+            color: var(--primary-color);
             width: 30%;
         }
-        
-        .code-block {
-            background: #0F172A;
-            color: #10b981; /* Terminal Green */
-            padding: 20px;
-            border-radius: 6px;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
-            margin-bottom: 20px;
+
+        /* Comparison Chart for LoRa Section */
+        .tech-compare {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .tech-compare th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        .tech-compare td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-dark);
         }
     </style>
 </head>
@@ -80,64 +80,94 @@
 
     <section class="reveal">
         <div class="container">
+            <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
+            <p class="lead">How do we get 5km+ range without huge antennas? Physics.</p>
+            
             <div class="grid-2">
                 <div>
-                    <h2 style="font-size: 2rem;">1. The Physics: LoRa Modulation</h2>
-                    <p>Aegis does not use standard Wi-Fi or Cellular radio. We utilize <strong>LoRa (Long Range)</strong>, a spread-spectrum modulation technique derived from Chirp Spread Spectrum (CSS) technology.</p>
-                    
-                    <h3 style="margin-top: 20px; font-size: 1.2rem; color: var(--secondary-color);">Why it works</h3>
-                    <p>Standard radios (like Wi-Fi) shout loudly but can't hear well. LoRa "whispers" using a specialized chirp that sweeps across frequencies. This allows our receiver to decode signals that are actually <strong>below the noise floor</strong> (up to -148dBm).</p>
-                    
-                    <ul style="margin-top: 20px; margin-left: 20px; list-style-type: square; color: #546E7A;">
-                        <li style="margin-bottom: 10px;"><strong>Link Budget:</strong> 168dB (Theoretical Max)</li>
-                        <li style="margin-bottom: 10px;"><strong>Frequency:</strong> 433/868/915 MHz (ISM Bands)</li>
-                        <li style="margin-bottom: 10px;"><strong>Penetration:</strong> Can pass through dense urban concrete or deep forest canopies where 4G fails.</li>
-                    </ul>
+                    <h3 style="color: var(--secondary-color);">The "Whisper" Technique</h3>
+                    <p>Standard radios (like Wi-Fi) scream loudly but have poor hearing. They need a "line of sight" and high power.</p>
+                    <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
+                    <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through concrete rubble.</p>
                 </div>
+                
                 <div>
-                    <div class="tech-diagram">
-                        <strong>SIGNAL VISUALIZATION</strong>
-                        <br><br>
-                        |       /       /       /| <br>
-                        |      /       /       / | <br>
-                        |     /       /       /  | <br>
-                        |    /       /       /   | <br>
-                        |___/_______/_______/____| <br>
-                        <br>
-                        <span style="font-size: 0.8rem; opacity: 0.7;">CSS Modulation: "Chirps" maintain integrity<br>over miles of interference.</span>
-                    </div>
+                    <table class="tech-compare">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Standard Wi-Fi</th>
+                                <th>Aegis (LoRa)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Range (Urban)</strong></td>
+                                <td>~100 meters</td>
+                                <td><strong>2 - 5 km</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Power Usage</strong></td>
+                                <td>High (Hours)</td>
+                                <td><strong>Ultra-Low (Weeks)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Penetration</strong></td>
+                                <td>Stopped by 2 walls</td>
+                                <td><strong>Passes through buildings</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bandwidth</strong></td>
+                                <td>High (Video/Voice)</td>
+                                <td><strong>Low (Text/GPS Only)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from under a collapsed building.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="reveal" style="background-color: var(--accent-color);">
+    <section class="reveal" style="background-color: var(--secondary-color); color: white;">
         <div class="container">
-            <h2 style="text-align: center;">2. The Topology: Distributed Mesh</h2>
-            <p class="lead" style="text-align: center;">We eliminate the concept of a "Server." Every device is a router.</p>
+            <h2 style="color: white;">2. The Topology: Distributed Mesh</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.7);">Why the network survives when half the devices are destroyed.</p>
 
-            <div class="grid-2" style="align-items: center;">
-                <div class="code-block">
-                    > PACKET_INIT: MSG_ID_394<br>
-                    > SENDER: NODE_ALPHA<br>
-                    > TARGET: NODE_DELTA<br>
-                    > ROUTE NOT FOUND. FLOODING...<br>
-                    <br>
-                    > HOP 1: NODE_BETA (REBROADCAST)<br>
-                    > HOP 2: NODE_GAMMA (REBROADCAST)<br>
-                    > HOP 3: NODE_DELTA (RECEIVED)<br>
-                    <br>
-                    > ACKNOWLEDGEMENT SENT.
-                </div>
+            <div class="grid-2">
                 <div>
-                    <h3>Managed Flooding Algorithm</h3>
-                    <p>Aegis uses a modified flooding protocol. When a message is sent, it is picked up by all nearby nodes. Those nodes check if they have seen the message ID before:</p>
-                    <ol style="margin-left: 20px; margin-top: 15px;">
-                        <li style="margin-bottom: 10px;"><strong>If New:</strong> The node rebroadcasts the message to its neighbors.</li>
-                        <li style="margin-bottom: 10px;"><strong>If Seen:</strong> The node discards it to prevent "packet storms."</li>
-                        <li style="margin-bottom: 10px;"><strong>Hop Limit:</strong> Messages expire after 3-7 hops to preserve network bandwidth.</li>
-                    </ol>
-                    <p style="margin-top: 15px;"><em>Result: A self-healing path that forms instantly, even if 50% of the nodes are destroyed.</em></p>
+                    <h3 style="color: var(--primary-color);">The "Self-Healing" Concept</h3>
+                    <p>In a standard network (like 4G), if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong>—a single point of failure.</p>
+                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device (Node) acts as a router/repeater for everyone else.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--primary-color);">
+                        <strong style="color: white;">Scenario: The "Broken Bridge"</strong>
+                        <p style="font-size: 0.9rem; margin-top: 10px; color: rgba(255,255,255,0.8);">
+                            1. Rescuer A wants to message Command Post Z.<br>
+                            2. The direct path is blocked by a mountain.<br>
+                            3. The message automatically hops to <strong>Node B</strong>, then <strong>Node C</strong>, then to <strong>Z</strong>.<br>
+                            4. If Node B runs out of battery? The network instantly re-routes through <strong>Node D</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--primary-color);">Technical Implementation</h3>
+                    <p>We utilize a "Managed Flooding" protocol to ensure reliability without clogging the airwaves.</p>
+                    <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: white;">Packet Deduplication:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Nodes remember the last 50 message IDs. If they hear a duplicate, they ignore it. This stops "echoes."</span>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: white;">Hop Limit (TTL):</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Every message has a "fuel tank" of 3-7 hops. Once it runs out, it stops spreading. This keeps the network clear for new traffic.</span>
+                        </li>
+                        <li>
+                            <strong style="color: white;">Store & Forward:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">If a node is alone, it holds the message until it reconnects with another node, then delivers it.</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -145,7 +175,7 @@
 
     <section class="reveal">
         <div class="container">
-            <h2 style="font-size: 2rem;">3. Security: The "Black Box" Approach</h2>
+            <h2 style="font-size: 2rem;">3. Security Architecture</h2>
             <p class="lead">In a conflict zone, metadata is as dangerous as the content. We protect both.</p>
             
             <div class="features-grid">
@@ -165,7 +195,7 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #0F172A; color: white;">
+    <section class="reveal" style="background-color: #1E293B; color: white;">
         <div class="container">
             <h2 style="color: white; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 10px;">Technical Specifications</h2>
             
@@ -187,7 +217,7 @@
                         </tr>
                         <tr>
                             <td>Sensitivity</td>
-                            <td>-148 dBm</td>
+                            <td>-148 dBm (High Sensitivity)</td>
                         </tr>
                         <tr>
                             <td>Power Source</td>
@@ -196,10 +226,6 @@
                         <tr>
                             <td>Standby Time</td>
                             <td>6 Months (No Sun) / Indefinite (Sun)</td>
-                        </tr>
-                        <tr>
-                            <td>Interface</td>
-                            <td>High-Contrast OLED + Mechanical Keypad</td>
                         </tr>
                     </table>
                 </div>

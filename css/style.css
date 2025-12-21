@@ -284,3 +284,35 @@ header.hero-home {
     40% {transform: translateY(-10px);}
     60% {transform: translateY(-5px);}
 }
+
+/* --- 12. SCROLL ANIMATIONS & GRADIENTS --- */
+
+/* The Animation Class */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* REPLACING THE UGLY GREY WITH GRADIENTS */
+/* This automatically targets every second section (Solution, Impact, etc.) */
+section:nth-child(even) {
+    background: linear-gradient(to bottom right, #ffffff, var(--accent-color));
+    border-top: 1px solid rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+section:nth-child(odd) {
+    background: white;
+}
+
+/* Optional: If a section needs to be darker (like Impact), use this class */
+.bg-dark {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}

@@ -1,6 +1,281 @@
+/* --- 1. IMPORTS & RESET --- */
+/* Note: Variables are loaded from variables.css in the HTML */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+/* --- 2. UTILITIES --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 3. NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    letter-spacing: -1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-color);
+}
+
+nav .btn-nav {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+nav .btn-nav:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- 4. HERO SECTION (Standard) --- */
+header.hero {
+    /* Uses the image with a dark Navy overlay */
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('../assets/img/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    color: var(--text-light);
+    padding: 120px 20px;
+    text-align: center;
+}
+
+header.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+header.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* --- 5. BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+    border: 2px solid var(--primary-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background-color: #e64a19; 
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--secondary-color);
+}
+
+/* --- 6. SECTIONS --- */
+section {
+    padding: 100px 0;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+p.lead {
+    font-size: 1.2rem;
+    color: #546E7A;
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+/* --- 7. GRIDS & CARDS --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Force cards to be white with dark text so they POP */
+.card, .feature {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* slightly stronger shadow */
+    border: 1px solid rgba(0,0,0,0.05);
+    color: var(--text-dark); /* Ensure text is readable inside cards */
+}
+
+.feature h3, .card h3 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+}
+
+/* --- 8. FOOTER --- */
+footer {
+    background-color: var(--secondary-color);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 40px;
+    font-size: 0.9rem;
+}
+
+/* --- 9. MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    header.hero h1 { font-size: 2.5rem; }
+    .grid-2, .features-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; } 
+}
+
+/* --- 10. PRICING TABLE --- */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background-color: #f9f9f9; }
+
+
+/* --- 11. FULLSCREEN HOME HERO --- */
+header.hero-home {
+    background-image: url('../assets/img/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative;
+    
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 150px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.9;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero-label {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+
 /* --- 12. SCROLL ANIMATIONS & DARK THEME FIXES --- */
 
-/* The Animation Class */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -12,10 +287,10 @@
     transform: translateY(0);
 }
 
-/* DARK THEME SECTIONS */
-/* Instead of fading from White (muddy), we use a solid tech color */
+/* CLEAN SECTIONS (No muddy gradients) */
+/* This makes every other section a very light, clean blue-grey */
 section:nth-child(even) {
-    background-color: #F8FAFC; /* Very light blue-grey (Clean contrast) */
+    background-color: #F8FAFC; 
     border-top: 1px solid rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
@@ -24,20 +299,14 @@ section:nth-child(odd) {
     background-color: white;
 }
 
-/* This fixes the "Global Impact" section to be properly Dark Navy */
-.bg-dark, #impact {
+/* GLOBAL IMPACT SECTION - DARK NAVY */
+/* This specific rule forces the impact section to be dark with white text */
+#impact {
     background-color: var(--secondary-color) !important;
     color: white !important;
 }
 
-/* Ensure text inside the Impact section is white */
+/* Force the headers and text inside Impact to be white */
 #impact h2, #impact p, #impact h3 {
     color: white !important;
-}
-
-/* Fix the Cards to always pop */
-.card, .feature {
-    background: white;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }

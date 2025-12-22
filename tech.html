@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* Tech-Specific Styles */
         .spec-table {
             width: 100%;
             border-collapse: collapse;
@@ -23,18 +22,15 @@
             font-size: 0.9rem;
             margin-top: 20px;
         }
-        
         .spec-table td {
             padding: 12px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        
         .spec-table td:first-child {
             font-weight: 700;
             color: var(--primary-color);
             width: 30%;
         }
-
         .tech-compare {
             width: 100%;
             border-collapse: collapse;
@@ -88,7 +84,6 @@
         <div class="container">
             <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
             <p class="lead">How do we get 20km range without huge antennas? Physics.</p>
-            
             <div class="grid-2">
                 <div>
                     <h3 style="color: white;">The "Whisper" Technique</h3>
@@ -99,33 +94,13 @@
                 <div>
                     <table class="tech-compare">
                         <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Standard Wi-Fi</th>
-                                <th>Aegis (LoRa)</th>
-                            </tr>
+                            <tr><th>Feature</th><th>Standard Wi-Fi</th><th>Aegis (LoRa)</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Range</strong></td>
-                                <td>~100 meters</td>
-                                <td><strong>15 - 20 km (Wilderness)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Autonomy</strong></td>
-                                <td>Hours</td>
-                                <td><strong>Months(Battery)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Environment</strong></td>
-                                <td>Indoor / Urban</td>
-                                <td><strong>Forests & Mountains</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Bandwidth</strong></td>
-                                <td>High (Video/Voice)</td>
-                                <td><strong>Low (Text/GPS Only)</strong></td>
-                            </tr>
+                            <tr><td><strong>Range</strong></td><td>~100 meters</td><td><strong>15 - 20 km (Wilderness)</strong></td></tr>
+                            <tr><td><strong>Autonomy</strong></td><td>Hours</td><td><strong>Months(Battery)</strong></td></tr>
+                            <tr><td><strong>Environment</strong></td><td>Indoor / Urban</td><td><strong>Forests & Mountains</strong></td></tr>
+                            <tr><td><strong>Bandwidth</strong></td><td>High (Video/Voice)</td><td><strong>Low (Text/GPS Only)</strong></td></tr>
                         </tbody>
                     </table>
                     <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from a valley where sat-phones fail.</p>
@@ -138,8 +113,8 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px; color: white;">2. The Topology: Wave Propagation</h2>
             <p class="lead" style="text-align: center; margin-bottom: 30px;">
-                Visualizing how signals traverse a hexagonal grid.<br>
-                <span style="font-size: 0.9rem; opacity: 0.7; color: #FF5722;">Orange = Signal Wave</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #334155;">Grey = Damaged Node</span>
+                Visualizing how signals traverse a realistic landscape.<br>
+                <span style="font-size: 0.9rem; opacity: 0.7; color: #FF5722;">Orange = Signal Wave</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #334155;">Dark = Mountain / Obstacle</span>
             </p>
 
             <div style="position: relative; width: 100%; height: 500px; background: #0F172A; border: 1px solid #334155; border-radius: 12px; overflow: hidden;">
@@ -147,8 +122,8 @@
                 
                 <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; flex-wrap: wrap; justify-content: center; width: 100%;">
                     <button onclick="startWave()" class="btn" style="padding: 10px 20px; font-size: 0.9rem; background-color: var(--primary-color); border: none; color: white;">📡 Broadcast Signal</button>
-                    <button onclick="loadScenario(1)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario A: Perfect Grid</button>
-                    <button onclick="loadScenario(2)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario B: Disaster (50% Down)</button>
+                    <button onclick="loadScenario(1)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario A: Clear Terrain</button>
+                    <button onclick="loadScenario(2)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario B: Mountain Blockage</button>
                 </div>
             </div>
             
@@ -236,15 +211,15 @@
             menu.classList.toggle("active");
         }
 
-        // 2. HEXAGONAL MESH SIMULATOR
+        // 2. PHYSICS-BASED MESH SIMULATOR
         const canvas = document.getElementById('meshCanvas');
         const ctx = canvas.getContext('2d');
         
         let nodes = [];
         let waves = [];
         const SPACING = 60; // Distance between nodes
-        const WAVE_SPEED = 2;
-        const MAX_WAVE_RADIUS = 50; // How far a signal travels
+        const WAVE_SPEED = 2; // Speed of propagation
+        const MAX_WAVE_RADIUS = 80; // INCREASED: Ensures overlap with neighbors (60px spacing < 80px range)
 
         function resizeCanvas() {
             canvas.width = canvas.parentElement.offsetWidth;
@@ -254,10 +229,10 @@
         window.addEventListener('resize', resizeCanvas);
 
         class Node {
-            constructor(x, y, active = true) {
+            constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.active = active;
+                this.active = true;
                 this.hasBroadcasted = false;
                 this.isSource = false;
                 this.isDest = false;
@@ -267,13 +242,32 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
                 
-                if (this.isSource) ctx.fillStyle = '#FF5722'; // Orange Source
-                else if (this.isDest) ctx.fillStyle = '#10B981'; // Green Dest
-                else if (!this.active) ctx.fillStyle = '#334155'; // Dark Grey Dead
-                else if (this.hasBroadcasted) ctx.fillStyle = '#FFFFFF'; // White (Used)
-                else ctx.fillStyle = '#64748B'; // Slate (Idle)
+                if (this.isSource) {
+                    ctx.fillStyle = '#FF5722'; // Orange Source
+                    // Source Pulse
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#FF5722';
+                } 
+                else if (this.isDest) {
+                    ctx.fillStyle = '#10B981'; // Green Dest
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#10B981';
+                }
+                else if (!this.active) {
+                    ctx.fillStyle = 'rgba(51, 65, 85, 0.3)'; // Faint Shadow for Dead/Mountain Node
+                    ctx.shadowBlur = 0;
+                }
+                else if (this.hasBroadcasted) {
+                    ctx.fillStyle = '#94A3B8'; // Grey (Already fired)
+                    ctx.shadowBlur = 0;
+                }
+                else {
+                    ctx.fillStyle = '#FFFFFF'; // White (Ready)
+                    ctx.shadowBlur = 0;
+                }
                 
                 ctx.fill();
+                ctx.shadowBlur = 0; // Reset
             }
         }
 
@@ -300,53 +294,69 @@
             }
         }
 
-        function createHexGrid() {
+        function createGrid(scenario) {
             nodes = [];
-            const cols = Math.ceil(canvas.width / SPACING) + 1;
-            const rows = Math.ceil(canvas.height / (SPACING * 0.866)) + 1;
+            const cols = Math.ceil(canvas.width / SPACING) + 2;
+            const rows = Math.ceil(canvas.height / (SPACING * 0.866)) + 2;
 
             for(let r=0; r<rows; r++) {
                 for(let c=0; c<cols; c++) {
+                    // Base Hex Grid Math
                     let x = c * SPACING;
                     let y = r * (SPACING * 0.866);
-                    if(r % 2 !== 0) x += SPACING / 2; // Offset for hex
+                    if(r % 2 !== 0) x += SPACING / 2;
                     
-                    // Center the grid slightly
-                    nodes.push(new Node(x, y));
+                    // Center it
+                    x -= 30; 
+                    y -= 30;
+
+                    // Add "Organic Terrain" Jitter (Variance)
+                    // We randomise position slightly so it looks like real placement
+                    x += (Math.random() - 0.5) * 20; 
+                    y += (Math.random() - 0.5) * 20;
+
+                    // Bounds check
+                    if (x > 0 && x < canvas.width && y > 0 && y < canvas.height) {
+                        let n = new Node(x, y);
+                        
+                        // SCENARIO 2: MOUNTAIN RANGE
+                        // Create a "dead zone" in the middle to block signals
+                        if (scenario === 2) {
+                            const centerX = canvas.width / 2;
+                            const centerY = canvas.height / 2;
+                            // Block a wide rectangle in the middle
+                            if (Math.abs(x - centerX) < 100 && Math.abs(y - centerY) < 150) {
+                                n.active = false;
+                            }
+                        }
+                        
+                        nodes.push(n);
+                    }
                 }
             }
         }
 
         function loadScenario(type) {
-            createHexGrid();
+            createGrid(type);
             waves = []; // Clear waves
 
-            // Determine Source (Top Left ish) and Dest (Bottom Right ish)
-            const source = nodes[Math.floor(nodes.length * 0.2)];
-            const dest = nodes[Math.floor(nodes.length * 0.8)];
+            // Pick Source (Far Left)
+            // Filter only active nodes
+            let validNodes = nodes.filter(n => n.active);
+            
+            // Sort by X position to find left-most
+            validNodes.sort((a,b) => a.x - b.x);
+            const source = validNodes[Math.floor(validNodes.length * 0.1)]; // 10% from left
+            const dest = validNodes[Math.floor(validNodes.length * 0.9)]; // 90% from left (Right side)
             
             if(source) source.isSource = true;
             if(dest) dest.isDest = true;
-
-            if (type === 2) {
-                // SCENARIO 2: DISASTER (Kill center nodes)
-                const centerX = canvas.width / 2;
-                const centerY = canvas.height / 2;
-                const killRadius = 150;
-
-                nodes.forEach(n => {
-                    let d = Math.hypot(n.x - centerX, n.y - centerY);
-                    if (d < killRadius) n.active = false;
-                });
-            }
         }
 
         function startWave() {
-            // Find source
             const source = nodes.find(n => n.isSource);
             if(source) {
-                // Reset broadcast state for a new simulation run
-                nodes.forEach(n => n.hasBroadcasted = false);
+                nodes.forEach(n => n.hasBroadcasted = false); // Reset state
                 source.hasBroadcasted = true;
                 waves.push(new Wave(source.x, source.y));
             }
@@ -355,18 +365,24 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Logic: Check collisions
+            // Logic: Wave Collision
             waves.forEach(w => {
                 if(w.active) {
                     w.update();
                     nodes.forEach(n => {
-                        // If wave hits active node that hasn't broadcasted yet
+                        // If wave hits active node that hasn't fired yet
                         if(n.active && !n.hasBroadcasted) {
                             let d = Math.hypot(w.x - n.x, w.y - n.y);
-                            // Simple collision: distance approx equal to radius
+                            
+                            // Detect hit (when wave radius ~ distance to node)
                             if(Math.abs(d - w.radius) < 5) {
                                 n.hasBroadcasted = true;
-                                waves.push(new Wave(n.x, n.y)); // REBROADCAST
+                                
+                                // REBROADCAST: Create new wave from this node
+                                // Small delay to look natural
+                                setTimeout(() => {
+                                    waves.push(new Wave(n.x, n.y));
+                                }, 50); 
                             }
                         }
                     });
@@ -379,8 +395,10 @@
         }
 
         // Init
-        resizeCanvas();
-        animate();
+        setTimeout(() => {
+            resizeCanvas();
+            animate();
+        }, 100);
 
     </script>
 

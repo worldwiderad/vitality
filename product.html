@@ -181,15 +181,15 @@
                         <option value="5">Village / Small Town (5 km²)</option>
                         <option value="50">City Center (50 km²)</option>
                         <option value="200">National Park / Rural Region (200 km²)</option>
-                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
-                        <option value="9800000">Continental USA (National Defense)</option>
+                        <option value="japan">Japan (National Coverage)</option>
+                        <option value="usa">Continental USA (National Defense)</option>
                     </select>
                 </div>
 
                 <div class="grid-2" style="margin-top: 0; gap: 20px;">
                     
                     <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Public Nodes Needed</div>
+                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Infrastructure Units</div>
                         <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
                     </div>
                     
@@ -200,8 +200,8 @@
                 </div>
 
                 <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
-                    <p style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
-                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
+                    <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
+                        *<strong>Calculation Logic:</strong> Standard density assumes 2 nodes/km² for urban environments.
                     </p>
                 </div>
             </div>
@@ -335,29 +335,44 @@
 
         // MISSION PLANNER CALCULATOR LOGIC
         function calculateCost() {
-            const area = parseInt(document.getElementById('areaSelect').value);
-            let density = 0.5; // Default
+            const selectValue = document.getElementById('areaSelect').value;
+            let nodes, price, note;
 
-            // Logic: High density for small areas (urban), low density for massive areas (rural/backbone)
-            if(area <= 5) density = 3.0; // Very Dense (Village)
-            else if(area <= 50) density = 2.0; // Dense (City)
-            else if(area <= 200) density = 0.5; // Sparse (Rural)
-            else if(area > 100000) density = 0.1; // NATIONAL DEFENSE (Skeleton Grid)
-            else density = 0.15; // Very Sparse (Disaster Zone Backbone)
+            if (selectValue === "japan") {
+                // Strategic Pitch: 5,000 Nodes for $500k
+                nodes = 5000;
+                price = 500000;
+                note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
+            } 
+            else if (selectValue === "usa") {
+                // USA Pitch: Scaled to ~130k nodes, rounded to 130,000 for $13M
+                nodes = 130000;
+                price = 13000000;
+                note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
+            } 
+            else {
+                // Standard Density Logic
+                const area = parseInt(selectValue);
+                let density = 0.5; 
 
-            let nodes = Math.ceil(area * density);
-            
-            // Minimum Viable Network
-            if(nodes < 2) nodes = 2;
+                if(area <= 5) density = 3.0; // Very Dense (Village)
+                else if(area <= 50) density = 2.0; // Dense (City)
+                else if(area <= 200) density = 0.5; // Sparse (Rural)
+                else density = 0.15; // Disaster Zone
 
-            const price = nodes * 150; // $150 per node
+                nodes = Math.ceil(area * density);
+                if(nodes < 2) nodes = 2;
+                price = nodes * 150; // Standard price for pure nodes
+                note = "*<strong>Standard Deployment:</strong> High density (2 nodes/km²) for urban penetration. Assumes 100% full-feature Public Nodes ($150/unit).";
+            }
 
             // Animate Numbers
             document.getElementById('nodeCount').innerText = nodes.toLocaleString();
             document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
+            document.getElementById('calculationNote').innerHTML = note;
         }
         
-        // Run once on load to show initial numbers
+        // Run once on load
         calculateCost();
     </script>
 

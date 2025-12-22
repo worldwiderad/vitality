@@ -15,46 +15,43 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* --- PRODUCT SPECIFIC OVERRIDES (DARK MODE) --- */
+        /* --- HIGH CONTRAST PRODUCT CARDS --- */
+        /* We override the Dark Theme just for these cards so the images blend */
         
         .product-card {
-            background: var(--bg-card);
+            background: white !important; /* Force White Card */
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
+            border: none; /* Clean look */
+            color: #334155; /* Dark Grey Text */
         }
         
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); /* Glowing shadow on hover */
         }
 
         .product-img-container {
             height: 250px; 
-            /* CHANGED TO WHITE FOR CONTRAST */
-            background-color: white; 
+            background-color: white; /* Matches Card */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            border-bottom: 1px solid var(--border-color);
+            /* No border needed since background matches */
         }
 
         .product-img-placeholder {
             height: 200px;
-            /* CHANGED TO WHITE FOR CONTRAST */
-            background-color: white;
+            background-color: white; /* Matches Card */
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Text needs to be dark now to show up on white */
-            color: var(--bg-body); 
+            color: #cbd5e1; /* Light grey placeholder text */
             font-weight: 600;
             width: 100%;
         }
@@ -66,17 +63,35 @@
             flex-direction: column;
         }
 
+        /* TEXT COLORS FOR WHITE CARD */
+        .product-card h3 {
+            color: #0F172A; /* Dark Navy Headline */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #64748b; /* Slate Grey Description */
+            font-size: 0.95rem;
+        }
+
         .price-tag {
             font-size: 1.5rem;
             font-weight: 800;
-            color: white; 
-            margin: 10px 0;
+            color: #0F172A; /* Dark Navy Price */
+            margin: 15px 0;
+        }
+
+        .product-card ul li {
+            color: #475569; /* Darker Grey List */
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
 
         .learn-more-link {
             margin-top: auto;
             color: var(--primary-color);
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -84,16 +99,11 @@
         }
         .learn-more-link:hover { text-decoration: underline; }
 
-        .product-card ul li {
-            color: var(--text-muted);
-        }
-
-        /* Hub Section Specifics */
+        /* HUB IMAGE BOX (Keep White) */
         .hub-image-box {
-            background: var(--bg-card);
+            background: white;
             padding: 40px; 
             border-radius: 12px; 
-            border: 1px solid var(--border-color); 
             text-align: center;
         }
     </style>
@@ -137,9 +147,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Aegis Public Node</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
-                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
+                        <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
+                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>80,000mAh Battery</li>
                             <li>Integrated Screen & Keyboard</li>
                             <li>Wi-Fi Bridge for Civilians</li>
@@ -154,9 +164,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Aegis Handheld</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
-                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
+                        <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
+                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>Pocket-Sized Form Factor</li>
                             <li>GPS Tracking Enabled</li>
                             <li>Tactile "Glove-Ready" Buttons</li>
@@ -171,9 +181,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Solar Repeater</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
-                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
+                        <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
+                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>100% Solar Autonomous</li>
                             <li>Weatherproof IP67</li>
                             <li>Zero Maintenance</li>
@@ -195,7 +205,7 @@
                 <div>
                     <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
                     <p style="color: var(--text-muted);">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
+                    <div class="price-tag" style="color: white !important;">$500 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                     
                     <ul style="margin-top: 20px; list-style: none; padding: 0; color: var(--text-muted);">
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
@@ -222,7 +232,7 @@
                 </div>
                 
                 <div class="hub-image-box">
-                    <div style="color: var(--bg-body); font-weight: 600; padding: 60px 0; background: white; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <div style="color: #64748b; font-weight: 600; padding: 60px 0;">
                         [Image: Aegis Hub / Base Station]
                     </div>
                 </div>

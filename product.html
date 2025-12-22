@@ -18,15 +18,15 @@
         /* --- PRODUCT SPECIFIC OVERRIDES (DARK MODE) --- */
         
         .product-card {
-            background: var(--bg-card); /* FIXED: Dark Background */
+            background: var(--bg-card);
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--border-color); /* FIXED: Subtle Border */
-            color: var(--text-muted); /* FIXED: Grey Text */
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
         }
         
         .product-card:hover {
@@ -37,7 +37,8 @@
 
         .product-img-container {
             height: 250px; 
-            background-color: #020617; /* FIXED: Dark background for image area */
+            /* CHANGED TO WHITE FOR CONTRAST */
+            background-color: white; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -47,11 +48,13 @@
 
         .product-img-placeholder {
             height: 200px;
-            background-color: #020617; /* FIXED: Dark background */
+            /* CHANGED TO WHITE FOR CONTRAST */
+            background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
+            /* Text needs to be dark now to show up on white */
+            color: var(--bg-body); 
             font-weight: 600;
             width: 100%;
         }
@@ -66,7 +69,7 @@
         .price-tag {
             font-size: 1.5rem;
             font-weight: 800;
-            color: white; /* FIXED: White text so it pops */
+            color: white; 
             margin: 10px 0;
         }
 
@@ -81,9 +84,8 @@
         }
         .learn-more-link:hover { text-decoration: underline; }
 
-        /* Tech Lists inside cards */
         .product-card ul li {
-            color: var(--text-muted); /* Ensure list text is visible */
+            color: var(--text-muted);
         }
 
         /* Hub Section Specifics */
@@ -220,7 +222,7 @@
                 </div>
                 
                 <div class="hub-image-box">
-                    <div style="color: #64748b; font-weight: 600; padding: 60px 0; background: #020617; border-radius: 8px;">
+                    <div style="color: var(--bg-body); font-weight: 600; padding: 60px 0; background: white; border-radius: 8px; border: 1px solid var(--border-color);">
                         [Image: Aegis Hub / Base Station]
                     </div>
                 </div>

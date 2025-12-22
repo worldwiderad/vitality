@@ -15,83 +15,86 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* --- HIGH CONTRAST PRODUCT CARDS --- */
-        /* We override the Dark Theme just for these cards so the images blend */
+        /* --- TWO-TONE PRODUCT CARDS --- */
         
         .product-card {
-            background: white !important; /* Force White Card */
+            background: var(--bg-card); /* Dark Bottom */
             border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* This crops the corners nicely */
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: none; /* Clean look */
-            color: #334155; /* Dark Grey Text */
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); /* Glowing shadow on hover */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--primary-color); /* Glows orange on hover */
         }
 
+        /* THE WHITE STAGE (Top Half) */
         .product-img-container {
             height: 250px; 
-            background-color: white; /* Matches Card */
+            background-color: white; /* Seamlessly matches your image background */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            /* No border needed since background matches */
+            padding: 0; /* Full bleed */
+            border-bottom: 2px solid var(--primary-color); /* The Accent Line */
+        }
+
+        /* Image sizing */
+        .product-img-container img {
+            max-height: 80%;
+            max-width: 80%;
+            object-fit: contain;
         }
 
         .product-img-placeholder {
-            height: 200px;
-            background-color: white; /* Matches Card */
+            height: 250px;
+            background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #cbd5e1; /* Light grey placeholder text */
-            font-weight: 600;
+            color: #020617; /* Dark text on white background */
+            font-weight: 700;
             width: 100%;
+            border-bottom: 2px solid var(--primary-color);
         }
 
+        /* THE DARK CONTENT (Bottom Half) */
         .product-content {
             padding: 25px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            color: var(--text-muted);
         }
 
-        /* TEXT COLORS FOR WHITE CARD */
         .product-card h3 {
-            color: #0F172A; /* Dark Navy Headline */
+            color: white;
             font-size: 1.5rem;
             margin-bottom: 10px;
-        }
-
-        .product-card p {
-            color: #64748b; /* Slate Grey Description */
-            font-size: 0.95rem;
         }
 
         .price-tag {
             font-size: 1.5rem;
             font-weight: 800;
-            color: #0F172A; /* Dark Navy Price */
-            margin: 15px 0;
+            color: white;
+            margin: 10px 0;
         }
 
         .product-card ul li {
-            color: #475569; /* Darker Grey List */
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
         .learn-more-link {
             margin-top: auto;
             color: var(--primary-color);
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -99,12 +102,13 @@
         }
         .learn-more-link:hover { text-decoration: underline; }
 
-        /* HUB IMAGE BOX (Keep White) */
+        /* Hub Section Image Box */
         .hub-image-box {
-            background: white;
+            background: white; /* Keeps the Hub image clean */
             padding: 40px; 
             border-radius: 12px; 
             text-align: center;
+            border-bottom: 4px solid var(--primary-color);
         }
     </style>
 </head>
@@ -112,13 +116,11 @@
 
     <nav>
         <div class="logo">VITALITY</div>
-        
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="product.html" class="active">Products</a></li>
@@ -143,12 +145,12 @@
                 
                 <div class="product-card">
                     <div class="product-img-container">
-                        <img src="assets/img/clean.png" alt="Aegis Public Node" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="assets/img/clean.png" alt="Aegis Public Node">
                     </div>
                     <div class="product-content">
                         <h3>Aegis Public Node</h3>
                         <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
-                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                         <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>80,000mAh Battery</li>
                             <li>Integrated Screen & Keyboard</li>
@@ -165,7 +167,7 @@
                     <div class="product-content">
                         <h3>Aegis Handheld</h3>
                         <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
-                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                         <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>Pocket-Sized Form Factor</li>
                             <li>GPS Tracking Enabled</li>
@@ -182,7 +184,7 @@
                     <div class="product-content">
                         <h3>Solar Repeater</h3>
                         <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
-                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                         <ul style="margin: 15px 0; padding-left: 20px;">
                             <li>100% Solar Autonomous</li>
                             <li>Weatherproof IP67</li>
@@ -205,34 +207,34 @@
                 <div>
                     <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
                     <p style="color: var(--text-muted);">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag" style="color: white !important;">$500 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
+                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                     
                     <ul style="margin-top: 20px; list-style: none; padding: 0; color: var(--text-muted);">
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: var(--primary-color); font-weight: bold;">&bull;</span>
-                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5 to handle thousands of concurrent messages.</span>
+                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: var(--primary-color); font-weight: bold;">&bull;</span>
-                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator to listen on 8 channels simultaneously.</span>
+                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: var(--primary-color); font-weight: bold;">&bull;</span>
-                            <span><strong>Local Hosting:</strong> Can run the software offline (Air-Gapped) or sync to the cloud.</span>
+                            <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
                         </li>
                     </ul>
 
                     <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid var(--primary-color); border-radius: 4px;">
                         <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
                             <strong>NOT a Single Point of Failure:</strong><br>
-                            Unlike competitor base stations, the Aegis Hub is optional for local communication. If the Hub is destroyed, the local mesh network <strong>remains 100% operational</strong> for device-to-device messaging.
+                            If the Hub is destroyed, the local mesh network remains 100% operational.
                         </p>
                     </div>
 
                 </div>
                 
                 <div class="hub-image-box">
-                    <div style="color: #64748b; font-weight: 600; padding: 60px 0;">
+                    <div style="color: #020617; font-weight: 600; padding: 60px 0;">
                         [Image: Aegis Hub / Base Station]
                     </div>
                 </div>
@@ -264,13 +266,13 @@
                             <th>Price</th>
                             <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
                             <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
-                            <td style="color: var(--primary-color); font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year (per 10-module "block")</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year</span></td>
                         </tr>
                         <tr>
                             <th>Features</th>
                             <td>Basic Map & Messaging</td>
                             <td>Advanced Analytics, Support</td>
-                            <td>On-Premise Hosting, API, 24/7 Support</td>
+                            <td>On-Premise, API, 24/7 Support</td>
                         </tr>
                     </tbody>
                 </table>
@@ -317,7 +319,7 @@
                             <td><strong>Infrastructure</strong></td>
                             <td>None</td>
                             <td>REQUIRED (Base Repeater)</td>
-                            <td style="color: var(--primary-color); font-weight: bold;">NOT REQUIRED (Devices are the network)</td>
+                            <td style="color: var(--primary-color); font-weight: bold;">NOT REQUIRED</td>
                         </tr>
                         <tr>
                             <td><strong>Single Point of Failure?</strong></td>
@@ -329,7 +331,7 @@
                             <td><strong>Setup</strong></td>
                             <td>High (Requires Phone, App)</td>
                             <td>High (Requires Training, License)</td>
-                            <td><strong>Zero (Turnkey, All-in-One)</strong></td>
+                            <td><strong>Zero (Turnkey)</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -347,7 +349,6 @@
     </footer>
 
     <script>
-        // Scroll Animation
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -361,7 +362,6 @@
         }
         reveal();
 
-        // Mobile Menu
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");

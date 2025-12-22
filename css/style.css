@@ -1,27 +1,25 @@
-/* --- 1. RESET & VARIABLES (MERGED) --- */
-
-/* We define the variables right here so there is no dependency to break */
+/* --- 1. VARIABLES (STEALTH NAVY THEME) --- */
 :root {
     /* BRAND COLORS */
-    --primary-color: #FF5722;   /* Safety Orange */
+    --primary-color: #FF5722;   /* Safety Orange (Highlights) */
     
-    /* BACKGROUNDS */
-    --secondary-color: #0F172A; /* Deep Navy (Header) */
-    --accent-color: #1E293B;    /* Lighter Navy (Sections) */
-
-    /* TEXT */
-    --text-dark: #102027;       /* Dark Text (For inside the white cards) */
-    --text-light: #ffffff;      /* White Text (For headers/buttons) */
+    /* DARK MODE PALETTE */
+    --bg-body: #020617;         /* Almost Black (Main Background) */
+    --bg-card: #0F172A;         /* Deep Slate (Card Background) */
+    --bg-nav:  rgba(2, 6, 23, 0.95); /* Semi-transparent Nav */
+    
+    /* TEXT COLORS */
+    --text-main: #F8FAFC;       /* White (Headings) */
+    --text-muted: #94A3B8;      /* Grey (Paragraphs) */
+    
+    /* BORDERS */
+    --border-color: rgba(255, 255, 255, 0.1); /* Subtle white lines */
 
     /* FONTS */
-    --font-heading: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
-
-    /* SPACING */
-    --section-padding: 80px 20px;
-    --max-width: 1200px;
 }
 
+/* --- 2. RESET & BASE --- */
 * {
     margin: 0;
     padding: 0;
@@ -30,27 +28,32 @@
 
 body {
     font-family: var(--font-body);
-    color: var(--text-dark);
+    color: var(--text-muted);
     line-height: 1.6;
-    background-color: #fff;
+    background-color: var(--bg-body);
     overflow-x: hidden;
 }
 
-/* --- 2. UTILITIES --- */
+h1, h2, h3, h4 {
+    color: var(--text-main);
+}
+
+/* --- 3. UTILITIES --- */
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* --- 3. NAVIGATION --- */
+/* --- 4. NAVIGATION (DARK GLASS) --- */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: #fff;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -59,7 +62,7 @@ nav {
 nav .logo {
     font-weight: 800;
     font-size: 1.5rem;
-    color: var(--secondary-color);
+    color: var(--text-main);
     letter-spacing: -1px;
 }
 
@@ -71,7 +74,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--text-muted);
     font-weight: 600;
     font-size: 0.95rem;
     transition: color 0.3s;
@@ -82,18 +85,17 @@ nav a:hover, nav a.active {
 }
 
 nav .btn-nav {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: white;
     padding: 8px 16px;
     border-radius: 4px;
 }
 
 nav .btn-nav:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #e64a19;
 }
 
-/* Hamburger Icon (Hidden on Desktop) */
+/* Hamburger Icon (White) */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -104,32 +106,46 @@ nav .btn-nav:hover {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: var(--secondary-color);
+    background-color: var(--text-main);
     border-radius: 3px;
 }
 
-/* --- 4. HERO SECTION --- */
-header.hero {
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('../assets/img/hero.png');
+/* --- 5. HERO SECTIONS --- */
+header.hero, header.hero-home {
+    background-image: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.7)), url('../assets/img/hero.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: var(--text-light);
+    color: white;
     padding: 120px 20px;
     text-align: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
-header.hero h1 {
+/* Fullscreen Hero specific */
+header.hero-home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+header.hero h1, header.hero-home h1 {
     font-size: 3.5rem;
     line-height: 1.1;
     margin-bottom: 20px;
     font-weight: 800;
+    color: white;
 }
 
-header.hero p {
+header.hero p, header.hero-home p {
     font-size: 1.2rem;
     opacity: 0.9;
     margin-bottom: 40px;
+    color: #cbd5e1;
 }
 
 .hero-btns {
@@ -138,129 +154,16 @@ header.hero p {
     gap: 15px;
 }
 
-/* --- 5. BUTTONS & SECTIONS --- */
-.btn {
-    display: inline-block;
-    padding: 14px 35px;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-    border: 2px solid var(--primary-color);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-}
-
-section { padding: 100px 0; }
-
-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--secondary-color);
-}
-
-p.lead {
-    font-size: 1.2rem;
-    color: #546E7A;
-    max-width: 700px;
-    margin-bottom: 50px;
-}
-
-/* --- 7. GRIDS & CARDS --- */
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.card, .feature {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.05);
-    color: var(--text-dark);
-}
-
-.feature h3, .card h3 {
-    margin-bottom: 15px;
-    color: var(--secondary-color);
-    font-size: 1.3rem;
-}
-
-/* --- 8. FOOTER --- */
-footer {
-    background-color: var(--secondary-color);
-    color: rgba(255,255,255,0.6);
-    text-align: center;
-    padding: 40px;
-    font-size: 0.9rem;
-}
-
-/* --- 10. TABLES --- */
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-    background: white;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.comparison-table th, .comparison-table td {
-    padding: 15px 20px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.comparison-table th {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: 600;
-}
-
-/* --- 11. HOME HERO --- */
-header.hero-home {
-    background-image: url('../assets/img/hero.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    padding: 20px;
-    position: relative;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-}
-
 .scroll-indicator {
     position: absolute;
     bottom: 150px;
     font-size: 0.9rem;
     font-weight: 600;
-    opacity: 0.9;
+    opacity: 0.8;
     animation: bounce 2s infinite;
     cursor: pointer;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    color: white;
 }
 
 .hero-label {
@@ -280,7 +183,119 @@ header.hero-home {
     60% {transform: translateY(-5px);}
 }
 
-/* --- 12. ANIMATIONS & SECTIONS --- */
+/* --- 6. BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+.btn:hover { background-color: #e64a19; }
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover {
+    border-color: white;
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* --- 7. SECTIONS (ALL DARK) --- */
+section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Alternating dark shades */
+section:nth-child(odd) { background-color: var(--bg-body); }
+section:nth-child(even) { background-color: #050b1d; }
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+p.lead {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+/* --- 8. CARDS (DARK UI) --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card, .feature, .product-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Dark shadow */
+}
+
+.feature h3, .card h3 {
+    margin-bottom: 15px;
+    color: var(--text-main);
+    font-size: 1.3rem;
+}
+
+/* --- 9. FOOTER --- */
+footer {
+    background-color: #020617;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- 10. TABLES (DARK MODE) --- */
+.comparison-table, .software-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table th, .software-table th {
+    background-color: #1e293b;
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table td, .software-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+/* --- 11. ANIMATIONS --- */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -291,62 +306,63 @@ header.hero-home {
     transform: translateY(0);
 }
 
-section:nth-child(even) { background-color: #F8FAFC; }
-section:nth-child(odd) { background-color: white; }
+/* --- 12. SPECIFIC OVERRIDES --- */
 
-#impact { background-color: var(--secondary-color) !important; color: white !important; }
-#impact h2, #impact p, #impact h3 { color: white !important; }
+/* Fix Product Card Images for Dark Mode */
+.product-img-container, .product-img-placeholder {
+    background-color: #0f172a !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
 
-/* --- 13. MOBILE RESPONSIVENESS (FINAL FIX) --- */
+/* Ensure Global Impact stays dark (it matches the theme now naturally) */
+#impact {
+    background-color: var(--bg-body) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- 13. MOBILE RESPONSIVENESS (FIXED) --- */
 @media (max-width: 768px) {
+    /* Menu Fixes */
+    .hamburger { display: flex; }
     
-    /* FIX 1: HAMBURGER MENU */
-    .hamburger {
-        display: flex; /* Show the 3 lines */
-    }
     nav ul {
-        display: none; /* Hide the menu by default */
+        display: none; 
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 70px; /* Push it below the logo */
+        top: 70px;
         left: 0;
-        background-color: white;
+        background-color: var(--bg-card); /* Dark menu background */
         padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        border-top: 1px solid #eee;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
     }
-    nav ul.active {
-        display: flex; /* Show it when clicked */
-    }
+    nav ul.active { display: flex; }
 
-    /* FIX 2: HUGE TEXT */
+    /* Text Sizing */
     header.hero h1, header.hero-home h1 { 
         font-size: 2.5rem !important;
         line-height: 1.2 !important;
     }
     
-    /* FIX 3: TECH PAGE OVERFLOW */
-    .code-block, .tech-diagram, .tech-compare, div[style*="overflow-x: auto"] {
+    /* Layout */
+    .grid-2, .features-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 0; }
+    
+    /* Tables & Code Blocks (Prevent Overflow) */
+    .comparison-table, .software-table { min-width: 600px; }
+    div[style*="overflow-x: auto"] { 
+        width: 100%; 
+        overflow-x: auto; 
+    }
+    .code-block, .tech-diagram, .tech-compare {
         max-width: 100vw;
         overflow-x: auto !important;
         white-space: nowrap; 
     }
-    
-    .code-block {
-        white-space: pre-wrap !important;
-        word-break: break-word !important; 
-    }
+    .code-block { white-space: pre-wrap !important; }
 
-    /* General Layout Fixes */
-    .grid-2, .features-grid { grid-template-columns: 1fr; gap: 40px; }
-    
-    .hero-label { display: none; }
-    
-    /* UPDATED: COMPLETELY HIDE SCROLL INDICATOR ON MOBILE */
-    .scroll-indicator { 
-        display: none !important; 
-    }
-
-    section { padding: 60px 0; }
+    /* Hiding Elements */
+    .hero-label, .scroll-indicator { display: none !important; }
 }

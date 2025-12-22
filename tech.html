@@ -35,12 +35,11 @@
             width: 30%;
         }
 
-        /* Comparison Chart for LoRa Section */
         .tech-compare {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: var(--bg-card); /* Dark Background */
+            background: var(--bg-card);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -63,13 +62,11 @@
 
     <nav>
         <div class="logo">VITALITY</div>
-        
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="product.html">Products</a></li>
@@ -99,7 +96,6 @@
                     <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
                     <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
                 </div>
-                
                 <div>
                     <table class="tech-compare">
                         <thead>
@@ -140,24 +136,25 @@
 
     <section class="reveal" style="background-color: #020617; border-bottom: 1px solid var(--border-color); padding: 50px 0;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 10px; color: white;">2. The Topology: Live Simulation</h2>
+            <h2 style="text-align: center; margin-bottom: 10px; color: white;">2. The Topology: Wave Propagation</h2>
             <p class="lead" style="text-align: center; margin-bottom: 30px;">
-                Visualizing the "Self-Healing" Mesh. Click <strong>"Broadcast"</strong> to send a signal.<br>
-                <span style="font-size: 0.9rem; opacity: 0.7;">(Click any Node to destroy it and see the network re-route.)</span>
+                Visualizing how signals traverse a hexagonal grid.<br>
+                <span style="font-size: 0.9rem; opacity: 0.7; color: #FF5722;">Orange = Signal Wave</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #334155;">Grey = Damaged Node</span>
             </p>
 
-            <div style="position: relative; width: 100%; height: 400px; background: #0F172A; border: 1px solid #334155; border-radius: 12px; overflow: hidden;">
+            <div style="position: relative; width: 100%; height: 500px; background: #0F172A; border: 1px solid #334155; border-radius: 12px; overflow: hidden;">
                 <canvas id="meshCanvas" style="width: 100%; height: 100%;"></canvas>
                 
-                <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 10;">
-                    <button onclick="broadcastSignal()" class="btn" style="padding: 10px 20px; font-size: 0.9rem; background-color: var(--primary-color); border: none; color: white;">📡 Broadcast Signal</button>
-                    <button onclick="resetMesh()" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem; background-color: rgba(0,0,0,0.5); color: white; border: 1px solid rgba(255,255,255,0.3);">Reset Network</button>
+                <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; flex-wrap: wrap; justify-content: center; width: 100%;">
+                    <button onclick="startWave()" class="btn" style="padding: 10px 20px; font-size: 0.9rem; background-color: var(--primary-color); border: none; color: white;">📡 Broadcast Signal</button>
+                    <button onclick="loadScenario(1)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario A: Perfect Grid</button>
+                    <button onclick="loadScenario(2)" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem;">Scenario B: Disaster (50% Down)</button>
                 </div>
             </div>
             
             <div style="margin-top: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <h3 style="color: var(--primary-color);">Why this matters</h3>
-                <p style="margin-top: 10px;">In a standard network (Star Topology), if the central tower fails, everyone loses signal. In a <strong>Mesh Topology</strong>, every device acts as a router. If one node is destroyed, the message automatically finds a new path to the destination.</p>
+                <h3 style="color: var(--primary-color);">Deduplication Logic</h3>
+                <p style="margin-top: 10px;">Notice how nodes only fire once? This prevents "Packet Storms." Even if a node hears the same message from 5 neighbors, it ignores duplicates, ensuring the network stays clear for new traffic.</p>
             </div>
         </div>
     </section>
@@ -166,11 +163,10 @@
         <div class="container">
             <h2 style="font-size: 2rem;">3. Security Architecture</h2>
             <p class="lead">In a conflict zone, metadata is as dangerous as the content. We protect both.</p>
-            
             <div class="features-grid">
                 <div class="feature">
                     <h3>Physical Isolation (Air-Gapped)</h3>
-                    <p><strong>You have to be there to hack it.</strong> Unlike the internet, which can be attacked from anywhere in the world, an attacker must be physically within range of our radio signals to even attempt an intercept.</p>
+                    <p><strong>You have to be there to hack it.</strong> Unlike the internet, an attacker must be physically within range of our radio signals to even attempt an intercept.</p>
                 </div>
                 <div class="feature">
                     <h3>AES-256 Encryption</h3>
@@ -178,7 +174,7 @@
                 </div>
                 <div class="feature">
                     <h3>Zero-Trust Keys</h3>
-                    <p>Encryption keys are pre-shared physically or generated locally. We (Vitality) do not hold a "master key." If we are subpoenaed, we cannot unlock your data.</p>
+                    <p>Encryption keys are pre-shared physically or generated locally. We (Vitality) do not hold a "master key."</p>
                 </div>
             </div>
         </div>
@@ -187,66 +183,32 @@
     <section class="reveal" style="background-color: #1E293B; color: white;">
         <div class="container">
             <h2 style="color: white; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 10px;">Technical Specifications</h2>
-            
             <div class="grid-2">
                 <div>
                     <h3 style="color: var(--primary-color); margin-top: 30px;">Aegis Public Node (V4)</h3>
                     <table class="spec-table" style="color: rgba(255,255,255,0.8);">
-                        <tr>
-                            <td>MCU</td>
-                            <td>Quad-Core ARM Cortex-A53 @ 1GHz</td>
-                        </tr>
-                        <tr>
-                            <td>Radio Module</td>
-                            <td>SX1262 LoRa Transceiver</td>
-                        </tr>
-                        <tr>
-                            <td>Frequency</td>
-                            <td>915 MHz (US/Asia) / 868 MHz (EU)</td>
-                        </tr>
-                        <tr>
-                            <td>Sensitivity</td>
-                            <td>-148 dBm (High Sensitivity)</td>
-                        </tr>
-                        <tr>
-                            <td>Power Source</td>
-                            <td>80,000mAh LiFePO4 + 20W Solar Input</td>
-                        </tr>
-                        <tr>
-                            <td>Operational Endurance</td>
-                            <td><strong>Months (Battery) / Years (Solar)</strong></td>
-                        </tr>
+                        <tr><td>MCU</td><td>Quad-Core ARM Cortex-A53 @ 1GHz</td></tr>
+                        <tr><td>Radio Module</td><td>SX1262 LoRa Transceiver</td></tr>
+                        <tr><td>Frequency</td><td>915 MHz (US/Asia) / 868 MHz (EU)</td></tr>
+                        <tr><td>Sensitivity</td><td>-148 dBm (High Sensitivity)</td></tr>
+                        <tr><td>Power Source</td><td>80,000mAh LiFePO4 + 20W Solar Input</td></tr>
+                        <tr><td>Operational Endurance</td><td><strong>Months (Battery) / Years (Solar)</strong></td></tr>
                     </table>
                 </div>
-                
                 <div>
                     <h3 style="color: var(--primary-color); margin-top: 30px;">Efficiency & Limits</h3>
                     <table class="spec-table" style="color: rgba(255,255,255,0.8);">
-                        <tr>
-                            <td>Tx Efficiency</td>
-                            <td>100+ Msgs/day with negligible drain.</td>
-                        </tr>
-                        <tr>
-                            <td>Main Power Draw</td>
-                            <td>OLED Screen (Active only during user input)</td>
-                        </tr>
-                        <tr>
-                            <td>IP Rating</td>
-                            <td>IP67 (Dust Tight, Immersion up to 1m)</td>
-                        </tr>
-                        <tr>
-                            <td>Encryption</td>
-                            <td>AES-256 GCM</td>
-                        </tr>
+                        <tr><td>Tx Efficiency</td><td>100+ Msgs/day with negligible drain.</td></tr>
+                        <tr><td>Main Power Draw</td><td>OLED Screen (Active only during user input)</td></tr>
+                        <tr><td>IP Rating</td><td>IP67 (Dust Tight, Immersion up to 1m)</td></tr>
+                        <tr><td>Encryption</td><td>AES-256 GCM</td></tr>
                     </table>
-                    
                     <div style="margin-top: 30px; border: 1px solid var(--primary-color); padding: 15px; border-radius: 4px;">
                         <p style="color: var(--primary-color); font-weight: bold; margin-bottom: 5px;">NOTE ON PROPRIETARY TECH:</p>
                         <p style="font-size: 0.8rem; opacity: 0.7;">Specific antenna tuning parameters and our "Pulse" battery management logic are omitted from public documentation to protect intellectual property.</p>
                     </div>
                 </div>
             </div>
-            
         </div>
     </section>
 
@@ -269,140 +231,157 @@
         }
         reveal();
 
-        // 2. MOBILE MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");
         }
 
-        // 3. MESH SIMULATOR LOGIC
+        // 2. HEXAGONAL MESH SIMULATOR
         const canvas = document.getElementById('meshCanvas');
         const ctx = canvas.getContext('2d');
         
-        // Correctly sizing the canvas
+        let nodes = [];
+        let waves = [];
+        const SPACING = 60; // Distance between nodes
+        const WAVE_SPEED = 2;
+        const MAX_WAVE_RADIUS = 50; // How far a signal travels
+
         function resizeCanvas() {
             canvas.width = canvas.parentElement.offsetWidth;
             canvas.height = canvas.parentElement.offsetHeight;
+            loadScenario(1); // Default to Scenario 1
         }
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas(); // Init
-
-        let nodes = [];
-        const NODE_COUNT = 15;
-        const CONNECTION_RANGE = 200; // Increased range for better visual
 
         class Node {
-            constructor(x, y) {
+            constructor(x, y, active = true) {
                 this.x = x;
                 this.y = y;
-                this.active = true;
-                this.isTransmitting = false;
+                this.active = active;
+                this.hasBroadcasted = false;
+                this.isSource = false;
+                this.isDest = false;
             }
 
             draw() {
-                // Draw Connections (Lines)
-                nodes.forEach(node => {
-                    if (node.active && this.active && node !== this) {
-                        let dist = Math.hypot(this.x - node.x, this.y - node.y);
-                        if (dist < CONNECTION_RANGE) {
-                            ctx.beginPath();
-                            ctx.moveTo(this.x, this.y);
-                            ctx.lineTo(node.x, node.y);
-                            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'; // Subtle connection lines
-                            ctx.lineWidth = 1;
-                            ctx.stroke();
-                        }
-                    }
-                });
-
-                // Draw Node (Dot)
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.active ? 6 : 4, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
                 
-                if (!this.active) {
-                    ctx.fillStyle = '#334155'; // Dead Node (Dark Grey)
-                } else if (this.isTransmitting) {
-                    ctx.fillStyle = '#FF5722'; // Active Signal (Orange)
-                } else {
-                    ctx.fillStyle = 'white'; // Idle Node (White)
-                }
+                if (this.isSource) ctx.fillStyle = '#FF5722'; // Orange Source
+                else if (this.isDest) ctx.fillStyle = '#10B981'; // Green Dest
+                else if (!this.active) ctx.fillStyle = '#334155'; // Dark Grey Dead
+                else if (this.hasBroadcasted) ctx.fillStyle = '#FFFFFF'; // White (Used)
+                else ctx.fillStyle = '#64748B'; // Slate (Idle)
+                
                 ctx.fill();
-                
-                // Draw Ripple if transmitting
-                if(this.active && this.isTransmitting) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, 25, 0, Math.PI * 2);
-                    ctx.strokeStyle = 'rgba(255, 87, 34, 0.6)';
-                    ctx.stroke();
+            }
+        }
+
+        class Wave {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 0;
+                this.active = true;
+            }
+
+            update() {
+                this.radius += WAVE_SPEED;
+                if(this.radius > MAX_WAVE_RADIUS) this.active = false;
+            }
+
+            draw() {
+                if(!this.active) return;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(255, 87, 34, ${1 - this.radius/MAX_WAVE_RADIUS})`; // Fade out
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        function createHexGrid() {
+            nodes = [];
+            const cols = Math.ceil(canvas.width / SPACING) + 1;
+            const rows = Math.ceil(canvas.height / (SPACING * 0.866)) + 1;
+
+            for(let r=0; r<rows; r++) {
+                for(let c=0; c<cols; c++) {
+                    let x = c * SPACING;
+                    let y = r * (SPACING * 0.866);
+                    if(r % 2 !== 0) x += SPACING / 2; // Offset for hex
+                    
+                    // Center the grid slightly
+                    nodes.push(new Node(x, y));
                 }
             }
         }
 
-        function initNodes() {
-            nodes = [];
-            for (let i = 0; i < NODE_COUNT; i++) {
-                nodes.push(new Node(
-                    Math.random() * (canvas.width - 50) + 25,
-                    Math.random() * (canvas.height - 50) + 25
-                ));
+        function loadScenario(type) {
+            createHexGrid();
+            waves = []; // Clear waves
+
+            // Determine Source (Top Left ish) and Dest (Bottom Right ish)
+            const source = nodes[Math.floor(nodes.length * 0.2)];
+            const dest = nodes[Math.floor(nodes.length * 0.8)];
+            
+            if(source) source.isSource = true;
+            if(dest) dest.isDest = true;
+
+            if (type === 2) {
+                // SCENARIO 2: DISASTER (Kill center nodes)
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const killRadius = 150;
+
+                nodes.forEach(n => {
+                    let d = Math.hypot(n.x - centerX, n.y - centerY);
+                    if (d < killRadius) n.active = false;
+                });
+            }
+        }
+
+        function startWave() {
+            // Find source
+            const source = nodes.find(n => n.isSource);
+            if(source) {
+                // Reset broadcast state for a new simulation run
+                nodes.forEach(n => n.hasBroadcasted = false);
+                source.hasBroadcasted = true;
+                waves.push(new Wave(source.x, source.y));
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Logic: Check collisions
+            waves.forEach(w => {
+                if(w.active) {
+                    w.update();
+                    nodes.forEach(n => {
+                        // If wave hits active node that hasn't broadcasted yet
+                        if(n.active && !n.hasBroadcasted) {
+                            let d = Math.hypot(w.x - n.x, w.y - n.y);
+                            // Simple collision: distance approx equal to radius
+                            if(Math.abs(d - w.radius) < 5) {
+                                n.hasBroadcasted = true;
+                                waves.push(new Wave(n.x, n.y)); // REBROADCAST
+                            }
+                        }
+                    });
+                }
+                w.draw();
+            });
+
             nodes.forEach(n => n.draw());
             requestAnimationFrame(animate);
         }
 
-        // Click to Kill Node
-        canvas.addEventListener('mousedown', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            nodes.forEach(n => {
-                let dist = Math.hypot(mouseX - n.x, mouseY - n.y);
-                if (dist < 30) n.active = !n.active; // Toggle
-            });
-        });
-
-        async function broadcastSignal() {
-            // Find a random active start node
-            let startNode = nodes.find(n => n.active);
-            if(!startNode) return;
-
-            let queue = [startNode];
-            let visited = new Set();
-            visited.add(startNode);
-
-            // Breadth-First Search to simulate flooding
-            while (queue.length > 0) {
-                let current = queue.shift();
-                current.isTransmitting = true;
-                
-                // Delay for visual effect
-                await new Promise(r => setTimeout(r, 150)); 
-                current.isTransmitting = false;
-
-                nodes.forEach(neighbor => {
-                    if (neighbor.active && !visited.has(neighbor)) {
-                        let dist = Math.hypot(current.x - neighbor.x, current.y - neighbor.y);
-                        if (dist < CONNECTION_RANGE) {
-                            visited.add(neighbor);
-                            queue.push(neighbor);
-                        }
-                    }
-                });
-            }
-        }
-
-        function resetMesh() {
-            initNodes();
-        }
-
         // Init
-        initNodes();
+        resizeCanvas();
         animate();
+
     </script>
 
 </body>

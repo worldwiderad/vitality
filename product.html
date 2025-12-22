@@ -182,6 +182,7 @@
                         <option value="50">City Center (50 km²)</option>
                         <option value="200">National Park / Rural Region (200 km²)</option>
                         <option value="9000">Disaster Zone (Puerto Rico size)</option>
+                        <option value="9800000">Continental USA (National Defense)</option>
                     </select>
                 </div>
 
@@ -200,7 +201,7 @@
 
                 <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
                     <p style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
-                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments to overcome concrete obstruction. Low density (0.2 nodes/km²) for rural line-of-sight. Includes 10% buffer for redundancy.
+                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
                     </p>
                 </div>
             </div>
@@ -341,6 +342,7 @@
             if(area <= 5) density = 3.0; // Very Dense (Village)
             else if(area <= 50) density = 2.0; // Dense (City)
             else if(area <= 200) density = 0.5; // Sparse (Rural)
+            else if(area > 100000) density = 0.1; // NATIONAL DEFENSE (Skeleton Grid)
             else density = 0.15; // Very Sparse (Disaster Zone Backbone)
 
             let nodes = Math.ceil(area * density);

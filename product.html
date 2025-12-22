@@ -15,58 +15,62 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* --- TWO-TONE PRODUCT CARDS --- */
+        /* --- TWO-TONE PRODUCT CARDS (FIXED) --- */
         
         .product-card {
             background: var(--bg-card); /* Dark Bottom */
             border-radius: 12px;
-            overflow: hidden; /* This crops the corners nicely */
+            overflow: hidden; 
             height: 100%;
             display: flex;
             flex-direction: column;
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* CRITICAL FIX: Removes the "Navy Outline" around the image */
+            padding: 0 !important; 
         }
         
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-color: var(--primary-color); /* Glows orange on hover */
+            border-color: var(--primary-color);
         }
 
-        /* THE WHITE STAGE (Top Half) */
+        /* 1. TOP HALF: WHITE STAGE */
         .product-img-container {
             height: 250px; 
-            background-color: white; /* Seamlessly matches your image background */
+            width: 100%; /* Forces full width */
+            background-color: white; 
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0; /* Full bleed */
-            border-bottom: 2px solid var(--primary-color); /* The Accent Line */
+            margin: 0;
+            border-bottom: 2px solid var(--primary-color); /* Orange Divider */
         }
 
-        /* Image sizing */
         .product-img-container img {
-            max-height: 80%;
-            max-width: 80%;
+            max-height: 85%;
+            max-width: 85%;
             object-fit: contain;
         }
 
         .product-img-placeholder {
             height: 250px;
+            width: 100%;
             background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #020617; /* Dark text on white background */
+            color: #020617; /* Dark Text */
             font-weight: 700;
-            width: 100%;
             border-bottom: 2px solid var(--primary-color);
         }
 
-        /* THE DARK CONTENT (Bottom Half) */
+        /* 2. BOTTOM HALF: DARK CONTENT */
+        /* We add the padding here instead of on the card */
         .product-content {
-            padding: 25px;
+            padding: 25px; 
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -104,7 +108,7 @@
 
         /* Hub Section Image Box */
         .hub-image-box {
-            background: white; /* Keeps the Hub image clean */
+            background: white; 
             padding: 40px; 
             border-radius: 12px; 
             text-align: center;

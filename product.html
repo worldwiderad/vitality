@@ -168,6 +168,45 @@
         </div>
     </section>
 
+    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <h2 style="text-align: center; color: white;">Mission Planner</h2>
+            <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
+
+            <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                
+                <div style="margin-bottom: 30px;">
+                    <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
+                    <select id="areaSelect" onchange="calculateCost()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+                        <option value="5">Village / Small Town (5 km²)</option>
+                        <option value="50">City Center (50 km²)</option>
+                        <option value="200">National Park / Rural Region (200 km²)</option>
+                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
+                    </select>
+                </div>
+
+                <div class="grid-2" style="margin-top: 0; gap: 20px;">
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Public Nodes Needed</div>
+                        <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
+                    </div>
+                    
+                    <div style="background: rgba(255,87,34,0.1); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,87,34,0.3);">
+                        <div style="font-size: 0.9rem; color: #FF5722; text-transform: uppercase; letter-spacing: 1px;">Est. Hardware Cost</div>
+                        <div id="totalCost" style="font-size: 2.5rem; font-weight: 800; color: #FF5722; margin-top: 5px;">--</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
+                    <p style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
+                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments to overcome concrete obstruction. Low density (0.2 nodes/km²) for rural line-of-sight. Includes 10% buffer for redundancy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="reveal">
         <div class="container">
             <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
@@ -292,6 +331,32 @@
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");
         }
+
+        // MISSION PLANNER CALCULATOR LOGIC
+        function calculateCost() {
+            const area = parseInt(document.getElementById('areaSelect').value);
+            let density = 0.5; // Default
+
+            // Logic: High density for small areas (urban), low density for massive areas (rural/backbone)
+            if(area <= 5) density = 3.0; // Very Dense (Village)
+            else if(area <= 50) density = 2.0; // Dense (City)
+            else if(area <= 200) density = 0.5; // Sparse (Rural)
+            else density = 0.15; // Very Sparse (Disaster Zone Backbone)
+
+            let nodes = Math.ceil(area * density);
+            
+            // Minimum Viable Network
+            if(nodes < 2) nodes = 2;
+
+            const price = nodes * 150; // $150 per node
+
+            // Animate Numbers
+            document.getElementById('nodeCount').innerText = nodes.toLocaleString();
+            document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
+        }
+        
+        // Run once on load to show initial numbers
+        calculateCost();
     </script>
 
 </body>

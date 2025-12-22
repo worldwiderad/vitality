@@ -109,9 +109,53 @@
         </div>
     </section>
 
+    <section class="reveal" style="background-color: #0F172A; color: white;">
+        <div class="container">
+            <h2 style="color: white;">2. The Topology: Distributed Mesh</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.7);">Why the network survives when half the devices are destroyed.</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--primary-color);">The "Self-Healing" Concept</h3>
+                    <p>In a standard network (like 4G), if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong>—a single point of failure.</p>
+                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device (Node) acts as a router/repeater for everyone else.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--primary-color);">
+                        <strong style="color: white;">Scenario: The "Broken Bridge"</strong>
+                        <p style="font-size: 0.9rem; margin-top: 10px; color: rgba(255,255,255,0.8);">
+                            1. Rescuer A wants to message Command Post Z.<br>
+                            2. The direct path is blocked by a mountain.<br>
+                            3. The message automatically hops to <strong>Node B</strong>, then <strong>Node C</strong>, then to <strong>Z</strong>.<br>
+                            4. If Node B runs out of battery? The network instantly re-routes through <strong>Node D</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--primary-color);">Infinite Scalability</h3>
+                    <p>Unlike localized systems, Aegis is designed for country-scale deployment.</p>
+                    <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: white;">Infinite Hopping:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">To get a message from one side of Japan to the other, the packet simply keeps hopping. There is no artificial limit to the network's size.</span>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: white;">Packet Deduplication:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent "echoes," ensuring efficiency even when hopping thousands of times.</span>
+                        </li>
+                        <li>
+                            <strong style="color: white;">Store & Forward:</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">If a node is alone, it holds the message until it reconnects with another node, then delivers it.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="reveal" style="background-color: #020617; border-bottom: 1px solid var(--border-color); padding: 50px 0;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 10px; color: white;">2. The Topology: Wave Propagation</h2>
+            <h2 style="text-align: center; margin-bottom: 10px; color: white;">Live Demonstration</h2>
             <p class="lead" style="text-align: center; margin-bottom: 30px;">
                 Visualizing how signals traverse a realistic landscape.<br>
                 <span style="font-size: 0.9rem; opacity: 0.7; color: #FF5722;">Orange = Signal</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #10B981;">Green = Receiver</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #334155;">Grey = Failed Node</span>
@@ -248,28 +292,27 @@
                     ctx.shadowBlur = 10; ctx.shadowColor = '#FF5722';
                 } 
                 else if (this.isDest) {
-                    // DESTINATION: Green if waiting, Bright White/Cyan if received
                     ctx.fillStyle = this.msgReceived ? '#FFFFFF' : '#10B981'; 
                     ctx.shadowBlur = this.msgReceived ? 20 : 10; 
                     ctx.shadowColor = '#10B981';
                 }
                 else if (!this.active) {
-                    ctx.fillStyle = '#334155'; // Dead Node
+                    ctx.fillStyle = '#334155'; // Dead
                     ctx.shadowBlur = 0;
                 }
                 else if (this.hasBroadcasted) {
-                    ctx.fillStyle = '#94A3B8'; // Spent Node
+                    ctx.fillStyle = '#94A3B8'; // Spent
                     ctx.shadowBlur = 0;
                 }
                 else {
-                    ctx.fillStyle = '#FFFFFF'; // Ready Node
+                    ctx.fillStyle = '#FFFFFF'; // Ready
                     ctx.shadowBlur = 0;
                 }
                 
                 ctx.fill();
                 ctx.shadowBlur = 0; 
 
-                // Success Ring for Destination
+                // Success Ring
                 if(this.isDest && this.msgReceived) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
@@ -320,18 +363,18 @@
 
                     if (x > 0 && x < canvas.width && y > 0 && y < canvas.height) {
                         
-                        // SCENARIO 2: MOUNTAIN (Don't create node)
+                        // SCENARIO 2: MOUNTAIN (Void)
                         if (scenario === 2) {
                             const centerX = canvas.width / 2;
                             const centerY = canvas.height / 2;
                             if (Math.abs(x - centerX) < 120 && Math.abs(y - centerY) < 150) {
-                                continue; // SKIP creation (Void)
+                                continue; 
                             }
                         }
 
                         let n = new Node(x, y);
 
-                        // SCENARIO 3: CHAOS (Create but Kill)
+                        // SCENARIO 3: CHAOS (Random Failures)
                         if (scenario === 3) {
                             if(Math.random() < 0.3) n.active = false;
                         }
@@ -346,13 +389,10 @@
             createGrid(type);
             waves = []; 
 
-            // Set Source and Dest
             let validNodes = nodes.filter(n => n.active);
-            validNodes.sort((a,b) => a.x - b.x); // Sort Left to Right
+            validNodes.sort((a,b) => a.x - b.x); 
             
-            // Source (Far Left)
             const source = validNodes[Math.floor(validNodes.length * 0.05)]; 
-            // Dest (Far Right)
             const dest = validNodes[Math.floor(validNodes.length * 0.95)]; 
             
             if(source) source.isSource = true;
@@ -362,7 +402,6 @@
         function startWave() {
             const source = nodes.find(n => n.isSource);
             if(source) {
-                // Reset state
                 nodes.forEach(n => { n.hasBroadcasted = false; n.msgReceived = false; });
                 source.hasBroadcasted = true;
                 waves.push(new Wave(source.x, source.y));
@@ -376,16 +415,11 @@
                 if(w.active) {
                     w.update();
                     nodes.forEach(n => {
-                        // HIT DETECTION
                         let d = Math.hypot(w.x - n.x, w.y - n.y);
                         if(Math.abs(d - w.radius) < 5) {
                             
-                            // If Dest gets hit
-                            if (n.active && n.isDest) {
-                                n.msgReceived = true;
-                            }
+                            if (n.active && n.isDest) n.msgReceived = true;
 
-                            // If Active node gets hit & hasn't fired yet
                             if(n.active && !n.hasBroadcasted && !n.isDest) {
                                 n.hasBroadcasted = true;
                                 setTimeout(() => {

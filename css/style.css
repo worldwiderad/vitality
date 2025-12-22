@@ -1,5 +1,26 @@
-/* --- 1. IMPORTS & RESET --- */
-@import 'variables.css';
+/* --- 1. RESET & VARIABLES (MERGED) --- */
+
+/* We define the variables right here so there is no dependency to break */
+:root {
+    /* BRAND COLORS */
+    --primary-color: #FF5722;   /* Safety Orange */
+    
+    /* BACKGROUNDS */
+    --secondary-color: #0F172A; /* Deep Navy (Header) */
+    --accent-color: #1E293B;    /* Lighter Navy (Sections) */
+
+    /* TEXT */
+    --text-dark: #102027;       /* Dark Text (For inside the white cards) */
+    --text-light: #ffffff;      /* White Text (For headers/buttons) */
+
+    /* FONTS */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* SPACING */
+    --section-padding: 80px 20px;
+    --max-width: 1200px;
+}
 
 * {
     margin: 0;
@@ -12,7 +33,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     background-color: #fff;
-    overflow-x: hidden; /* Prevents horizontal scroll breaking */
+    overflow-x: hidden;
 }
 
 /* --- 2. UTILITIES --- */
@@ -320,7 +341,6 @@ section:nth-child(odd) { background-color: white; }
     /* General Layout Fixes */
     .grid-2, .features-grid { grid-template-columns: 1fr; gap: 40px; }
     
-    /* REMOVED: .hero-label is hidden */
     .hero-label { display: none; }
     
     /* UPDATED: COMPLETELY HIDE SCROLL INDICATOR ON MOBILE */

@@ -26,7 +26,7 @@
         
         .spec-table td {
             padding: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1); /* Subtle borders for dark mode */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .spec-table td:first-child {
@@ -40,21 +40,22 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: white;
+            background: var(--bg-card); /* Dark Background */
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
         }
         .tech-compare th {
-            background: var(--secondary-color);
+            background: #1e293b;
             color: white;
             padding: 15px;
             text-align: left;
         }
         .tech-compare td {
             padding: 15px;
-            border-bottom: 1px solid #eee;
-            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -72,17 +73,17 @@
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="product.html">Products</a></li>
-            <li><a href="tech.html">The Tech</a></li>
+            <li><a href="tech.html" class="active">The Tech</a></li>
             <li><a href="mission.html">Our Mission</a></li>
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--secondary-color);">
+    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: left;">
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// ENGINEERING DOCUMENTATION</p>
             <h1 style="font-size: 3.5rem;">System Architecture.</h1>
-            <p style="max-width: 600px; opacity: 0.8;">A breakdown of the physics, topology, and security protocols powering the Aegis ecosystem.</p>
+            <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted);">A breakdown of the physics, topology, and security protocols powering the Aegis ecosystem.</p>
         </div>
     </header>
 
@@ -93,7 +94,7 @@
             
             <div class="grid-2">
                 <div>
-                    <h3 style="color: var(--secondary-color);">The "Whisper" Technique</h3>
+                    <h3 style="color: white;">The "Whisper" Technique</h3>
                     <p>Standard radios (like Wi-Fi) scream loudly but have poor hearing. They need a "line of sight" and high power.</p>
                     <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
                     <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
@@ -137,46 +138,26 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: var(--secondary-color); color: white;">
+    <section class="reveal" style="background-color: #020617; border-bottom: 1px solid var(--border-color); padding: 50px 0;">
         <div class="container">
-            <h2 style="color: white;">2. The Topology: Distributed Mesh</h2>
-            <p class="lead" style="color: rgba(255,255,255,0.7);">Why the network survives when half the devices are destroyed.</p>
+            <h2 style="text-align: center; margin-bottom: 10px; color: white;">2. The Topology: Live Simulation</h2>
+            <p class="lead" style="text-align: center; margin-bottom: 30px;">
+                Visualizing the "Self-Healing" Mesh. Click <strong>"Broadcast"</strong> to send a signal.<br>
+                <span style="font-size: 0.9rem; opacity: 0.7;">(Click any Node to destroy it and see the network re-route.)</span>
+            </p>
 
-            <div class="grid-2">
-                <div>
-                    <h3 style="color: var(--primary-color);">The "Self-Healing" Concept</h3>
-                    <p>In a standard network (like 4G), if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong>—a single point of failure.</p>
-                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device (Node) acts as a router/repeater for everyone else.</p>
-                    
-                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--primary-color);">
-                        <strong style="color: white;">Scenario: The "Broken Bridge"</strong>
-                        <p style="font-size: 0.9rem; margin-top: 10px; color: rgba(255,255,255,0.8);">
-                            1. Rescuer A wants to message Command Post Z.<br>
-                            2. The direct path is blocked by a mountain.<br>
-                            3. The message automatically hops to <strong>Node B</strong>, then <strong>Node C</strong>, then to <strong>Z</strong>.<br>
-                            4. If Node B runs out of battery? The network instantly re-routes through <strong>Node D</strong>.
-                        </p>
-                    </div>
+            <div style="position: relative; width: 100%; height: 400px; background: #0F172A; border: 1px solid #334155; border-radius: 12px; overflow: hidden;">
+                <canvas id="meshCanvas" style="width: 100%; height: 100%;"></canvas>
+                
+                <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 10;">
+                    <button onclick="broadcastSignal()" class="btn" style="padding: 10px 20px; font-size: 0.9rem; background-color: var(--primary-color); border: none; color: white;">📡 Broadcast Signal</button>
+                    <button onclick="resetMesh()" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.9rem; background-color: rgba(0,0,0,0.5); color: white; border: 1px solid rgba(255,255,255,0.3);">Reset Network</button>
                 </div>
-
-                <div>
-                    <h3 style="color: var(--primary-color);">Infinite Scalability</h3>
-                    <p>Unlike localized systems, Aegis is designed for country-scale deployment.</p>
-                    <ul style="margin-top: 15px; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Infinite Hopping:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">To get a message from one side of Japan to the other, the packet simply keeps hopping. There is no artificial limit to the network's size.</span>
-                        </li>
-                        <li style="margin-bottom: 15px;">
-                            <strong style="color: white;">Packet Deduplication:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent "echoes," ensuring efficiency even when hopping thousands of times.</span>
-                        </li>
-                        <li>
-                            <strong style="color: white;">Store & Forward:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">If a node is alone, it holds the message until it reconnects with another node, then delivers it.</span>
-                        </li>
-                    </ul>
-                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h3 style="color: var(--primary-color);">Why this matters</h3>
+                <p style="margin-top: 10px;">In a standard network (Star Topology), if the central tower fails, everyone loses signal. In a <strong>Mesh Topology</strong>, every device acts as a router. If one node is destroyed, the message automatically finds a new path to the destination.</p>
             </div>
         </div>
     </section>
@@ -288,11 +269,140 @@
         }
         reveal();
 
-        // 2. MOBILE MENU TOGGLE (NEW)
+        // 2. MOBILE MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");
         }
+
+        // 3. MESH SIMULATOR LOGIC
+        const canvas = document.getElementById('meshCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Correctly sizing the canvas
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Init
+
+        let nodes = [];
+        const NODE_COUNT = 15;
+        const CONNECTION_RANGE = 200; // Increased range for better visual
+
+        class Node {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.active = true;
+                this.isTransmitting = false;
+            }
+
+            draw() {
+                // Draw Connections (Lines)
+                nodes.forEach(node => {
+                    if (node.active && this.active && node !== this) {
+                        let dist = Math.hypot(this.x - node.x, this.y - node.y);
+                        if (dist < CONNECTION_RANGE) {
+                            ctx.beginPath();
+                            ctx.moveTo(this.x, this.y);
+                            ctx.lineTo(node.x, node.y);
+                            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'; // Subtle connection lines
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                // Draw Node (Dot)
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.active ? 6 : 4, 0, Math.PI * 2);
+                
+                if (!this.active) {
+                    ctx.fillStyle = '#334155'; // Dead Node (Dark Grey)
+                } else if (this.isTransmitting) {
+                    ctx.fillStyle = '#FF5722'; // Active Signal (Orange)
+                } else {
+                    ctx.fillStyle = 'white'; // Idle Node (White)
+                }
+                ctx.fill();
+                
+                // Draw Ripple if transmitting
+                if(this.active && this.isTransmitting) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 25, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(255, 87, 34, 0.6)';
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function initNodes() {
+            nodes = [];
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push(new Node(
+                    Math.random() * (canvas.width - 50) + 25,
+                    Math.random() * (canvas.height - 50) + 25
+                ));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(n => n.draw());
+            requestAnimationFrame(animate);
+        }
+
+        // Click to Kill Node
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            nodes.forEach(n => {
+                let dist = Math.hypot(mouseX - n.x, mouseY - n.y);
+                if (dist < 30) n.active = !n.active; // Toggle
+            });
+        });
+
+        async function broadcastSignal() {
+            // Find a random active start node
+            let startNode = nodes.find(n => n.active);
+            if(!startNode) return;
+
+            let queue = [startNode];
+            let visited = new Set();
+            visited.add(startNode);
+
+            // Breadth-First Search to simulate flooding
+            while (queue.length > 0) {
+                let current = queue.shift();
+                current.isTransmitting = true;
+                
+                // Delay for visual effect
+                await new Promise(r => setTimeout(r, 150)); 
+                current.isTransmitting = false;
+
+                nodes.forEach(neighbor => {
+                    if (neighbor.active && !visited.has(neighbor)) {
+                        let dist = Math.hypot(current.x - neighbor.x, current.y - neighbor.y);
+                        if (dist < CONNECTION_RANGE) {
+                            visited.add(neighbor);
+                            queue.push(neighbor);
+                        }
+                    }
+                });
+            }
+        }
+
+        function resetMesh() {
+            initNodes();
+        }
+
+        // Init
+        initNodes();
+        animate();
     </script>
 
 </body>

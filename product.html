@@ -15,8 +15,10 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* --- TWO-TONE PRODUCT CARDS (FIXED) --- */
+        /* --- TWO-TONE PRODUCT CARDS (NUCLEAR OPTION) --- */
         
+        /* 1. THE CARD WRAPPER */
+        /* We use !important to override the global style.css padding */
         .product-card {
             background: var(--bg-card); /* Dark Bottom */
             border-radius: 12px;
@@ -27,7 +29,7 @@
             border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             
-            /* CRITICAL FIX: Removes the "Navy Outline" around the image */
+            /* THIS IS THE FIX: Forces the card to have NO internal spacing */
             padding: 0 !important; 
         }
         
@@ -37,10 +39,11 @@
             border-color: var(--primary-color);
         }
 
-        /* 1. TOP HALF: WHITE STAGE */
+        /* 2. TOP HALF: WHITE STAGE */
+        /* This container now touches the edges because parent padding is 0 */
         .product-img-container {
             height: 250px; 
-            width: 100%; /* Forces full width */
+            width: 100%; 
             background-color: white; 
             display: flex;
             align-items: center;
@@ -55,6 +58,7 @@
             object-fit: contain;
         }
 
+        /* For the placeholder text version */
         .product-img-placeholder {
             height: 250px;
             width: 100%;
@@ -67,8 +71,8 @@
             border-bottom: 2px solid var(--primary-color);
         }
 
-        /* 2. BOTTOM HALF: DARK CONTENT */
-        /* We add the padding here instead of on the card */
+        /* 3. BOTTOM HALF: DARK CONTENT */
+        /* We add the padding here instead since we removed it from the parent */
         .product-content {
             padding: 25px; 
             flex-grow: 1;

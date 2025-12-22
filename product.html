@@ -30,6 +30,12 @@
             gap: 5px;
         }
         .learn-more-link:hover { text-decoration: underline; }
+
+        /* Custom Input Animation */
+        #customInputContainer {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -177,13 +183,20 @@
                 
                 <div style="margin-bottom: 30px;">
                     <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
-                    <select id="areaSelect" onchange="calculateCost()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+                    <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
                         <option value="5">Village / Small Town (5 km²)</option>
                         <option value="50">City Center (50 km²)</option>
                         <option value="200">National Park / Rural Region (200 km²)</option>
+                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
                         <option value="japan">Japan (National Coverage)</option>
                         <option value="usa">Continental USA (National Defense)</option>
+                        <option value="custom">Custom Area (Enter Amount)</option>
                     </select>
+
+                    <div id="customInputContainer" style="display: none; margin-top: 15px;">
+                        <label style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 5px; display: block;">Enter Area Size (km²):</label>
+                        <input type="number" id="customAreaInput" placeholder="e.g. 500" oninput="calculateCost()" style="width: 100%; padding: 15px; background: #0F172A; border: 1px solid #FF5722; color: white; border-radius: 8px; font-size: 1rem;">
+                    </div>
                 </div>
 
                 <div class="grid-2" style="margin-top: 0; gap: 20px;">
@@ -201,7 +214,7 @@
 
                 <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
                     <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
-                        *<strong>Calculation Logic:</strong> Standard density assumes 2 nodes/km² for urban environments.
+                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
                     </p>
                 </div>
             </div>
@@ -334,8 +347,24 @@
         }
 
         // MISSION PLANNER CALCULATOR LOGIC
+        function handleSelectChange() {
+            const selectValue = document.getElementById('areaSelect').value;
+            const customContainer = document.getElementById('customInputContainer');
+
+            if (selectValue === 'custom') {
+                customContainer.style.display = 'block';
+                // Trigger calculation for whatever is currently in the box (or 0)
+                calculateCost();
+            } else {
+                customContainer.style.display = 'none';
+                calculateCost();
+            }
+        }
+
         function calculateCost() {
             const selectValue = document.getElementById('areaSelect').value;
+            let area = 0;
+            let density = 0.5; // Default density
             let nodes, price, note;
 
             if (selectValue === "japan") {
@@ -345,25 +374,37 @@
                 note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
             } 
             else if (selectValue === "usa") {
-                // USA Pitch: Scaled to ~130k nodes, rounded to 130,000 for $13M
+                // USA Pitch: Scaled to ~130k nodes for $13M
                 nodes = 130000;
                 price = 13000000;
                 note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
             } 
             else {
-                // Standard Density Logic
-                const area = parseInt(selectValue);
-                let density = 0.5; 
+                // HANDLE STANDARD + CUSTOM
+                if (selectValue === 'custom') {
+                    area = parseFloat(document.getElementById('customAreaInput').value) || 0;
+                } else {
+                    area = parseInt(selectValue);
+                }
 
+                // Dynamic Density Logic for standard/custom
                 if(area <= 5) density = 3.0; // Very Dense (Village)
                 else if(area <= 50) density = 2.0; // Dense (City)
                 else if(area <= 200) density = 0.5; // Sparse (Rural)
+                else if(area > 100000) density = 0.1; // National
                 else density = 0.15; // Disaster Zone
 
                 nodes = Math.ceil(area * density);
-                if(nodes < 2) nodes = 2;
-                price = nodes * 150; // Standard price for pure nodes
-                note = "*<strong>Standard Deployment:</strong> High density (2 nodes/km²) for urban penetration. Assumes 100% full-feature Public Nodes ($150/unit).";
+                if(nodes < 2 && area > 0) nodes = 2; // Min viable
+                if(area === 0) nodes = 0;
+
+                // Price is standard $150 for small scale, $100 avg for massive scale
+                let costPerUnit = (area > 1000) ? 100 : 150;
+                
+                price = nodes * costPerUnit;
+                
+                let densityText = (density < 0.2) ? "Strategic Backbone" : "High Density";
+                note = `*<strong>${densityText}:</strong> Based on ${density} nodes/km² for this scale.`;
             }
 
             // Animate Numbers
@@ -373,7 +414,7 @@
         }
         
         // Run once on load
-        calculateCost();
+        handleSelectChange();
     </script>
 
 </body>

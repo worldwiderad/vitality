@@ -15,52 +15,61 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* Product Specific Styles */
+        /* --- PRODUCT SPECIFIC OVERRIDES (DARK MODE) --- */
+        
         .product-card {
-            background: white;
+            background: var(--bg-card); /* FIXED: Dark Background */
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color); /* FIXED: Subtle Border */
+            color: var(--text-muted); /* FIXED: Grey Text */
         }
+        
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--primary-color);
         }
+
         .product-img-container {
             height: 250px; 
-            background-color: white;
+            background-color: #020617; /* FIXED: Dark background for image area */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            border-bottom: 1px solid #f1f5f9;
+            border-bottom: 1px solid var(--border-color);
         }
+
         .product-img-placeholder {
             height: 200px;
-            background-color: #f1f5f9;
+            background-color: #020617; /* FIXED: Dark background */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #94a3b8;
+            color: #64748b;
             font-weight: 600;
             width: 100%;
         }
+
         .product-content {
             padding: 25px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
+
         .price-tag {
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--secondary-color);
+            color: white; /* FIXED: White text so it pops */
             margin: 10px 0;
         }
+
         .learn-more-link {
             margin-top: auto;
             color: var(--primary-color);
@@ -72,33 +81,18 @@
         }
         .learn-more-link:hover { text-decoration: underline; }
 
-        /* Software Table Styles (Dark Mode) */
-        .software-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.1);
+        /* Tech Lists inside cards */
+        .product-card ul li {
+            color: var(--text-muted); /* Ensure list text is visible */
         }
-        .software-table th, .software-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.9);
-        }
-        .software-table th {
-            background-color: rgba(255,255,255,0.05);
-            font-weight: 700;
-            color: var(--primary-color);
-            width: 20%; 
-        }
-        .software-table td {
-            vertical-align: top;
-        }
-        
-        /* Competitor Table Adjustments */
-        .comparison-table th {
-            width: 25%; /* Even spacing for columns */
+
+        /* Hub Section Specifics */
+        .hub-image-box {
+            background: var(--bg-card);
+            padding: 40px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color); 
+            text-align: center;
         }
     </style>
 </head>
@@ -115,14 +109,14 @@
 
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
+            <li><a href="product.html" class="active">Products</a></li>
             <li><a href="tech.html">The Tech</a></li>
             <li><a href="mission.html">Our Mission</a></li>
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: var(--secondary-color);">
+    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container">
             <h1 style="font-size: 3rem;">The Aegis Platform</h1>
             <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">A complete ecosystem of ruggedized hardware and command software. Deploy a city-wide network in hours.</p>
@@ -141,9 +135,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Aegis Public Node</h3>
-                        <p style="font-size: 0.9rem; color: #64748b;">The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
-                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
+                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
                             <li>80,000mAh Battery</li>
                             <li>Integrated Screen & Keyboard</li>
                             <li>Wi-Fi Bridge for Civilians</li>
@@ -158,9 +152,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Aegis Handheld</h3>
-                        <p style="font-size: 0.9rem; color: #64748b;">Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
-                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
+                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
                             <li>Pocket-Sized Form Factor</li>
                             <li>GPS Tracking Enabled</li>
                             <li>Tactile "Glove-Ready" Buttons</li>
@@ -175,9 +169,9 @@
                     </div>
                     <div class="product-content">
                         <h3>Solar Repeater</h3>
-                        <p style="font-size: 0.9rem; color: #64748b;">"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
-                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--text-dark);">
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
+                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px; font-size: 0.9rem;">
                             <li>100% Solar Autonomous</li>
                             <li>Weatherproof IP67</li>
                             <li>Zero Maintenance</li>
@@ -190,18 +184,18 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #F8FAFC;">
+    <section class="reveal">
         <div class="container">
             <h2 style="text-align: center;">Command Infrastructure</h2>
             <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
 
             <div class="grid-2" style="align-items: center;">
                 <div>
-                    <h3 style="color: var(--secondary-color); font-size: 2rem;">Aegis Hub (Base Station)</h3>
-                    <p>The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #64748b;">/ unit</span></div>
+                    <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
+                    <p style="color: var(--text-muted);">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
+                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ unit</span></div>
                     
-                    <ul style="margin-top: 20px; list-style: none; padding: 0;">
+                    <ul style="margin-top: 20px; list-style: none; padding: 0; color: var(--text-muted);">
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: var(--primary-color); font-weight: bold;">&bull;</span>
                             <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5 to handle thousands of concurrent messages.</span>
@@ -217,15 +211,16 @@
                     </ul>
 
                     <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid var(--primary-color); border-radius: 4px;">
-                        <p style="font-size: 0.9rem; color: var(--secondary-color); margin-bottom: 0;">
+                        <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
                             <strong>NOT a Single Point of Failure:</strong><br>
                             Unlike competitor base stations, the Aegis Hub is optional for local communication. If the Hub is destroyed, the local mesh network <strong>remains 100% operational</strong> for device-to-device messaging.
                         </p>
                     </div>
 
                 </div>
-                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); text-align: center;">
-                    <div style="color: #94a3b8; font-weight: 600; padding: 60px 0; background: #f1f5f9; border-radius: 8px;">
+                
+                <div class="hub-image-box">
+                    <div style="color: #64748b; font-weight: 600; padding: 60px 0; background: #020617; border-radius: 8px;">
                         [Image: Aegis Hub / Base Station]
                     </div>
                 </div>
@@ -233,10 +228,10 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: var(--secondary-color); color: white;">
+    <section class="reveal">
         <div class="container">
             <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
-            <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
+            <p style="color: var(--text-muted); font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
             
             <div style="overflow-x: auto;">
                 <table class="software-table">
@@ -255,9 +250,9 @@
                         </tr>
                         <tr>
                             <th>Price</th>
-                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">(One-Time Fee)</span></td>
-                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">/ month / hub</span></td>
-                            <td style="color: var(--primary-color); font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: normal;">/ year (per 10-module "block")</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
+                            <td style="color: var(--primary-color); font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year (per 10-module "block")</span></td>
                         </tr>
                         <tr>
                             <th>Features</th>
@@ -282,15 +277,15 @@
                     <thead>
                         <tr>
                             <th>Option</th>
-                            <th>Hobbyist (Meshtastic)</th>
-                            <th>Professional DMR (Motorola)</th>
-                            <th>Vitality 'Aegis'</th>
+                            <th>[A] Hobbyist (Meshtastic)</th>
+                            <th>[B] Professional DMR (Motorola)</th>
+                            <th>[C] Vitality 'Aegis'</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>Handset Cost</strong></td>
-                            <td>$120</td>
+                            <td>$50 - $120</td>
                             <td>$2,500 - $10,000</td>
                             <td style="color: var(--primary-color); font-weight: bold;">~$100</td>
                         </tr>
@@ -310,7 +305,7 @@
                             <td><strong>Infrastructure</strong></td>
                             <td>None</td>
                             <td>REQUIRED (Base Repeater)</td>
-                            <td style="color: var(--primary-color); font-weight: bold;">NONE (Devices are the network)</td>
+                            <td style="color: var(--primary-color); font-weight: bold;">NOT REQUIRED (Devices are the network)</td>
                         </tr>
                         <tr>
                             <td><strong>Single Point of Failure?</strong></td>
@@ -330,7 +325,7 @@
             
             <br>
             <div style="text-align: center; margin-top: 30px;">
-                <a href="tech.html" class="btn btn-outline" style="color: var(--secondary-color); border-color: var(--secondary-color);">See How It Works (Technical) &rarr;</a>
+                <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
             </div>
         </div>
     </section>
@@ -340,7 +335,7 @@
     </footer>
 
     <script>
-        // 1. SCROLL ANIMATION
+        // Scroll Animation
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -354,7 +349,7 @@
         }
         reveal();
 
-        // 2. MOBILE MENU TOGGLE (NEW)
+        // Mobile Menu
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");

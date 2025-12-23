@@ -48,12 +48,13 @@
             <span></span>
         </div>
         <ul id="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="product.html">Products</a></li>
-    <li><a href="tech.html">The Tech</a></li>
-    <li><a href="team.html">Team</a></li> <li><a href="mission.html">Our Mission</a></li>
-    <li><a href="contact.html" class="btn-nav">Contact</a></li>
-</ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="tech.html">The Tech</a></li>
+            <li><a href="team.html">Team</a></li> 
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
     </nav>
 
     <header class="hero" style="padding: 80px 20px; background-image: none; background-color: #020617;">
@@ -225,6 +226,45 @@
         <div class="container">
             <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
             <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
+            
+            <div class="dashboard-frame">
+                <div class="dash-header">
+                    <div class="dash-title">// AEGIS_OS v2.4 [SECURE]</div>
+                    <div class="dash-status"><span class="blink">●</span> NETWORK ONLINE</div>
+                </div>
+
+                <div class="dash-grid">
+                    <div class="dash-panel">
+                        <div class="panel-title">NODE TELEMETRY</div>
+                        <div class="node-row"><span>NODE_041 (Alpha)</span><span style="color: #10B981;">100% BAT</span></div>
+                        <div class="node-row"><span>NODE_042 (Bravo)</span><span style="color: #10B981;">94% BAT</span></div>
+                        <div class="node-row"><span>NODE_043 (Charlie)</span><span style="color: #F59E0B;">42% BAT</span></div>
+                        <div class="node-row"><span>NODE_044 (Delta)</span><span style="color: #EF4444;">OFFLINE</span></div>
+                    </div>
+
+                    <div class="dash-panel" style="background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 20px 20px; position: relative;">
+                        <div class="panel-title">TACTICAL MAP</div>
+                        <div class="map-dot" style="top: 30%; left: 40%;"></div>
+                        <div class="map-dot" style="top: 50%; left: 60%;"></div>
+                        <div class="map-dot" style="top: 70%; left: 30%;"></div>
+                        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+                            <line x1="40%" y1="30%" x2="60%" y2="50%" stroke="#10B981" stroke-width="1" opacity="0.5" />
+                            <line x1="60%" y1="50%" x2="30%" y2="70%" stroke="#10B981" stroke-width="1" opacity="0.5" />
+                        </svg>
+                    </div>
+
+                    <div class="dash-panel">
+                        <div class="panel-title">MESSAGE LOG</div>
+                        <div class="chat-feed">
+                            <div class="msg"><span class="time">[09:01]</span> <span class="user">ALPHA:</span> Road clear.</div>
+                            <div class="msg"><span class="time">[09:04]</span> <span class="user">CMD:</span> Copy.</div>
+                            <div class="msg"><span class="time">[09:15]</span> <span class="user">BRAVO:</span> <span style="color: #EF4444;">!! MEDICAL ALERT !!</span></div>
+                            <div class="msg"><span class="time">[09:20]</span> <span class="user">SYS:</span> <span style="color: #F59E0B;">Re-routing mesh...</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="text-align: center; margin-bottom: 20px; color: white; margin-top: 60px;">Licensing Tiers</h3>
             
             <div style="overflow-x: auto;">
                 <table class="software-table">

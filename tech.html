@@ -231,6 +231,116 @@
         </div>
     </section>
 
+    <section class="reveal" style="background-color: var(--bg-body); border-top: 1px solid var(--border-color);">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 40px;">Engineering FAQ</h2>
+            
+            <div class="faq-container">
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Can the network be jammed?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While no radio system is un-jammable, Aegis is highly resistant. We use <strong>CSS (Chirp Spread Spectrum)</strong>, which spreads the signal across a wider bandwidth. A jammer must overpower the entire spectrum to stop the signal. Furthermore, the mesh topology allows the network to route <em>around</em> a localized jamming source.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>What happens during a nuclear winter / prolonged storm?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Public Node features an <strong>80,000mAh LiFePO4 battery</strong>. Even with zero solar input (total darkness), the node can operate on "Power Save Mode" (beacons only) for approximately <strong>4 months</strong>. In standard operation, it has 45 days of autonomy without sun.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Is this legal on civilian frequencies?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Aegis operates on the <strong>915 MHz ISM band</strong> (Industrial, Scientific, and Medical) in the US and 868 MHz in Europe. These are license-free bands. We strictly adhere to the 1% duty cycle and transmission power limits set by the FCC/ETSI, ensuring legal operation without requiring user licenses.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>How does it differ from Starlink?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Starlink requires a $500 dish, 100W of power, and a clear view of the sky. It connects to the internet. <br><br><strong>Aegis</strong> connects <em>people to people</em> locally. It requires <1W of power, works in dense forests, costs $150, and creates its own offline network. We are the "last mile" solution where satellites cannot reach or are too expensive.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .faq-answer p {
+            padding: 20px;
+            margin: 0;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .chevron {
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+        /* Active State */
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Arbitrary height for expansion */
+        }
+        .faq-item.active .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <script>
+        function toggleFaq(element) {
+            // Close others (optional, feels cleaner)
+            const allFaqs = document.querySelectorAll('.faq-item');
+            allFaqs.forEach(item => {
+                if(item !== element) item.classList.remove('active');
+            });
+            
+            // Toggle clicked
+            element.classList.toggle('active');
+        }
+    </script>
+
     <footer>
         <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>

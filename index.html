@@ -27,196 +27,133 @@
         </div>
 
         <ul id="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="product.html">Products</a></li>
-    <li><a href="tech.html">The Tech</a></li>
-    <li><a href="team.html">Team</a></li> <li><a href="mission.html">Our Mission</a></li>
-    <li><a href="contact.html" class="btn-nav">Contact</a></li>
-</ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="tech.html">The Tech</a></li>
+            <li><a href="team.html">Team</a></li> 
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
     </nav>
 
     <header class="hero-home">
         <div class="container">
-            <h1 style="font-size: 4.5rem; margin-bottom: 10px;">Communication when the grid fails.</h1>
-            <p style="font-size: 1.5rem; font-weight: 500;">Off-grid mesh radio. Military-grade secure. Ready to deploy.</p>
+            <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.<br>We are not.</h1>
+            <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 600px;">
+                A decentralized mesh network for the moments when cell towers fail. No satellites. No subscriptions. Just physics.
+            </p>
             
-            <div class="hero-btns" style="margin-top: 30px;">
-                <a href="product.html" class="btn">Meet Aegis</a>
-                <a href="#problem" class="btn btn-outline">Why It Matters</a>
+            <div class="hero-btns" style="margin-top: 40px;">
+                <a href="product.html" class="btn">See The Hardware</a>
+                <a href="mission.html" class="btn btn-outline">The Mission</a>
             </div>
         </div>
 
-        <div class="scroll-indicator" style="bottom: 150px;">
-            Scroll to Explore<br>▼
+        <div class="scroll-indicator" style="bottom: 100px; opacity: 0.6; font-size: 0.8rem;">
+            SYSTEM STATUS: ONLINE<br>▼
         </div>
 
         <div class="hero-label">
-            &bull; Prototype // Aegis Node V4 (Active)
+            &bull; PROJECT AEGIS // VITALITY COMMS
         </div>
     </header>
 
     <section id="problem" class="reveal">
         <div class="container">
-            <h2>The Silence is Deadly.</h2>
-            <p class="lead">The problem is not just an inconvenience; it's a catastrophic failure. During the 2011 Japan earthquake, <strong>29,000 mobile base stations</strong> were knocked offline. You can't save what you can't reach.</p>
+            <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
+            <p class="lead" style="color: #94a3b8;">
+                In every major disaster of the last decade—from Fukushima to Puerto Rico—the primary cause of preventable death wasn't the event itself. It was the information blackout that followed.
+            </p>
             
-            <div class="grid-2">
+            <div class="grid-2" style="margin-top: 50px;">
                 <div class="card">
-                    <h3>Infrastructure Collapse</h3>
-                    <p>Cell towers rely on power and backhaul cables. When disaster strikes, they are the first to fail, leaving millions in the dark instantly.</p>
+                    <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
+                    <h3>Centralized = Vulnerable</h3>
+                    <p>Modern communication is a "Star Topology." Your phone talks to a tower. If the tower loses power (or snaps in a storm), you lose everything. It is a single point of failure designed for profit, not survival.</p>
                 </div>
                 <div class="card">
-                    <h3>The Logistics Gap</h3>
-                    <p>Bringing new infrastructure <em>into</em> a disaster zone takes days. That is too late. The network needs to be there <strong>before</strong> the crisis begins.</p>
+                    <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
+                    <h3>The "Last Mile" Gap</h3>
+                    <p>Satellites (Starlink) are amazing, but they are expensive, power-hungry, and fragile. You can't put a satellite dish in every backpack. We need a local, terrestrial layer that works in the mud.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="solution" class="reveal">
+    <section class="reveal" style="background-color: #1E293B;">
         <div class="container">
-            <h2>Enter Aegis.</h2>
-            <p class="lead">A decentralized survival network designed to be "set and forgotten"—until it saves your life.</p>
-            
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>Permanent Resilience</h3>
-                    <p>Pre-deployed in high-risk areas. 80,000mAh battery + Solar means it creates a "Permanent Backup Layer" that never goes offline.</p>
-                </div>
-                <div class="feature">
-                    <h3>Standalone Hardware</h3>
-                    <p><strong>No phone required.</strong> Unlike hobbyist toys, Aegis Nodes have integrated screens and keyboards. A dead phone shouldn't mean a dead signal.</p>
-                </div>
-                <div class="feature">
-                    <h3>Self-Healing Mesh</h3>
-                    <p>If one node breaks, the signal finds a new path. The network actually gets stronger and faster as you add more users.</p>
-                </div>
-            </div>
-            
-            <br>
-            <a href="product.html" class="btn">View Technical Specs</a>
-        </div>
-    </section>
-
-    <section id="how-it-works" class="reveal">
-        <div class="container">
-            <h2>How It Works</h2>
-            <p class="lead">We don't just react to disasters. We prepare for them.</p>
-            
-            <div class="features-grid">
-                <div class="feature" style="border-top: 4px solid var(--primary-color);">
-                    <h3>01. Install & Forget</h3>
-                    <p>Public Nodes are mounted in villages, parks, or city centers <em>before</em> a crisis. They run autonomously on solar power for years.</p>
-                </div>
-                <div class="feature" style="border-top: 4px solid var(--primary-color);">
-                    <h3>02. Grid Failure</h3>
-                    <p>When an earthquake or cyber-attack kills the cell towers, Aegis is already active. No setup time. No panic.</p>
-                </div>
-                <div class="feature" style="border-top: 4px solid var(--primary-color);">
-                    <h3>03. Direct Interface</h3>
-                    <p>Civilians walk up to the Public Node and use the <strong>built-in screen and keyboard</strong>. No app to download. No charged phone required.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="impact" class="reveal" style="background-color: #263238; color: white;">
-        <div class="container">
-            <h2 style="color: white;">Global Impact</h2>
-            <p class="lead" style="color: rgba(255,255,255,0.7);">Our mission aligns directly with the UN Sustainable Development Goals.</p>
-            
-            <div class="grid-2">
+            <div class="grid-2" style="align-items: center;">
                 <div>
-                    <h3 style="color: var(--primary-color);">SDG 9: Resilient Infrastructure</h3>
-                    <p style="opacity: 0.8;">We are building quality, reliable, and sustainable infrastructure (Target 9.1) that supports human well-being in the world's most vulnerable regions.</p>
+                    <h2 style="color: white;">Infrastructure in a Box.</h2>
+                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                        We built Aegis to be the "Digital Lifeboat" for communities. It connects people to people, independent of the global internet.
+                    </p>
+                    <ul style="list-style: none; padding: 0; color: white;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Solar Autonomous:</strong> Runs for years without maintenance.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Long Range:</strong> 15km+ utilizing LoRa modulation.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Zero Config:</strong> Turn it on. It finds the mesh.
+                        </li>
+                    </ul>
+                    <br>
+                    <a href="tech.html" class="btn btn-outline">Read the Engineering Specs &rarr;</a>
                 </div>
-                <div>
-                    <h3 style="color: var(--primary-color);">SDG 11: Sustainable Cities</h3>
-                    <p style="opacity: 0.8;">By providing a fallback communication layer, we significantly reduce the number of deaths and people affected by disasters (Target 11.5).</p>
+                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                    <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">
+                        $150
+                    </div>
+                    <p style="color: white; margin-top: 10px;">Per Public Node</p>
+                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than a Cell Tower.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="scenarios" class="reveal">
+    <section id="impact" class="reveal" style="background-color: #0F172A; color: white;">
         <div class="container">
-            <h2>Deployment Scenarios</h2>
-            <div class="grid-2">
-                <div>
-                    <h3>Resilient Communities</h3>
-                    <p><strong>Pre-Positioned Safety.</strong><br>Perfect for earthquake-prone towns or coastal villages. Nodes are installed on lamp posts or community centers, creating a permanent safety net that costs nearly zero to maintain.</p>
-                </div>
-                <div>
-                    <h3>National Parks & Wilds</h3>
-                    <p><strong>The "Dead Zone" Solution.</strong><br>For the 13,000 annual SAR operations in the US. Solar Repeaters are installed in deep wilderness to cover dead zones, allowing hikers and rangers to track locations without satellite fees.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <section class="reveal" style="text-align: center; border-top: 1px solid var(--border-color);">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; max-width: 800px; margin: 0 auto 50px auto;">
-                We support mission-critical operations around the world.
-            </h2>
+            <h2 style="text-align: center; margin-bottom: 40px;">Who uses Aegis?</h2>
             
-            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
                 
-                <div style="padding: 20px;">
-                    <div style="color: var(--primary-color); margin-bottom: 15px; display: flex; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                        </svg>
-                    </div>
-                    <h4 style="color: white; margin-bottom: 5px;">Special Ops</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Conventional & Special</p>
+                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
+                    <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying nodes on lamp posts creates a permanent emergency channel for citizens.</p>
                 </div>
 
-                <div style="padding: 20px;">
-                    <div style="color: var(--primary-color); margin-bottom: 15px; display: flex; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                        </svg>
-                    </div>
-                    <h4 style="color: white; margin-bottom: 5px;">Law Enforcement</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Tactical Response</p>
+                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
+                    <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop "Solar Repeaters" as they hike, creating a trail of connectivity back to base camp.</p>
                 </div>
 
-                <div style="padding: 20px;">
-                    <div style="color: var(--primary-color); margin-bottom: 15px; display: flex; justify-content: center;">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
-                        </svg>
-                    </div>
-                    <h4 style="color: white; margin-bottom: 5px;">Emergency</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Disaster Response</p>
+                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
+                    <h4 style="color: white; margin-bottom: 10px;">Wildland Fire</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">When smoke blocks satellite signals and heat melts fiber, LoRa signals punch through.</p>
                 </div>
 
-                <div style="padding: 20px;">
-                    <div style="color: var(--primary-color); margin-bottom: 15px; display: flex; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 22c3.86 0 7-3.14 7-7 0-3.21-2.13-6.61-5.15-8.94-.46-.35-.84-.75-1.11-1.18C12.14 3.4 12 2.71 12 2s-.14 1.4-.74 2.88c-.27.43-.65.83-1.11 1.18C7.13 8.39 5 11.79 5 15c0 3.86 3.14 7 7 7zM9.5 14c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5z"/>
-                        </svg>
-                    </div>
-                    <h4 style="color: white; margin-bottom: 5px;">Wildland Fire</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Remote Comms</p>
-                </div>
-
-                <div style="padding: 20px;">
-                    <div style="color: var(--primary-color); margin-bottom: 15px; display: flex; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
-                        </svg>
-                    </div>
-                    <h4 style="color: white; margin-bottom: 5px;">Industrial</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Mining & Energy</p>
+                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
+                    <h4 style="color: white; margin-bottom: 10px;">NGO / Aid</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure is gone.</p>
                 </div>
 
             </div>
+        </div>
+    </section>
 
-            <div style="margin-top: 60px;">
-                <a href="contact.html" class="btn">Find out how we can support your team &rarr;</a>
-            </div>
+    <section class="reveal" style="text-align: center; padding: 100px 20px;">
+        <div class="container" style="max-width: 700px;">
+            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// READY FOR DEPLOYMENT</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Stop relying on luck.</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
+                We are currently prototyping Version 4 hardware. If you are an agency looking to pilot resilient comms, let's talk.
+            </p>
+            <a href="contact.html" class="btn">Initialize Inquiry</a>
         </div>
     </section>
 
@@ -239,7 +176,7 @@
         }
         reveal();
 
-        // 2. MOBILE MENU TOGGLE (NEW)
+        // 2. MOBILE MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");

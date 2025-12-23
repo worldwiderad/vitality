@@ -15,16 +15,16 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* DOSSIER CARD STYLES */
+        /* EXECUTIVE CARD STYLES */
         .dossier-card {
             background: var(--bg-card);
             border: 1px solid #334155;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
-            position: relative;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .dossier-card:hover {
@@ -33,44 +33,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* The "Security Clearance" Header */
-        .dossier-header {
-            background: #1E293B;
-            padding: 10px 20px;
-            border-bottom: 1px solid #334155;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.75rem;
-            color: #94a3b8;
-        }
-
-        .status-dot {
-            height: 8px; width: 8px;
-            background-color: #10B981; /* Green for Active */
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            box-shadow: 0 0 5px #10B981;
-        }
-
         .dossier-photo {
             width: 100%;
-            height: 350px; /* Taller for better portraits */
+            /* SIGNIFICANTLY INCREASED HEIGHT FOR PORTRAIT MODE */
+            height: 450px; 
             background-color: #020617;
+            
+            /* Ensures the image fills the space but anchors to the top (head) */
             object-fit: cover;
-            border-bottom: 4px solid var(--primary-color);
-            filter: grayscale(20%); /* Adds a slight tactical grit */
+            object-position: top center; 
+            
+            border-bottom: 2px solid var(--primary-color);
+            filter: grayscale(100%); /* Clean B&W look by default */
             transition: filter 0.3s ease;
         }
         
         .dossier-card:hover .dossier-photo {
-            filter: grayscale(0%);
+            filter: grayscale(0%); /* Color on hover */
         }
 
         .dossier-content {
-            padding: 25px;
+            padding: 30px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -78,40 +61,29 @@
 
         .role-tag {
             display: inline-block;
-            padding: 4px 8px;
-            background: rgba(255, 87, 34, 0.1);
+            font-family: 'Courier Prime', monospace;
             color: var(--primary-color);
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            align-self: flex-start;
-        }
-
-        .skill-bar {
-            margin-top: 15px;
-        }
-        .skill-name {
             font-size: 0.8rem;
-            color: #94a3b8;
+            font-weight: 700;
             margin-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .progress-track {
-            height: 4px;
-            background: #334155;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* CUSTOM GRID FOR 4 PEOPLE (2x2) */
+        .dossier-card h3 {
+            color: white; 
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .dossier-card p {
+            font-size: 0.95rem; 
+            color: #94a3b8; 
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* 2x2 Grid Layout */
         .team-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -145,7 +117,7 @@
 
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: center;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// PERSONNEL MANIFEST</p>
+            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// LEADERSHIP</p>
             <h1 style="font-size: 3.5rem;">Mission Command</h1>
             <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
                 A multidisciplinary unit of Grade 10 engineers and strategists using technology to build resilient communities.
@@ -158,110 +130,46 @@
             <div class="team-grid">
 
                 <div class="dossier-card">
-                    <div class="dossier-header">
-                        <span>ID: 001-CEO</span>
-                        <span><span class="status-dot"></span>ACTIVE</span>
-                    </div>
-                    <img src="assets/img/radek.jpg" alt="Radek Green" class="dossier-photo"> 
-                    
+                    <img src="radek.jpg" alt="Radek Green" class="dossier-photo"> 
                     <div class="dossier-content">
                         <span class="role-tag">Team Leader & Systems Architect</span>
-                        <h3 style="color: white; margin-bottom: 10px;">Radek Green</h3>
-                        <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                        <h3>Radek Green</h3>
+                        <p>
                             Responsible for the core concept, overall strategy, and software architecture. A polymath controlling coding, product design, financial modeling, and research.
                         </p>
-
-                        <div style="margin-top: auto;">
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Systems Architecture</span><span>100%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Full-Stack Engineering</span><span>95%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 95%;"></div></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="dossier-card">
-                    <div class="dossier-header">
-                        <span>ID: 002-CPO</span>
-                        <span><span class="status-dot"></span>ACTIVE</span>
-                    </div>
                     <img src="assets/img/divyam.jpg" alt="Divyam Joshi" class="dossier-photo">
-                    
                     <div class="dossier-content">
                         <span class="role-tag">Lead CAD & Enclosure Designer</span>
-                        <h3 style="color: white; margin-bottom: 10px;">Divyam Joshi</h3>
-                        <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                        <h3>Divyam Joshi</h3>
+                        <p>
                             The architect of the physical product. Responsible for all 3D modeling in Fusion 360, rapid prototyping, and ensuring mechanical durability in the field.
                         </p>
-
-                        <div style="margin-top: auto;">
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Fusion 360 / CAD</span><span>100%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Mechanical Engineering</span><span>90%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 90%;"></div></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="dossier-card">
-                    <div class="dossier-header">
-                        <span>ID: 003-CFO</span>
-                        <span><span class="status-dot"></span>ACTIVE</span>
-                    </div>
                     <img src="assets/img/jack.jpg" alt="Jack Cherry" class="dossier-photo">
-                    
                     <div class="dossier-content">
                         <span class="role-tag">Business Lead & Hardware Strategy</span>
-                        <h3 style="color: white; margin-bottom: 10px;">Jack Cherry</h3>
-                        <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                        <h3>Jack Cherry</h3>
+                        <p>
                             Drives business development and financial modeling. Bridges the gap between technical capability and market viability through rigorous sales strategy.
                         </p>
-
-                        <div style="margin-top: auto;">
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Business Development</span><span>95%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 95%;"></div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Financial Modeling</span><span>90%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 90%;"></div></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="dossier-card">
-                    <div class="dossier-header">
-                        <span>ID: 004-COO</span>
-                        <span><span class="status-dot"></span>ACTIVE</span>
-                    </div>
                     <img src="assets/img/shriya.jpg" alt="Shriya Sharma" class="dossier-photo">
-                    
                     <div class="dossier-content">
                         <span class="role-tag">Operations & Market Research</span>
-                        <h3 style="color: white; margin-bottom: 10px;">Shriya Sharma</h3>
-                        <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">
+                        <h3>Shriya Sharma</h3>
+                        <p>
                             Manages timelines, key responsibilities, and external relations. Leads competitive analysis and market validation to ensure product-market fit.
                         </p>
-
-                        <div style="margin-top: auto;">
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Operations Management</span><span>95%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 95%;"></div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-name"><span>Market Analysis</span><span>95%</span></div>
-                                <div class="progress-track"><div class="progress-fill" style="width: 95%;"></div></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

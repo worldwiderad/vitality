@@ -366,3 +366,85 @@ footer {
     /* Hiding Elements */
     .hero-label, .scroll-indicator { display: none !important; }
 }
+
+
+/* extras /*
+
+/* DASHBOARD STYLES */
+.dashboard-frame {
+    background: #020617;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    font-family: 'Courier Prime', monospace;
+    margin-bottom: 50px; /* Space between dash and table */
+}
+
+.dash-header {
+    background: #1E293B;
+    padding: 10px 20px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dash-title { color: #94a3b8; font-weight: 700; letter-spacing: 1px; }
+.dash-status { color: #10B981; font-size: 0.8rem; }
+.blink { animation: blinker 1.5s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 300px;
+}
+@media(min-width: 768px) {
+    .dash-grid { grid-template-columns: 25% 45% 30%; }
+}
+
+.dash-panel {
+    border-right: 1px solid #334155;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+}
+.dash-panel:last-child { border-right: none; }
+
+.panel-title {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.node-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.chat-feed { display: flex; flex-direction: column; gap: 8px; }
+.msg { font-size: 0.75rem; color: #cbd5e1; line-height: 1.4; }
+.time { color: #64748b; margin-right: 5px; }
+.user { color: var(--primary-color); font-weight: 700; }
+
+.map-dot {
+    width: 8px; height: 8px;
+    background: #10B981;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px #10B981;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+
+@media(max-width: 768px) {
+    .dash-grid { grid-template-columns: 1fr; height: auto; }
+    .dash-panel { height: 200px; border-right: none; border-bottom: 1px solid #334155; }
+}

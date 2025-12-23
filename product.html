@@ -1,461 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ecosystem | Aegis</title>
-    
-    <meta property="og:title" content="Aegis Products">
-    <meta property="og:description" content="Hardware and software for resilient communication.">
-    <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
-    
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <style>
-        /* Internal overrides for text colors to match the dark theme */
-        .product-card h3 { color: white; font-size: 1.5rem; margin-bottom: 10px; }
-        .price-tag { font-size: 1.5rem; font-weight: 800; color: white; margin: 10px 0; }
-        .product-card p, .product-card li { color: #94a3b8; }
-        
-        .learn-more-link {
-            margin-top: auto;
-            color: #FF5722;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .learn-more-link:hover { text-decoration: underline; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ecosystem | Aegis</title>
+    
+    <meta property="og:title" content="Aegis Products">
+    <meta property="og:description" content="Hardware and software for resilient communication.">
+    <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Internal overrides for text colors to match the dark theme */
+        .product-card h3 { color: white; font-size: 1.5rem; margin-bottom: 10px; }
+        .price-tag { font-size: 1.5rem; font-weight: 800; color: white; margin: 10px 0; }
+        .product-card p, .product-card li { color: #94a3b8; }
+        
+        .learn-more-link {
+            margin-top: auto;
+            color: #FF5722;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .learn-more-link:hover { text-decoration: underline; }
 
-        /* Custom Input Animation */
-        #customInputContainer {
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-    </style>
+        /* Custom Input Animation */
+        #customInputContainer {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">VITALITY</div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html">Team</a></li> 
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="contact.html" class="btn-nav">Contact</a></li>
-        </ul>
-    </nav>
+    <nav>
+        <div class="logo">VITALITY</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="tech.html">The Tech</a></li>
+    <li><a href="team.html">Team</a></li> <li><a href="mission.html">Our Mission</a></li>
+    <li><a href="contact.html" class="btn-nav">Contact</a></li>
+</ul>
+    </nav>
 
-    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: #020617;">
-        <div class="container">
-            <h1 style="font-size: 3rem;">The Aegis Platform</h1>
-            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">A complete ecosystem of ruggedized hardware and command software. Deploy a city-wide network in hours.</p>
-        </div>
-    </header>
+    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: #020617;">
+        <div class="container">
+            <h1 style="font-size: 3rem;">The Aegis Platform</h1>
+            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">A complete ecosystem of ruggedized hardware and command software. Deploy a city-wide network in hours.</p>
+        </div>
+    </header>
 
-    <section class="reveal">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">Field Hardware</h2>
-            
-            <div class="features-grid">
-                
-                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-                    
-                    <div style="background: white; width: 100%; padding: 30px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722;">
-                        <img src="assets/img/clean.png" alt="Aegis Public Node" style="max-height: 200px; width: auto; object-fit: contain;">
-                    </div>
-                    
-                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
-                        <h3>Aegis Public Node</h3>
-                        <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
-                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li>80,000mAh Battery</li>
-                            <li>Integrated Screen & Keyboard</li>
-                            <li>Wi-Fi Bridge for Civilians</li>
-                        </ul>
-                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
-                    </div>
-                </div>
+    <section class="reveal">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">Field Hardware</h2>
+            
+            <div class="features-grid">
+                
+                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+                    
+                    <div style="background: white; width: 100%; padding: 30px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722;">
+                        <img src="assets/img/clean.png" alt="Aegis Public Node" style="max-height: 200px; width: auto; object-fit: contain;">
+                    </div>
+                    
+                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
+                        <h3>Aegis Public Node</h3>
+                        <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
+                        <div class="price-tag">$150 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>80,000mAh Battery</li>
+                            <li>Integrated Screen & Keyboard</li>
+                            <li>Wi-Fi Bridge for Civilians</li>
+                        </ul>
+                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
+                    </div>
+                </div>
 
-                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-                    
-                    <div style="background: white; width: 100%; height: 260px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722; color: #020617; font-weight: 700;">
-                        [Image: Aegis Handheld]
-                    </div>
-                    
-                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
-                        <h3>Aegis Handheld</h3>
-                        <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
-                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li>Pocket-Sized Form Factor</li>
-                            <li>GPS Tracking Enabled</li>
-                            <li>Tactile "Glove-Ready" Buttons</li>
-                        </ul>
-                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
-                    </div>
-                </div>
+                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+                    
+                    <div style="background: white; width: 100%; height: 260px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722; color: #020617; font-weight: 700;">
+                        [Image: Aegis Handheld]
+                    </div>
+                    
+                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
+                        <h3>Aegis Handheld</h3>
+                        <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
+                        <div class="price-tag">$100 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>Pocket-Sized Form Factor</li>
+                            <li>GPS Tracking Enabled</li>
+                            <li>Tactile "Glove-Ready" Buttons</li>
+                        </ul>
+                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
+                    </div>
+                </div>
 
-                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-                    
-                    <div style="background: white; width: 100%; height: 260px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722; color: #020617; font-weight: 700;">
-                        [Image: Solar Repeater]
-                    </div>
-                    
-                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
-                        <h3>Solar Repeater</h3>
-                        <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
-                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li>100% Solar Autonomous</li>
-                            <li>Weatherproof IP67</li>
-                            <li>Zero Maintenance</li>
-                        </ul>
-                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
-                    </div>
-                </div>
+                <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+                    
+                    <div style="background: white; width: 100%; height: 260px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722; color: #020617; font-weight: 700;">
+                        [Image: Solar Repeater]
+                    </div>
+                    
+                    <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
+                        <h3>Solar Repeater</h3>
+                        <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
+                        <div class="price-tag">$50 - $80 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li>100% Solar Autonomous</li>
+                            <li>Weatherproof IP67</li>
+                            <li>Zero Maintenance</li>
+                        </ul>
+                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
+                    </div>
+                </div>
 
-            </div>
-        </div>
-    </section>
+            </div>
+        </div>
+    </section>
 
-    <section class="reveal">
-        <div class="container">
-            <h2 style="text-align: center;">Command Infrastructure</h2>
-            <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
+    <section class="reveal">
+        <div class="container">
+            <h2 style="text-align: center;">Command Infrastructure</h2>
+            <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
 
-            <div class="grid-2" style="align-items: center;">
-                <div>
-                    <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
-                    <p style="color: #94a3b8;">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                    
-                    <ul style="margin-top: 20px; list-style: none; padding: 0; color: #94a3b8;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
-                        </li>
-                    </ul>
+            <div class="grid-2" style="align-items: center;">
+                <div>
+                    <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
+                    <p style="color: #94a3b8;">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
+                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
+                    
+                    <ul style="margin-top: 20px; list-style: none; padding: 0; color: #94a3b8;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                            <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
+                        </li>
+                    </ul>
 
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid #FF5722; border-radius: 4px;">
-                        <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
-                            <strong>NOT a Single Point of Failure:</strong><br>
-                            If the Hub is destroyed, the local mesh network remains 100% operational.
-                        </p>
-                    </div>
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid #FF5722; border-radius: 4px;">
+                        <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
+                            <strong>NOT a Single Point of Failure:</strong><br>
+                            If the Hub is destroyed, the local mesh network remains 100% operational.
+                        </p>
+                    </div>
 
-                </div>
-                
-                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; border-bottom: 4px solid #FF5722;">
-                    <div style="color: #020617; font-weight: 600; padding: 60px 0;">
-                        [Image: Aegis Hub / Base Station]
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                </div>
+                
+                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; border-bottom: 4px solid #FF5722;">
+                    <div style="color: #020617; font-weight: 600; padding: 60px 0;">
+                        [Image: Aegis Hub / Base Station]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
-            <h2 style="text-align: center; color: white;">Mission Planner</h2>
-            <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
+    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <h2 style="text-align: center; color: white;">Mission Planner</h2>
+            <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
 
-            <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                
-                <div style="margin-bottom: 30px;">
-                    <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
-                    <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
-                        <option value="5">Village / Small Town (5 km²)</option>
-                        <option value="50">City Center (50 km²)</option>
-                        <option value="200">National Park / Rural Region (200 km²)</option>
-                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
-                        <option value="japan">Japan (National Coverage)</option>
-                        <option value="usa">Continental USA (National Defense)</option>
-                        <option value="custom">Custom Area (Enter Amount)</option>
-                    </select>
+            <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                
+                <div style="margin-bottom: 30px;">
+                    <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
+                    <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+                        <option value="5">Village / Small Town (5 km²)</option>
+                        <option value="50">City Center (50 km²)</option>
+                        <option value="200">National Park / Rural Region (200 km²)</option>
+                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
+                        <option value="japan">Japan (National Coverage)</option>
+                        <option value="usa">Continental USA (National Defense)</option>
+                        <option value="custom">Custom Area (Enter Amount)</option>
+                    </select>
 
-                    <div id="customInputContainer" style="display: none; margin-top: 15px;">
-                        <label style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 5px; display: block;">Enter Area Size (km²):</label>
-                        <input type="number" id="customAreaInput" placeholder="e.g. 500" oninput="calculateCost()" style="width: 100%; padding: 15px; background: #0F172A; border: 1px solid #FF5722; color: white; border-radius: 8px; font-size: 1rem;">
-                    </div>
-                </div>
+                    <div id="customInputContainer" style="display: none; margin-top: 15px;">
+                        <label style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 5px; display: block;">Enter Area Size (km²):</label>
+                        <input type="number" id="customAreaInput" placeholder="e.g. 500" oninput="calculateCost()" style="width: 100%; padding: 15px; background: #0F172A; border: 1px solid #FF5722; color: white; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                </div>
 
-                <div class="grid-2" style="margin-top: 0; gap: 20px;">
-                    
-                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Infrastructure Units</div>
-                        <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
-                    </div>
-                    
-                    <div style="background: rgba(255,87,34,0.1); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,87,34,0.3);">
-                        <div style="font-size: 0.9rem; color: #FF5722; text-transform: uppercase; letter-spacing: 1px;">Est. Hardware Cost</div>
-                        <div id="totalCost" style="font-size: 2.5rem; font-weight: 800; color: #FF5722; margin-top: 5px;">--</div>
-                    </div>
-                </div>
+                <div class="grid-2" style="margin-top: 0; gap: 20px;">
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Infrastructure Units</div>
+                        <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
+                    </div>
+                    
+                    <div style="background: rgba(255,87,34,0.1); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,87,34,0.3);">
+                        <div style="font-size: 0.9rem; color: #FF5722; text-transform: uppercase; letter-spacing: 1px;">Est. Hardware Cost</div>
+                        <div id="totalCost" style="font-size: 2.5rem; font-weight: 800; color: #FF5722; margin-top: 5px;">--</div>
+                    </div>
+                </div>
 
-                <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
-                    <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
-                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
+                    <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
+                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="reveal">
-        <div class="container">
-            <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
-            <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
-            
-            <div class="dashboard-frame">
-                <div class="dash-header">
-                    <div class="dash-title">// AEGIS_OS v2.4 [SECURE]</div>
-                    <div class="dash-status"><span class="blink">●</span> NETWORK ONLINE</div>
-                </div>
+    <section class="reveal">
+        <div class="container">
+            <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
+            <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
+            
+            <div style="overflow-x: auto;">
+                <table class="software-table">
+                    <tbody>
+                        <tr>
+                            <th>Tier</th>
+                            <td style="font-weight: bold; color: white;">[A] TACTICAL</td>
+                            <td style="font-weight: bold; color: white;">[B] PROFESSIONAL</td>
+                            <td style="font-weight: bold; color: white;">[C] STRATEGIC (GOV)</td>
+                        </tr>
+                        <tr>
+                            <th>Market</th>
+                            <td>Small SAR Teams, NGOs</td>
+                            <td>Cities, Industrial (Mines)</td>
+                            <td>National Governments</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
+                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
+                            <td style="color: #FF5722; font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year</span></td>
+                        </tr>
+                        <tr>
+                            <th>Features</th>
+                            <td>Basic Map & Messaging</td>
+                            <td>Advanced Analytics, Support</td>
+                            <td>On-Premise, API, 24/7 Support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="dash-grid">
-                    <div class="dash-panel">
-                        <div class="panel-title">NODE TELEMETRY</div>
-                        <div class="node-row"><span>NODE_041 (Alpha)</span><span style="color: #10B981;">100% BAT</span></div>
-                        <div class="node-row"><span>NODE_042 (Bravo)</span><span style="color: #10B981;">94% BAT</span></div>
-                        <div class="node-row"><span>NODE_043 (Charlie)</span><span style="color: #F59E0B;">42% BAT</span></div>
-                        <div class="node-row"><span>NODE_044 (Delta)</span><span style="color: #EF4444;">OFFLINE</span></div>
-                    </div>
+        </div>
+    </section>
 
-                    <div class="dash-panel" style="background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 20px 20px; position: relative;">
-                        <div class="panel-title">TACTICAL MAP</div>
-                        <div class="map-dot" style="top: 30%; left: 40%;"></div>
-                        <div class="map-dot" style="top: 50%; left: 60%;"></div>
-                        <div class="map-dot" style="top: 70%; left: 30%;"></div>
-                        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-                            <line x1="40%" y1="30%" x2="60%" y2="50%" stroke="#10B981" stroke-width="1" opacity="0.5" />
-                            <line x1="60%" y1="50%" x2="30%" y2="70%" stroke="#10B981" stroke-width="1" opacity="0.5" />
-                        </svg>
-                    </div>
+    <section class="reveal">
+        <div class="container">
+            <h2>The Market Gap</h2>
+            <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
 
-                    <div class="dash-panel">
-                        <div class="panel-title">MESSAGE LOG</div>
-                        <div class="chat-feed">
-                            <div class="msg"><span class="time">[09:01]</span> <span class="user">ALPHA:</span> Road clear.</div>
-                            <div class="msg"><span class="time">[09:04]</span> <span class="user">CMD:</span> Copy.</div>
-                            <div class="msg"><span class="time">[09:15]</span> <span class="user">BRAVO:</span> <span style="color: #EF4444;">!! MEDICAL ALERT !!</span></div>
-                            <div class="msg"><span class="time">[09:20]</span> <span class="user">SYS:</span> <span style="color: #F59E0B;">Re-routing mesh...</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h3 style="text-align: center; margin-bottom: 20px; color: white; margin-top: 60px;">Licensing Tiers</h3>
-            
-            <div style="overflow-x: auto;">
-                <table class="software-table">
-                    <tbody>
-                        <tr>
-                            <th>Tier</th>
-                            <td style="font-weight: bold; color: white;">[A] TACTICAL</td>
-                            <td style="font-weight: bold; color: white;">[B] PROFESSIONAL</td>
-                            <td style="font-weight: bold; color: white;">[C] STRATEGIC (GOV)</td>
-                        </tr>
-                        <tr>
-                            <th>Market</th>
-                            <td>Small SAR Teams, NGOs</td>
-                            <td>Cities, Industrial (Mines)</td>
-                            <td>National Governments</td>
-                        </tr>
-                        <tr>
-                            <th>Price</th>
-                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
-                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
-                            <td style="color: #FF5722; font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year</span></td>
-                        </tr>
-                        <tr>
-                            <th>Features</th>
-                            <td>Basic Map & Messaging</td>
-                            <td>Advanced Analytics, Support</td>
-                            <td>On-Premise, API, 24/7 Support</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>[A] Hobbyist (Meshtastic)</th>
+                            <th>[B] Professional DMR (Motorola)</th>
+                            <th>[C] Vitality 'Aegis'</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Handset Cost</strong></td>
+                            <td>$50 - $120</td>
+                            <td>$2,500 - $10,000</td>
+                            <td style="color: #FF5722; font-weight: bold;">~$100</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security</strong></td>
+                            <td>Low (DIY, unvetted)</td>
+                            <td>High</td>
+                            <td style="color: #FF5722; font-weight: bold;">High (AES-256)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Network Type</strong></td>
+                            <td>Mesh</td>
+                            <td>Centralized (Star Topology)</td>
+                            <td>Self-Healing Mesh</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infrastructure</strong></td>
+                            <td>None</td>
+                            <td>REQUIRED (Base Repeater)</td>
+                            <td style="color: #FF5722; font-weight: bold;">NOT REQUIRED</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Single Point of Failure?</strong></td>
+                            <td>No</td>
+                            <td>Yes (The Repeater)</td>
+                            <td style="color: #FF5722; font-weight: bold;">No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Setup</strong></td>
+                            <td>High (Requires Phone, App)</td>
+                            <td>High (Requires Training, License)</td>
+                            <td><strong>Zero (Turnkey)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <br>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
+            </div>
+        </div>
+    </section>
 
-        </div>
-    </section>
+    <footer>
+        <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
+    </footer>
 
-    <section class="reveal">
-        <div class="container">
-            <h2>The Market Gap</h2>
-            <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
+    <script>
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal();
 
-            <div style="overflow-x: auto;">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Option</th>
-                            <th>[A] Hobbyist (Meshtastic)</th>
-                            <th>[B] Professional DMR (Motorola)</th>
-                            <th>[C] Vitality 'Aegis'</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Handset Cost</strong></td>
-                            <td>$50 - $120</td>
-                            <td>$2,500 - $10,000</td>
-                            <td style="color: #FF5722; font-weight: bold;">~$100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Security</strong></td>
-                            <td>Low (DIY, unvetted)</td>
-                            <td>High</td>
-                            <td style="color: #FF5722; font-weight: bold;">High (AES-256)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Network Type</strong></td>
-                            <td>Mesh</td>
-                            <td>Centralized (Star Topology)</td>
-                            <td>Self-Healing Mesh</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Infrastructure</strong></td>
-                            <td>None</td>
-                            <td>REQUIRED (Base Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">NOT REQUIRED</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Single Point of Failure?</strong></td>
-                            <td>No</td>
-                            <td>Yes (The Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">No</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Setup</strong></td>
-                            <td>High (Requires Phone, App)</td>
-                            <td>High (Requires Training, License)</td>
-                            <td><strong>Zero (Turnkey)</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <br>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
-            </div>
-        </div>
-    </section>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-links");
+            menu.classList.toggle("active");
+        }
 
-    <footer>
-        <p>&copy; 2025 Vitality Communications. Built for the Conrad Challenge.</p>
-    </footer>
+        // MISSION PLANNER CALCULATOR LOGIC
+        function handleSelectChange() {
+            const selectValue = document.getElementById('areaSelect').value;
+            const customContainer = document.getElementById('customInputContainer');
 
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
+            if (selectValue === 'custom') {
+                customContainer.style.display = 'block';
+                // Trigger calculation for whatever is currently in the box (or 0)
+                calculateCost();
+            } else {
+                customContainer.style.display = 'none';
+                calculateCost();
+            }
+        }
 
-        function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
-        }
+        function calculateCost() {
+            const selectValue = document.getElementById('areaSelect').value;
+            let area = 0;
+            let density = 0.5; // Default density
+            let nodes, price, note;
 
-        // MISSION PLANNER CALCULATOR LOGIC
-        function handleSelectChange() {
-            const selectValue = document.getElementById('areaSelect').value;
-            const customContainer = document.getElementById('customInputContainer');
+            if (selectValue === "japan") {
+                // Strategic Pitch: 5,000 Nodes for $500k
+                nodes = 5000;
+                price = 500000;
+                note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
+            } 
+            else if (selectValue === "usa") {
+                // USA Pitch: Scaled to ~130k nodes for $13M
+                nodes = 130000;
+                price = 13000000;
+                note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
+            } 
+            else {
+                // HANDLE STANDARD + CUSTOM
+                if (selectValue === 'custom') {
+                    area = parseFloat(document.getElementById('customAreaInput').value) || 0;
+                } else {
+                    area = parseInt(selectValue);
+                }
 
-            if (selectValue === 'custom') {
-                customContainer.style.display = 'block';
-                // Trigger calculation for whatever is currently in the box (or 0)
-                calculateCost();
-            } else {
-                customContainer.style.display = 'none';
-                calculateCost();
-            }
-        }
+                // Dynamic Density Logic for standard/custom
+                if(area <= 5) density = 3.0; // Very Dense (Village)
+                else if(area <= 50) density = 2.0; // Dense (City)
+                else if(area <= 200) density = 0.5; // Sparse (Rural)
+                else if(area > 100000) density = 0.1; // National
+                else density = 0.15; // Disaster Zone
 
-        function calculateCost() {
-            const selectValue = document.getElementById('areaSelect').value;
-            let area = 0;
-            let density = 0.5; // Default density
-            let nodes, price, note;
+                nodes = Math.ceil(area * density);
+                if(nodes < 2 && area > 0) nodes = 2; // Min viable
+                if(area === 0) nodes = 0;
 
-            if (selectValue === "japan") {
-                // Strategic Pitch: 5,000 Nodes for $500k
-                nodes = 5000;
-                price = 500000;
-                note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
-            } 
-            else if (selectValue === "usa") {
-                // USA Pitch: Scaled to ~130k nodes for $13M
-                nodes = 130000;
-                price = 13000000;
-                note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
-            } 
-            else {
-                // HANDLE STANDARD + CUSTOM
-                if (selectValue === 'custom') {
-                    area = parseFloat(document.getElementById('customAreaInput').value) || 0;
-                } else {
-                    area = parseInt(selectValue);
-                }
+                // Price is standard $150 for small scale, $100 avg for massive scale
+                let costPerUnit = (area > 1000) ? 100 : 150;
+                
+                price = nodes * costPerUnit;
+                
+                let densityText = (density < 0.2) ? "Strategic Backbone" : "High Density";
+                note = `*<strong>${densityText}:</strong> Based on ${density} nodes/km² for this scale.`;
+            }
 
-                // Dynamic Density Logic for standard/custom
-                if(area <= 5) density = 3.0; // Very Dense (Village)
-                else if(area <= 50) density = 2.0; // Dense (City)
-                else if(area <= 200) density = 0.5; // Sparse (Rural)
-                else if(area > 100000) density = 0.1; // National
-                else density = 0.15; // Disaster Zone
-
-                nodes = Math.ceil(area * density);
-                if(nodes < 2 && area > 0) nodes = 2; // Min viable
-                if(area === 0) nodes = 0;
-
-                // Price is standard $150 for small scale, $100 avg for massive scale
-                let costPerUnit = (area > 1000) ? 100 : 150;
-                
-                price = nodes * costPerUnit;
-                
-                let densityText = (density < 0.2) ? "Strategic Backbone" : "High Density";
-                note = `*<strong>${densityText}:</strong> Based on ${density} nodes/km² for this scale.`;
-            }
-
-            // Animate Numbers
-            document.getElementById('nodeCount').innerText = nodes.toLocaleString();
-            document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
-            document.getElementById('calculationNote').innerHTML = note;
-        }
-        
-        // Run once on load
-        handleSelectChange();
-    </script>
+            // Animate Numbers
+            document.getElementById('nodeCount').innerText = nodes.toLocaleString();
+            document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
+            document.getElementById('calculationNote').innerHTML = note;
+        }
+        
+        // Run once on load
+        handleSelectChange();
+    </script>
 
 </body>
 </html>

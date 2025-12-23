@@ -31,7 +31,7 @@
             background-color: #334155;
             top: 0;
             bottom: 0;
-            left: 50%; /* Center line */
+            left: 50%;
             margin-left: -2px;
             border-radius: 2px;
         }
@@ -44,17 +44,8 @@
             box-sizing: border-box;
         }
 
-        /* Left Side */
-        .left {
-            left: 0;
-            text-align: right;
-        }
-
-        /* Right Side */
-        .right {
-            left: 50%;
-            text-align: left;
-        }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
 
         /* The Dots */
         .timeline-item::after {
@@ -71,17 +62,13 @@
             transition: all 0.3s ease;
         }
 
-        .right::after {
-            left: -10px;
-        }
+        .right::after { left: -10px; }
 
-        /* Hover Effect for Dots */
         .timeline-item:hover::after {
             background-color: var(--primary-color);
             box-shadow: 0 0 15px var(--primary-color);
         }
 
-        /* Content Boxes */
         .content {
             padding: 20px 30px;
             background-color: var(--bg-card);
@@ -105,25 +92,12 @@
             display: block;
         }
 
-        /* Mobile Responsive */
         @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .left {
-                text-align: left;
-            }
-            .left::after, .right::after {
-                left: 21px;
-            }
-            .right {
-                left: 0%;
-            }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .left { text-align: left; }
+            .left::after, .right::after { left: 21px; }
+            .right { left: 0%; }
         }
     </style>
 </head>
@@ -148,16 +122,33 @@
 
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: center;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// THE WHY</p>
-            <h1 style="font-size: 3.5rem;">Timeline of Failure.</h1>
+            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// THE DOCTRINE</p>
+            <h1 style="font-size: 3.5rem;">Our Mission.</h1>
             <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
-                Centralized infrastructure is failing at an accelerating rate. The history of the last decade proves that we cannot rely on the grid.
+                We build the nervous system for the next century of disaster response.
             </p>
         </div>
     </header>
 
+    <section class="reveal" style="background-color: #1E293B;">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="color: white; margin-bottom: 30px; border-left: 4px solid var(--primary-color); padding-left: 20px;">Communication is a Human Right.</h2>
+            
+            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
+                In the modern age, the inability to communicate is a death sentence. Whether it is calling for medical aid, locating a loved one, or coordinating food drops, information is as vital as water.
+            </p>
+            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
+                Vitality was founded on a single principle: <strong>Decentralization is Resilience.</strong>
+            </p>
+            <p style="color: #94a3b8; line-height: 1.8; font-size: 1.1rem;">
+                We do not believe in building stronger cell towers. Nature will always be stronger than concrete. We believe in building smarter networks—systems that behave like water, flowing around obstacles and healing themselves when broken.
+            </p>
+        </div>
+    </section>
+
     <section class="reveal">
         <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">The Timeline of Failure</h2>
             <div class="timeline">
                 
                 <div class="timeline-item left">
@@ -214,23 +205,15 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #1E293B;">
-        <div class="container" style="max-width: 800px;">
-            <h2 style="color: white; margin-bottom: 20px;">Our Philosophy</h2>
-            
-            <p class="lead">Communication is a Human Right.</p>
-            
-            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px;">
-                In the modern age, the inability to communicate is a death sentence. Whether it is calling for medical aid, locating a loved one, or coordinating food drops, information is as vital as water.
+    <section class="reveal" style="background-color: #0F172A; text-align: center; padding: 100px 20px;">
+        <div class="container" style="max-width: 700px;">
+            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// THE NEW STANDARD</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">We cannot predict the next disaster.<br>But we can predict our response.</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px;">
+                The era of fragile, centralized infrastructure is ending. We are building the redundancy layer that civilization needs to survive the 21st century.
             </p>
-            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px;">
-                Vitality was founded on a single principle: <strong>Decentralization is Resilience.</strong>
-            </p>
-            <p style="color: #94a3b8; line-height: 1.8;">
-                We do not believe in building stronger cell towers. Nature will always be stronger than concrete. We believe in building smarter networks—systems that behave like water, flowing around obstacles and healing themselves when broken.
-            </p>
-
-            </div>
+            <a href="contact.html" class="btn">Join the Network</a>
+        </div>
     </section>
 
     <footer>

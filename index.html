@@ -38,10 +38,10 @@
 
     <header class="hero-home">
         <div class="container">
-            <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.<br>We are not.</h1>
+            <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
             
             <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
-                Project Aegis is a decentralized mesh network. It allows civilians and responders to communicate during total infrastructure failure using long-range radio physics—no satellites or towers required.
+                Aegis is a decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
             </p>
             
             <div class="hero-btns" style="margin-top: 40px;">
@@ -50,8 +50,8 @@
             </div>
         </div>
 
-        <div class="scroll-indicator" style="bottom: 100px; opacity: 0.8; font-size: 0.85rem; font-family: 'Courier Prime', monospace; color: var(--primary-color); border: 1px solid var(--primary-color); padding: 5px 15px; display: inline-block;">
-            STATUS: 3 PROTOTYPES ONLINE // FIELD TESTING PHASE
+        <div class="scroll-indicator" style="bottom: 100px; opacity: 0.8; font-size: 0.85rem; font-family: 'Courier Prime', monospace; color: var(--primary-color); cursor: pointer;">
+            <a href="#problem" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
         </div>
 
         <div class="hero-label">
@@ -62,21 +62,31 @@
     <section id="problem" class="reveal">
         <div class="container">
             <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
-            <p class="lead" style="color: #94a3b8;">
-                In every major disaster of the last decade—from the 2011 Tohoku Tsunami to Hurricane Maria—the primary cause of preventable death wasn't the event itself. It was the information blackout that followed.
+            <p class="lead" style="color: #94a3b8; max-width: 800px;">
+                Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
             </p>
+
+            <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
+                "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
+                <span style="font-size: 0.9rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Disaster Comms Expert</span>
+            </blockquote>
             
             <div class="grid-2" style="margin-top: 50px;">
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
-                    <h3>Centralized = Vulnerable</h3>
-                    <p>Modern communication is a "Star Topology." Your phone relies on a single tower. If that tower loses power (or snaps in a storm), the entire network collapses. It is a single point of failure designed for profit, not survival.</p>
+                    <h3>Centralized Fragility</h3>
+                    <p>Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
                 </div>
+                
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
-                    <h3>The "Last Mile" Gap</h3>
-                    <p>Satellites (Starlink) are effective but logistically difficult. They are expensive, power-hungry, and fragile. You cannot deploy a satellite dish in every backpack. Responders need a local, terrestrial layer that works in the mud.</p>
+                    <h3>Strategic Vulnerability</h3>
+                    <p>Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid. Tactical units require a terrestrial layer that works without external dependencies.</p>
                 </div>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 0.9rem; color: #64748b; text-align: center;">
+                "Communication networks are always a target for attack... a network without big infrastructure is becoming very important." — Ryoma Yamamoto
             </div>
         </div>
     </section>
@@ -85,23 +95,29 @@
         <div class="container">
             <div class="grid-2" style="align-items: center;">
                 <div>
-                    <h2 style="color: white;">Infrastructure in a Box.</h2>
+                    <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
                     <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
-                        [Image of Mesh Network Topology Diagram]
-                        Aegis replaces cell towers with a distributed "Mesh." Every device acts as a relay for every other device. If one node fails, the signal automatically re-routes.
+                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
                     </p>
+                    
+                    <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+
                     <ul style="list-style: none; padding: 0; color: white;">
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Solar Autonomous:</strong> Our V4 Nodes run for months without grid power.
+                            <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Long Range Physics:</strong> 15km+ range using LoRa modulation.
+                            <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Zero Config:</strong> Turn it on. It finds the mesh instantly.
+                            <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation and AES-256 security.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.
                         </li>
                     </ul>
                     <br>
@@ -125,18 +141,18 @@
             <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
                 
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
+                    <h4 style="color: white; margin-bottom: 10px;">Strategic Operations</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised or intercepted.</p>
+                </div>
+
+                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying nodes on lamp posts creates a permanent emergency channel for citizens before the disaster hits.</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
                 </div>
 
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop "Solar Repeaters" as they hike, creating a digital breadcrumb trail of connectivity back to base camp.</p>
-                </div>
-
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Wildland Fire</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">When smoke blocks satellite signals and heat melts fiber, LoRa signals punch through the interference.</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
                 </div>
 
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
@@ -150,12 +166,18 @@
 
     <section class="reveal" style="text-align: center; padding: 100px 20px;">
         <div class="container" style="max-width: 700px;">
+            
+            <blockquote style="font-size: 1.2rem; color: #cbd5e1; font-style: italic; margin-bottom: 40px; border-left: none;">
+                "If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real."<br>
+                <span style="font-size: 0.9rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Former Apple Pay Japan Lead</span>
+            </blockquote>
+
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// READY FOR DEPLOYMENT</p>
             <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Stop relying on luck.</h2>
             <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
-                We are currently field-testing Version 4 hardware. If you are an agency looking to pilot resilient comms, let's talk.
+                We are currently field testing our fourth generation hardware. If your organization or government body is looking to implement a resilient communication pilot, we are ready to discuss the details.
             </p>
-            <a href="contact.html" class="btn">Initialize Inquiry</a>
+            <a href="contact.html" class="btn">Contact Our Team</a>
         </div>
     </section>
 

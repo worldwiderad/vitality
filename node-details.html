@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Node | Technical Deep Dive</title>
+    
+    <meta property="og:title" content="Aegis Node: Technical Deep Dive">
+    <meta property="og:description" content="Explore the internal architecture of the Aegis Public Node.">
+    <meta property="og:image" content="https://signalvitality.com/assets/img/node-exploded.png">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Component List Styling */
+        .component-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        .component-list li {
+            margin-bottom: 25px;
+            padding-left: 60px;
+            position: relative;
+        }
+        .component-list li::before {
+            content: attr(data-number);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            line-height: 1;
+        }
+        .component-header {
+            font-weight: 700;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .component-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Spec Table Styling (Consistent with tech.html) */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .spec-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #cbd5e1;
+        }
+        .spec-table td:first-child {
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">VITALITY</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html" class="active">Products</a></li>
+            <li><a href="tech.html">The Tech</a></li>
+            <li><a href="team.html">Team</a></li> 
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: #020617;">
+        <div class="container">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <a href="product.html" style="color: var(--primary-color); text-decoration: none; font-family: 'Courier Prime'; font-size: 0.9rem;">&larr; Back to Products</a>
+            </div>
+            <h1 style="font-size: 3.5rem;">The Aegis Node.</h1>
+            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                The permanent, solar-autonomous backbone of the mesh network. Engineered for indefinite operation in zero-infrastructure environments.
+            </p>
+        </div>
+    </header>
+
+    <section class="reveal" style="background-color: #0F172A;">
+        <div class="container">
+            <div class="grid-2" style="align-items: start; gap: 50px;">
+                <div style="position: sticky; top: 100px;">
+                    <div style="background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                        <img src="assets/img/node-exploded.png" alt="Aegis Node Exploded View" style="width: 100%; height: auto; display: block;">
+                    </div>
+                    <p style="text-align: center; font-family: 'Courier Prime'; color: var(--primary-color); margin-top: 15px; font-size: 0.8rem;">// FIG 1.0: MODULAR INTERNAL ARCHITECTURE</p>
+                </div>
+
+                <div>
+                    <h2 style="color: white; margin-bottom: 20px;">Anatomy of Resilience</h2>
+                    <p class="lead" style="color: #94a3b8;">A breakdown of the key subsystems that allow the Node to operate without a grid.</p>
+
+                    <ul class="component-list">
+                        <li data-number="01">
+                            <span class="component-header">Solar-Ready Enclosure (IP67)</span>
+                            <span class="component-desc">Ruggedized, UV-resistant polymer case with integrated mounts for a 20W solar panel. Gasket-sealed to protect against dust and temporary submersion.</span>
+                        </li>
+                        <li data-number="02">
+                            <span class="component-header">High-Gain LoRa Antenna</span>
+                            <span class="component-desc">Tuned for the 915/868 MHz band. Provides the 15km+ operational range. Mounted externally for maximum line-of-sight propagation.</span>
+                        </li>
+                        <li data-number="03">
+                            <span class="component-header">Core Logic Board (ARM Cortex)</span>
+                            <span class="component-desc">The brain. A low-power, quad-core processor handling packet routing, encryption, and the local Wi-Fi bridge for civilian connection.</span>
+                        </li>
+                        <li data-number="04">
+                            <span class="component-header">LoRa Transceiver Module (SX1262)</span>
+                            <span class="component-desc">The heart of the mesh. This module handles the long-range physics, sending and receiving "chirp" spread spectrum signals below the noise floor.</span>
+                        </li>
+                        <li data-number="05">
+                            <span class="component-header">Massive LiFePO4 Battery Bank</span>
+                            <span class="component-desc">80,000mAh of energy storage. LiFePO4 chemistry is chosen for its safety, long cycle life (2000+ cycles), and stability in extreme temperatures.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <div class="container">
+            <div class="grid-2" style="gap: 60px;">
+                <div>
+                    <h2>Engineering Specifications</h2>
+                    <p style="color: #94a3b8; margin-bottom: 30px;">Detailed metrics for system integrators and network planners.</p>
+                    
+                    <table class="spec-table">
+                        <tbody>
+                            <tr><td>RF Protocol</td><td>LoRaWAN L2 (Modified Mesh)</td></tr>
+                            <tr><td>Frequency Bands</td><td>US915, EU868, AS923</td></tr>
+                            <tr><td>Tx Power</td><td>Up to +22 dBm (Software Configurable)</td></tr>
+                            <tr><td>Rx Sensitivity</td><td>-148 dBm</td></tr>
+                            <tr><td>Processor</td><td>Broadcom BCM2711, Quad-core Cortex-A72</td></tr>
+                            <tr><td>Memory</td><td>2GB LPDDR4-3200 SDRAM</td></tr>
+                            <tr><td>Storage</td><td>32GB Industrial eMMC</td></tr>
+                            <tr><td>Local Connectivity</td><td>Wi-Fi 5 (802.11ac), Bluetooth 5.0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <h2>Power & Environment</h2>
+                    <p style="color: #94a3b8; margin-bottom: 30px;">Built to survive where other electronics fail.</p>
+                    
+                    <table class="spec-table">
+                        <tbody>
+                            <tr><td>Battery Capacity</td><td>80 Ah (256 Wh) @ 3.2V</td></tr>
+                            <tr><td>Solar Input</td><td>12-24V DC MPPT Controller (Max 60W)</td></tr>
+                            <tr><td>Autonomy (No Sun)</td><td>~6 Months (Deep Sleep Beacon Mode)</td></tr>
+                            <tr><td>Operating Temp</td><td>-30°C to +65°C (-22°F to 149°F)</td></tr>
+                            <tr><td>IP Rating</td><td>IP67 (Dust-tight, Temporary Submersion)</td></tr>
+                            <tr><td>Dimensions</td><td>280mm x 180mm x 90mm (Approx.)</td></tr>
+                            <tr><td>Weight</td><td>3.5 kg (7.7 lbs)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="background-color: #0F172A; text-align: center; padding: 80px 20px;">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="color: white; margin-bottom: 30px;">Why 80,000mAh?</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;">
+                Most IoT devices are built for "sunny day" scenarios. We build for nuclear winter. A disaster can cover a region in ash or heavy clouds for weeks, dropping solar efficiency to near zero.
+            </p>
+            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7;">
+                The Aegis Node's massive battery reservoir ensures that the network's backbone remains alive and beaconing for <strong>half a year</strong> in total darkness. It is the difference between a network that fails when it's needed most, and one that endures.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal();
+
+        function toggleMenu() {
+            var menu = document.getElementById("nav-links");
+            menu.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

@@ -93,15 +93,12 @@
 
     <section class="reveal" style="background-color: #1E293B;">
         <div class="container">
-            <div class="grid-2" style="align-items: center;">
+            <div class="grid-2" style="align-items: flex-start; gap: 50px;">
                 <div>
                     <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
-                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
-                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
-                    </p>
+                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.                     </p>
                     
-                    <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-
                     <ul style="list-style: none; padding: 0; color: white;">
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <span style="color: var(--primary-color);">✓</span> 
@@ -123,12 +120,19 @@
                     <br>
                     <a href="tech.html" class="btn btn-outline">See Engineering Specs &rarr;</a>
                 </div>
-                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                    <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">
-                        $150
+
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                        <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
                     </div>
-                    <p style="color: white; margin-top: 10px;">Per Public Node</p>
-                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
+
+                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                        <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">
+                            $150
+                        </div>
+                        <p style="color: white; margin-top: 10px;">Per Public Node</p>
+                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,7 +191,7 @@
     <section class="reveal" style="text-align: center; padding: 100px 20px;">
         <div class="container" style="max-width: 700px;">
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// READY FOR DEPLOYMENT</p>
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Stop relying on luck.</h2>
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ensure Mission Continuity.</h2>
             <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
                 We are currently field testing our fourth generation hardware. If your organization or government body is looking to implement a resilient communication pilot, we are ready to discuss the details.
             </p>

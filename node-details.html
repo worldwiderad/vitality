@@ -50,7 +50,7 @@
             line-height: 1.5;
         }
 
-        /* Spec Table Styling (Consistent with tech.html) */
+        /* Spec Table Styling */
         .spec-table {
             width: 100%;
             border-collapse: collapse;
@@ -112,29 +112,29 @@
                 </div>
 
                 <div>
-                    <h2 style="color: white; margin-bottom: 20px;">Anatomy of Resilience</h2>
-                    <p class="lead" style="color: #94a3b8;">A breakdown of the key subsystems that allow the Node to operate without a grid.</p>
+                    <h2 style="color: white; margin-bottom: 20px;">System Architecture</h2>
+                    <p class="lead" style="color: #94a3b8;">Key subsystems powering the independent mesh.</p>
 
                     <ul class="component-list">
                         <li data-number="01">
-                            <span class="component-header">Solar-Ready Enclosure (IP67)</span>
-                            <span class="component-desc">Ruggedized, UV-resistant polymer case with integrated mounts for a 20W solar panel. Gasket-sealed to protect against dust and temporary submersion.</span>
+                            <span class="component-header">Housing (Development Phase)</span>
+                            <span class="component-desc">Current V4 field units utilize 3D-printed reinforced ABS for rapid iteration. Final production tooling will transition to IP67-rated, UV-stabilized injection molding with integrated gaskets.</span>
                         </li>
                         <li data-number="02">
                             <span class="component-header">High-Gain LoRa Antenna</span>
-                            <span class="component-desc">Tuned for the 915/868 MHz band. Provides the 15km+ operational range. Mounted externally for maximum line-of-sight propagation.</span>
+                            <span class="component-desc">Omnidirectional dipole tuned for the 915/868 MHz band. Mounted externally to maximize Fresnel zone clearance and ensure 15km+ line-of-sight propagation.</span>
                         </li>
                         <li data-number="03">
                             <span class="component-header">Core Logic Board (ARM Cortex)</span>
-                            <span class="component-desc">The brain. A low-power, quad-core processor handling packet routing, encryption, and the local Wi-Fi bridge for civilian connection.</span>
+                            <span class="component-desc">Low-power quad-core processor. Manages packet deduplication, encryption keys, and the local Wi-Fi bridge for connecting civilian smartphones.</span>
                         </li>
                         <li data-number="04">
-                            <span class="component-header">LoRa Transceiver Module (SX1262)</span>
-                            <span class="component-desc">The heart of the mesh. This module handles the long-range physics, sending and receiving "chirp" spread spectrum signals below the noise floor.</span>
+                            <span class="component-header">LoRa Transceiver (SX1262)</span>
+                            <span class="component-desc">Primary radio module. Handles the chirp spread spectrum modulation, allowing the system to demodulate signals significantly below the RF noise floor.</span>
                         </li>
                         <li data-number="05">
-                            <span class="component-header">Massive LiFePO4 Battery Bank</span>
-                            <span class="component-desc">80,000mAh of energy storage. LiFePO4 chemistry is chosen for its safety, long cycle life (2000+ cycles), and stability in extreme temperatures.</span>
+                            <span class="component-header">LiFePO4 Energy Storage</span>
+                            <span class="component-desc">80,000mAh capacity. Selected for thermal stability and high cycle life (2000+). Provides operational continuity during extended periods of low solar irradiance.</span>
                         </li>
                     </ul>
                 </div>
@@ -147,13 +147,13 @@
             <div class="grid-2" style="gap: 60px;">
                 <div>
                     <h2>Engineering Specifications</h2>
-                    <p style="color: #94a3b8; margin-bottom: 30px;">Detailed metrics for system integrators and network planners.</p>
+                    <p style="color: #94a3b8; margin-bottom: 30px;">Detailed metrics for system integrators.</p>
                     
                     <table class="spec-table">
                         <tbody>
                             <tr><td>RF Protocol</td><td>LoRaWAN L2 (Modified Mesh)</td></tr>
                             <tr><td>Frequency Bands</td><td>US915, EU868, AS923</td></tr>
-                            <tr><td>Tx Power</td><td>Up to +22 dBm (Software Configurable)</td></tr>
+                            <tr><td>Tx Power</td><td>Regional Limit (Hardware Max: +22 dBm)</td></tr>
                             <tr><td>Rx Sensitivity</td><td>-148 dBm</td></tr>
                             <tr><td>Processor</td><td>Broadcom BCM2711, Quad-core Cortex-A72</td></tr>
                             <tr><td>Memory</td><td>2GB LPDDR4-3200 SDRAM</td></tr>
@@ -165,7 +165,7 @@
                 
                 <div>
                     <h2>Power & Environment</h2>
-                    <p style="color: #94a3b8; margin-bottom: 30px;">Built to survive where other electronics fail.</p>
+                    <p style="color: #94a3b8; margin-bottom: 30px;">Operational limits and autonomy.</p>
                     
                     <table class="spec-table">
                         <tbody>
@@ -173,7 +173,6 @@
                             <tr><td>Solar Input</td><td>12-24V DC MPPT Controller (Max 60W)</td></tr>
                             <tr><td>Autonomy (No Sun)</td><td>~6 Months (Deep Sleep Beacon Mode)</td></tr>
                             <tr><td>Operating Temp</td><td>-30°C to +65°C (-22°F to 149°F)</td></tr>
-                            <tr><td>IP Rating</td><td>IP67 (Dust-tight, Temporary Submersion)</td></tr>
                             <tr><td>Dimensions</td><td>280mm x 180mm x 90mm (Approx.)</td></tr>
                             <tr><td>Weight</td><td>3.5 kg (7.7 lbs)</td></tr>
                         </tbody>
@@ -187,10 +186,10 @@
         <div class="container" style="max-width: 800px;">
             <h2 style="color: white; margin-bottom: 30px;">Why 80,000mAh?</h2>
             <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;">
-                Most IoT devices are built for "sunny day" scenarios. We build for nuclear winter. A disaster can cover a region in ash or heavy clouds for weeks, dropping solar efficiency to near zero.
+                Standard IoT devices are designed for predictable solar cycles. We design for worst-case scenarios. Following a major event, ash or heavy cloud cover can reduce solar efficiency to near zero for weeks.
             </p>
             <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7;">
-                The Aegis Node's massive battery reservoir ensures that the network's backbone remains alive and beaconing for <strong>half a year</strong> in total darkness. It is the difference between a network that fails when it's needed most, and one that endures.
+                The Aegis Node's battery reservoir ensures the network backbone remains active and beaconing for half a year without recharge. This ensures a viable signal is available immediately after a disaster, not just when the weather clears.
             </p>
         </div>
     </section>

@@ -64,32 +64,33 @@
             <span></span>
         </div>
         <ul id="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="product.html">Products</a></li>
-    <li><a href="tech.html">The Tech</a></li>
-    <li><a href="team.html">Team</a></li> <li><a href="mission.html">Our Mission</a></li>
-    <li><a href="contact.html" class="btn-nav">Contact</a></li>
-</ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="tech.html" class="active">The Tech</a></li>
+            <li><a href="team.html">Team</a></li> 
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
     </nav>
 
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: left;">
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// ENGINEERING DOCUMENTATION</p>
             <h1 style="font-size: 3.5rem;">System Architecture.</h1>
-            <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted);">A breakdown of the physics, topology, and security protocols powering the Aegis ecosystem.</p>
+            <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted);">A breakdown of the long-range modulation, mesh topology, and security protocols powering the Aegis ecosystem.</p>
         </div>
     </header>
 
     <section class="reveal">
         <div class="container">
             <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
-            <p class="lead">How do we get 20km range without huge antennas? Physics.</p>
+            <p class="lead">How do we get 20km range without huge antennas?</p>
             <div class="grid-2">
                 <div>
                     <h3 style="color: white;">The "Whisper" Technique</h3>
-                    <p>Standard radios (like Wi-Fi) scream loudly but have poor hearing. They need a "line of sight" and high power.</p>
-                    <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a "chirp" signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong> (buried in static).</p>
-                    <p style="margin-top: 15px;">It's like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
+                    <p>Standard radios scream loudly but have poor hearing. They need a line of sight and high power to maintain a connection.</p>
+                    <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a chirp signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong>.</p>
+                    <p style="margin-top: 15px;">It is like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
                 </div>
                 <div>
                     <table class="tech-compare">
@@ -98,12 +99,12 @@
                         </thead>
                         <tbody>
                             <tr><td><strong>Range</strong></td><td>~100 meters</td><td><strong>15 - 20 km (Wilderness)</strong></td></tr>
-                            <tr><td><strong>Autonomy</strong></td><td>Hours</td><td><strong>Months(Battery)</strong></td></tr>
+                            <tr><td><strong>Autonomy</strong></td><td>Hours</td><td><strong>Months (Battery)</strong></td></tr>
                             <tr><td><strong>Environment</strong></td><td>Indoor / Urban</td><td><strong>Forests & Mountains</strong></td></tr>
                             <tr><td><strong>Bandwidth</strong></td><td>High (Video/Voice)</td><td><strong>Low (Text/GPS Only)</strong></td></tr>
                         </tbody>
                     </table>
-                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream Netflix, but you can send a location pin from a valley where sat-phones fail.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">*We trade bandwidth for reliability. You can't stream video, but you can send a location pin from a valley where sat-phones fail.</p>
                 </div>
             </div>
         </div>
@@ -117,8 +118,8 @@
             <div class="grid-2">
                 <div>
                     <h3 style="color: var(--primary-color);">The "Self-Healing" Concept</h3>
-                    <p>In a standard network (like 4G), if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong>—a single point of failure.</p>
-                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device (Node) acts as a router/repeater for everyone else.</p>
+                    <p>In a standard network, if the cell tower falls, everyone loses signal. This is a <strong>Star Topology</strong> and represents a single point of failure.</p>
+                    <p style="margin-top: 20px;">Aegis uses a <strong>Mesh Topology</strong>. There is no central server. Every single device acts as a router for everyone else.</p>
                     
                     <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--primary-color);">
                         <strong style="color: white;">Scenario: The "Broken Bridge"</strong>
@@ -126,7 +127,7 @@
                             1. Rescuer A wants to message Command Post Z.<br>
                             2. The direct path is blocked by a mountain.<br>
                             3. The message automatically hops to <strong>Node B</strong>, then <strong>Node C</strong>, then to <strong>Z</strong>.<br>
-                            4. If Node B runs out of battery? The network instantly re-routes through <strong>Node D</strong>.
+                            4. If Node B runs out of battery, the network instantly re-routes through <strong>Node D</strong>.
                         </p>
                     </div>
                 </div>
@@ -141,7 +142,7 @@
                         </li>
                         <li style="margin-bottom: 15px;">
                             <strong style="color: white;">Packet Deduplication:</strong><br>
-                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent "echoes," ensuring efficiency even when hopping thousands of times.</span>
+                            <span style="color: rgba(255,255,255,0.7);">Nodes remember message IDs to prevent echoes, ensuring efficiency even when hopping thousands of times.</span>
                         </li>
                         <li>
                             <strong style="color: white;">Store & Forward:</strong><br>
@@ -155,11 +156,18 @@
 
     <section class="reveal" style="background-color: #020617; border-bottom: 1px solid var(--border-color); padding: 50px 0;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 10px; color: white;">Live Demonstration</h2>
-            <p class="lead" style="text-align: center; margin-bottom: 30px;">
-                Visualizing how signals traverse a realistic landscape.<br>
-                <span style="font-size: 0.9rem; opacity: 0.7; color: #FF5722;">Orange = Signal</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #10B981;">Green = Receiver</span> | <span style="font-size: 0.9rem; opacity: 0.7; color: #334155;">Grey = Failed Node</span>
-            </p>
+            <h2 style="text-align: center; margin-bottom: 10px; color: white;">Mesh Simulation</h2>
+            
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 30px;">
+                <p class="lead" style="margin-bottom: 0; text-align: center;">
+                    Visualizing how signals traverse a realistic landscape.
+                </p>
+                <div style="display: flex; gap: 15px; font-size: 0.9rem;">
+                    <span style="color: #FF5722;">● Signal</span>
+                    <span style="color: #10B981;">● Receiver</span>
+                    <span style="color: #334155;">● Failed Node</span>
+                </div>
+            </div>
 
             <div style="position: relative; width: 100%; height: 500px; background: #0F172A; border: 1px solid #334155; border-radius: 12px; overflow: hidden;">
                 <canvas id="meshCanvas" style="width: 100%; height: 100%;"></canvas>
@@ -181,7 +189,7 @@
     <section class="reveal">
         <div class="container">
             <h2 style="font-size: 2rem;">3. Security Architecture</h2>
-            <p class="lead">In a conflict zone, metadata is as dangerous as the content. We protect both.</p>
+            <p class="lead">We built Aegis to be secure against both physical and digital threats.</p>
             <div class="features-grid">
                 <div class="feature">
                     <h3>Physical Isolation (Air-Gapped)</h3>
@@ -193,7 +201,7 @@
                 </div>
                 <div class="feature">
                     <h3>Zero-Trust Keys</h3>
-                    <p>Encryption keys are pre-shared physically or generated locally. We (Vitality) do not hold a "master key."</p>
+                    <p>Encryption keys are pre-shared physically or generated locally. We do not hold a "master key."</p>
                 </div>
             </div>
         </div>
@@ -208,10 +216,10 @@
                     <table class="spec-table" style="color: rgba(255,255,255,0.8);">
                         <tr><td>MCU</td><td>Quad-Core ARM Cortex-A53 @ 1GHz</td></tr>
                         <tr><td>Radio Module</td><td>SX1262 LoRa Transceiver</td></tr>
-                        <tr><td>Frequency</td><td>915 MHz (US/Asia) / 868 MHz (EU)</td></tr>
+                        <tr><td>Frequency</td><td>915 MHz (US) / 868 MHz (EU) / 923 MHz (Asia)</td></tr>
                         <tr><td>Sensitivity</td><td>-148 dBm (High Sensitivity)</td></tr>
                         <tr><td>Power Source</td><td>80,000mAh LiFePO4 + 20W Solar Input</td></tr>
-                        <tr><td>Operational Endurance</td><td><strong>Months (Battery) / Years (Solar)</strong></td></tr>
+                        <tr><td>Operational Endurance</td><td><strong>6+ Months (Battery) / Years (Solar)</strong></td></tr>
                     </table>
                 </div>
                 <div>
@@ -224,7 +232,7 @@
                     </table>
                     <div style="margin-top: 30px; border: 1px solid var(--primary-color); padding: 15px; border-radius: 4px;">
                         <p style="color: var(--primary-color); font-weight: bold; margin-bottom: 5px;">NOTE ON PROPRIETARY TECH:</p>
-                        <p style="font-size: 0.8rem; opacity: 0.7;">Specific antenna tuning parameters and our "Pulse" battery management logic are omitted from public documentation to protect intellectual property.</p>
+                        <p style="font-size: 0.8rem; opacity: 0.7;">Specific hardware tuning parameters and our custom battery management software logic are omitted from public documentation.</p>
                     </div>
                 </div>
             </div>
@@ -253,7 +261,7 @@
                         <span class="chevron">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The Public Node features an <strong>80,000mAh LiFePO4 battery</strong>. Even with zero solar input (total darkness), the node can operate on "Power Save Mode" (beacons only) for approximately <strong>4 months</strong>. In standard operation, it has 45 days of autonomy without sun.</p>
+                        <p>The Public Node features an <strong>80,000mAh LiFePO4 battery</strong>. The system defaults to a deep sleep mode, waking only to repeat messages or interact with a user. This allows for over <strong>6 months</strong> of operation even with zero solar input.</p>
                     </div>
                 </div>
 
@@ -263,7 +271,7 @@
                         <span class="chevron">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes. Aegis operates on the <strong>915 MHz ISM band</strong> (Industrial, Scientific, and Medical) in the US and 868 MHz in Europe. These are license-free bands. We strictly adhere to the 1% duty cycle and transmission power limits set by the FCC/ETSI, ensuring legal operation without requiring user licenses.</p>
+                        <p>Yes. Aegis operates on the <strong>ISM bands</strong> (Industrial, Scientific, and Medical). These are license-free bands. We strictly adhere to the duty cycle and transmission power limits set by the FCC, ETSI, and regional authorities, ensuring legal operation without requiring user licenses.</p>
                     </div>
                 </div>
 
@@ -281,62 +289,12 @@
         </div>
     </section>
 
-    <style>
-        .faq-item {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .faq-item:hover {
-            border-color: var(--primary-color);
-        }
-        .faq-question {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: white;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background-color: rgba(0,0,0,0.2);
-        }
-        .faq-answer p {
-            padding: 20px;
-            margin: 0;
-            font-size: 0.95rem;
-            color: #94a3b8;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .chevron {
-            transition: transform 0.3s ease;
-            color: var(--primary-color);
-        }
-        /* Active State */
-        .faq-item.active .faq-answer {
-            max-height: 200px; /* Arbitrary height for expansion */
-        }
-        .faq-item.active .chevron {
-            transform: rotate(180deg);
-        }
-    </style>
-
     <script>
         function toggleFaq(element) {
-            // Close others (optional, feels cleaner)
             const allFaqs = document.querySelectorAll('.faq-item');
             allFaqs.forEach(item => {
                 if(item !== element) item.classList.remove('active');
             });
-            
-            // Toggle clicked
             element.classList.toggle('active');
         }
     </script>
@@ -364,15 +322,13 @@
             menu.classList.toggle("active");
         }
 
-        // --- DETERMINISTIC RANDOM NUMBER GENERATOR (Seeded) ---
-        // This ensures the grid looks identical on every single computer, every time.
+        // --- MESH SIMULATOR LOGIC ---
         let seed = 12345;
         function seededRandom() {
             var x = Math.sin(seed++) * 10000;
             return x - Math.floor(x);
         }
 
-        // --- MESH SIMULATOR ---
         const canvas = document.getElementById('meshCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -382,11 +338,8 @@
         const WAVE_SPEED = 2; 
         const MAX_WAVE_RADIUS = 80; 
 
-        // Initial setup
         function initGrid() {
-            // Reset Seed for Deterministic Generation
             seed = 12345; 
-            
             nodes = [];
             canvas.width = canvas.parentElement.offsetWidth;
             canvas.height = canvas.parentElement.offsetHeight;
@@ -399,10 +352,7 @@
                     let x = c * SPACING;
                     let y = r * (SPACING * 0.866);
                     if(r % 2 !== 0) x += SPACING / 2;
-                    
                     x -= 30; y -= 30;
-                    
-                    // USE SEEDED RANDOM FOR IDENTICAL JITTER EVERY TIME
                     x += (seededRandom() - 0.5) * 20; 
                     y += (seededRandom() - 0.5) * 20;
 
@@ -412,8 +362,6 @@
                     }
                 }
             }
-            
-            // Deterministic Source/Dest assignment
             let sorted = [...nodes].sort((a,b) => a.x - b.x);
             if(sorted.length > 0) {
                 sorted[Math.floor(sorted.length * 0.05)].isSource = true;
@@ -449,22 +397,21 @@
                     ctx.shadowColor = '#10B981';
                 }
                 else if (!this.functional) {
-                    ctx.fillStyle = '#334155'; // Dead/Damaged
+                    ctx.fillStyle = '#334155';
                     ctx.shadowBlur = 0;
                 }
                 else if (this.hasBroadcasted) {
-                    ctx.fillStyle = '#94A3B8'; // Spent
+                    ctx.fillStyle = '#94A3B8';
                     ctx.shadowBlur = 0;
                 }
                 else {
-                    ctx.fillStyle = '#FFFFFF'; // Ready
+                    ctx.fillStyle = '#FFFFFF';
                     ctx.shadowBlur = 0;
                 }
                 
                 ctx.fill();
                 ctx.shadowBlur = 0; 
 
-                // Success Ring
                 if(this.isDest && this.msgReceived) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
@@ -499,18 +446,15 @@
         }
 
         function applyScenario(type) {
-            // Reset grid state but KEEP POSITIONS
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
             const source = nodes.find(n => n.isSource);
             const dest = nodes.find(n => n.isDest);
 
-            // RESET SEED FOR SCENARIO LOGIC TO ENSURE SAME NODES FAIL
-            // We use a different seed offset so it doesn't match the grid jitter
             seed = 67890; 
 
             nodes.forEach(n => {
-                n.exists = true;      
+                n.exists = true;       
                 n.functional = true;  
                 n.hasBroadcasted = false;
                 n.msgReceived = false;
@@ -518,7 +462,6 @@
             waves = []; 
 
             if (type === 'mountain') {
-                // Determine mountain size relative to canvas
                 const mountW = 120;
                 const mountH = 150;
                 nodes.forEach(n => {
@@ -529,18 +472,14 @@
             } 
             else if (type === 'chaos') {
                 nodes.forEach(n => {
-                    // Protected Zone around Source and Dest to prevent instant failure
                     let distToSource = Math.hypot(n.x - source.x, n.y - source.y);
                     let distToDest = Math.hypot(n.x - dest.x, n.y - dest.y);
 
                     if (distToSource > 80 && distToDest > 80) {
-                        // Use SEEDED random for deterministic failure
                         if(seededRandom() < 0.3) n.functional = false;
                     }
                 });
             }
-
-            // Auto-fire
             startWave();
         }
 
@@ -563,9 +502,7 @@
                         if (n.exists && n.functional) {
                             let d = Math.hypot(w.x - n.x, w.y - n.y);
                             if(Math.abs(d - w.radius) < 5) {
-                                
                                 if (n.isDest) n.msgReceived = true;
-
                                 if(!n.hasBroadcasted && !n.isDest) {
                                     n.hasBroadcasted = true;
                                     setTimeout(() => {
@@ -583,15 +520,12 @@
             requestAnimationFrame(animate);
         }
 
-        // Handle Resize
         window.addEventListener('resize', () => {
             initGrid();
         });
 
-        // Run
         initGrid();
         animate();
-
     </script>
 
 </body>

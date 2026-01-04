@@ -52,6 +52,47 @@
             border-bottom: 1px solid var(--border-color);
             color: var(--text-muted);
         }
+        /* FAQ Styles */
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .faq-answer p {
+            padding: 20px;
+            margin: 0;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .chevron {
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+        .faq-item.active .chevron {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -85,12 +126,12 @@
         <div class="container">
             <h2 style="font-size: 2rem;">1. The Physics: LoRa vs. Wi-Fi</h2>
             <p class="lead">How do we get 20km range without huge antennas?</p>
-            <div class="grid-2">
+            <div class="grid-2" style="align-items: center;">
                 <div>
                     <h3 style="color: white;">The "Whisper" Technique</h3>
                     <p>Standard radios scream loudly but have poor hearing. They need a line of sight and high power to maintain a connection.</p>
                     <p style="margin-top: 15px;"><strong>Aegis uses LoRa (Long Range)</strong> modulation. Instead of shouting, it uses a chirp signal that sweeps across frequencies. This allows our receiver to decode signals that are <strong>below the noise floor</strong>.</p>
-                    <p style="margin-top: 15px;">It is like being able to hear a whisper across a crowded stadium. This provides immense range and penetration through dense forests and mountain ranges.</p>
+                    <p style="margin-top: 15px;">This modulation provides a massive "Link Budget" advantage. While Wi-Fi fades after a few walls, LoRa signals can diffract around obstacles and reflect off terrain features, maintaining packet integrity where other protocols show zero bars.</p>
                 </div>
                 <div>
                     <table class="tech-compare">
@@ -232,7 +273,7 @@
                     </table>
                     <div style="margin-top: 30px; border: 1px solid var(--primary-color); padding: 15px; border-radius: 4px;">
                         <p style="color: var(--primary-color); font-weight: bold; margin-bottom: 5px;">NOTE ON PROPRIETARY TECH:</p>
-                        <p style="font-size: 0.8rem; opacity: 0.7;">Specific hardware tuning parameters and our custom battery management software logic are omitted from public documentation.</p>
+                        <p style="font-size: 0.8rem; opacity: 0.7;">Detailed hardware configurations and firmware architectures are omitted from public documentation to protect intellectual property.</p>
                     </div>
                 </div>
             </div>
@@ -289,21 +330,38 @@
         </div>
     </section>
 
-    <script>
-        function toggleFaq(element) {
-            const allFaqs = document.querySelectorAll('.faq-item');
-            allFaqs.forEach(item => {
-                if(item !== element) item.classList.remove('active');
-            });
-            element.classList.toggle('active');
-        }
-    </script>
-
     <footer>
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
     <script>
+        // --- FAQ LOGIC ---
+        function toggleFaq(element) {
+            // 1. Toggle the active class on the clicked item
+            element.classList.toggle('active');
+
+            // 2. Get the answer div for this item
+            const answer = element.querySelector('.faq-answer');
+
+            // 3. Close all other FAQs (Accordian Style)
+            const allFaqs = document.querySelectorAll('.faq-item');
+            allFaqs.forEach(item => {
+                if(item !== element) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            // 4. Animate the Height
+            if (element.classList.contains('active')) {
+                // Set max-height to the scrollHeight (actual height of content)
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        }
+
+        // --- SCROLL ANIMATION ---
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');

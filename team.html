@@ -15,80 +15,103 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* EXECUTIVE CARD STYLES */
-        .dossier-card {
-            background: var(--bg-card);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .dossier-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .dossier-photo {
-            width: 100%;
-            /* TALL PORTRAIT MODE */
-            height: 450px; 
-            background-color: #020617;
-            
-            /* Anchors image to the top (Headshot focus) */
-            object-fit: cover;
-            object-position: top center; 
-            
-            border-bottom: 2px solid var(--primary-color);
-            /* Grayscale removed here */
-        }
+        /* --- NEW CIRCULAR TEAM LAYOUT --- */
         
-        .dossier-content {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        .team-section {
+            padding-bottom: 60px;
         }
 
-        .role-tag {
-            display: inline-block;
+        /* The Grid for 4 People */
+        .leaders-grid {
+            display: grid;
+            /* Desktop: 4 columns. Mobile: Stacks automatically */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Individual Person Container */
+        .leader-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Circular Image Styling */
+        .leader-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Makes it a circle */
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.15); /* Orange Glow */
+            margin-bottom: 25px;
+            background-color: #0f172a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .leader-profile:hover .leader-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 87, 34, 0.4);
+        }
+
+        /* Typography */
+        .leader-name {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .leader-role {
             font-family: 'Courier Prime', monospace;
             color: var(--primary-color);
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .dossier-card h3 {
-            color: white; 
             margin-bottom: 15px;
-            font-size: 1.8rem;
+            min-height: 40px; /* Aligns descriptions even if roles vary in length */
         }
 
-        .dossier-card p {
-            font-size: 0.95rem; 
-            color: #94a3b8; 
+        .leader-bio {
+            font-size: 0.95rem;
+            color: #94a3b8;
             line-height: 1.6;
-            margin-bottom: 0;
+            max-width: 280px; /* Keeps text column nice and tight */
         }
 
-        /* 2x2 Grid Layout */
-        .team-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+        /* --- GROUP PHOTO SECTION --- */
+        .group-photo-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        @media(min-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+
+        .group-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Slight brightness dim for cinematic look */
+            filter: brightness(0.9);
+            transition: filter 0.3s;
         }
+        
+        .group-photo-wrapper:hover .group-img {
+            filter: brightness(1);
+        }
+
+        .group-caption {
+            background-color: var(--bg-card);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: #94a3b8;
+            font-style: italic;
+        }
+
     </style>
 </head>
 <body>
@@ -120,59 +143,60 @@
         </div>
     </header>
 
-    <section class="reveal">
+    <section class="reveal team-section">
         <div class="container">
-            <div class="team-grid">
+            
+            <div class="leaders-grid">
 
-                <div class="dossier-card">
-                    <img src="assets/img/radek.jpg" alt="Radek Green" class="dossier-photo"> 
-                    <div class="dossier-content">
-                        <span class="role-tag">Team Leader & Systems Architect</span>
-                        <h3>Radek Green</h3>
-                        <p>
-                            Responsible for the core concept, overall strategy, and software architecture. A polymath controlling coding, product design, financial modeling, and research.
-                        </p>
-                    </div>
+                <div class="leader-profile">
+                    <img src="assets/img/radek.jpg" alt="Radek Green" class="leader-avatar">
+                    <h3 class="leader-name">Radek Green</h3>
+                    <p class="leader-role">Team Leader & Systems Architect</p>
+                    <p class="leader-bio">
+                        Responsible for the core concept, overall strategy, and software architecture. A polymath controlling coding, product design, and financial modeling.
+                    </p>
                 </div>
 
-                <div class="dossier-card">
-                    <img src="assets/img/divyam.jpg" alt="Divyam Joshi" class="dossier-photo">
-                    <div class="dossier-content">
-                        <span class="role-tag">Lead CAD & Enclosure Designer</span>
-                        <h3>Divyam Joshi</h3>
-                        <p>
-                            The architect of the physical product. Responsible for all 3D modeling in Fusion 360, rapid prototyping, and ensuring mechanical durability in the field.
-                        </p>
-                    </div>
+                <div class="leader-profile">
+                    <img src="assets/img/divyam.jpg" alt="Divyam Joshi" class="leader-avatar" style="object-position: center 20%;">
+                    <h3 class="leader-name">Divyam Joshi</h3>
+                    <p class="leader-role">Lead CAD & Enclosure Designer</p>
+                    <p class="leader-bio">
+                        The architect of the physical product. Responsible for all 3D modeling in Fusion 360, rapid prototyping, and ensuring mechanical durability.
+                    </p>
                 </div>
 
-                <div class="dossier-card">
-                    <img src="assets/img/jack.jpg" alt="Jack Cherry" class="dossier-photo">
-                    <div class="dossier-content">
-                        <span class="role-tag">Business Lead & Hardware Strategy</span>
-                        <h3>Jack Cherry</h3>
-                        <p>
-                            Drives business development and financial modeling. Bridges the gap between technical capability and market viability through rigorous sales strategy.
-                        </p>
-                    </div>
+                <div class="leader-profile">
+                    <img src="assets/img/jack.jpg" alt="Jack Cherry" class="leader-avatar">
+                    <h3 class="leader-name">Jack Cherry</h3>
+                    <p class="leader-role">Business Lead & Strategy</p>
+                    <p class="leader-bio">
+                        Drives business development and financial modeling. Bridges the gap between technical capability and market viability through rigorous sales strategy.
+                    </p>
                 </div>
 
-                <div class="dossier-card">
-                    <img src="assets/img/shriya.jpg" alt="Shriya Sharma" class="dossier-photo">
-                    <div class="dossier-content">
-                        <span class="role-tag">Operations & Market Research</span>
-                        <h3>Shriya Sharma</h3>
-                        <p>
-                            Manages timelines, key responsibilities, and external relations. Leads competitive analysis and market validation to ensure product-market fit.
-                        </p>
-                    </div>
+                <div class="leader-profile">
+                    <img src="assets/img/shriya.jpg" alt="Shriya Sharma" class="leader-avatar">
+                    <h3 class="leader-name">Shriya Sharma</h3>
+                    <p class="leader-role">Operations & Market Research</p>
+                    <p class="leader-bio">
+                        Manages timelines, key responsibilities, and external relations. Leads competitive analysis and market validation to ensure product-market fit.
+                    </p>
                 </div>
 
             </div>
+
+            <div class="group-photo-wrapper reveal">
+                <img src="assets/img/team.jpg" alt="Vitality Team at Work" class="group-img">
+                <div class="group-caption">
+                    Team Vitality: Field testing Aegis V4 hardware.
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section class="reveal">
+    <section class="reveal" style="border-top: 1px solid var(--border-color); padding-top: 80px;">
         <div class="container" style="max-width: 800px; text-align: center;">
             <h2 style="margin-bottom: 30px;">Advisory Support</h2>
             <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; border-radius: 8px;">

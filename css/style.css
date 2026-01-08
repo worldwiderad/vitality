@@ -17,8 +17,6 @@
 
     /* FONTS */
     --font-body: 'Inter', sans-serif;
-
-    /* NOTE: Old pixel-based offsets removed. Animation now uses percentage classes below. */
 }
 
 /* --- 2. RESET & BASE --- */
@@ -131,7 +129,7 @@ header.hero, header.hero-home {
 
 /* Fullscreen Hero specific */
 header.hero-home {
-    /* MODIFIED: Reduced height so the next section peeks through */
+    /* Reduced height so the next section peeks through */
     min-height: 70vh; 
     height: auto;
     display: flex;
@@ -165,20 +163,34 @@ header.hero p, header.hero-home p {
     gap: 15px;
 }
 
+/* --- UPDATED SCROLL INDICATOR --- */
 .scroll-indicator {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px; /* Moved up slightly */
     left: 50%;
-    transform: translateX(-50%); /* Center alignment */
-    font-size: 0.9rem;
-    font-weight: 600;
-    opacity: 0; /* Hidden by default, JS reveals it */
+    transform: translateX(-50%);
+    
     font-family: 'Courier Prime', monospace;
+    font-size: 1.1rem; /* Larger font */
+    font-weight: 700;  /* Bolder */
+    color: var(--primary-color);
+    
+    opacity: 0; /* JS fades this in */
     cursor: pointer;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    color: var(--primary-color); /* FIXED: Orange color */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    letter-spacing: 1px;
+    
     z-index: 100;
     pointer-events: auto;
+    
+    /* Stronger Bounce Animation */
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+    40% {transform: translateX(-50%) translateY(-15px);} /* Higher jump */
+    60% {transform: translateX(-50%) translateY(-7px);}
 }
 
 .hero-label {
@@ -190,12 +202,6 @@ header.hero p, header.hero-home p {
     color: rgba(255, 255, 255, 0.6);
     letter-spacing: 1px;
     text-transform: uppercase;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-    40% {transform: translateX(-50%) translateY(-10px);}
-    60% {transform: translateX(-50%) translateY(-5px);}
 }
 
 /* --- 6. BUTTONS --- */
@@ -384,8 +390,7 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Offsets)
-   Added to the bottom to preserve existing styles.
+   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Doubled Offsets)
 ========================================================================= */
 
 header.aegis-intro {
@@ -408,7 +413,6 @@ header.aegis-intro {
     height: 56.25vw; /* Base 16:9 */
     
     /* If screen is too tall (portrait/square), switch to height-based sizing */
-    /* This ensures no black bars ever appear */
     min-height: 100vh;
     min-width: 177.78vh; /* 16:9 ratio relative to height */
     
@@ -460,7 +464,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & Percentage Offsets --- */
+/* --- Inner Images & DOUBLED Percentage Offsets --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -468,20 +472,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: Moved 30% Right, 100% Down -> Now centered relative to point */
-.offset-rep { transform: translate(0, 0); }
+/* Repeater: Moved 60% Right, 200% Down */
+.offset-rep { transform: translate(60%, 200%); }
 
-/* Hub: Moved 10% Left, 15% Down */
-.offset-hub { transform: translate(10%, 15%); }
+/* Hub: Moved 20% Left, 30% Down */
+.offset-hub { transform: translate(-20%, 30%); }
 
-/* Nodes (Standard): Moved 50% Lower */
-.offset-node { transform: translate(0, -10%); }
+/* Nodes (Standard): Moved 100% Lower */
+.offset-node { transform: translate(0, 100%); }
 
-/* HERO NODE (Inside its wrapper): Centered */
+/* HERO NODE: Centered */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
-/* Handheld: Moved 30% Left, 70% Down */
-.offset-hand { transform: translate(-10%, -70%); }
+/* Handheld: Moved 60% Left, 140% Down */
+.offset-hand { transform: translate(-60%, 140%); }
 
 
 /* SVG Lines */

@@ -17,27 +17,8 @@
 
     /* FONTS */
     --font-body: 'Inter', sans-serif;
-
-    /* --- NEW: ANIMATION DEVICE OFFSETS (Safe to edit) --- */
-    /* HERO NODE */
-    --hero-y: -60px;
-    --hero-x: 0px;
-
-    /* Hub */
-    --hub-y: -95px;
-    --hub-x: -60px;
-
-    /* Standard Nodes */
-    --node-y: -50px;
-    --node-x: 1px;
-
-    /* Repeaters */
-    --rep-y: -90px;
-    --rep-x: -1px;
-
-    /* Handhelds */
-    --hand-y: -60px;
-    --hand-x: 5px;
+    
+    /* NOTE: Pixel offsets removed. Using percentage transforms on images instead. */
 }
 
 /* --- 2. RESET & BASE --- */
@@ -390,12 +371,15 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Added for Index Only)
+   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Offsets)
 ========================================================================= */
 
 header.aegis-intro {
-    height: 100vh; 
-    width: 100vw;
+    /* FIX: Enforce aspect ratio to match background image so lines always align */
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    max-height: 100vh; /* Ensure it doesn't exceed screen height on tall devices */
+    margin: 0 auto; /* Center if max-height is hit */
     position: relative; 
     overflow: hidden;
     background-color: #020617;
@@ -408,42 +392,69 @@ header.aegis-intro {
     z-index: 10;
 }
 
-/* Animation Devices */
+/* Background Map - FIX: Use contain to show full image */
+.bg-map-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+#city-map {
+    width: 100%; height: 100%; 
+    object-fit: contain; /* Ensures full image is visible */
+    transform: scale(3);
+    filter: blur(4px) invert(1) hue-rotate(180deg) brightness(0.8);
+    opacity: 0.5;
+}
+
+/* --- Device Wrappers (Animated by GSAP) --- */
 .device {
     position: absolute;
     top: 50%; left: 50%;
+    /* Center the wrapper first */
     transform: translate(-50%, -50%);
     will-change: transform, opacity;
-    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
     z-index: 10; 
+    /* Flex centering for inner image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Hero Node Specifics */
-#hero-node { 
+/* Hero Node Specific Wrapper */
+#hero-node-wrapper { 
     width: 42vw; 
     z-index: 15; 
     top: 38%; 
     left: 51%;
 }
 
-/* Initial State for Secondary Devices */
+/* Secondary Device Wrappers Initial State */
 .secondary-device {
     opacity: 0;
+    /* Start scaled down, centered */
     transform: translate(-50%, -50%) scale(0);
 }
 
-/* Sizing Updates */
-#hub-device { width: 13vw; } 
-.std-node { width: 9.6vw; }
-.repeater { width: 6.5vw; } 
-.handheld { width: 6.75vw; }
+/* Wrapper Sizing */
+#hub-wrapper { width: 13vw; } 
+.std-node-wrapper { width: 9.6vw; }
+.repeater-wrapper { width: 6.5vw; } 
+.handheld-wrapper { width: 6.75vw; }
 
-/* Nudge Offsets (Using Variables) */
-.nudge-hero { margin-top: var(--hero-y); margin-left: var(--hero-x); }
-.nudge-hub  { margin-top: var(--hub-y); margin-left: var(--hub-x); } 
-.nudge-node { margin-top: var(--node-y); margin-left: var(--node-x); }
-.nudge-rep  { margin-top: var(--rep-y); margin-left: var(--rep-x); }
-.nudge-hand { margin-top: var(--hand-y); margin-left: var(--hand-x); }
+/* --- Inner Images & Percentage Offsets --- */
+.device-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
+}
+
+/* NEW OFFSETS: Relative to image size, independent of screen pixels */
+/* Repeater: 30% left */
+.offset-rep { transform: translate(-30%, 0); }
+/* Hub: 15% left */
+.offset-hub { transform: translate(-15%, 0); }
+/* Nodes (Hero & Standard): 10% up */
+.offset-node { transform: translate(0, -10%); }
+/* Handheld: 40% left, 10% down */
+.offset-hand { transform: translate(-40%, 10%); }
+
 
 /* SVG Lines */
 #mesh-lines-svg {
@@ -491,12 +502,18 @@ header.aegis-intro {
     letter-spacing: 0.15em;
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     opacity: 0.9;
+    /* FIX: Force single line */
+    white-space: nowrap;
 }
 
 /* Animation Mobile Overrides */
 @media (max-width: 768px) {
-    #hero-node { width: 60vw; }
-    #hub-device { width: 25vw; } .std-node { width: 18vw; } .repeater { width: 14vw; } .handheld { width: 12vw; }
+    #hero-node-wrapper { width: 60vw; }
+    #hub-wrapper { width: 25vw; } 
+    .std-node-wrapper { width: 18vw; } 
+    .repeater-wrapper { width: 14vw; } 
+    .handheld-wrapper { width: 12vw; }
+    
     #hero-text-container h1 { font-size: 4vw; letter-spacing: 0.5em; margin-left: 0.5em; }
     #hero-text-container h2 { font-size: 18vw; }
     #hero-text-container h3 { font-size: 3.5vw; }

@@ -384,7 +384,7 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Offsets)
+   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Doubled Offsets)
    Added to the bottom to preserve existing styles.
 ========================================================================= */
 
@@ -408,7 +408,6 @@ header.aegis-intro {
     height: 56.25vw; /* Base 16:9 */
     
     /* If screen is too tall (portrait/square), switch to height-based sizing */
-    /* This ensures no black bars ever appear */
     min-height: 100vh;
     min-width: 177.78vh; /* 16:9 ratio relative to height */
     
@@ -460,7 +459,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & Percentage Offsets --- */
+/* --- Inner Images & DOUBLED Percentage Offsets --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -468,20 +467,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: Moved 30% Right, 100% Down -> Now centered relative to point */
-.offset-rep { transform: translate(0, 0); }
+/* Repeater: Moved 60% Right, 200% Down from base */
+.offset-rep { transform: translate(30%, 100%); }
 
-/* Hub: Moved 10% Left, 15% Down */
-.offset-hub { transform: translate(10%, 15%); }
+/* Hub: Moved 20% Left, 30% Down from base */
+.offset-hub { transform: translate(15%, 30%); }
 
-/* Nodes (Standard): Moved 50% Lower */
-.offset-node { transform: translate(0, -10%); }
+/* Nodes (Standard): Moved 150% Lower from base (-110 + 150) */
+.offset-node { transform: translate(0, 40%); }
 
-/* HERO NODE (Inside its wrapper): Centered */
+/* HERO NODE: Centered */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
-/* Handheld: Moved 30% Left, 70% Down */
-.offset-hand { transform: translate(-10%, -70%); }
+/* Handheld: Moved 60% Left, 140% Down from base (Back to 0,0) */
+.offset-hand { transform: translate(0%, 0%); }
 
 
 /* SVG Lines */

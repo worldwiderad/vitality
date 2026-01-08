@@ -129,7 +129,7 @@ header.hero, header.hero-home {
 
 /* Fullscreen Hero specific */
 header.hero-home {
-    /* Reduced height so the next section peeks through */
+    /* MODIFIED: Reduced height so the next section peeks through */
     min-height: 70vh; 
     height: auto;
     display: flex;
@@ -163,7 +163,7 @@ header.hero p, header.hero-home p {
     gap: 15px;
 }
 
-/* --- SCROLL INDICATOR (BOUNCING) --- */
+/* --- UPDATED SCROLL INDICATOR --- */
 .scroll-indicator {
     position: absolute;
     bottom: 100px; /* Moved up slightly */
@@ -464,7 +464,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & SINGLE Percentage Offsets (User Config) --- */
+/* --- Inner Images & SINGLE Percentage Offsets (Fixed) --- */
 .device-img {
     width: 100%;
     height: auto;

@@ -18,9 +18,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body>
-
-    <nav>
+<body class="noscroll"> <nav>
         <div class="logo">VITALITY</div>
         
         <div class="hamburger" onclick="toggleMenu()">
@@ -47,6 +45,10 @@
             <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
         </div>
 
+        <div id="scroll-btn" class="scroll-indicator">
+            <a href="#hero-home-anchor" style="color: inherit; text-decoration: none; animation: bounce 2s infinite;">[ LEARN MORE ]</a>
+        </div>
+
         <div id="hero-stage">
             <div class="bg-map-container">
                 <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
@@ -56,13 +58,11 @@
                 <line class="mesh-line" x1="50" y1="45" x2="75" y2="25" />
                 <line class="mesh-line" x1="50" y1="45" x2="30" y2="55" />
                 <line class="mesh-line" x1="50" y1="45" x2="70" y2="55" />
-                
                 <line class="mesh-line" x1="75" y1="25" x2="90" y2="35" />
                 <line class="mesh-line" x1="30" y1="55" x2="15" y2="40" />
                 <line class="mesh-line" x1="70" y1="55" x2="90" y2="35" />
                 <line class="mesh-line" x1="30" y1="55" x2="25" y2="75" />
                 <line class="mesh-line" x1="70" y1="55" x2="75" y2="75" />
-                
                 <line class="mesh-line" x1="15" y1="40" x2="10" y2="60" />
                 <line class="mesh-line" x1="10" y1="60" x2="25" y2="75" />
                 <line class="mesh-line" x1="25" y1="75" x2="50" y2="85" />
@@ -111,7 +111,7 @@
         </div>
     </header>
 
-    <header class="hero-home">
+    <div id="hero-home-anchor"></div> <header class="hero-home">
         <div class="container">
             <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
             
@@ -123,10 +123,6 @@
                 <a href="product.html" class="btn">See The Hardware</a>
                 <a href="mission.html" class="btn btn-outline">The Mission</a>
             </div>
-        </div>
-
-        <div class="scroll-indicator" style="bottom: 100px; opacity: 0.8; font-size: 0.85rem; font-family: 'Courier Prime', monospace; color: var(--primary-color); cursor: pointer;">
-            <a href="#problem" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
         </div>
 
         <div class="hero-label">
@@ -215,51 +211,36 @@
             <h2 style="text-align: center; margin-bottom: 40px;">Deployment Scenarios</h2>
             
             <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Strategic Operations</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised or intercepted.</p>
                 </div>
-
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
                 </div>
-
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
                 </div>
-
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">NGO / Aid</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 20px;">
         <div class="container" style="max-width: 800px; text-align: center;">
-            
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
-            
             <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
                 If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
             </h3>
-
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
-            
             <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
-            
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">
-                Ryoma Yamamoto
-            </p>
-            <p style="font-size: 0.8rem; color: #64748b;">
-                Master of Communications and Computer Engineering, Kyoto University<br>
-                Former Apple Pay Japan Lead
-            </p>
+            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
+            <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
         </div>
     </section>
 
@@ -279,9 +260,19 @@
     </footer>
 
     <script>
-        // 1. HERO ANIMATION LOGIC (Targets Wrappers)
+        // 1. HERO ANIMATION LOGIC
         window.addEventListener('load', () => {
-            const tl = gsap.timeline({ defaults: {ease: "power3.inOut"} });
+            // Force scroll to top on reload to ensure they see animation
+            window.scrollTo(0, 0);
+
+            const tl = gsap.timeline({ 
+                defaults: {ease: "power3.inOut"},
+                onComplete: () => {
+                    // UNLOCK SCROLL & FADE IN BUTTON WHEN DONE
+                    document.body.classList.remove('noscroll');
+                    gsap.to("#scroll-btn", {opacity: 1, duration: 1});
+                }
+            });
 
             // CONFIG: Final Positions (Mesh State)
             const pos = {
@@ -305,7 +296,7 @@
             .add("zoomLabel")
             .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
             .to("#hero-node-wrapper", {
-                width: "12vw", /* Stays larger for lineup stage */
+                width: "12vw", 
                 top: "50%", 
                 left: "50%",
                 y: "-5vh",
@@ -313,22 +304,21 @@
             }, "zoomLabel")
             
             // --- STAGE 2.5: PRODUCT LINEUP REVEAL (BIG SIZES) ---
-            // Order: Repeater (L) : Handheld (Mid-L) : Node (Center) : Hub (R)
             .add("lineupLabel", "-=2.5")
             
-            // Repeater slides Far Left (Big Scale 1.4)
+            // Repeater slides Far Left
             .fromTo("#rep-1-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
                 "lineupLabel")
 
-            // Handheld slides Mid Left (Big Scale 1.4)
+            // Handheld slides Mid Left
             .fromTo("#hand-1-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
                 "lineupLabel+=0.2")
 
-             // Hub slides Right (Big Scale 1.4)
+             // Hub slides Right
              .fromTo("#hub-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
@@ -338,26 +328,21 @@
             .to({}, {duration: 2})
 
 
-            // --- STAGE 3: TRANSITION TO MESH (SHRINK TO NORMAL SIZE) ---
-            // 1. Fade All Text
+            // --- STAGE 3: TRANSITION TO MESH ---
             .add("transitionLabel")
-            // Fade color to black first
             .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
-            // Then fade opacity out
             .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
 
-            // 2. EXPLOSION to Final Mesh & SHRINK devices
+            // 2. EXPLOSION to Final Mesh
             .add("explodeLabel", "transitionLabel+=0.5")
 
-            // Shrink Hero Node to final size
             .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
 
-            // Move Lineup devices to final positions AND shrink to scale 1
             .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
             .to("#rep-1-wrapper",      {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
             .to("#hand-1-wrapper",     {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
 
-            // Reveal the REST of the devices from center (normal scale 1)
+            // Reveal the REST
             .to(["#std-1-wrapper", "#std-2-wrapper"], {
                 opacity: 1, scale: 1, duration: 3, stagger: 0.1,
                 x: (i) => i === 0 ? pos.std1.x : pos.std2.x,
@@ -380,7 +365,7 @@
             .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 2. SCROLL ANIMATION (Legacy)
+        // 2. SCROLL REVEAL (Legacy)
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -394,7 +379,7 @@
         }
         reveal();
 
-        // 3. MOBILE MENU TOGGLE
+        // 3. MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");

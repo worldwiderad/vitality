@@ -17,27 +17,8 @@
 
     /* FONTS */
     --font-body: 'Inter', sans-serif;
-
-    /* --- NEW: ANIMATION DEVICE OFFSETS (Safe to edit) --- */
-    /* HERO NODE */
-    --hero-y: -60px;
-    --hero-x: 0px;
-
-    /* Hub */
-    --hub-y: -95px;
-    --hub-x: -60px;
-
-    /* Standard Nodes */
-    --node-y: -50px;
-    --node-x: 1px;
-
-    /* Repeaters */
-    --rep-y: -90px;
-    --rep-x: -1px;
-
-    /* Handhelds */
-    --hand-y: -60px;
-    --hand-x: 5px;
+    
+    /* NOTE: Pixel offsets removed. Using percentage transforms on images instead. */
 }
 
 /* --- 2. RESET & BASE --- */
@@ -397,7 +378,6 @@ header.aegis-intro {
     height: 100vh; 
     width: 100vw;
     position: relative; 
-    /* Use flex to center the rigid stage */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -406,22 +386,22 @@ header.aegis-intro {
     overflow: hidden;
 }
 
-/* Stage - THE FIX: Force a specific aspect ratio (e.g., 16:9) */
+/* Stage - Force 16:9 Aspect Ratio */
 #hero-stage {
-    position: relative; /* Changed from absolute */
+    position: relative; 
     width: 100vw;
     height: 56.25vw; /* 16:9 ratio */
     max-height: 100vh;
     max-width: 177.78vh; /* 16:9 ratio */
     z-index: 10;
-    box-shadow: 0 0 100px #020617; /* Softens the edges */
+    box-shadow: 0 0 100px #020617; 
 }
 
-/* Background Map - FIX: Cover the rigid stage perfectly */
+/* Background Map */
 .bg-map-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
 #city-map {
     width: 100%; height: 100%; 
-    object-fit: cover; /* Use cover instead of contain */
+    object-fit: cover; 
     transform: scale(3);
     filter: blur(4px) invert(1) hue-rotate(180deg) brightness(0.8);
     opacity: 0.5;
@@ -431,11 +411,9 @@ header.aegis-intro {
 .device {
     position: absolute;
     top: 50%; left: 50%;
-    /* Center the wrapper relative to the stage */
     transform: translate(-50%, -50%);
     will-change: transform, opacity;
     z-index: 10; 
-    /* Flex centering for inner image */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -452,7 +430,6 @@ header.aegis-intro {
 /* Secondary Device Wrappers Initial State */
 .secondary-device {
     opacity: 0;
-    /* Start scaled down, centered */
     transform: translate(-50%, -50%) scale(0);
 }
 
@@ -462,7 +439,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & Percentage Offsets (Replacing pixel margins) --- */
+/* --- Inner Images & NEW Percentage Offsets --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -470,15 +447,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* NEW OFFSETS: Relative to image size, independent of screen pixels */
-/* Repeater: 30% left */
+/* Repeater: 30% left (Unchanged) */
 .offset-rep { transform: translate(-30%, 0); }
-/* Hub: 15% left */
-.offset-hub { transform: translate(-15%, 0); }
-/* Nodes (Hero & Standard): 10% up */
-.offset-node { transform: translate(0, -10%); }
-/* Handheld: 40% left, 10% down */
-.offset-hand { transform: translate(-40%, 10%); }
+
+/* Hub: Moved 50% Right */
+.offset-hub { transform: translate(35%, 0); }
+
+/* Nodes (Standard): Moved 100% Higher (Up) */
+.offset-node { transform: translate(0, -110%); }
+
+/* HERO NODE (Inside its wrapper): Moved 20% Lower */
+#hero-node-wrapper .device-img { transform: translate(0, 20%); }
+
+/* Handheld: Moved 150% Up, 100% Right */
+.offset-hand { transform: translate(60%, -140%); }
 
 
 /* SVG Lines */
@@ -527,7 +509,6 @@ header.aegis-intro {
     letter-spacing: 0.15em;
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     opacity: 0.9;
-    /* FIX: Force single line */
     white-space: nowrap;
 }
 

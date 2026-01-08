@@ -12,8 +12,11 @@
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
 
@@ -35,6 +38,56 @@
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
+
+    <header class="aegis-intro">
+        
+        <div id="hero-text-container">
+            <h1 id="text-line-1">THE GRID IS</h1>
+            <h2 id="text-line-2">FRAGILE.</h2>
+            <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
+        </div>
+
+        <div id="hero-stage">
+            <div class="bg-map-container">
+                <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
+            </div>
+
+            <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line class="mesh-line" x1="50" y1="45" x2="75" y2="25" />
+                <line class="mesh-line" x1="50" y1="45" x2="30" y2="55" />
+                <line class="mesh-line" x1="50" y1="45" x2="70" y2="55" />
+                
+                <line class="mesh-line" x1="75" y1="25" x2="90" y2="35" />
+                <line class="mesh-line" x1="30" y1="55" x2="15" y2="40" />
+                <line class="mesh-line" x1="70" y1="55" x2="90" y2="35" />
+                <line class="mesh-line" x1="30" y1="55" x2="25" y2="75" />
+                <line class="mesh-line" x1="70" y1="55" x2="75" y2="75" />
+                
+                <line class="mesh-line" x1="15" y1="40" x2="10" y2="60" />
+                <line class="mesh-line" x1="10" y1="60" x2="25" y2="75" />
+                <line class="mesh-line" x1="25" y1="75" x2="50" y2="85" />
+                <line class="mesh-line" x1="75" y1="75" x2="50" y2="85" />
+                <line class="mesh-line" x1="90" y1="35" x2="95" y2="65" />
+                <line class="mesh-line" x1="75" y1="75" x2="95" y2="65" />
+            </svg>
+
+            <img id="hero-node" class="device nudge-hero" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+            
+            <img id="hub-device" class="device secondary-device nudge-hub" src="assets/img/hub-anim.png" alt="Hub">
+            
+            <img id="std-1" class="device secondary-device std-node nudge-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+            <img id="std-2" class="device secondary-device std-node nudge-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+
+            <img id="rep-1" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <img id="rep-2" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <img id="rep-3" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <img id="rep-4" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <img id="rep-5" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+
+            <img id="hand-1" class="device secondary-device handheld nudge-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+            <img id="hand-2" class="device secondary-device handheld nudge-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+        </div>
+    </header>
 
     <header class="hero-home">
         <div class="container">
@@ -204,7 +257,108 @@
     </footer>
 
     <script>
-        // 1. SCROLL ANIMATION
+        // 1. HERO ANIMATION LOGIC
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline({ defaults: {ease: "power3.inOut"} });
+
+            // CONFIG: Final Positions (Mesh State)
+            const pos = {
+                hub:  { x: '25vw',  y: '-20vh' }, 
+                std1: { x: '-20vw', y: '10vh' },  
+                std2: { x: '20vw',  y: '10vh' },  
+                rep1: { x: '-35vw', y: '-5vh' },  
+                rep2: { x: '40vw',  y: '-10vh' }, 
+                rep3: { x: '-25vw', y: '30vh' },  
+                rep4: { x: '25vw',  y: '30vh' },  
+                rep5: { x: '-40vw', y: '15vh' },  
+                hand1:{ x: '0vw',   y: '40vh' },  
+                hand2:{ x: '45vw',  y: '20vh' },  
+            };
+
+            tl
+            // 1. Hero Node Breathes
+            .to("#hero-node", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
+
+            // 2. Zoom Out / Node Centers (Text is visible here)
+            .add("zoomLabel")
+            .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
+            .to("#hero-node", {
+                width: "12vw", /* Stays larger for lineup stage */
+                top: "50%", 
+                left: "50%",
+                y: "-5vh",
+                duration: 6
+            }, "zoomLabel")
+            
+            // --- STAGE 2.5: PRODUCT LINEUP REVEAL (BIG SIZES) ---
+            // Order: Repeater (L) : Handheld (Mid-L) : Node (Center) : Hub (R)
+            .add("lineupLabel", "-=2.5")
+            
+            // Repeater slides Far Left (Big Scale 1.4)
+            .fromTo("#rep-1", 
+                {opacity: 0, scale: 0, x: 0, y: 0},
+                {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
+                "lineupLabel")
+
+            // Handheld slides Mid Left (Big Scale 1.4)
+            .fromTo("#hand-1", 
+                {opacity: 0, scale: 0, x: 0, y: 0},
+                {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
+                "lineupLabel+=0.2")
+
+             // Hub slides Right (Big Scale 1.4)
+             .fromTo("#hub-device", 
+                {opacity: 0, scale: 0, x: 0, y: 0},
+                {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
+                "lineupLabel+=0.4")
+
+            // HOLD: View Lineup
+            .to({}, {duration: 2})
+
+
+            // --- STAGE 3: TRANSITION TO MESH (SHRINK TO NORMAL SIZE) ---
+            // 1. Fade All Text
+            .add("transitionLabel")
+            // Fade color to black first
+            .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
+            // Then fade opacity out
+            .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
+
+            // 2. EXPLOSION to Final Mesh & SHRINK devices
+            .add("explodeLabel", "transitionLabel+=0.5")
+
+            // Shrink Hero Node to final size
+            .to("#hero-node", {width: "8vw", duration: 3}, "explodeLabel")
+
+            // Move Lineup devices to final positions AND shrink to scale 1
+            .to("#hub-device", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
+            .to("#rep-1",      {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
+            .to("#hand-1",     {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
+
+            // Reveal the REST of the devices from center (normal scale 1)
+            .to(["#std-1", "#std-2"], {
+                opacity: 1, scale: 1, duration: 3, stagger: 0.1,
+                x: (i) => i === 0 ? pos.std1.x : pos.std2.x,
+                y: (i) => i === 0 ? pos.std1.y : pos.std2.y
+            }, "explodeLabel")
+
+            .to(["#rep-2", "#rep-3", "#rep-4", "#rep-5"], {
+                opacity: 1, scale: 1, duration: 3, stagger: 0.1,
+                x: (i) => pos[`rep${i+2}`].x,
+                y: (i) => pos[`rep${i+2}`].y
+            }, "explodeLabel+=0.2")
+
+            .to(["#hand-2"], {
+                opacity: 1, scale: 1, duration: 3,
+                x: pos.hand2.x,
+                y: pos.hand2.y
+            }, "explodeLabel+=0.4")
+
+            // 4. Lines Fade In
+            .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
+        });
+
+        // 2. SCROLL ANIMATION (Legacy)
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -218,7 +372,7 @@
         }
         reveal();
 
-        // 2. MOBILE MENU TOGGLE
+        // 3. MOBILE MENU TOGGLE
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");

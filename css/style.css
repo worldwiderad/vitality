@@ -17,6 +17,27 @@
 
     /* FONTS */
     --font-body: 'Inter', sans-serif;
+
+    /* --- NEW: ANIMATION DEVICE OFFSETS (Safe to edit) --- */
+    /* HERO NODE */
+    --hero-y: -60px;
+    --hero-x: 0px;
+
+    /* Hub */
+    --hub-y: -95px;
+    --hub-x: -60px;
+
+    /* Standard Nodes */
+    --node-y: -50px;
+    --node-x: 1px;
+
+    /* Repeaters */
+    --rep-y: -90px;
+    --rep-x: -1px;
+
+    /* Handhelds */
+    --hand-y: -60px;
+    --hand-x: 5px;
 }
 
 /* --- 2. RESET & BASE --- */
@@ -295,7 +316,7 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- 11. ANIMATIONS --- */
+/* --- 11. ANIMATIONS (Legacy for other pages) --- */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -314,7 +335,7 @@ footer {
     border-bottom: 1px solid var(--border-color) !important;
 }
 
-/* Ensure Global Impact stays dark (it matches the theme now naturally) */
+/* Ensure Global Impact stays dark */
 #impact {
     background-color: var(--bg-body) !important;
     border-top: 1px solid var(--border-color);
@@ -368,4 +389,116 @@ footer {
 }
 
 
+/* =========================================================================
+   14. NEW AEGIS ANIMATION STYLES (Added for Index Only)
+   These are specific to the new top section and won't break other pages.
+========================================================================= */
 
+header.aegis-intro {
+    height: 100vh; 
+    width: 100vw;
+    position: relative; 
+    overflow: hidden;
+    background-color: #020617;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Stage */
+#hero-stage {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+}
+
+/* Animation Devices */
+.device {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform, opacity;
+    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
+    z-index: 10; 
+}
+
+/* Hero Node Specifics */
+#hero-node { 
+    width: 42vw; 
+    z-index: 15; 
+    top: 38%; 
+    left: 51%;
+}
+
+/* Initial State for Secondary Devices */
+.secondary-device {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Sizing Updates */
+#hub-device { width: 13vw; } 
+.std-node { width: 9.6vw; }
+.repeater { width: 6.5vw; } 
+.handheld { width: 6.75vw; }
+
+/* Nudge Offsets (Using Variables) */
+.nudge-hero { margin-top: var(--hero-y); margin-left: var(--hero-x); }
+.nudge-hub  { margin-top: var(--hub-y); margin-left: var(--hub-x); } 
+.nudge-node { margin-top: var(--node-y); margin-left: var(--node-x); }
+.nudge-rep  { margin-top: var(--rep-y); margin-left: var(--rep-x); }
+.nudge-hand { margin-top: var(--hand-y); margin-left: var(--hand-x); }
+
+/* SVG Lines */
+#mesh-lines-svg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5; /* Behind devices */
+    pointer-events: none;
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.6));
+}
+.mesh-line {
+    fill: none; stroke: var(--primary-color); stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
+    opacity: 0;
+}
+
+/* Animation Text Typography */
+#hero-text-container {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20; /* On Top */
+    text-align: center; pointer-events: none;
+    width: 100%; max-width: 1400px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+#hero-text-container h1 {
+    color: #F8FAFC; font-weight: 700; font-size: 2.5vw; 
+    margin-bottom: 0px; text-transform: uppercase; letter-spacing: 0.8em; 
+    margin-left: 0.8em; text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    line-height: 1; white-space: nowrap; 
+}
+
+#hero-text-container h2 {
+    color: #F8FAFC; font-weight: 900; font-size: 13vw; 
+    line-height: 0.85; margin-top: 0px; margin-bottom: 15px;
+    text-transform: uppercase; letter-spacing: -0.02em;
+    text-shadow: 0 4px 40px rgba(0,0,0,1);
+}
+
+#hero-text-container h3 {
+    color: var(--primary-color); 
+    font-weight: 700; font-size: 2vw;
+    margin-top: 0; text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    opacity: 0.9;
+}
+
+/* Animation Mobile Overrides */
+@media (max-width: 768px) {
+    #hero-node { width: 60vw; }
+    #hub-device { width: 25vw; } .std-node { width: 18vw; } .repeater { width: 14vw; } .handheld { width: 12vw; }
+    #hero-text-container h1 { font-size: 4vw; letter-spacing: 0.5em; margin-left: 0.5em; }
+    #hero-text-container h2 { font-size: 18vw; }
+    #hero-text-container h3 { font-size: 3.5vw; }
+}

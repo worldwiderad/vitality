@@ -18,26 +18,7 @@
     /* FONTS */
     --font-body: 'Inter', sans-serif;
 
-    /* --- ANIMATION DEVICE OFFSETS --- */
-    /* HERO NODE */
-    --hero-y: -60px;
-    --hero-x: 0px;
-
-    /* Hub */
-    --hub-y: -95px;
-    --hub-x: -60px;
-
-    /* Standard Nodes */
-    --node-y: -50px;
-    --node-x: 1px;
-
-    /* Repeaters */
-    --rep-y: -90px;
-    --rep-x: -1px;
-
-    /* Handhelds */
-    --hand-y: -60px;
-    --hand-x: 5px;
+    /* NOTE: Old pixel-based offsets removed. Animation now uses percentage classes below. */
 }
 
 /* --- 2. RESET & BASE --- */
@@ -55,7 +36,7 @@ body {
     overflow-x: hidden;
 }
 
-/* SCROLL LOCK CLASS */
+/* SCROLL LOCK CLASS (Added by JS during animation) */
 body.noscroll {
     overflow: hidden;
 }
@@ -148,20 +129,17 @@ header.hero, header.hero-home {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* FIX: REDUCED HEIGHT FOR ORIGINAL HERO 
-   This ensures the next section peeks through 
-*/
+/* Fullscreen Hero specific */
 header.hero-home {
-    /* Changed from height: 100vh */
+    /* MODIFIED: Reduced height so the next section peeks through */
     min-height: 70vh; 
-    height: auto; 
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     text-shadow: 0 4px 15px rgba(0,0,0,0.8);
-    /* Add padding to breathe */
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -191,14 +169,14 @@ header.hero p, header.hero-home p {
     position: absolute;
     bottom: 80px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Center alignment */
     font-size: 0.9rem;
     font-weight: 600;
-    opacity: 0; /* Hidden by default */
+    opacity: 0; /* Hidden by default, JS reveals it */
     font-family: 'Courier Prime', monospace;
     cursor: pointer;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    color: white;
+    color: var(--primary-color); /* FIXED: Orange color */
     z-index: 100;
     pointer-events: auto;
 }
@@ -332,7 +310,7 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- 11. ANIMATIONS (Legacy for other pages) --- */
+/* --- 11. ANIMATIONS --- */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -357,7 +335,7 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* --- 13. MOBILE RESPONSIVENESS (FIXED) --- */
+/* --- 13. MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
     /* Menu Fixes */
     .hamburger { display: flex; }
@@ -407,6 +385,7 @@ footer {
 
 /* =========================================================================
    14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Offsets)
+   Added to the bottom to preserve existing styles.
 ========================================================================= */
 
 header.aegis-intro {
@@ -422,7 +401,7 @@ header.aegis-intro {
     align-items: center;
 }
 
-/* Stage: Forces 16:9 ratio but scales up to COVER the viewport */
+/* Stage: Forces 16:9 ratio but scales up to COVER the viewport (Pan & Scan) */
 #hero-stage {
     position: absolute;
     width: 100vw;
@@ -431,6 +410,9 @@ header.aegis-intro {
     /* If screen is too tall (portrait/square), switch to height-based sizing */
     min-height: 100vh;
     min-width: 177.78vh; /* 16:9 ratio relative to height */
+    
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     
     z-index: 10;
 }

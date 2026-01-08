@@ -163,7 +163,7 @@ header.hero p, header.hero-home p {
     gap: 15px;
 }
 
-/* --- UPDATED SCROLL INDICATOR --- */
+/* --- SCROLL INDICATOR (BOUNCING) --- */
 .scroll-indicator {
     position: absolute;
     bottom: 100px; /* Moved up slightly */
@@ -183,7 +183,7 @@ header.hero p, header.hero-home p {
     z-index: 100;
     pointer-events: auto;
     
-    /* Stronger Bounce Animation */
+    /* Bounce Animation */
     animation: bounce 2s infinite;
 }
 
@@ -390,7 +390,7 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Doubled Offsets)
+   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Single Offsets)
 ========================================================================= */
 
 header.aegis-intro {
@@ -464,7 +464,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & DOUBLED Percentage Offsets --- */
+/* --- Inner Images & SINGLE Percentage Offsets (User Config) --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -472,20 +472,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: Moved 60% Right, 200% Down */
-.offset-rep { transform: translate(60%, 200%); }
+/* Repeater: 30% Right, 100% Down */
+.offset-rep { transform: translate(30%, 100%); }
 
-/* Hub: Moved 20% Left, 30% Down */
-.offset-hub { transform: translate(-20%, 30%); }
+/* Hub: Left 10%, Down 15% */
+.offset-hub { transform: translate(-10%, 15%); }
 
-/* Nodes (Standard): Moved 100% Lower */
-.offset-node { transform: translate(0, 100%); }
+/* Nodes: Lower 50% */
+.offset-node { transform: translate(0, 50%); }
 
-/* HERO NODE: Centered */
+/* Hero: Center */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
-/* Handheld: Moved 60% Left, 140% Down */
-.offset-hand { transform: translate(-60%, 140%); }
+/* Handheld: Left 30%, Down 70% */
+.offset-hand { transform: translate(-30%, 70%); }
 
 
 /* SVG Lines */

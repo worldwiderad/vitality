@@ -374,27 +374,31 @@ footer {
    14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Offsets)
 ========================================================================= */
 
+/* Container: Masks any overflow if the stage gets huge */
 header.aegis-intro {
     height: 100vh; 
     width: 100vw;
     position: relative; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #020617;
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
+    /* Centers the stage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Stage - Force 16:9 Aspect Ratio */
+/* Stage: Forces 16:9 ratio but scales up to COVER the viewport */
 #hero-stage {
-    position: relative; 
+    position: absolute;
     width: 100vw;
-    height: 56.25vw; /* 16:9 ratio */
-    max-height: 100vh;
-    max-width: 177.78vh; /* 16:9 ratio */
+    height: 56.25vw; /* Base 16:9 */
+    
+    /* If screen is too tall (portrait/square), switch to height-based sizing */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16:9 ratio relative to height */
+    
     z-index: 10;
-    box-shadow: 0 0 100px #020617; 
 }
 
 /* Background Map */

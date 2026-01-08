@@ -91,6 +91,7 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 80px; /* Space before Mentorship */
         }
 
         .group-img {
@@ -105,13 +106,51 @@
             filter: brightness(1);
         }
 
-        .group-caption {
-            background-color: var(--bg-card);
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: #94a3b8;
-            font-style: italic;
+        /* --- MENTORSHIP & ADVISORY LAYOUT --- */
+        
+        /* Layout for Advisory Bubble + Stacked Images */
+        .advisory-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .advisory-bubble {
+            background: var(--bg-card); 
+            border: 1px solid var(--border-color); 
+            padding: 40px; 
+            border-radius: 12px;
+            flex: 1; /* Takes up remaining space */
+        }
+
+        .advisor-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .advisor-mini {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            background-color: #020617;
+        }
+
+        /* Mobile Responsive for Advisory */
+        @media (max-width: 768px) {
+            .advisory-container {
+                flex-direction: column-reverse; /* Images on top on mobile, or bottom */
+                text-align: center;
+            }
+            .advisor-stack {
+                flex-direction: row; /* Side by side on mobile */
+                justify-content: center;
+            }
         }
 
     </style>
@@ -138,7 +177,7 @@
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: center;">
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// LEADERSHIP</p>
-            <h1 style="font-size: 3.5rem;">Our Team</h1>
+            <h1 style="font-size: 3.5rem;">Mission Command</h1>
             <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
                 A multidisciplinary unit of Grade 10 engineers and strategists using technology to build resilient communities.
             </p>
@@ -151,7 +190,7 @@
             <div class="leaders-grid">
 
                 <div class="leader-profile">
-                    <img src="assets/img/radek.jpg" alt="Radek Green" class="leader-avatar" style="object-position: center 15%;">
+                    <img src="assets/img/radek.jpg" alt="Radek Green" class="leader-avatar" style="object-position: center 5%;">
                     <h3 class="leader-name">Radek Green</h3>
                     <p class="leader-role">Core Concept & Strategy Lead</p>
                     <p class="leader-bio">
@@ -190,22 +229,37 @@
 
             <div class="group-photo-wrapper reveal">
                 <img src="assets/img/team.jpg" alt="Vitality Team at Work" class="group-img">
-                <div class="group-caption">
-                    Team Vitality: Field testing Aegis V4 hardware.
+            </div>
+
+            <div class="reveal" style="padding-top: 40px; border-top: 1px solid var(--border-color);">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 60px;">Guidance & Mentorship</h2>
+
+                    <div class="leader-profile" style="margin-bottom: 80px;">
+                        <img src="assets/img/john.jpg" alt="John Green" class="leader-avatar">
+                        <h3 class="leader-name">John Green</h3>
+                        <p class="leader-role">Project Supervisor & Entrepreneur</p>
+                        <p class="leader-bio">
+                            Seasoned entrepreneur in tech. Founder of <strong>CareGuide.com</strong> and <strong>CeruleanJobs.com</strong>. John provides high-level strategic oversight and business mentorship.
+                        </p>
+                    </div>
+
+                    <div class="advisory-container">
+                        <div class="advisory-bubble">
+                            <h4 style="color: white; margin-bottom: 10px;">Advisory Support</h4>
+                            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">
+                                Vitality is guided by <strong>Dr. Piyanka Dilawari</strong> (Mentorship & Scientific Guidance) and <strong>Mr. Cooperman</strong> (CAD & Product Design Guidance), ensuring our engineering meets the highest standards of feasibility and rigor.
+                            </p>
+                        </div>
+                        <div class="advisor-stack">
+                            <img src="assets/img/dilawari.jpg" alt="Dr. Piyanka Dilawari" class="advisor-mini" title="Dr. Piyanka Dilawari">
+                            <img src="assets/img/cooperman.jpg" alt="Mr. Cooperman" class="advisor-mini" title="Mr. Cooperman">
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section class="reveal" style="border-top: 1px solid var(--border-color); padding-top: 80px;">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <h2 style="margin-bottom: 30px;">Advisory Support</h2>
-            <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; border-radius: 8px;">
-                <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">
-                    Vitality is guided by <strong>Dr. Piyanka Dilawari</strong> (Mentorship & Scientific Guidance) and <strong>Mr. Cooperman</strong> (CAD & Product Design Guidance), ensuring our engineering meets the highest standards of feasibility and rigor.
-                </p>
-            </div>
         </div>
     </section>
 

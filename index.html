@@ -5,28 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vitality | Aegis - Conrad Challenge</title>
     
-    <meta property="og:title" content="Vitality Communications | Conrad Challenge">
-    <meta property="og:description" content="Off-grid mesh radio comms. Student innovation for the 2025-2026 Conrad Challenge.">
-    <meta property="og:image" content="https://signalvitality.com/assets/img/hero.png">
-    
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body class="noscroll"> <nav>
-        <div class="logo">VITALITY</div>
-        
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+<body class="noscroll">
 
+    <nav>
+        <div class="logo">VITALITY</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
         <ul id="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="product.html">Products</a></li>
@@ -46,7 +36,7 @@
         </div>
 
         <div id="scroll-btn" class="scroll-indicator">
-            <a href="#hero-home-anchor" style="color: inherit; text-decoration: none; animation: bounce 2s infinite;">[ LEARN MORE ]</a>
+            <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
         </div>
 
         <div id="hero-stage">
@@ -54,25 +44,10 @@
                 <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
             </div>
 
-            <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <line class="mesh-line" x1="50" y1="45" x2="75" y2="25" />
-                <line class="mesh-line" x1="50" y1="45" x2="30" y2="55" />
-                <line class="mesh-line" x1="50" y1="45" x2="70" y2="55" />
-                <line class="mesh-line" x1="75" y1="25" x2="90" y2="35" />
-                <line class="mesh-line" x1="30" y1="55" x2="15" y2="40" />
-                <line class="mesh-line" x1="70" y1="55" x2="90" y2="35" />
-                <line class="mesh-line" x1="30" y1="55" x2="25" y2="75" />
-                <line class="mesh-line" x1="70" y1="55" x2="75" y2="75" />
-                <line class="mesh-line" x1="15" y1="40" x2="10" y2="60" />
-                <line class="mesh-line" x1="10" y1="60" x2="25" y2="75" />
-                <line class="mesh-line" x1="25" y1="75" x2="50" y2="85" />
-                <line class="mesh-line" x1="75" y1="75" x2="50" y2="85" />
-                <line class="mesh-line" x1="90" y1="35" x2="95" y2="65" />
-                <line class="mesh-line" x1="75" y1="75" x2="95" y2="65" />
-            </svg>
+            <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
 
             <div id="hero-node-wrapper" class="device">
-                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+                <img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node">
             </div>
             
             <div id="hub-wrapper" class="device secondary-device">
@@ -111,20 +86,19 @@
         </div>
     </header>
 
-    <div id="hero-home-anchor"></div> <header class="hero-home">
+    <div id="hero-home-anchor"></div>
+    
+    <header class="hero-home">
         <div class="container">
             <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
-            
             <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
-                <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
+                <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure.
             </p>
-            
             <div class="hero-btns" style="margin-top: 40px;">
                 <a href="product.html" class="btn">See The Hardware</a>
                 <a href="mission.html" class="btn btn-outline">The Mission</a>
             </div>
         </div>
-
         <div class="hero-label">
             &bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS
         </div>
@@ -132,27 +106,20 @@
 
     <section id="problem" class="reveal">
         <div class="container">
-            <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
+            <h2>The First 72 Hours.</h2>
             <p class="lead" style="color: #94a3b8; max-width: 800px;">
-                Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
+                Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue.
             </p>
-
-            <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
-                "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
-                <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
-            </blockquote>
-            
-            <div class="grid-2" style="margin-top: 50px;">
+            <div class="grid-2">
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
                     <h3>Civilian Fragility</h3>
-                    <p>Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
+                    <p>Standard communication relies on single towers. When a tower loses power, the entire network stops.</p>
                 </div>
-                
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
                     <h3>Strategic Vulnerability</h3>
-                    <p>Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid. Tactical units require a terrestrial layer that works without external dependencies.</p>
+                    <p>Centralized networks are primary targets. Tactical units require a terrestrial layer that works without external dependencies.</p>
                 </div>
             </div>
         </div>
@@ -164,119 +131,92 @@
                 <div>
                     <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
                     <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
+                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others.
                     </p>
-                    
-                    <ul style="list-style: none; padding: 0; color: white;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation and AES-256 security.
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: var(--primary-color);">✓</span> 
-                            <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.
-                        </li>
-                    </ul>
-                    <br>
                     <a href="tech.html" class="btn btn-outline">See Engineering Specs &rarr;</a>
                 </div>
-
-                <div style="display: flex; flex-direction: column; gap: 30px;">
-                    <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                        <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
-                    </div>
-
-                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                        <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">
-                            $150
-                        </div>
-                        <p style="color: white; margin-top: 10px;">Per Public Node</p>
-                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
-                    </div>
-                </div>
+                <div><img src="assets/img/mesh-topology.jpg" alt="Topology" style="width: 100%; border-radius: 8px;"></div>
             </div>
         </div>
     </section>
 
-    <section id="impact" class="reveal" style="background-color: #0F172A; color: white;">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 40px;">Deployment Scenarios</h2>
-            
-            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Strategic Operations</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised or intercepted.</p>
-                </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
-                </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
-                </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">NGO / Aid</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 20px;">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
-            <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
-                If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
-            </h3>
-            <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
-            <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
-            <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
-        </div>
-    </section>
-
-    <section class="reveal" style="text-align: center; padding: 100px 20px;">
-        <div class="container" style="max-width: 700px;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// STUDENT INNOVATION</p>
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ensure Mission Continuity.</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
-                Developed by students for the Conrad Challenge, we are currently field testing our fourth generation hardware. Vitality Communications is ready to present our findings.
-            </p>
-            <a href="contact.html" class="btn">Contact Our Team</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
-    </footer>
+    <footer><p>&copy; 2026 Vitality Communications.</p></footer>
 
     <script>
-        // 1. HERO ANIMATION LOGIC
         window.addEventListener('load', () => {
-            // Force scroll to top on reload to ensure they see animation
             window.scrollTo(0, 0);
 
+            // ANCHORS: (0.5 = center, 1.0 = bottom)
+            const anchors = {
+                hero: { x: 0.5, y: 0.6 }, 
+                hub:  { x: 0.5, y: 0.9 }, 
+                node: { x: 0.5, y: 0.5 }, 
+                rep:  { x: 0.5, y: 0.8 }, 
+                hand: { x: 0.2, y: 0.2 }  
+            };
+
+            // TOPOLOGY
+            const connections = [
+                { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
+                { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
+            ];
+
+            const svg = document.getElementById('mesh-lines-svg');
+            const lines = [];
+
+            connections.forEach((conn, index) => {
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("class", "dynamic-mesh-line");
+                svg.appendChild(line);
+                lines.push({ el: line, ...conn });
+            });
+
+            // LINE UPDATE FUNCTION
+            function updateMeshLines() {
+                const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
+                lines.forEach(obj => {
+                    const fromEl = document.getElementById(obj.from);
+                    const toEl = document.getElementById(obj.to);
+                    if(fromEl && toEl) {
+                        const r1 = fromEl.getBoundingClientRect();
+                        const r2 = toEl.getBoundingClientRect();
+                        const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
+                        const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
+                        const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
+                        const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
+                        obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
+                        obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
+                        obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
+                        obj.el.setAttribute("y2", (y2 / stageRect.height) * 100);
+                    }
+                });
+            }
+
+            // ANIMATION
             const tl = gsap.timeline({ 
                 defaults: {ease: "power3.inOut"},
+                onUpdate: updateMeshLines,
                 onComplete: () => {
-                    // UNLOCK SCROLL & FADE IN BUTTON WHEN DONE
                     document.body.classList.remove('noscroll');
                     gsap.to("#scroll-btn", {opacity: 1, duration: 1});
                 }
             });
 
-            // CONFIG: Final Positions (Mesh State)
+            // Positions (VW/VH)
             const pos = {
-                hub:  { x: '25vw',  y: '-20vh' }, 
+                hub:  { x: '35vw',  y: '-20vh' }, 
                 std1: { x: '-20vw', y: '10vh' },  
                 std2: { x: '20vw',  y: '10vh' },  
                 rep1: { x: '-35vw', y: '-5vh' },  
@@ -288,103 +228,45 @@
                 hand2:{ x: '45vw',  y: '20vh' },  
             };
 
-            tl
-            // 1. Hero Node Breathes
-            .to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
+            tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
+              .add("zoomLabel")
+              .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
+              .to("#hero-node-wrapper", {width: "12vw", top: "50%", left: "50%", y: "-5vh", duration: 6}, "zoomLabel")
+              
+              // LINEUP
+              .add("lineupLabel", "-=2.5")
+              .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel")
+              .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")
+              .fromTo("#hub-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.4")
+              .to({}, {duration: 2})
 
-            // 2. Zoom Out / Node Centers (Text is visible here)
-            .add("zoomLabel")
-            .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-            .to("#hero-node-wrapper", {
-                width: "12vw", 
-                top: "50%", 
-                left: "50%",
-                y: "-5vh",
-                duration: 6
-            }, "zoomLabel")
-            
-            // --- STAGE 2.5: PRODUCT LINEUP REVEAL (BIG SIZES) ---
-            .add("lineupLabel", "-=2.5")
-            
-            // Repeater slides Far Left
-            .fromTo("#rep-1-wrapper", 
-                {opacity: 0, scale: 0, x: 0, y: 0},
-                {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
-                "lineupLabel")
+              // TRANSITION
+              .add("transitionLabel")
+              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
+              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
 
-            // Handheld slides Mid Left
-            .fromTo("#hand-1-wrapper", 
-                {opacity: 0, scale: 0, x: 0, y: 0},
-                {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
-                "lineupLabel+=0.2")
+              // EXPLOSION
+              .add("explodeLabel", "transitionLabel+=0.5")
+              .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
+              .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
+              .to("#rep-1-wrapper", {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
+              .to("#hand-1-wrapper", {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
+              
+              .to(["#std-1-wrapper", "#std-2-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
+              .to(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
+              .to(["#hand-2-wrapper"], {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
-             // Hub slides Right
-             .fromTo("#hub-wrapper", 
-                {opacity: 0, scale: 0, x: 0, y: 0},
-                {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
-                "lineupLabel+=0.4")
-
-            // HOLD: View Lineup
-            .to({}, {duration: 2})
-
-
-            // --- STAGE 3: TRANSITION TO MESH ---
-            .add("transitionLabel")
-            .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
-            .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
-
-            // 2. EXPLOSION to Final Mesh
-            .add("explodeLabel", "transitionLabel+=0.5")
-
-            .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
-
-            .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
-            .to("#rep-1-wrapper",      {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
-            .to("#hand-1-wrapper",     {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
-
-            // Reveal the REST
-            .to(["#std-1-wrapper", "#std-2-wrapper"], {
-                opacity: 1, scale: 1, duration: 3, stagger: 0.1,
-                x: (i) => i === 0 ? pos.std1.x : pos.std2.x,
-                y: (i) => i === 0 ? pos.std1.y : pos.std2.y
-            }, "explodeLabel")
-
-            .to(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {
-                opacity: 1, scale: 1, duration: 3, stagger: 0.1,
-                x: (i) => pos[`rep${i+2}`].x,
-                y: (i) => pos[`rep${i+2}`].y
-            }, "explodeLabel+=0.2")
-
-            .to(["#hand-2-wrapper"], {
-                opacity: 1, scale: 1, duration: 3,
-                x: pos.hand2.x,
-                y: pos.hand2.y
-            }, "explodeLabel+=0.4")
-
-            // 4. Lines Fade In
-            .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
+              .to(".dynamic-mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 2. SCROLL REVEAL (Legacy)
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
-        // 3. MENU TOGGLE
-        function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
-        }
+        // MENU TOGGLE
+        function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
+        // SCROLL REVEAL
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 150) r.classList.add('active');
+            });
+        });
     </script>
-
 </body>
 </html>

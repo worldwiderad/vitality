@@ -71,21 +71,43 @@
                 <line class="mesh-line" x1="75" y1="75" x2="95" y2="65" />
             </svg>
 
-            <img id="hero-node" class="device nudge-hero" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+            <div id="hero-node-wrapper" class="device">
+                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+            </div>
             
-            <img id="hub-device" class="device secondary-device nudge-hub" src="assets/img/hub-anim.png" alt="Hub">
+            <div id="hub-wrapper" class="device secondary-device">
+                <img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub">
+            </div>
             
-            <img id="std-1" class="device secondary-device std-node nudge-node" src="assets/img/node_hero-anim.png" alt="Std Node">
-            <img id="std-2" class="device secondary-device std-node nudge-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+            <div id="std-1-wrapper" class="device secondary-device std-node-wrapper">
+                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+            </div>
+            <div id="std-2-wrapper" class="device secondary-device std-node-wrapper">
+                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+            </div>
 
-            <img id="rep-1" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            <img id="rep-2" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            <img id="rep-3" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            <img id="rep-4" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            <img id="rep-5" class="device secondary-device repeater nudge-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper">
+                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            </div>
+            <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper">
+                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            </div>
+            <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper">
+                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            </div>
+            <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper">
+                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            </div>
+            <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper">
+                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            </div>
 
-            <img id="hand-1" class="device secondary-device handheld nudge-hand" src="assets/img/handheld-anim.png" alt="Handheld">
-            <img id="hand-2" class="device secondary-device handheld nudge-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+            <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper">
+                <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+            </div>
+            <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper">
+                <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+            </div>
         </div>
     </header>
 
@@ -257,7 +279,7 @@
     </footer>
 
     <script>
-        // 1. HERO ANIMATION LOGIC
+        // 1. HERO ANIMATION LOGIC (Targets Wrappers)
         window.addEventListener('load', () => {
             const tl = gsap.timeline({ defaults: {ease: "power3.inOut"} });
 
@@ -277,12 +299,12 @@
 
             tl
             // 1. Hero Node Breathes
-            .to("#hero-node", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
+            .to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
 
             // 2. Zoom Out / Node Centers (Text is visible here)
             .add("zoomLabel")
             .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-            .to("#hero-node", {
+            .to("#hero-node-wrapper", {
                 width: "12vw", /* Stays larger for lineup stage */
                 top: "50%", 
                 left: "50%",
@@ -295,19 +317,19 @@
             .add("lineupLabel", "-=2.5")
             
             // Repeater slides Far Left (Big Scale 1.4)
-            .fromTo("#rep-1", 
+            .fromTo("#rep-1-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
                 "lineupLabel")
 
             // Handheld slides Mid Left (Big Scale 1.4)
-            .fromTo("#hand-1", 
+            .fromTo("#hand-1-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
                 "lineupLabel+=0.2")
 
              // Hub slides Right (Big Scale 1.4)
-             .fromTo("#hub-device", 
+             .fromTo("#hub-wrapper", 
                 {opacity: 0, scale: 0, x: 0, y: 0},
                 {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, 
                 "lineupLabel+=0.4")
@@ -328,27 +350,27 @@
             .add("explodeLabel", "transitionLabel+=0.5")
 
             // Shrink Hero Node to final size
-            .to("#hero-node", {width: "8vw", duration: 3}, "explodeLabel")
+            .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
 
             // Move Lineup devices to final positions AND shrink to scale 1
-            .to("#hub-device", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
-            .to("#rep-1",      {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
-            .to("#hand-1",     {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
+            .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
+            .to("#rep-1-wrapper",      {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
+            .to("#hand-1-wrapper",     {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
 
             // Reveal the REST of the devices from center (normal scale 1)
-            .to(["#std-1", "#std-2"], {
+            .to(["#std-1-wrapper", "#std-2-wrapper"], {
                 opacity: 1, scale: 1, duration: 3, stagger: 0.1,
                 x: (i) => i === 0 ? pos.std1.x : pos.std2.x,
                 y: (i) => i === 0 ? pos.std1.y : pos.std2.y
             }, "explodeLabel")
 
-            .to(["#rep-2", "#rep-3", "#rep-4", "#rep-5"], {
+            .to(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {
                 opacity: 1, scale: 1, duration: 3, stagger: 0.1,
                 x: (i) => pos[`rep${i+2}`].x,
                 y: (i) => pos[`rep${i+2}`].y
             }, "explodeLabel+=0.2")
 
-            .to(["#hand-2"], {
+            .to(["#hand-2-wrapper"], {
                 opacity: 1, scale: 1, duration: 3,
                 x: pos.hand2.x,
                 y: pos.hand2.y

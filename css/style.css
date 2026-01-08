@@ -408,6 +408,7 @@ header.aegis-intro {
     height: 56.25vw; /* Base 16:9 */
     
     /* If screen is too tall (portrait/square), switch to height-based sizing */
+    /* This ensures no black bars ever appear */
     min-height: 100vh;
     min-width: 177.78vh; /* 16:9 ratio relative to height */
     
@@ -439,9 +440,9 @@ header.aegis-intro {
     align-items: center;
 }
 
-/* Hero Node Specific Wrapper */
+/* Hero Node Specific Wrapper - Increased size to 48vw */
 #hero-node-wrapper { 
-    width: 42vw; 
+    width: 48vw; 
     z-index: 15; 
     top: 38%; 
     left: 51%;
@@ -459,7 +460,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & NEW Percentage Offsets --- */
+/* --- Inner Images & Percentage Offsets --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -467,20 +468,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: 30% left, 100% Higher */
-.offset-rep { transform: translate(-30%, -100%); }
+/* Repeater: Moved 30% Right, 100% Down -> Now centered relative to point */
+.offset-rep { transform: translate(0, 0); }
 
-/* Hub: Moved Left (Now 20% Right total) */
-.offset-hub { transform: translate(20%, 0); }
+/* Hub: Moved 10% Left, 15% Down */
+.offset-hub { transform: translate(10%, 15%); }
 
-/* Nodes (Standard): Moved Down (Now -60% Up total) */
-.offset-node { transform: translate(0, -60%); }
+/* Nodes (Standard): Moved 50% Lower */
+.offset-node { transform: translate(0, -10%); }
 
-/* HERO NODE (Inside its wrapper): Moved Up (Back to center) */
+/* HERO NODE (Inside its wrapper): Centered */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
-/* Handheld: Moved Left (Now 20% Right), kept 140% Up */
-.offset-hand { transform: translate(20%, -140%); }
+/* Handheld: Moved 30% Left, 70% Down */
+.offset-hand { transform: translate(-10%, -70%); }
 
 
 /* SVG Lines */

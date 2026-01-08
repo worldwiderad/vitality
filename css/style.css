@@ -447,11 +447,11 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: 30% left, 100% Higher */
-.offset-rep { transform: translate(-30%, -100%); }
+/* Repeater: 30% left, 80% Higher */
+.offset-rep { transform: translate(-30%, -80%); }
 
 /* Hub: Moved Left (Now 20% Right total) */
-.offset-hub { transform: translate(20%, 0); }
+.offset-hub { transform: translate(10%, 0); }
 
 /* Nodes (Standard): Moved Down (Now -60% Up total) */
 .offset-node { transform: translate(0, -60%); }

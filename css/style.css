@@ -447,20 +447,20 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-/* Repeater: 30% left (Unchanged) */
-.offset-rep { transform: translate(-30%, 0); }
+/* Repeater: 30% left, 100% Higher */
+.offset-rep { transform: translate(-30%, -100%); }
 
-/* Hub: Moved 50% Right */
-.offset-hub { transform: translate(35%, 0); }
+/* Hub: Moved Left (Now 20% Right total) */
+.offset-hub { transform: translate(20%, 0); }
 
-/* Nodes (Standard): Moved 100% Higher (Up) */
-.offset-node { transform: translate(0, -110%); }
+/* Nodes (Standard): Moved Down (Now -60% Up total) */
+.offset-node { transform: translate(0, -60%); }
 
-/* HERO NODE (Inside its wrapper): Moved 20% Lower */
-#hero-node-wrapper .device-img { transform: translate(0, 20%); }
+/* HERO NODE (Inside its wrapper): Moved Up (Back to center) */
+#hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
-/* Handheld: Moved 150% Up, 100% Right */
-.offset-hand { transform: translate(60%, -140%); }
+/* Handheld: Moved Left (Now 20% Right), kept 140% Up */
+.offset-hand { transform: translate(20%, -140%); }
 
 
 /* SVG Lines */

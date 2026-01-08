@@ -17,8 +17,27 @@
 
     /* FONTS */
     --font-body: 'Inter', sans-serif;
-    
-    /* NOTE: Pixel offsets removed. Using percentage transforms on images instead. */
+
+    /* --- NEW: ANIMATION DEVICE OFFSETS (Safe to edit) --- */
+    /* HERO NODE */
+    --hero-y: -60px;
+    --hero-x: 0px;
+
+    /* Hub */
+    --hub-y: -95px;
+    --hub-x: -60px;
+
+    /* Standard Nodes */
+    --node-y: -50px;
+    --node-x: 1px;
+
+    /* Repeaters */
+    --rep-y: -90px;
+    --rep-x: -1px;
+
+    /* Handhelds */
+    --hand-y: -60px;
+    --hand-x: 5px;
 }
 
 /* --- 2. RESET & BASE --- */
@@ -375,28 +394,34 @@ footer {
 ========================================================================= */
 
 header.aegis-intro {
-    /* FIX: Enforce aspect ratio to match background image so lines always align */
-    width: 100%;
-    aspect-ratio: 16 / 9; 
-    max-height: 100vh; /* Ensure it doesn't exceed screen height on tall devices */
-    margin: 0 auto; /* Center if max-height is hit */
+    height: 100vh; 
+    width: 100vw;
     position: relative; 
-    overflow: hidden;
+    /* Use flex to center the rigid stage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #020617;
     border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
 }
 
-/* Stage */
+/* Stage - THE FIX: Force a specific aspect ratio (e.g., 16:9) */
 #hero-stage {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: relative; /* Changed from absolute */
+    width: 100vw;
+    height: 56.25vw; /* 16:9 ratio */
+    max-height: 100vh;
+    max-width: 177.78vh; /* 16:9 ratio */
     z-index: 10;
+    box-shadow: 0 0 100px #020617; /* Softens the edges */
 }
 
-/* Background Map - FIX: Use contain to show full image */
+/* Background Map - FIX: Cover the rigid stage perfectly */
 .bg-map-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
 #city-map {
     width: 100%; height: 100%; 
-    object-fit: contain; /* Ensures full image is visible */
+    object-fit: cover; /* Use cover instead of contain */
     transform: scale(3);
     filter: blur(4px) invert(1) hue-rotate(180deg) brightness(0.8);
     opacity: 0.5;
@@ -406,7 +431,7 @@ header.aegis-intro {
 .device {
     position: absolute;
     top: 50%; left: 50%;
-    /* Center the wrapper first */
+    /* Center the wrapper relative to the stage */
     transform: translate(-50%, -50%);
     will-change: transform, opacity;
     z-index: 10; 
@@ -437,7 +462,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & Percentage Offsets --- */
+/* --- Inner Images & Percentage Offsets (Replacing pixel margins) --- */
 .device-img {
     width: 100%;
     height: auto;

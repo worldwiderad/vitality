@@ -459,28 +459,50 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & SINGLE Percentage Offsets (Corrected) --- */
+/* --- Inner Images & SINGLE Percentage Offsets (Fixed) --- */
+
 .device-img {
+
     width: 100%;
+
     height: auto;
+
     display: block;
+
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
+
 }
 
+
+
 /* Repeater: 30% Right, 100% Down */
-.offset-rep { transform: translate(30%, 100%); }
+
+.offset-rep { transform: translate(15%, 40%); }
+
+
 
 /* Hub: Left 10%, Down 15% */
-.offset-hub { transform: translate(-10%, 15%); }
+
+.offset-hub { transform: translate(-5%, 30%); }
+
+
 
 /* Nodes: Lower 50% */
-.offset-node { transform: translate(0, 50%); }
+
+.offset-node { transform: translate(0, 5%); }
+
+
 
 /* Hero: Center */
+
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
+
+
 /* Handheld: Left 30%, Down 70% */
-.offset-hand { transform: translate(-30%, 70%); }
+
+.offset-hand { transform: translate(-15%, -10%); }
+
 
 
 /* SVG Lines */

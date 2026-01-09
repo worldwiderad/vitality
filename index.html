@@ -309,7 +309,7 @@
                     if(fromEl && toEl) {
                         const r1 = fromEl.getBoundingClientRect();
                         const r2 = toEl.getBoundingClientRect();
-                        // Use centers for line connections
+                        
                         const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
                         const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
                         const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
@@ -346,45 +346,50 @@
                 hand2:{ x: '45vw',  y: '20vh' },  
             };
 
-            // INITIAL SETUP: Force offsets to 0 for straight lineup
+            // *** CRITICAL FIX: Force all offsets to 0 initially for straight line ***
             gsap.set(".device-img", {xPercent: 0, yPercent: 0});
 
             // ANIMATION STEPS
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
               .add("zoomLabel")
               .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-              // Phase 2: FULL SIZE & STRAIGHT (24vw width, 0% Y)
+              
+              // PHASE 1->2: ZOOM TO LINEUP
+              // Hero stays centered (0%) and BIG (24vw)
               .to("#hero-node-wrapper", {width: "24vw", top: "50%", left: "50%", y: "0%", duration: 6}, "zoomLabel")
               
-              // LINEUP
+              // PHASE 2: LINEUP (Straight Line, Scale Matched)
               .add("lineupLabel", "-=2.5")
-              .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-32vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel")
-              .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")
-              .fromTo("#hub-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.4")
-              .to({}, {duration: 2}) // Pause
+              // Note: Scale 1.4 on smaller wrappers makes them match the 24vw Hero Node visually
+              .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.8, x: "-32vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel")
+              .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.8, x: "-16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")
+              .fromTo("#hub-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.8, x: "16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.4")
+              .to({}, {duration: 2}) // Pause to read
 
-              // TEXT FADE
+              // TRANSITION TEXT
               .add("transitionLabel")
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
 
-              // EXPLOSION (Apply User Offsets Here)
+              // PHASE 3: EXPLODE TO MAP (Apply Offsets Here)
               .add("explodeLabel", "transitionLabel+=0.5")
               
-              // 1. Move Wrappers to Map Locations
+              // 1. Move Wrappers to Map Locations & Shrink to Pin Size
               .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
               .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
               .to("#rep-1-wrapper", {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
               .to("#hand-1-wrapper", {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
+              
+              // 2. Bring in remaining devices
               .to(["#std-1-wrapper", "#std-2-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
               .to(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
               .to(["#hand-2-wrapper"], {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
-              // 2. Animate Inner Images to YOUR SPECIFIED OFFSETS
+              // 3. APPLY YOUR EXACT OFFSETS (Only happens during explosion)
               .to(".repeater-wrapper .device-img", {xPercent: 15, yPercent: 40, duration: 3}, "explodeLabel")
               .to("#hub-wrapper .device-img", {xPercent: -5, yPercent: 30, duration: 3}, "explodeLabel")
               .to(".handheld-wrapper .device-img", {xPercent: -15, yPercent: -10, duration: 3}, "explodeLabel")
-              .to(".std-node-wrapper .device-img", {xPercent: 0, yPercent: 5, duration: 3}, "explodeLabel")
+              .to(".std-node-wrapper .device-img", {yPercent: 5, duration: 3}, "explodeLabel")
 
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
@@ -406,6 +411,5 @@
             document.getElementById("nav-links").classList.toggle("active");
         }
     </script>
-
 </body>
 </html>

@@ -266,7 +266,6 @@
             window.scrollTo(0, 0);
 
             // ANCHORS (0.5 = Center)
-            // Centers work best as CSS offsets handle the visual positioning
             const anchors = {
                 hero: { x: 0.5, y: 0.5 }, 
                 hub:  { x: 0.5, y: 0.5 }, 
@@ -347,41 +346,35 @@
                 hand2:{ x: '45vw',  y: '20vh' },  
             };
 
-            // *** ANIMATION STEPS ***
+            // *** ANIMATION STEPS (SIMPLIFIED) ***
             
-            // 1. ZOOM IN
+            // 1. ZOOM IN & TEXT FADE
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
               .add("zoomLabel")
               .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-              // Hero stays Centered and Large (24vw)
-              .to("#hero-node-wrapper", {width: "24vw", top: "50%", left: "50%", y: "0%", duration: 6}, "zoomLabel")
               
-              // 2. TRANSITION TEXT (Immediately after Zoom)
-              .add("transitionLabel", "-=1.0") 
-              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
-              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
+              // Text Fades In then Out
+              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
+              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
 
-              // 3. EXPLODE TO MAP (Skip the line-up entirely)
-              .add("explodeLabel", "transitionLabel+=0.5")
+              // 2. EXPLODE TO MAP (Immediately after text)
+              .add("explodeLabel", "zoomLabel+=3.0")
               
-              // Shrink Hero Node
-              .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
+              // Hero Node: Shrinks & Moves UP (-20vh) to fix overlap
+              .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")
               
-              // Move Secondary Devices from CENTER to MAP POSITIONS
-              // They start hidden/small (css default) and pop out to these coords
+              // Secondary Devices: Fade in & Move Out
               .fromTo("#hub-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hub.x, y: pos.hub.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
               .fromTo("#rep-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.rep1.x, y: pos.rep1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
               .fromTo("#hand-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hand1.x, y: pos.hand1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
               
-              // Standard Nodes
               .fromTo(["#std-1-wrapper", "#std-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
               
-              // Remaining Repeaters
               .fromTo(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
               
-              // Remaining Handheld
               .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
+              // Draw Lines
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 

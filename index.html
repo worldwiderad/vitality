@@ -262,20 +262,18 @@
     </footer>
 
     <script>
-        // 1. HERO ANIMATION LOGIC
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // ANCHORS: (0.5 = center)
+            // ANCHORS (0.5 = Center)
             const anchors = {
-                hero: { x: 0.5, y: 0.6 }, 
-                hub:  { x: 0.5, y: 0.9 }, 
+                hero: { x: 0.5, y: 0.5 }, 
+                hub:  { x: 0.5, y: 0.5 }, 
                 node: { x: 0.5, y: 0.5 }, 
-                rep:  { x: 0.5, y: 0.8 }, 
-                hand: { x: 0.2, y: 0.2 }  
+                rep:  { x: 0.5, y: 0.5 }, 
+                hand: { x: 0.5, y: 0.5 }  
             };
 
-            // TOPOLOGY MAP
             const connections = [
                 { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
                 { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
@@ -296,15 +294,13 @@
             const svg = document.getElementById('mesh-lines-svg');
             const lines = [];
 
-            // CREATE LINES
-            connections.forEach((conn, index) => {
+            connections.forEach((conn) => {
                 const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 line.setAttribute("class", "mesh-line");
                 svg.appendChild(line);
                 lines.push({ el: line, ...conn });
             });
 
-            // UPDATE FUNCTION
             function updateMeshLines() {
                 const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
                 lines.forEach(obj => {
@@ -313,7 +309,7 @@
                     if(fromEl && toEl) {
                         const r1 = fromEl.getBoundingClientRect();
                         const r2 = toEl.getBoundingClientRect();
-                        
+                        // Use centers for line connections
                         const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
                         const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
                         const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
@@ -327,7 +323,6 @@
                 });
             }
 
-            // ANIMATION TIMELINE
             const tl = gsap.timeline({ 
                 defaults: {ease: "power3.inOut"},
                 onUpdate: updateMeshLines,
@@ -337,7 +332,7 @@
                 }
             });
 
-            // Final Positions (VW/VH from Center)
+            // Map Positions
             const pos = {
                 hub:  { x: '35vw',  y: '-20vh' }, 
                 std1: { x: '-20vw', y: '10vh' },  
@@ -351,57 +346,64 @@
                 hand2:{ x: '45vw',  y: '20vh' },  
             };
 
-            // TIMELINE STEPS
+            // INITIAL SETUP: Force offsets to 0 for straight lineup
+            gsap.set(".device-img", {xPercent: 0, yPercent: 0});
+
+            // ANIMATION STEPS
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
               .add("zoomLabel")
               .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-              // CHANGED: width to 16vw (larger), y to 0% (straight line center)
-              .to("#hero-node-wrapper", {width: "16vw", top: "50%", left: "50%", y: "0%", duration: 6}, "zoomLabel")
+              // Phase 2: FULL SIZE & STRAIGHT (24vw width, 0% Y)
+              .to("#hero-node-wrapper", {width: "24vw", top: "50%", left: "50%", y: "0%", duration: 6}, "zoomLabel")
               
-              // STAGE 2.5: LINEUP (All Y values are 0vh for straight line)
+              // LINEUP
               .add("lineupLabel", "-=2.5")
-              .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel")
-              .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")
-              .fromTo("#hub-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "20vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.4")
+              .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-32vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel")
+              .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")
+              .fromTo("#hub-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "16vw", y: "0%", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.4")
               .to({}, {duration: 2}) // Pause
 
-              // STAGE 3: TRANSITION
+              // TEXT FADE
               .add("transitionLabel")
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "transitionLabel")
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "transitionLabel+=0.8")
 
-              // STAGE 4: EXPLOSION
+              // EXPLOSION (Apply User Offsets Here)
               .add("explodeLabel", "transitionLabel+=0.5")
+              
+              // 1. Move Wrappers to Map Locations
               .to("#hero-node-wrapper", {width: "8vw", duration: 3}, "explodeLabel")
               .to("#hub-wrapper", {x: pos.hub.x, y: pos.hub.y, scale: 1, duration: 3}, "explodeLabel")
               .to("#rep-1-wrapper", {x: pos.rep1.x, y: pos.rep1.y, scale: 1, duration: 3}, "explodeLabel")
               .to("#hand-1-wrapper", {x: pos.hand1.x, y: pos.hand1.y, scale: 1, duration: 3}, "explodeLabel")
-              
               .to(["#std-1-wrapper", "#std-2-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
               .to(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
               .to(["#hand-2-wrapper"], {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
+              // 2. Animate Inner Images to YOUR SPECIFIED OFFSETS
+              .to(".repeater-wrapper .device-img", {xPercent: 15, yPercent: 40, duration: 3}, "explodeLabel")
+              .to("#hub-wrapper .device-img", {xPercent: -5, yPercent: 30, duration: 3}, "explodeLabel")
+              .to(".handheld-wrapper .device-img", {xPercent: -15, yPercent: -10, duration: 3}, "explodeLabel")
+              .to(".std-node-wrapper .device-img", {xPercent: 0, yPercent: 5, duration: 3}, "explodeLabel")
+
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 2. SCROLL REVEAL LOGIC
+        // 2. SCROLL REVEAL
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) {
                     reveals[i].classList.add('active');
                 }
             }
         }
         reveal();
 
-        // 3. MENU TOGGLE
+        // 3. MENU
         function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
+            document.getElementById("nav-links").classList.toggle("active");
         }
     </script>
 

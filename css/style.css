@@ -390,7 +390,7 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & Single Offsets)
+   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & User Offsets)
 ========================================================================= */
 
 header.aegis-intro {
@@ -460,49 +460,19 @@ header.aegis-intro {
 .handheld-wrapper { width: 6.75vw; }
 
 /* --- Inner Images & SINGLE Percentage Offsets (Fixed) --- */
-
 .device-img {
-
     width: 100%;
-
     height: auto;
-
     display: block;
-
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
-
 }
 
-
-
-/* Repeater: 30% Right, 100% Down */
-
+/* YOUR EXACT REQUESTED OFFSETS */
 .offset-rep { transform: translate(15%, 40%); }
-
-
-
-/* Hub: Left 10%, Down 15% */
-
 .offset-hub { transform: translate(-5%, 30%); }
-
-
-
-/* Nodes: Lower 50% */
-
 .offset-node { transform: translate(0, 5%); }
-
-
-
-/* Hero: Center */
-
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
-
-
-
-/* Handheld: Left 30%, Down 70% */
-
 .offset-hand { transform: translate(-15%, -10%); }
-
 
 
 /* SVG Lines */

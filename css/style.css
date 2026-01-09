@@ -473,10 +473,10 @@ header.aegis-intro {
 }
 
 /* Repeater: 30% Right, 100% Down */
-.offset-rep { transform: translate(30%, 100%); }
+.offset-rep { transform: translate(15%, 50%); }
 
 /* Hub: Left 10%, Down 15% */
-.offset-hub { transform: translate(-10%, 15%); }
+.offset-hub { transform: translate(-5%, 30%); }
 
 /* Nodes: Lower 50% */
 .offset-node { transform: translate(0, 50%); }
@@ -485,7 +485,7 @@ header.aegis-intro {
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
 /* Handheld: Left 30%, Down 70% */
-.offset-hand { transform: translate(-30%, 70%); }
+.offset-hand { transform: translate(-15%, 40%); }
 
 
 /* SVG Lines */

@@ -264,10 +264,9 @@
     <script>
         // 1. HERO ANIMATION LOGIC
         window.addEventListener('load', () => {
-            // Force start at top
             window.scrollTo(0, 0);
 
-            // ANCHORS: Where lines connect relative to the image wrapper (0.5 = center)
+            // ANCHORS: (0.5 = center)
             const anchors = {
                 hero: { x: 0.5, y: 0.6 }, 
                 hub:  { x: 0.5, y: 0.9 }, 
@@ -300,13 +299,12 @@
             // CREATE LINES
             connections.forEach((conn, index) => {
                 const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                // IMPORTANT: Class must be 'mesh-line' to match CSS styles
                 line.setAttribute("class", "mesh-line");
                 svg.appendChild(line);
                 lines.push({ el: line, ...conn });
             });
 
-            // UPDATE FUNCTION (Calculates positions relative to stage)
+            // UPDATE FUNCTION
             function updateMeshLines() {
                 const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
                 lines.forEach(obj => {
@@ -316,13 +314,11 @@
                         const r1 = fromEl.getBoundingClientRect();
                         const r2 = toEl.getBoundingClientRect();
                         
-                        // Coordinates relative to stage
                         const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
                         const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
                         const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
                         const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
                         
-                        // Convert to percentages for responsive scaling
                         obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
                         obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
                         obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
@@ -336,7 +332,6 @@
                 defaults: {ease: "power3.inOut"},
                 onUpdate: updateMeshLines,
                 onComplete: () => {
-                    // Unlock scroll and show button
                     document.body.classList.remove('noscroll');
                     gsap.to("#scroll-btn", {opacity: 1, duration: 1});
                 }
@@ -360,9 +355,10 @@
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
               .add("zoomLabel")
               .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-              .to("#hero-node-wrapper", {width: "12vw", top: "50%", left: "50%", y: "-5vh", duration: 6}, "zoomLabel")
+              // CHANGED: width to 16vw (larger), y to 0% (straight line center)
+              .to("#hero-node-wrapper", {width: "16vw", top: "50%", left: "50%", y: "0%", duration: 6}, "zoomLabel")
               
-              // STAGE 2.5: LINEUP
+              // STAGE 2.5: LINEUP (All Y values are 0vh for straight line)
               .add("lineupLabel", "-=2.5")
               .fromTo("#rep-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-30vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel")
               .fromTo("#hand-1-wrapper", {opacity: 0, scale: 0, x: 0, y: 0}, {opacity: 1, scale: 1.4, x: "-15vw", y: "0vh", duration: 2.5, ease: "power3.out"}, "lineupLabel+=0.2")

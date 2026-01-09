@@ -479,13 +479,13 @@ header.aegis-intro {
 .offset-hub { transform: translate(-5%, 30%); }
 
 /* Nodes: Lower 50% */
-.offset-node { transform: translate(0, 20%); }
+.offset-node { transform: translate(0, 5%); }
 
 /* Hero: Center */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
 /* Handheld: Left 30%, Down 70% */
-.offset-hand { transform: translate(-15%, 10%); }
+.offset-hand { transform: translate(-15%, -10%); }
 
 
 /* SVG Lines */

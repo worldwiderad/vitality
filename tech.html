@@ -118,7 +118,12 @@
         <div class="container" style="text-align: left;">
             <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// ENGINEERING DOCUMENTATION</p>
             <h1 style="font-size: 3.5rem;">System Architecture.</h1>
-            <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted);">A breakdown of the long-range modulation, mesh topology, and security protocols powering the Aegis ecosystem.</p>
+            <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted); margin-bottom: 30px;">A breakdown of the long-range modulation, mesh topology, and security protocols powering the Aegis ecosystem.</p>
+            
+            <a href="assets/paper.pdf" download class="btn" style="display: inline-flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Technical Whitepaper (PDF)
+            </a>
         </div>
     </header>
 
@@ -512,7 +517,7 @@
             seed = 67890; 
 
             nodes.forEach(n => {
-                n.exists = true;       
+                n.exists = true;        
                 n.functional = true;  
                 n.hasBroadcasted = false;
                 n.msgReceived = false;

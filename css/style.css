@@ -467,9 +467,9 @@ header.aegis-intro {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.3));
 }
 
-.offset-rep { transform: translate(15%, 40%); }
-.offset-hub { transform: translate(-5%, 30%); }
-.offset-node { transform: translate(0, 5%); }
+.offset-rep { transform: translate(15%, 20%); }
+.offset-hub { transform: translate(-5%, 10%); }
+.offset-node { transform: translate(0, 0); }
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 .offset-hand { transform: translate(-15%, -10%); }
 

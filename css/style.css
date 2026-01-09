@@ -400,25 +400,20 @@ header.aegis-intro {
     background-color: #020617;
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
-    /* Centers the stage */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Stage: Forces 16:9 ratio but scales up to COVER the viewport (Pan & Scan) */
+/* Stage: Forces 16:9 ratio but scales up to COVER the viewport */
 #hero-stage {
     position: absolute;
     width: 100vw;
     height: 56.25vw; /* Base 16:9 */
-    
-    /* If screen is too tall (portrait/square), switch to height-based sizing */
     min-height: 100vh;
     min-width: 177.78vh; /* 16:9 ratio relative to height */
-    
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    
     z-index: 10;
 }
 
@@ -452,7 +447,7 @@ header.aegis-intro {
     left: 51%;
 }
 
-/* Secondary Device Wrappers Initial State */
+/* Secondary Device Wrappers */
 .secondary-device {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
@@ -464,7 +459,7 @@ header.aegis-intro {
 .repeater-wrapper { width: 6.5vw; } 
 .handheld-wrapper { width: 6.75vw; }
 
-/* --- Inner Images & SINGLE Percentage Offsets (Fixed) --- */
+/* --- Inner Images & SINGLE Percentage Offsets (Corrected) --- */
 .device-img {
     width: 100%;
     height: auto;
@@ -473,25 +468,25 @@ header.aegis-intro {
 }
 
 /* Repeater: 30% Right, 100% Down */
-.offset-rep { transform: translate(15%, 40%); }
+.offset-rep { transform: translate(30%, 100%); }
 
 /* Hub: Left 10%, Down 15% */
-.offset-hub { transform: translate(-5%, 30%); }
+.offset-hub { transform: translate(-10%, 15%); }
 
 /* Nodes: Lower 50% */
-.offset-node { transform: translate(0, 5%); }
+.offset-node { transform: translate(0, 50%); }
 
 /* Hero: Center */
 #hero-node-wrapper .device-img { transform: translate(0, 0%); }
 
 /* Handheld: Left 30%, Down 70% */
-.offset-hand { transform: translate(-15%, -10%); }
+.offset-hand { transform: translate(-30%, 70%); }
 
 
 /* SVG Lines */
 #mesh-lines-svg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 5; /* Behind devices */
+    z-index: 5; 
     pointer-events: none;
     filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.6));
 }
@@ -507,7 +502,7 @@ header.aegis-intro {
     top: 72%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 20; /* On Top */
+    z-index: 20; 
     text-align: center; pointer-events: none;
     width: 100%; max-width: 1400px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;

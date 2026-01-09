@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Ecosystem | Aegis</title>
-    
+
     <meta property="og:title" content="Aegis Products">
     <meta property="og:description" content="Hardware and software for resilient communication.">
     <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
-    
+
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         /* --- SAFETY CSS: Forces Layout to Work --- */
-        
+        body { background-color: #020617; overflow-x: hidden; }
+
         /* 1. Force the Product Grid to be 3 Columns */
         .features-grid {
             display: grid;
@@ -41,7 +45,7 @@
         .product-card h3 { color: white; font-size: 1.5rem; margin-bottom: 10px; }
         .price-tag { font-size: 1.5rem; font-weight: 800; color: white; margin: 10px 0; }
         .product-card p, .product-card li { color: #94a3b8; }
-        
+
         .learn-more-link {
             margin-top: auto;
             color: #FF5722;
@@ -58,40 +62,186 @@
             transition: all 0.3s ease;
             overflow: hidden;
         }
+
+        /* --- ANIMATION STYLES (Mission Control) --- */
+        .fixed-map-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-image: url('assets/img/hero-map-dark-anim.jpg');
+            background-size: cover; background-position: center;
+            opacity: 0.3;
+            filter: grayscale(100%) contrast(110%) invert(1) brightness(0.6);
+        }
+
+        .connections-svg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+        .mesh-line {
+            stroke: #FF5722;
+            stroke-width: 2px;
+            vector-effect: non-scaling-stroke;
+            opacity: 0.8;
+        }
+        .bridge-line {
+            stroke: #FF5722;
+            stroke-width: 1px;
+            stroke-dasharray: 5, 5;
+            opacity: 0.5;
+        }
+
+        .anim-section {
+            position: relative;
+            height: 140vh;
+            z-index: 5;
+        }
+
+        .modules-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            pointer-events: none; z-index: 2;
+        }
+
+        .module-img {
+            position: absolute; width: 14vw;
+            filter: drop-shadow(0 0 30px rgba(255, 87, 34, 0.3));
+        }
+
+        .card-track {
+            position: relative; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            pointer-events: none; z-index: 10;
+        }
+
+        .glass-card-anim {
+            pointer-events: auto; width: 400px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #FF5722;
+            padding: 40px; border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+        }
+        .glass-card-anim h2 { color: white; font-size: 2.2rem; margin-bottom: 15px; line-height: 1.1; font-weight: 800; }
+        .glass-card-anim p { font-size: 1rem; line-height: 1.6; margin-bottom: 25px; color: #cbd5e1; }
+        .mono-tag { font-family: 'Courier Prime', monospace; color: #FF5722; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+
+        header.intro-anim {
+            height: 35vh; display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 20; padding-top: 60px;
+            background: linear-gradient(180deg, #020617 0%, rgba(2, 6, 23, 0.9) 40%, transparent 100%);
+        }
+
+        /* Hides animation elements on mobile to fallback to standard grid */
+        @media (max-width: 768px) {
+            .anim-wrapper { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav style="z-index: 1000; position: relative; background: #020617;">
         <div class="logo">VITALITY</div>
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="product.html" class="active">Products</a></li>
             <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html">Team</a></li> 
+            <li><a href="team.html">Team</a></li>
             <li><a href="mission.html">Our Mission</a></li>
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="hero" style="padding: 80px 20px; background-image: none; background-color: #020617;">
-        <div class="container">
-            <h1 style="font-size: 3rem;">The Aegis Platform</h1>
-            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">A complete ecosystem of ruggedized hardware and command software. Deploy a city-wide network in hours.</p>
-        </div>
-    </header>
+    <div class="anim-wrapper">
+        <div class="fixed-map-bg"></div>
+        <svg class="connections-svg" id="main-svg"></svg>
 
-    <section class="reveal">
+        <header class="intro-anim">
+            <div style="text-align: center;">
+                <p class="mono-tag" style="font-size: 1rem;">// LIVE DEPLOYMENT</p>
+                <h1 style="font-size: 4rem; color: white; margin-bottom: 0;">Hardware Ecosystem.</h1>
+            </div>
+        </header>
+
+        <section class="anim-section" id="section-node">
+            <div class="modules-layer">
+                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-1" style="left: 5%; top: 15%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-2" style="left: 10%; top: 65%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-3" style="right: 5%; top: 10%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-4" style="right: 8%; top: 70%;">
+            </div>
+            <div class="card-track">
+                <div class="glass-card-anim" id="card-node">
+                    <span class="mono-tag">01 // BACKBONE</span>
+                    <h2>Public Node</h2>
+                    <p>Solar-powered infrastructure mounted on lamp posts. These form the permanent, self-healing mesh highway across the city.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-family: 'Courier Prime'; font-size: 0.8rem; color: #94a3b8; margin-bottom: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                        <div><span style="color: #FF5722;">POWER:</span> Solar + LiPo</div>
+                        <div><span style="color: #FF5722;">RANGE:</span> 15km (LOS)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="anim-section" id="section-handheld">
+            <div class="modules-layer">
+                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-1" style="left: 5%; top: 20%;">
+                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-3" style="right: 5%; top: 25%;">
+                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-2" style="left: 20%; top: 80%;">
+            </div>
+            <div class="card-track">
+                <div class="glass-card-anim" id="card-handheld">
+                    <span class="mono-tag">02 // MOBILE</span>
+                    <h2>Aegis Handheld</h2>
+                    <p>The civilian interface. Allows users to send encrypted messages and GPS coordinates without cellular towers.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-family: 'Courier Prime'; font-size: 0.8rem; color: #94a3b8; margin-bottom: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                        <div><span style="color: #FF5722;">BATTERY:</span> 48 Hours</div>
+                        <div><span style="color: #FF5722;">GPS:</span> Offline Maps</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="anim-section" id="section-repeater">
+            <div class="modules-layer">
+                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-1" style="left: 10%; top: 15%;">
+                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-2" style="right: 15%; top: 20%;">
+                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-3" style="left: 25%; top: 75%;">
+                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-4" style="right: 10%; top: 80%;">
+            </div>
+            <div class="card-track">
+                <div class="glass-card-anim" id="card-repeater">
+                    <span class="mono-tag">03 // RELAY</span>
+                    <h2>Repeater</h2>
+                    <p>Pocket-sized range extenders. Drop them to punch signals through deep urban canyons or dense forests.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-family: 'Courier Prime'; font-size: 0.8rem; color: #94a3b8; margin-bottom: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                        <div><span style="color: #FF5722;">SIZE:</span> Pocketable</div>
+                        <div><span style="color: #FF5722;">DEPLOY:</span> Drop / Mag</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="position: relative; z-index: 20; background: #020617; padding: 100px 0; border-top: 1px solid #FF5722; text-align: center;">
+            <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 40px; justify-content: center;">
+                <img src="assets/img/hub-anim.png" id="hub-img" style="width: 100%; max-width: 400px; position: relative; z-index: 2;">
+                <div style="text-align: left; max-width: 400px;">
+                    <span class="mono-tag">// UPLINK</span>
+                    <h2 style="color: white; font-size: 3rem; margin-bottom: 15px;">Aegis Hub</h2>
+                    <p style="color: #94a3b8;">The gateway. Connects the local mesh to Starlink for global HQ monitoring.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="reveal" style="background: #020617; position: relative; z-index: 20;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">Field Hardware</h2>
-            
+            <h2 style="text-align: center; margin-bottom: 50px;">Full Specifications</h2>
+
             <div class="features-grid">
-                
+
                 <div class="product-card" style="padding: 0 !important; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
                     <div style="background: white; width: 100%; padding: 30px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #FF5722;">
                         <img src="assets/img/clean.png" alt="Aegis Public Node" style="max-height: 200px; width: auto; object-fit: contain;">
@@ -105,7 +255,7 @@
                             <li>Integrated Screen & Keyboard</li>
                             <li>Wi-Fi Bridge for Civilians</li>
                         </ul>
-                        <a href="node-details.html" class="learn-more-link" style="color: #FF5722;">See Exploded View & Specs &rarr;</a>
+                        <a href="node-details.html" class="learn-more-link">See Exploded View & Specs &rarr;</a>
                     </div>
                 </div>
 
@@ -147,54 +297,13 @@
         </div>
     </section>
 
-    <section class="reveal">
-        <div class="container">
-            <h2 style="text-align: center;">Command Infrastructure</h2>
-            <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
-
-            <div class="grid-2" style="align-items: center;">
-                <div>
-                    <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
-                    <p style="color: #94a3b8;">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                    
-                    <ul style="margin-top: 20px; list-style: none; padding: 0; color: #94a3b8;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
-                        </li>
-                    </ul>
-
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid #FF5722; border-radius: 4px;">
-                        <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
-                            <strong>NOT a Single Point of Failure:</strong><br>
-                            If the Hub is destroyed, the local mesh network remains 100% operational.
-                        </p>
-                    </div>
-                </div>
-                
-                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; border-bottom: 4px solid #FF5722;">
-                    <img src="assets/img/hub.png" alt="Aegis Hub" style="width: 100%; height: auto; border-radius: 8px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 20;">
         <div class="container">
             <h2 style="text-align: center; color: white;">Mission Planner</h2>
             <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
 
             <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                
+
                 <div style="margin-bottom: 30px;">
                     <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
                     <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
@@ -233,18 +342,10 @@
         </div>
     </section>
 
-    <section class="reveal">
+    <section class="reveal" style="position: relative; z-index: 20;">
         <div class="container">
             <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
             <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
-            
-            <div style="background: #020617; border: 1px solid #334155; border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; margin-bottom: 50px; overflow: hidden;">
-                <div style="text-align: center; padding: 20px;">
-                    <p style="font-family: 'Courier Prime', monospace; color: var(--primary-color); margin-bottom: 10px;">// SYSTEM PREVIEW</p>
-                    <h3 style="color: white;">Software Screenshot Incoming</h3>
-                    <p style="color: #64748b; font-size: 0.9rem;">(Aegis OS Python Terminal / Map View)</p>
-                </div>
-            </div>
 
             <div style="overflow-x: auto;">
                 <table class="software-table">
@@ -276,70 +377,6 @@
                     </tbody>
                 </table>
             </div>
-
-        </div>
-    </section>
-
-    <section class="reveal">
-        <div class="container">
-            <h2>The Market Gap</h2>
-            <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
-
-            <div style="overflow-x: auto;">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Option</th>
-                            <th>[A] Hobbyist (Meshtastic)</th>
-                            <th>[B] Professional DMR (Motorola)</th>
-                            <th>[C] Vitality 'Aegis'</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Handset Cost</strong></td>
-                            <td>$50 - $120</td>
-                            <td>$2,500 - $10,000</td>
-                            <td style="color: #FF5722; font-weight: bold;">~$100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Security</strong></td>
-                            <td>Low (DIY, unvetted)</td>
-                            <td>High</td>
-                            <td style="color: #FF5722; font-weight: bold;">High (AES-256)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Network Type</strong></td>
-                            <td>Mesh</td>
-                            <td>Centralized (Star Topology)</td>
-                            <td>Self-Healing Mesh</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Infrastructure</strong></td>
-                            <td>None</td>
-                            <td>REQUIRED (Base Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">NOT REQUIRED</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Single Point of Failure?</strong></td>
-                            <td>No</td>
-                            <td>Yes (The Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">No</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Setup</strong></td>
-                            <td>High (Requires Phone, App)</td>
-                            <td>High (Requires Training, License)</td>
-                            <td><strong>Zero (Turnkey)</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <br>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
-            </div>
         </div>
     </section>
 
@@ -348,19 +385,86 @@
     </footer>
 
     <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
+        // GSAP ANIMATION LOGIC (Mission Control)
+        gsap.registerPlugin(ScrollTrigger);
 
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            // Only run complex animation on desktop
+
+            // 1. PINNING
+            gsap.utils.toArray(".product-section").forEach((section) => {
+                let modules = section.querySelector(".modules-layer");
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top top",
+                    end: "bottom bottom",
+                    pin: modules,
+                    pinSpacing: false,
+                    scrub: true
+                });
+            });
+
+            // 2. LINES
+            const svg = document.getElementById('main-svg');
+            const lines = [];
+
+            function createLine(cls) {
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("class", cls);
+                svg.appendChild(line);
+                return line;
+            }
+
+            const connections = [
+                { from: 'node-1', to: 'card-node', type: 'card' },
+                { from: 'node-2', to: 'card-node', type: 'card' },
+                { from: 'node-3', to: 'card-node', type: 'card' },
+                { from: 'node-4', to: 'card-node', type: 'card' },
+
+                { from: 'hand-1', to: 'card-handheld', type: 'card' },
+                { from: 'hand-2', to: 'card-handheld', type: 'card' },
+                { from: 'hand-3', to: 'card-handheld', type: 'card' },
+
+                { from: 'rep-1', to: 'card-repeater', type: 'card' },
+                { from: 'rep-2', to: 'card-repeater', type: 'card' },
+                { from: 'rep-3', to: 'card-repeater', type: 'card' },
+                { from: 'rep-4', to: 'card-repeater', type: 'card' },
+
+                // Bridges
+                { from: 'node-2', to: 'hand-1', type: 'bridge' },
+                { from: 'node-4', to: 'hand-3', type: 'bridge' },
+                { from: 'hand-2', to: 'rep-1', type: 'bridge' },
+                { from: 'hand-2', to: 'rep-2', type: 'bridge' }
+            ];
+
+            connections.forEach(c => {
+                const lineEl = createLine(c.type === 'bridge' ? 'bridge-line' : 'mesh-line');
+                lines.push({ el: lineEl, from: c.from, to: c.to });
+            });
+
+            function updateLines() {
+                lines.forEach(line => {
+                    const fromEl = document.getElementById(line.from);
+                    const toEl = document.getElementById(line.to);
+
+                    if (fromEl && toEl) {
+                        const r1 = fromEl.getBoundingClientRect();
+                        const r2 = toEl.getBoundingClientRect();
+                        const x1 = r1.left + r1.width / 2;
+                        const y1 = r1.top + r1.height / 2;
+                        const x2 = r2.left + r2.width / 2;
+                        const y2 = r2.top + r2.height / 2;
+                        line.el.setAttribute("x1", x1);
+                        line.el.setAttribute("y1", y1);
+                        line.el.setAttribute("x2", x2);
+                        line.el.setAttribute("y2", y2);
+                    }
+                });
+            }
+            gsap.ticker.add(updateLines);
+        }
+
+        // STANDARD CALCULATOR LOGIC
         function toggleMenu() {
             var menu = document.getElementById("nav-links");
             menu.classList.toggle("active");
@@ -369,7 +473,6 @@
         function handleSelectChange() {
             const selectValue = document.getElementById('areaSelect').value;
             const customContainer = document.getElementById('customInputContainer');
-
             if (selectValue === 'custom') {
                 customContainer.style.display = 'block';
                 calculateCost();
@@ -382,19 +485,17 @@
         function calculateCost() {
             const selectValue = document.getElementById('areaSelect').value;
             let area = 0;
-            let density = 0.5; 
+            let density = 0.5;
             let nodes, price, note;
 
             if (selectValue === "japan") {
-                nodes = 5000;
-                price = 500000;
+                nodes = 5000; price = 500000;
                 note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
-            } 
+            }
             else if (selectValue === "usa") {
-                nodes = 130000;
-                price = 13000000;
+                nodes = 130000; price = 13000000;
                 note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
-            } 
+            }
             else {
                 if (selectValue === 'custom') {
                     area = parseFloat(document.getElementById('customAreaInput').value) || 0;
@@ -402,19 +503,19 @@
                     area = parseInt(selectValue);
                 }
 
-                if(area <= 5) density = 3.0; 
-                else if(area <= 50) density = 2.0; 
-                else if(area <= 200) density = 0.5; 
-                else if(area > 100000) density = 0.1; 
-                else density = 0.15; 
+                if(area <= 5) density = 3.0;
+                else if(area <= 50) density = 2.0;
+                else if(area <= 200) density = 0.5;
+                else if(area > 100000) density = 0.1;
+                else density = 0.15;
 
                 nodes = Math.ceil(area * density);
-                if(nodes < 2 && area > 0) nodes = 2; 
+                if(nodes < 2 && area > 0) nodes = 2;
                 if(area === 0) nodes = 0;
 
                 let costPerUnit = (area > 1000) ? 100 : 150;
                 price = nodes * costPerUnit;
-                
+
                 let densityText = (density < 0.2) ? "Strategic Backbone" : "High Density";
                 note = `*<strong>${densityText}:</strong> Based on ${density} nodes/km² for this scale.`;
             }
@@ -423,7 +524,7 @@
             document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
             document.getElementById('calculationNote').innerHTML = note;
         }
-        
+
         handleSelectChange();
     </script>
 

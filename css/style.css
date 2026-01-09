@@ -390,7 +390,7 @@ footer {
 
 
 /* =========================================================================
-   14. NEW AEGIS ANIMATION STYLES (Fixed Alignment & User Offsets)
+   14. NEW AEGIS ANIMATION STYLES (Fixed: Full Size Phase 2 + Dynamic Offsets)
 ========================================================================= */
 
 header.aegis-intro {
@@ -468,6 +468,7 @@ header.aegis-intro {
 }
 
 /* YOUR EXACT REQUESTED OFFSETS */
+/* Note: These will be temporarily overridden to 0,0 by GSAP for the straight lineup */
 .offset-rep { transform: translate(15%, 40%); }
 .offset-hub { transform: translate(-5%, 30%); }
 .offset-node { transform: translate(0, 5%); }

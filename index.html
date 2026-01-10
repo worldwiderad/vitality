@@ -47,7 +47,7 @@
         }
     </style>
 </head>
-<body class="noscroll"> 
+<body> 
 
     <div id="scroll-prompt">
         SCROLL TO BEGIN
@@ -80,7 +80,7 @@
                 <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
             </div>
 
-            <div id="scroll-btn" class="scroll-indicator">
+            <div id="scroll-btn" class="scroll-indicator" style="opacity: 0;">
                 <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
             </div>
 
@@ -303,7 +303,7 @@
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. INACTIVITY PROMPT
+            // 1. INACTIVITY PROMPT LOGIC
             let inactivityTimer;
             const prompt = document.getElementById('scroll-prompt');
 
@@ -311,14 +311,14 @@
             function startTimer() {
                 inactivityTimer = setTimeout(() => {
                     prompt.style.opacity = '1';
-                }, 10000);
+                }, 10000); // 10 seconds
             }
 
-            // Hide prompt immediately on scroll
+            // Hide prompt immediately on first scroll
             window.addEventListener('scroll', () => {
                 clearTimeout(inactivityTimer);
                 prompt.style.opacity = '0';
-            }, { once: true }); // Only runs once
+            }, { once: true }); // Listener removes itself after running once
 
             startTimer(); // Start the timer on load
 
@@ -381,7 +381,7 @@
             }
 
             // *** SCROLL ANIMATION LOGIC ***
-            // We use ScrollTrigger to drive the timeline based on scroll position
+            // Use ScrollTrigger to drive the timeline
             const tl = gsap.timeline({ 
                 scrollTrigger: {
                     trigger: "#intro-trigger-wrapper",

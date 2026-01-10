@@ -73,11 +73,13 @@
         /* --- ENCRYPTION DEMO STYLES (Integrated) --- */
         .encryption-stage-wrapper {
             position: relative;
-            /* HEIGHT: 400vh = Slower scrolling. */
-            height: 400vh; 
+            /* FIX: Set to 100vh so it fits the screen exactly. 
+               We control the "scroll length" via JS now. */
+            height: 100vh; 
             background: #020617;
             width: 100%;
             z-index: 10;
+            overflow: hidden;
         }
 
         .sticky-stage {
@@ -523,7 +525,10 @@
             scrollTrigger: {
                 trigger: ".encryption-stage-wrapper",
                 start: "top top",
-                end: "bottom bottom",
+                // FIX: Use Javascript to define the scroll distance (+4000px).
+                // This makes the scroll slower (more distance to cover)
+                // but keeps the container visually tight (100vh height).
+                end: "+=4000", 
                 scrub: 1,
                 pin: true 
             }

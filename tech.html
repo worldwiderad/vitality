@@ -73,8 +73,8 @@
         /* --- ENCRYPTION DEMO STYLES (Integrated) --- */
         .encryption-stage-wrapper {
             position: relative;
-            /* Height defines how long the scroll animation lasts */
-            height: 800vh; 
+            /* Optimized height to remove massive gap */
+            height: 400vh; 
             background: #020617;
             width: 100%;
             z-index: 10;
@@ -313,6 +313,34 @@
         </div>
     </section>
 
+    <section class="reveal">
+        <div class="container">
+            <h2 style="font-size: 2rem;">3. Security Architecture</h2>
+            <p class="lead">We built Aegis to be secure against both physical and digital threats.</p>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Physical Isolation (Air-Gapped)</h3>
+                    <p><strong>You have to be there to hack it.</strong> Unlike the internet, an attacker must be physically within range of our radio signals to even attempt an intercept.</p>
+                </div>
+                <div class="feature">
+                    <h3>AES-256 Encryption</h3>
+                    <p>Every packet is encrypted using AES-256. Even if a hostile actor is in range and records the signal, they will see nothing but random noise.</p>
+                </div>
+                <div class="feature">
+                    <h3>Zero-Trust Keys</h3>
+                    <p>Encryption keys are pre-shared physically or generated locally. We do not hold a "master key."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="padding-bottom: 0;">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary-color); font-size: 1.5rem; letter-spacing: 2px;">// LIVE PROTOCOL DEMONSTRATION</h2>
+            <p style="text-align: center; color: var(--text-muted);">Scroll down to visualize the Asymmetric and Hybrid encryption flow.</p>
+        </div>
+    </section>
+
     <div class="encryption-stage-wrapper" id="enc-trigger">
         <div class="sticky-stage">
             <div class="visual-col">
@@ -363,42 +391,42 @@
 
             <div class="text-col">
                 <div class="step-text" id="t1">
-                    <span class="step-number">3. SECURITY // PRIVATE MESSAGE</span>
+                    <span class="step-number">3.1 // PRIVATE MESSAGE</span>
                     <h2>Asymmetric Lock</h2>
                     <p>Sending to one person? We wrap the message using their <strong>Public Key</strong>. This creates a mathematical lock that only the recipient possesses the key for.</p>
                 </div>
                 <div class="step-text" id="t2">
-                    <span class="step-number" style="color: var(--danger-color);">3.1 // INTERCEPTION FAIL</span>
+                    <span class="step-number" style="color: var(--danger-color);">3.2 // INTERCEPTION FAIL</span>
                     <h2>Compromised Node</h2>
                     <p>A hostile actor has physically hijacked a node. They attempt to read the packet.</p>
                     <p style="margin-top: 15px;">Since the stolen node lacks the Target's Private Key, the math rejects the attempt. The network <strong>automatically reroutes</strong> around the threat.</p>
                 </div>
                 <div class="step-text" id="t3">
-                    <span class="step-number" style="color: var(--success-color);">3.2 // VERIFIED DELIVERY</span>
+                    <span class="step-number" style="color: var(--success-color);">3.3 // VERIFIED DELIVERY</span>
                     <h2>Access Granted</h2>
                     <p>The packet reaches the Target. They apply their <strong>Private Key</strong>. The message is revealed.</p>
                 </div>
 
                 <div class="step-text" id="t4">
-                    <span class="step-number" style="color: var(--group-color);">3.3 // GROUP MODE</span>
+                    <span class="step-number" style="color: var(--group-color);">3.4 // GROUP MODE</span>
                     <h2>Hybrid Encryption</h2>
                     <p>What if you need to broadcast to 50 people? Encrypting the full message 50 times would be slow and bloated.</p>
                     <p style="margin-top: 15px;">Instead, Aegis uses a smarter approach: <strong>Hybrid Encryption</strong>.</p>
                 </div>
                 <div class="step-text" id="t5">
-                    <span class="step-number" style="color: var(--group-color);">3.4 // SESSION KEY GENERATION</span>
+                    <span class="step-number" style="color: var(--group-color);">3.5 // SESSION KEY GENERATION</span>
                     <h2>The Single Master Key</h2>
                     <p>First, the sender generates a random, one-time <strong>Session Key</strong> (AES-256).</p>
                     <p style="margin-top: 15px;">This single key is used to encrypt the large message payload <strong>only once</strong>.</p>
                 </div>
                 <div class="step-text" id="t6">
-                    <span class="step-number" style="color: var(--group-color);">3.5 // CREATING HEADERS</span>
+                    <span class="step-number" style="color: var(--group-color);">3.6 // CREATING HEADERS</span>
                     <h2>One Payload, Many Locks</h2>
                     <p>Next, we take that tiny Session Key and encrypt it separately for each recipient using their unique <strong>Public Keys</strong>.</p>
                     <p style="margin-top: 15px;">These encrypted keys are attached as "headers" to the main packet.</p>
                 </div>
                 <div class="step-text" id="t7">
-                    <span class="step-number" style="color: var(--success-color);">3.6 // GROUP DECRYPTION</span>
+                    <span class="step-number" style="color: var(--success-color);">3.7 // GROUP DECRYPTION</span>
                     <h2>Universal Access</h2>
                     <p>When the packet arrives, each user applies their <strong>Private Key</strong> to unlock only their specific header.</p>
                     <p style="margin-top: 15px;">This reveals the Session Key, which then opens the main message. Secure, scalable, and efficient.</p>
@@ -408,7 +436,7 @@
     </div>
     <section class="reveal" style="background-color: #1E293B; color: white;">
         <div class="container">
-            <h2 style="color: white; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 10px;">Technical Specifications</h2>
+            <h2 style="color: white; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 10px;">4. Technical Specifications</h2>
             <div class="grid-2">
                 <div>
                     <h3 style="color: var(--primary-color); margin-top: 30px;">Aegis Public Node (V4)</h3>
@@ -460,6 +488,24 @@
                         <p>The Public Node features an <strong>80,000mAh LiFePO4 battery</strong>. The system defaults to a deep sleep mode, waking only to repeat messages.</p>
                     </div>
                 </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Is this legal on civilian frequencies?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Aegis operates on the <strong>ISM bands</strong> (Industrial, Scientific, and Medical). These are license-free bands. We strictly adhere to the duty cycle and transmission power limits set by the FCC, ETSI, and regional authorities, ensuring legal operation without requiring user licenses.</p>
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>How does it differ from Starlink?</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Starlink requires a $500 dish, 100W of power, and a clear view of the sky. It connects to the internet. <br><br><strong>Aegis</strong> connects <em>people to people</em> locally. It requires <1W of power, works in dense forests, costs $150, and creates its own offline network. We are the "last mile" solution where satellites cannot reach or are too expensive.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -473,14 +519,13 @@
         gsap.registerPlugin(ScrollTrigger, TextPlugin, MotionPathPlugin);
         gsap.set(".group-key-sm", { autoAlpha: 0 });
 
-        // NOTE: trigger is now the specific encryption section, NOT the body
         let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".encryption-stage-wrapper",
                 start: "top top",
                 end: "bottom bottom",
                 scrub: 1,
-                pin: true // This keeps the animation on screen while scrolling through the section
+                pin: true 
             }
         });
 

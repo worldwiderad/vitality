@@ -17,16 +17,50 @@
     <link rel="stylesheet" href="css/style.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* New Scroll Prompt Styles */
+        #scroll-prompt {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-color);
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem;
+            opacity: 0; /* Hidden by default */
+            pointer-events: none;
+            z-index: 1000;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+        #scroll-prompt span {
+            display: block;
+            font-size: 1.5rem;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+    </style>
 </head>
-<body class="noscroll"> <nav>
+<body class="noscroll"> 
+
+    <div id="scroll-prompt">
+        SCROLL TO BEGIN
+        <span>&darr;</span>
+    </div>
+
+    <nav>
         <div class="logo">VITALITY</div>
-        
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
         <ul id="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="product.html">Products</a></li>
@@ -37,64 +71,66 @@
         </ul>
     </nav>
 
-    <header class="aegis-intro">
-        
-        <div id="hero-text-container">
-            <h1 id="text-line-1">THE GRID IS</h1>
-            <h2 id="text-line-2">FRAGILE.</h2>
-            <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
-        </div>
-
-        <div id="scroll-btn" class="scroll-indicator">
-            <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
-        </div>
-
-        <div id="hero-stage">
-            <div class="bg-map-container">
-                <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
-            </div>
-
-            <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-
-            <div id="hero-node-wrapper" class="device">
-                <img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node">
-            </div>
+    <div id="intro-trigger-wrapper">
+        <header class="aegis-intro">
             
-            <div id="hub-wrapper" class="device secondary-device">
-                <img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub">
-            </div>
-            
-            <div id="std-1-wrapper" class="device secondary-device std-node-wrapper">
-                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
-            </div>
-            <div id="std-2-wrapper" class="device secondary-device std-node-wrapper">
-                <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+            <div id="hero-text-container">
+                <h1 id="text-line-1">THE GRID IS</h1>
+                <h2 id="text-line-2">FRAGILE.</h2>
+                <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
             </div>
 
-            <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper">
-                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            </div>
-            <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper">
-                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            </div>
-            <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper">
-                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            </div>
-            <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper">
-                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
-            </div>
-            <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper">
-                <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+            <div id="scroll-btn" class="scroll-indicator">
+                <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
             </div>
 
-            <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper">
-                <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+            <div id="hero-stage">
+                <div class="bg-map-container">
+                    <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
+                </div>
+
+                <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+
+                <div id="hero-node-wrapper" class="device">
+                    <img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+                </div>
+                
+                <div id="hub-wrapper" class="device secondary-device">
+                    <img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub">
+                </div>
+                
+                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper">
+                    <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+                </div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper">
+                    <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+                </div>
+
+                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+
+                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper">
+                    <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+                </div>
+                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper">
+                    <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+                </div>
             </div>
-            <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper">
-                <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
-            </div>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <div id="hero-home-anchor"></div>
     
@@ -262,8 +298,29 @@
     </footer>
 
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
+
+            // 1. INACTIVITY PROMPT
+            let inactivityTimer;
+            const prompt = document.getElementById('scroll-prompt');
+
+            // Show prompt after 10 seconds of no scrolling
+            function startTimer() {
+                inactivityTimer = setTimeout(() => {
+                    prompt.style.opacity = '1';
+                }, 10000);
+            }
+
+            // Hide prompt immediately on scroll
+            window.addEventListener('scroll', () => {
+                clearTimeout(inactivityTimer);
+                prompt.style.opacity = '0';
+            }, { once: true }); // Only runs once
+
+            startTimer(); // Start the timer on load
 
             // ANCHORS (0.5 = Center)
             const anchors = {
@@ -323,12 +380,16 @@
                 });
             }
 
+            // *** SCROLL ANIMATION LOGIC ***
+            // We use ScrollTrigger to drive the timeline based on scroll position
             const tl = gsap.timeline({ 
-                defaults: {ease: "power3.inOut"},
-                onUpdate: updateMeshLines,
-                onComplete: () => {
-                    document.body.classList.remove('noscroll');
-                    gsap.to("#scroll-btn", {opacity: 1, duration: 1});
+                scrollTrigger: {
+                    trigger: "#intro-trigger-wrapper",
+                    start: "top top",
+                    end: "+=4000", // Scroll distance (4000px) controls animation speed
+                    scrub: 1,      // Smooth scrubbing
+                    pin: true,     // Pin the section while animating
+                    onUpdate: updateMeshLines // Update lines on every scroll frame
                 }
             });
 
@@ -346,7 +407,7 @@
                 hand2:{ x: '45vw',  y: '20vh' },  
             };
 
-            // *** ANIMATION STEPS (SIMPLIFIED) ***
+            // *** ANIMATION STEPS ***
             
             // 1. ZOOM IN & TEXT FADE
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
@@ -375,10 +436,13 @@
               .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
               // Draw Lines
-              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
+              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5")
+              
+              // Final Step: Reveal Scroll Button
+              .to("#scroll-btn", {opacity: 1, duration: 1});
         });
 
-        // 2. SCROLL REVEAL
+        // 2. SCROLL REVEAL (Standard Sections)
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -396,6 +460,5 @@
         }
     </script>
 
-    
 </body>
 </html>

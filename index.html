@@ -20,7 +20,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        /* New Scroll Prompt Styles */
+        /* --- MAIN SITE OVERRIDES --- */
+        :root {
+            --primary-color: #FF5722;
+            --success-color: #10B981;
+            --danger-color: #EF4444;
+            --group-color: #3B82F6;
+            --bg-dark: #020617;
+            --bg-card: #0F172A;
+            --border-color: rgba(255,255,255,0.1);
+            --text-muted: #94a3b8;
+        }
+
+        /* --- PRELOADER STYLES --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background-color: #020617; /* Deep Blue Page Background */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-content {
+            text-align: center;
+            width: 300px;
+        }
+
+        .loader-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .loader-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: var(--primary-color);
+            animation: loadProgress 2s infinite;
+            transform-origin: left;
+        }
+
+        .loader-text {
+            font-family: 'Courier Prime', monospace;
+            color: var(--primary-color);
+            font-size: 0.7rem;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        @keyframes loadProgress {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(0.7); }
+            100% { transform: scaleX(1); }
+        }
+
+        /* Scroll Prompt Styles */
         #scroll-prompt {
             position: fixed;
             bottom: 30px;
@@ -48,6 +119,16 @@
     </style>
 </head>
 <body> 
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">VITALITY</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
+        </div>
+    </div>
 
     <div id="scroll-prompt">
         SCROLL TO BEGIN
@@ -303,24 +384,30 @@
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. INACTIVITY PROMPT LOGIC
-            let inactivityTimer;
+            // 1. LOADER LOGIC (Force 2s wait)
+            const loader = document.getElementById('loader');
+            
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    // Trigger scroll refresh after loader vanishes
+                    ScrollTrigger.refresh();
+                }, 500);
+            }, 2000); // 2 Seconds Force Wait
+
+            // 2. SCROLL PROMPT LOGIC
+            // Only reveal prompt AFTER loader is gone (2100ms)
             const prompt = document.getElementById('scroll-prompt');
+            setTimeout(() => {
+                prompt.style.opacity = '1';
+            }, 2100);
 
-            // Show prompt after 10 seconds of no scrolling
-            function startTimer() {
-                inactivityTimer = setTimeout(() => {
-                    prompt.style.opacity = '1';
-                }, 10000); // 10 seconds
-            }
-
-            // Hide prompt immediately on first scroll
+            // Hide prompt on scroll
             window.addEventListener('scroll', () => {
-                clearTimeout(inactivityTimer);
                 prompt.style.opacity = '0';
-            }, { once: true }); // Listener removes itself after running once
+            }, { once: true });
 
-            startTimer(); // Start the timer on load
 
             // ANCHORS (0.5 = Center)
             const anchors = {

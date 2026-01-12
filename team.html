@@ -48,7 +48,7 @@
             height: 100%;
             width: 100%;
             background: #FF5722;
-            animation: loadProgress 1s infinite; /* Faster animation for 1s load */
+            animation: loadProgress 1s infinite;
             transform-origin: left;
         }
         .loader-text {
@@ -110,7 +110,6 @@
             position: relative;
         }
 
-        /* The "Motif" on the card */
         .team-card::before {
             content: '';
             position: absolute;
@@ -246,7 +245,7 @@
         <div class="team-card reveal">
             <div class="member-img-wrapper">
                 <div class="node-id"><span class="status-dot"></span>NODE_01</div>
-                <img src="assets/img/team/radek.jpg" alt="Radek" class="member-img" onerror="this.src='https://via.placeholder.com/400x400/1e293b/ffffff?text=Radek'">
+                <img src="assets/img/team/radek.jpg" alt="Radek" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Radek'">
             </div>
             <div class="member-info">
                 <div class="member-role">LEAD ENGINEER & FOUNDER</div>
@@ -260,7 +259,7 @@
         <div class="team-card reveal">
             <div class="member-img-wrapper">
                 <div class="node-id"><span class="status-dot"></span>NODE_02</div>
-                <img src="assets/img/team/rishit.jpg" alt="Rishit" class="member-img" onerror="this.src='https://via.placeholder.com/400x400/1e293b/ffffff?text=Rishit'">
+                <img src="assets/img/team/rishit.jpg" alt="Rishit" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Rishit'">
             </div>
             <div class="member-info">
                 <div class="member-role">OPERATIONS & STRATEGY</div>
@@ -274,7 +273,7 @@
         <div class="team-card reveal">
             <div class="member-img-wrapper">
                 <div class="node-id"><span class="status-dot"></span>NODE_03</div>
-                <img src="assets/img/team/jack.jpg" alt="Jack" class="member-img" onerror="this.src='https://via.placeholder.com/400x400/1e293b/ffffff?text=Jack'">
+                <img src="assets/img/team/jack.jpg" alt="Jack" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Jack'">
             </div>
             <div class="member-info">
                 <div class="member-role">SOFTWARE & ENCRYPTION</div>
@@ -285,24 +284,48 @@
             </div>
         </div>
 
-        </section>
+    </section>
 
     <footer>
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
     <script>
-        // --- 1. LOADER LOGIC (1 Second) ---
-        window.addEventListener('load', () => {
+        // --- 1. ROBUST LOADER LOGIC ---
+        // Flag to ensure we don't run init logic twice
+        let appInitialized = false;
+
+        function startApp() {
+            if (appInitialized) return;
+            appInitialized = true;
+
             const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
+            
+            // Fade out loader
+            gsap.to(loader, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
                     loader.style.display = 'none';
-                    initCanvas(); // Start animation only after load
-                }, 500);
-            }, 1000); // 1 Second Wait
+                    initCanvas(); // Start background animation
+                }
+            });
+        }
+
+        // Try to load normally
+        window.addEventListener('load', () => {
+            // Wait 1 second for effect, then start
+            setTimeout(startApp, 1000);
         });
+
+        // SAFETY FALLBACK: If window.load hangs (e.g., missing image), force start after 3 seconds
+        setTimeout(() => {
+            if (!appInitialized) {
+                console.log("Forcing app start via safety timer.");
+                startApp();
+            }
+        }, 3000);
+
 
         // --- 2. MENU TOGGLE ---
         function toggleMenu() {
@@ -323,7 +346,7 @@
         }
         reveal();
 
-        // --- 4. CONSTELLATION MESH BACKGROUND (The "Motif") ---
+        // --- 4. CONSTELLATION MESH BACKGROUND ---
         const canvas = document.getElementById('team-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

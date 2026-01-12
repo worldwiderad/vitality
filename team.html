@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission Command | Vitality</title>
 
-    <meta property="og:title" content="Aegis Team">
-    <meta property="og:description" content="The engineers and strategists behind the Aegis platform.">
-    <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
-
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* --- LOADER CSS --- */
+        /* --- LOADER --- */
         #loader {
             position: fixed;
             inset: 0;
@@ -30,196 +26,133 @@
             transition: opacity 0.5s ease-out;
         }
         .loader-content { text-align: center; width: 300px; }
-        .loader-logo {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        .loader-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
+        .loader-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; color: white; margin-bottom: 20px; letter-spacing: 2px; }
+        .loader-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
+        .loader-progress { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: #FF5722; animation: loadProgress 1s infinite; }
+        .loader-text { font-family: 'Courier Prime', monospace; color: #FF5722; font-size: 0.7rem; margin-top: 10px; opacity: 0.7; }
+        @keyframes loadProgress { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
+
+        /* --- MAP STAGE --- */
+        body { background-color: #020617; overflow-x: hidden; }
+
+        .map-stage {
             position: relative;
+            width: 100%;
+            height: 120vh; /* Tall enough to fit the mesh */
+            background-color: #020617;
             overflow: hidden;
         }
-        .loader-progress {
+
+        .map-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: #FF5722;
-            animation: loadProgress 1s infinite;
-            transform-origin: left;
-        }
-        .loader-text {
-            font-family: 'Courier Prime', monospace;
-            color: #FF5722;
-            font-size: 0.7rem;
-            margin-top: 10px;
-            opacity: 0.7;
-        }
-        @keyframes loadProgress {
-            0% { transform: scaleX(0); }
-            50% { transform: scaleX(0.7); }
-            100% { transform: scaleX(1); }
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(100%) contrast(1.2);
+            z-index: 0;
         }
 
-        /* --- PAGE SPECIFIC STYLES --- */
-        body {
-            background-color: #020617;
-            overflow-x: hidden;
-        }
-
-        /* The Mesh Background Canvas */
-        #team-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Behind everything */
-            opacity: 0.3; /* Subtle so text is readable */
+        /* SVG LINES LAYER */
+        #connections-svg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
             pointer-events: none;
         }
-
-        /* --- NEW CIRCULAR TEAM LAYOUT --- */
-        .team-section {
-            padding-bottom: 60px;
-            position: relative;
-            z-index: 2; /* Sit above canvas */
+        
+        .mesh-line {
+            stroke: #FF5722;
+            stroke-width: 2;
+            opacity: 0.4;
+            stroke-dasharray: 5,5; /* Dashed line for tech feel */
         }
 
-        .leaders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+        /* --- MEMBER PINS (Desktop Layout) --- */
+        .member-pin {
+            position: absolute;
+            z-index: 10;
+            width: 280px;
+            /* Positions defined in inline styles or JS */
         }
 
-        .leader-profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .pin-content {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
             text-align: center;
-            /* Glass effect for individual profiles if needed, currently transparent */
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .leader-avatar {
-            width: 200px;
-            height: 200px;
+        .pin-content:hover {
+            border-color: #FF5722;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.2);
+        }
+
+        .pin-avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 0 25px rgba(255, 87, 34, 0.15);
-            margin-bottom: 25px;
-            background-color: #0f172a;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .leader-profile:hover .leader-avatar {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 87, 34, 0.4);
-        }
-
-        .leader-name {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .leader-role {
-            font-family: 'Courier Prime', monospace;
-            color: var(--primary-color);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .leader-bio {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            max-width: 280px;
-        }
-
-        /* --- GROUP PHOTO SECTION --- */
-        .group-photo-wrapper {
+            border: 2px solid #FF5722;
+            margin: -60px auto 15px auto; /* Pull out of box */
+            background: #020617;
             position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 80px;
             z-index: 2;
         }
 
-        .group-img {
+        .pin-role { font-family: 'Courier Prime', monospace; color: #FF5722; font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .pin-name { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 10px; }
+        .pin-bio { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; }
+
+        /* HERO TEXT OVERLAY */
+        .team-header-overlay {
+            position: absolute;
+            top: 100px;
             width: 100%;
-            height: auto;
-            display: block;
-            filter: brightness(0.9);
-            transition: filter 0.3s;
+            text-align: center;
+            z-index: 20;
+            pointer-events: none; /* Let clicks pass through to pins */
         }
 
-        .group-photo-wrapper:hover .group-img {
-            filter: brightness(1);
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .map-stage { height: auto; padding-bottom: 80px; }
+            .map-bg { position: fixed; opacity: 0.2; }
+            #connections-svg { display: none; } /* Hide lines on mobile */
+            
+            .team-header-overlay { position: relative; top: 0; padding: 120px 20px 40px; }
+            
+            .member-pin {
+                position: relative;
+                width: 100%;
+                max-width: 350px;
+                margin: 60px auto 20px; /* Space for avatar overlap */
+                left: auto !important; top: auto !important; /* Reset absolute positions */
+            }
         }
 
-        /* --- MENTORSHIP & ADVISORY LAYOUT --- */
-        .advisory-container {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
+        /* --- MENTORSHIP SECTION --- */
+        .mentorship-section {
+            position: relative;
+            background: #0f172a;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 80px 20px;
+            z-index: 5;
         }
-
-        .advisory-bubble {
-            background: rgba(15, 23, 42, 0.8); /* Glass effect */
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 12px;
-            flex: 1;
-        }
-
-        .advisor-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            flex-shrink: 0;
-        }
-
-        .advisor-mini {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-color);
-            background-color: #020617;
-        }
-
+        
+        .advisory-container { display: flex; align-items: center; gap: 30px; max-width: 900px; margin: 0 auto; }
+        .advisory-bubble { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 12px; flex: 1; }
+        .advisor-stack { display: flex; flex-direction: column; gap: 15px; flex-shrink: 0; }
+        .advisor-mini { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #FF5722; background-color: #020617; }
+        
         @media (max-width: 768px) {
-            .advisory-container {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .advisor-stack {
-                flex-direction: row;
-                justify-content: center;
-            }
+            .advisory-container { flex-direction: column-reverse; text-align: center; }
+            .advisor-stack { flex-direction: row; justify-content: center; }
         }
-
     </style>
 </head>
 <body>
@@ -227,21 +160,15 @@
     <div id="loader">
         <div class="loader-content">
             <div class="loader-logo">VITALITY</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <div class="loader-text">ESTABLISHING UPLINK...</div>
         </div>
     </div>
-
-    <canvas id="team-canvas"></canvas>
 
     <nav>
         <div class="logo">VITALITY</div>
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -253,92 +180,84 @@
         </ul>
     </nav>
 
-    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: transparent; position: relative; z-index: 2;">
-        <div class="container" style="text-align: center;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// LEADERSHIP</p>
-            <h1 style="font-size: 3.5rem;">Mission Command</h1>
-            <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
-                A multidisciplinary unit of Grade 10 engineers and strategists using technology to build resilient communities.
-            </p>
+    <div class="map-stage" id="team-stage">
+        
+        <img src="assets/img/hero-map-dark-anim.jpg" alt="Map Background" class="map-bg">
+        
+        <svg id="connections-svg"></svg>
+
+        <div class="team-header-overlay">
+            <p style="color: #FF5722; font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// MISSION COMMAND</p>
+            <h1 style="font-size: 3.5rem; color: white;">The Human Mesh.</h1>
         </div>
-    </header>
 
-    <section class="reveal team-section">
+        <div class="member-pin" id="pin-radek" style="top: 35%; left: 20%;">
+            <div class="pin-content">
+                <img src="assets/img/team/radek.jpg" alt="Radek" class="pin-avatar" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=RG'">
+                <div class="pin-role">LEAD ENGINEER & FOUNDER</div>
+                <div class="pin-name">Radek Green</div>
+                <div class="pin-bio">Systems architecture and hardware prototyping. Designed the Aegis V4 circuitry and C++ routing protocols.</div>
+            </div>
+        </div>
+
+        <div class="member-pin" id="pin-rishit" style="top: 30%; left: 60%;">
+            <div class="pin-content">
+                <img src="assets/img/team/rishit.jpg" alt="Rishit" class="pin-avatar" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=RJ'">
+                <div class="pin-role">OPERATIONS & STRATEGY</div>
+                <div class="pin-name">Rishit</div>
+                <div class="pin-bio">Deployment logistics and partnerships. Ensures Aegis creates viable business value for governments.</div>
+            </div>
+        </div>
+
+        <div class="member-pin" id="pin-jack" style="top: 65%; left: 40%;">
+            <div class="pin-content">
+                <img src="assets/img/team/jack.jpg" alt="Jack" class="pin-avatar" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=JC'">
+                <div class="pin-role">SOFTWARE & FINANCIALS</div>
+                <div class="pin-name">Jack Cherry</div>
+                <div class="pin-bio">Vitality App developer and market strategist. Navigates complex NGO procurement landscapes.</div>
+            </div>
+        </div>
+
+        <div class="member-pin" id="pin-shriya" style="top: 60%; left: 75%;">
+            <div class="pin-content">
+                <img src="assets/img/team/shriya.jpg" alt="Shriya" class="pin-avatar" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=SS'">
+                <div class="pin-role">BRAND STRATEGY</div>
+                <div class="pin-name">Shriya Sharma</div>
+                <div class="pin-bio">Visual assets and product demonstrations. Articulates the Aegis ecosystem to stakeholders.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="mentorship-section reveal">
         <div class="container">
+            <h2 style="text-align: center; margin-bottom: 60px; color: white;">Guidance & Mentorship</h2>
 
-            <div class="leaders-grid">
-
-                <div class="leader-profile">
-                    <img src="assets/img/radek.jpg" alt="Radek Green" class="leader-avatar" style="object-position: center 5%;">
-                    <h3 class="leader-name">Radek Green</h3>
-                    <p class="leader-role">Core Concept & Strategy Lead</p>
-                    <p class="leader-bio">
-                        Leads the core concept and strategy, utilizing systems design to expedite development and ensure compliance. Leverages world-champion debate skills to secure deals.
-                    </p>
-                </div>
-
-                <div class="leader-profile">
-                    <img src="assets/img/divyam.jpg" alt="Divyam Joshi" class="leader-avatar" style="object-position: center 20%;">
-                    <h3 class="leader-name">Divyam Joshi</h3>
-                    <p class="leader-role">Lead Developer & Architect</p>
-                    <p class="leader-bio">
-                        Brings expertise in development, Raspberry Pi, and coding to ensure the software seamlessly integrates with our hardware ecosystem.
-                    </p>
-                </div>
-
-                <div class="leader-profile">
-                    <img src="assets/img/jack.jpg" alt="Jack Cherry" class="leader-avatar">
-                    <h3 class="leader-name">Jack Cherry</h3>
-                    <p class="leader-role">Market Strategy & Financials</p>
-                    <p class="leader-bio">
-                        Manages market strategy and financials. Leverages Economics experience to navigate complex government and NGO procurement landscapes.
-                    </p>
-                </div>
-
-                <div class="leader-profile">
-                    <img src="assets/img/shriya.jpg" alt="Shriya Sharma" class="leader-avatar">
-                    <h3 class="leader-name">Shriya Sharma</h3>
-                    <p class="leader-role">Brand Strategy & Media</p>
-                    <p class="leader-bio">
-                        Manages the creation of product demonstrations and visual assets to articulate the Aegis ecosystem to stakeholders.
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="group-photo-wrapper reveal">
-                <img src="assets/img/team.jpg" alt="Vitality Team at Work" class="group-img">
-            </div>
-
-            <div class="reveal" style="padding-top: 40px; border-top: 1px solid var(--border-color); position: relative; z-index: 2;">
-                <div class="container">
-                    <h2 style="text-align: center; margin-bottom: 60px;">Guidance & Mentorship</h2>
-
-                    <div class="leader-profile" style="margin-bottom: 80px;">
-                        <img src="assets/img/john.jpg" alt="John Green" class="leader-avatar">
-                        <h3 class="leader-name">John Green</h3>
-                        <p class="leader-role">Project Supervisor & Entrepreneur</p>
-                        <p class="leader-bio">
-                            Seasoned entrepreneur in tech. Founder of <strong>CareGuide.com</strong> and <strong>CeruleanJobs.com</strong>. John provides high-level strategic oversight and business mentorship.
-                        </p>
-                    </div>
-
-                    <div class="advisory-container">
-                        <div class="advisory-bubble">
-                            <h4 style="color: white; margin-bottom: 10px;">Advisory Support</h4>
-                            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">
-                                Vitality is guided by <strong>Dr. Piyanka Dilawari</strong> (Mentorship & Scientific Guidance) and <strong>Mr. Cooperman</strong> (CAD & Product Design Guidance), ensuring our engineering meets the highest standards of feasibility and rigor.
-                            </p>
-                        </div>
-                        <div class="advisor-stack">
-                            <img src="assets/img/dilawari.jpg" alt="Dr. Piyanka Dilawari" class="advisor-mini" title="Dr. Piyanka Dilawari">
-                            <img src="assets/img/cooperman.jpg" alt="Mr. Cooperman" class="advisor-mini" title="Mr. Cooperman">
+            <div style="display: flex; justify-content: center; margin-bottom: 80px;">
+                <div class="member-pin" style="position: relative; top: auto; left: auto; max-width: 350px;">
+                    <div class="pin-content">
+                        <img src="assets/img/team/john.jpg" alt="John Green" class="pin-avatar" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=JG'">
+                        <div class="pin-role">PROJECT SUPERVISOR</div>
+                        <div class="pin-name">John Green</div>
+                        <div class="pin-bio">
+                            Tech entrepreneur (CareGuide, CeruleanJobs). Provides high-level strategic oversight and business mentorship.
                         </div>
                     </div>
-
                 </div>
             </div>
 
+            <div class="advisory-container">
+                <div class="advisory-bubble">
+                    <h4 style="color: white; margin-bottom: 10px;">Advisory Board</h4>
+                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">
+                        Vitality is guided by <strong>Dr. Piyanka Dilawari</strong> (Scientific Guidance) and <strong>Mr. Cooperman</strong> (Product Design), ensuring our engineering meets the highest standards of academic and industrial rigor.
+                    </p>
+                </div>
+                <div class="advisor-stack">
+                    <img src="assets/img/team/dilawari.jpg" alt="Dr. Piyanka Dilawari" class="advisor-mini" title="Dr. Piyanka Dilawari" onerror="this.src='https://placehold.co/80x80/1e293b/ffffff?text=PD'">
+                    <img src="assets/img/team/cooperman.jpg" alt="Mr. Cooperman" class="advisor-mini" title="Mr. Cooperman" onerror="this.src='https://placehold.co/80x80/1e293b/ffffff?text=MC'">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -347,108 +266,86 @@
     </footer>
 
     <script>
-        // --- 1. LOADER LOGIC (1 Second) ---
+        // --- 1. LOADER LOGIC ---
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
+            
+            // Force 1s wait, then clear
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
-                    initCanvas(); // Start animation only after load
+                    // Trigger line drawing after load
+                    if(window.innerWidth > 900) drawConnections(); 
                 }, 500);
-            }, 1000); // 1 Second Wait
+            }, 1000);
         });
 
-        // --- 2. MENU TOGGLE ---
-        function toggleMenu() {
-            document.getElementById("nav-links").classList.toggle("active");
-        }
+        // --- 2. MENU ---
+        function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
 
         // --- 3. SCROLL REVEAL ---
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        });
 
-        // --- 4. CONSTELLATION MESH BACKGROUND ---
-        const canvas = document.getElementById('team-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        // --- 4. DRAW CONNECTING LINES (Desktop Only) ---
+        function drawConnections() {
+            const svg = document.getElementById('connections-svg');
+            const pins = ['pin-radek', 'pin-rishit', 'pin-jack', 'pin-shriya'];
+            const stage = document.getElementById('team-stage').getBoundingClientRect();
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5; // Slow movement
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                // Bounce off edges
-                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 87, 34, 0.5)'; // Primary Orange
-                ctx.fill();
-            }
-        }
+            // Clear previous lines
+            while (svg.firstChild) { svg.removeChild(svg.firstChild); }
 
-        function initCanvas() {
-            // Create particles based on screen size
-            const particleCount = Math.floor(window.innerWidth / 15); // Density
-            for(let i=0; i<particleCount; i++){
-                particles.push(new Particle());
-            }
-            animateCanvas();
-        }
+            // Define connections (Who connects to whom)
+            const pairs = [
+                ['pin-radek', 'pin-rishit'],
+                ['pin-radek', 'pin-jack'],
+                ['pin-rishit', 'pin-shriya'],
+                ['pin-jack', 'pin-shriya'],
+                ['pin-rishit', 'pin-jack'] // Cross connection
+            ];
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Update and draw particles
-            particles.forEach((p, index) => {
-                p.update();
-                p.draw();
-                
-                // Draw lines between close particles
-                for(let j = index; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const distance = Math.sqrt(dx*dx + dy*dy);
+            pairs.forEach(pair => {
+                const el1 = document.getElementById(pair[0]);
+                const el2 = document.getElementById(pair[1]);
+
+                if(el1 && el2) {
+                    const r1 = el1.getBoundingClientRect();
+                    const r2 = el2.getBoundingClientRect();
+
+                    // Calculate center points relative to the map stage
+                    const x1 = (r1.left + r1.width/2);
+                    const y1 = (r1.top + r1.height/2 + window.scrollY); // Add scrollY if absolute
+                    const x2 = (r2.left + r2.width/2);
+                    const y2 = (r2.top + r2.height/2 + window.scrollY);
+
+                    // Since SVG is absolute 100% of stage, we need relative % or pixels inside stage
+                    // Actually, simpler: calculate center offset from stage top/left
+                    const stageX = stage.left + window.scrollX;
+                    const stageY = stage.top + window.scrollY;
+
+                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                    line.setAttribute("x1", (r1.left - stage.left) + r1.width/2);
+                    line.setAttribute("y1", (r1.top - stage.top) + r1.height/2 - 40); // -40 adjustment for avatar center vs card center
+                    line.setAttribute("x2", (r2.left - stage.left) + r2.width/2);
+                    line.setAttribute("y2", (r2.top - stage.top) + r2.height/2 - 40);
+                    line.setAttribute("class", "mesh-line");
                     
-                    if(distance < 150) { // Connection threshold
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 87, 34, ${1 - distance/150})`; // Fade out line
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
+                    svg.appendChild(line);
                 }
             });
-            requestAnimationFrame(animateCanvas);
         }
+
+        // Redraw on resize to keep lines connected
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 900) drawConnections();
+        });
+        
     </script>
 </body>
 </html>

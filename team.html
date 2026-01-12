@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team | Vitality</title>
-    
+    <title>Mission Command | Vitality</title>
+
+    <meta property="og:title" content="Aegis Team">
+    <meta property="og:description" content="The engineers and strategists behind the Aegis platform.">
+    <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
+
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -78,127 +82,142 @@
             width: 100%;
             height: 100%;
             z-index: 0; /* Behind everything */
-            opacity: 0.4; /* Subtle */
+            opacity: 0.3; /* Subtle so text is readable */
             pointer-events: none;
         }
 
-        .team-hero {
-            padding: 150px 20px 80px;
-            text-align: center;
+        /* --- NEW CIRCULAR TEAM LAYOUT --- */
+        .team-section {
+            padding-bottom: 60px;
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Sit above canvas */
         }
 
-        .team-grid {
+        .leaders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 100px;
+            margin-bottom: 80px;
+        }
+
+        .leader-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            /* Glass effect for individual profiles if needed, currently transparent */
+        }
+
+        .leader-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.15);
+            margin-bottom: 25px;
+            background-color: #0f172a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .leader-profile:hover .leader-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 87, 34, 0.4);
+        }
+
+        .leader-name {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .leader-role {
+            font-family: 'Courier Prime', monospace;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-bio {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        /* --- GROUP PHOTO SECTION --- */
+        .group-photo-wrapper {
             position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 80px;
             z-index: 2;
         }
 
-        .team-card {
-            background: rgba(15, 23, 42, 0.6); /* Semi-transparent for mesh visibility */
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #FF5722;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            border-color: #FF5722;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .team-card:hover::before {
-            opacity: 1;
-        }
-
-        .member-img-wrapper {
+        .group-img {
             width: 100%;
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .member-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
+            height: auto;
+            display: block;
+            filter: brightness(0.9);
             transition: filter 0.3s;
         }
 
-        .team-card:hover .member-img {
-            filter: grayscale(0%);
+        .group-photo-wrapper:hover .group-img {
+            filter: brightness(1);
         }
 
-        .member-info {
-            padding: 25px;
+        /* --- MENTORSHIP & ADVISORY LAYOUT --- */
+        .advisory-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .member-role {
-            font-family: 'Courier Prime', monospace;
-            color: #FF5722;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
+        .advisory-bubble {
+            background: rgba(15, 23, 42, 0.8); /* Glass effect */
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 12px;
+            flex: 1;
         }
 
-        .member-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 15px;
+        .advisor-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;
         }
 
-        .member-bio {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        /* "Node ID" visual decoration */
-        .node-id {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.7rem;
-            color: white;
-            background: rgba(0,0,0,0.7);
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px solid #334155;
-        }
-        
-        .status-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #10B981;
+        .advisor-mini {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin-right: 5px;
-            box-shadow: 0 0 5px #10B981;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            background-color: #020617;
+        }
+
+        @media (max-width: 768px) {
+            .advisory-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .advisor-stack {
+                flex-direction: row;
+                justify-content: center;
+            }
         }
 
     </style>
@@ -211,7 +230,7 @@
             <div class="loader-bar">
                 <div class="loader-progress"></div>
             </div>
-            <div class="loader-text">ESTABLISHING UPLINK...</div>
+            <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
         </div>
     </div>
 
@@ -220,70 +239,107 @@
     <nav>
         <div class="logo">VITALITY</div>
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="product.html">Products</a></li>
             <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html" class="active">Team</a></li> 
+            <li><a href="team.html" class="active">Team</a></li>
             <li><a href="mission.html">Our Mission</a></li>
             <li><a href="contact.html" class="btn-nav">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="team-hero">
-        <p style="color: #FF5722; font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// THE ARCHITECTS</p>
-        <h1 style="font-size: 3.5rem; color: white; margin-bottom: 20px;">Human Infrastructure.</h1>
-        <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">
-            Vitality Communications is a student-led initiative. We combine engineering, physics, and design to build resilience for the real world.
-        </p>
+    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: transparent; position: relative; z-index: 2;">
+        <div class="container" style="text-align: center;">
+            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// LEADERSHIP</p>
+            <h1 style="font-size: 3.5rem;">Mission Command</h1>
+            <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
+                A multidisciplinary unit of Grade 10 engineers and strategists using technology to build resilient communities.
+            </p>
+        </div>
     </header>
 
-    <section class="team-grid">
-        
-        <div class="team-card reveal">
-            <div class="member-img-wrapper">
-                <div class="node-id"><span class="status-dot"></span>NODE_01</div>
-                <img src="assets/img/team/radek.jpg" alt="Radek" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Radek'">
+    <section class="reveal team-section">
+        <div class="container">
+
+            <div class="leaders-grid">
+
+                <div class="leader-profile">
+                    <img src="assets/img/radek.jpg" alt="Radek Green" class="leader-avatar" style="object-position: center 5%;">
+                    <h3 class="leader-name">Radek Green</h3>
+                    <p class="leader-role">Core Concept & Strategy Lead</p>
+                    <p class="leader-bio">
+                        Leads the core concept and strategy, utilizing systems design to expedite development and ensure compliance. Leverages world-champion debate skills to secure deals.
+                    </p>
+                </div>
+
+                <div class="leader-profile">
+                    <img src="assets/img/divyam.jpg" alt="Divyam Joshi" class="leader-avatar" style="object-position: center 20%;">
+                    <h3 class="leader-name">Divyam Joshi</h3>
+                    <p class="leader-role">Lead Developer & Architect</p>
+                    <p class="leader-bio">
+                        Brings expertise in development, Raspberry Pi, and coding to ensure the software seamlessly integrates with our hardware ecosystem.
+                    </p>
+                </div>
+
+                <div class="leader-profile">
+                    <img src="assets/img/jack.jpg" alt="Jack Cherry" class="leader-avatar">
+                    <h3 class="leader-name">Jack Cherry</h3>
+                    <p class="leader-role">Market Strategy & Financials</p>
+                    <p class="leader-bio">
+                        Manages market strategy and financials. Leverages Economics experience to navigate complex government and NGO procurement landscapes.
+                    </p>
+                </div>
+
+                <div class="leader-profile">
+                    <img src="assets/img/shriya.jpg" alt="Shriya Sharma" class="leader-avatar">
+                    <h3 class="leader-name">Shriya Sharma</h3>
+                    <p class="leader-role">Brand Strategy & Media</p>
+                    <p class="leader-bio">
+                        Manages the creation of product demonstrations and visual assets to articulate the Aegis ecosystem to stakeholders.
+                    </p>
+                </div>
+
             </div>
-            <div class="member-info">
-                <div class="member-role">LEAD ENGINEER & FOUNDER</div>
-                <div class="member-name">Radek</div>
-                <div class="member-bio">
-                    Specializing in hardware prototyping and mesh topology. Radek designed the Aegis V4 circuitry and wrote the core routing protocols in C++.
+
+            <div class="group-photo-wrapper reveal">
+                <img src="assets/img/team.jpg" alt="Vitality Team at Work" class="group-img">
+            </div>
+
+            <div class="reveal" style="padding-top: 40px; border-top: 1px solid var(--border-color); position: relative; z-index: 2;">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 60px;">Guidance & Mentorship</h2>
+
+                    <div class="leader-profile" style="margin-bottom: 80px;">
+                        <img src="assets/img/john.jpg" alt="John Green" class="leader-avatar">
+                        <h3 class="leader-name">John Green</h3>
+                        <p class="leader-role">Project Supervisor & Entrepreneur</p>
+                        <p class="leader-bio">
+                            Seasoned entrepreneur in tech. Founder of <strong>CareGuide.com</strong> and <strong>CeruleanJobs.com</strong>. John provides high-level strategic oversight and business mentorship.
+                        </p>
+                    </div>
+
+                    <div class="advisory-container">
+                        <div class="advisory-bubble">
+                            <h4 style="color: white; margin-bottom: 10px;">Advisory Support</h4>
+                            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">
+                                Vitality is guided by <strong>Dr. Piyanka Dilawari</strong> (Mentorship & Scientific Guidance) and <strong>Mr. Cooperman</strong> (CAD & Product Design Guidance), ensuring our engineering meets the highest standards of feasibility and rigor.
+                            </p>
+                        </div>
+                        <div class="advisor-stack">
+                            <img src="assets/img/dilawari.jpg" alt="Dr. Piyanka Dilawari" class="advisor-mini" title="Dr. Piyanka Dilawari">
+                            <img src="assets/img/cooperman.jpg" alt="Mr. Cooperman" class="advisor-mini" title="Mr. Cooperman">
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
 
-        <div class="team-card reveal">
-            <div class="member-img-wrapper">
-                <div class="node-id"><span class="status-dot"></span>NODE_02</div>
-                <img src="assets/img/team/rishit.jpg" alt="Rishit" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Rishit'">
-            </div>
-            <div class="member-info">
-                <div class="member-role">OPERATIONS & STRATEGY</div>
-                <div class="member-name">Rishit</div>
-                <div class="member-bio">
-                    Focuses on deployment logistics and partnership integration. Rishit ensures Aegis creates viable business value for NGOs and governments.
-                </div>
-            </div>
         </div>
-
-        <div class="team-card reveal">
-            <div class="member-img-wrapper">
-                <div class="node-id"><span class="status-dot"></span>NODE_03</div>
-                <img src="assets/img/team/jack.jpg" alt="Jack" class="member-img" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Jack'">
-            </div>
-            <div class="member-info">
-                <div class="member-role">SOFTWARE & ENCRYPTION</div>
-                <div class="member-name">Jack</div>
-                <div class="member-bio">
-                    Lead developer on the Vitality App and AES-256 implementation. Jack bridges the gap between complex hardware and user-friendly software.
-                </div>
-            </div>
-        </div>
-
     </section>
 
     <footer>
@@ -291,41 +347,17 @@
     </footer>
 
     <script>
-        // --- 1. ROBUST LOADER LOGIC ---
-        // Flag to ensure we don't run init logic twice
-        let appInitialized = false;
-
-        function startApp() {
-            if (appInitialized) return;
-            appInitialized = true;
-
-            const loader = document.getElementById('loader');
-            
-            // Fade out loader
-            gsap.to(loader, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                    loader.style.display = 'none';
-                    initCanvas(); // Start background animation
-                }
-            });
-        }
-
-        // Try to load normally
+        // --- 1. LOADER LOGIC (1 Second) ---
         window.addEventListener('load', () => {
-            // Wait 1 second for effect, then start
-            setTimeout(startApp, 1000);
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    initCanvas(); // Start animation only after load
+                }, 500);
+            }, 1000); // 1 Second Wait
         });
-
-        // SAFETY FALLBACK: If window.load hangs (e.g., missing image), force start after 3 seconds
-        setTimeout(() => {
-            if (!appInitialized) {
-                console.log("Forcing app start via safety timer.");
-                startApp();
-            }
-        }, 3000);
-
 
         // --- 2. MENU TOGGLE ---
         function toggleMenu() {

@@ -18,7 +18,6 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <style>
         /* --- MAIN SITE OVERRIDES --- */
@@ -33,107 +32,89 @@
             --text-muted: #94a3b8;
         }
 
-        /* --- PRELOADER --- */
+        /* --- PRELOADER STYLES --- */
         #loader {
-            position: fixed; inset: 0; background-color: #020617; z-index: 9999;
-            display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out;
+            position: fixed;
+            inset: 0;
+            background-color: #020617; /* Deep Blue Page Background */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
         }
-        .loader-content { text-align: center; width: 300px; }
-        .loader-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; color: white; margin-bottom: 20px; letter-spacing: 2px; }
-        .loader-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
-        .loader-progress { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: var(--primary-color); animation: loadProgress 1s infinite; transform-origin: left; }
-        .loader-text { font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 0.7rem; margin-top: 10px; opacity: 0.7; }
-        @keyframes loadProgress { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
 
-        /* --- SCROLL PROMPT --- */
+        .loader-content {
+            text-align: center;
+            width: 300px;
+        }
+
+        .loader-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .loader-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: var(--primary-color);
+            animation: loadProgress 2s infinite;
+            transform-origin: left;
+        }
+
+        .loader-text {
+            font-family: 'Courier Prime', monospace;
+            color: var(--primary-color);
+            font-size: 0.7rem;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        @keyframes loadProgress {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(0.7); }
+            100% { transform: scaleX(1); }
+        }
+
+        /* Scroll Prompt Styles */
         #scroll-prompt {
             position: fixed;
-            bottom: 30px; 
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             color: var(--primary-color);
             font-family: 'Courier Prime', monospace;
             font-size: 0.9rem;
-            opacity: 0; 
+            opacity: 0; /* Hidden by default */
             pointer-events: none;
             z-index: 1000;
             text-align: center;
             transition: opacity 0.5s ease;
         }
-        #scroll-prompt span { display: block; font-size: 1.5rem; margin-top: 5px; }
-
-        /* --- TESTING SECTION STYLES --- */
-        .testing-stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-            position: relative;
-            z-index: 2; /* Sit above the wave */
+        #scroll-prompt span {
+            display: block;
+            font-size: 1.5rem;
+            animation: bounce 1.5s infinite;
         }
-
-        .test-stat {
-            background: rgba(15, 23, 42, 0.7); 
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .test-stat:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-
-        .test-stat h3 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            line-height: 1;
-        }
-        .test-stat p { color: var(--text-muted); font-size: 0.9rem; }
-        .test-stat-label {
-            font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: white; opacity: 0.8; margin-bottom: 10px; display: block; letter-spacing: 1px;
-        }
-
-        /* WAVE SVG CONTAINER */
-        .wave-container {
-            position: absolute;
-            top: 50%; left: 0;
-            width: 100%; height: 400px;
-            transform: translateY(-50%);
-            z-index: 0; /* Behind cards */
-            pointer-events: none;
-            overflow: hidden;
-            opacity: 0.4;
-        }
-        .wave-path {
-            fill: none;
-            stroke: var(--primary-color);
-            stroke-width: 2;
-            vector-effect: non-scaling-stroke;
-        }
-
-        /* LARGE CTA */
-        .cta-wrapper { text-align: center; margin-top: 60px; position: relative; z-index: 2; }
-        .cta-large {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 20px 50px;
-            font-size: 1.1rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .cta-large:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.4);
-            background: #ff7043;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
         }
     </style>
 </head>
@@ -142,7 +123,9 @@
     <div id="loader">
         <div class="loader-content">
             <div class="loader-logo">VITALITY</div>
-            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
             <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
         </div>
     </div>
@@ -155,7 +138,9 @@
     <nav>
         <div class="logo">VITALITY</div>
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <ul id="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
@@ -170,29 +155,60 @@
     <div id="intro-trigger-wrapper">
         <header class="aegis-intro">
             
-            <div id="hero-text-container" style="padding-bottom: 80px;">
+            <div id="hero-text-container">
                 <h1 id="text-line-1">THE GRID IS</h1>
                 <h2 id="text-line-2">FRAGILE.</h2>
                 <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
+            </div>
+
+            <div id="scroll-btn" class="scroll-indicator" style="opacity: 0;">
+                <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
             </div>
 
             <div id="hero-stage">
                 <div class="bg-map-container">
                     <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
                 </div>
+
                 <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
 
-                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Node"></div>
-                <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
-                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
-                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
-                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                <div id="hero-node-wrapper" class="device">
+                    <img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node">
+                </div>
+                
+                <div id="hub-wrapper" class="device secondary-device">
+                    <img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub">
+                </div>
+                
+                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper">
+                    <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+                </div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper">
+                    <img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node">
+                </div>
+
+                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper">
+                    <img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater">
+                </div>
+
+                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper">
+                    <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+                </div>
+                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper">
+                    <img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld">
+                </div>
             </div>
         </header>
     </div>
@@ -202,15 +218,20 @@
     <header class="hero-home">
         <div class="container">
             <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
+            
             <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
                 <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
             </p>
+            
             <div class="hero-btns" style="margin-top: 40px;">
                 <a href="product.html" class="btn">See The Hardware</a>
                 <a href="mission.html" class="btn btn-outline">The Mission</a>
             </div>
         </div>
-        <div class="hero-label">&bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS</div>
+
+        <div class="hero-label">
+            &bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS
+        </div>
     </header>
 
     <section id="problem" class="reveal">
@@ -219,26 +240,29 @@
             <p class="lead" style="color: #94a3b8; max-width: 800px;">
                 Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
             </p>
+
             <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
                 "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
                 <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
             </blockquote>
+            
             <div class="grid-2" style="margin-top: 50px;">
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
                     <h3>Civilian Fragility</h3>
                     <p>Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
                 </div>
+                
                 <div class="card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
                     <h3>Strategic Vulnerability</h3>
-                    <p>Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid.</p>
+                    <p>Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid. Tactical units require a terrestrial layer that works without external dependencies.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #1E293B; padding-bottom: 60px;">
+    <section class="reveal" style="background-color: #1E293B;">
         <div class="container">
             <div class="grid-2" style="align-items: flex-start; gap: 50px;">
                 <div>
@@ -246,57 +270,42 @@
                     <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
                         Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
                     </p>
+                    
                     <ul style="list-style: none; padding: 0; color: white;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation and AES-256 security.
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--primary-color);">✓</span> 
+                            <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.
+                        </li>
                     </ul>
+                    <br>
+                    <a href="tech.html" class="btn btn-outline">See Engineering Specs &rarr;</a>
                 </div>
+
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
                         <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="reveal" style="background-color: #0F172A; padding-top: 80px; padding-bottom: 100px; position: relative; overflow: hidden;">
-        
-        <div class="wave-container">
-            <svg id="wave-svg" width="100%" height="100%" viewBox="0 0 1200 300" preserveAspectRatio="none">
-                <path id="wave-path" class="wave-path" d="" />
-            </svg>
-        </div>
-
-        <div class="container" style="position: relative; z-index: 2;">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// V4 FIELD DATA</p>
-                <h2 style="color: white; margin-bottom: 20px;">Proven in the Field.</h2>
-                <p style="color: #94a3b8;">Our hardware isn't just theoretical. We've pushed the Aegis V4 nodes to their absolute limits in dense urban and forest environments.</p>
-            </div>
-
-            <div class="testing-stat-grid">
-                <div class="test-stat">
-                    <span class="test-stat-label">MAX RANGE (LOS)</span>
-                    <h3 id="stat-range">0</h3>
-                    <p>Kilometers achieved in line-of-sight testing.</p>
+                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                        <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">
+                            $150
+                        </div>
+                        <p style="color: white; margin-top: 10px;">Per Public Node</p>
+                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
+                    </div>
                 </div>
-                <div class="test-stat">
-                    <span class="test-stat-label">BATTERY LIFE</span>
-                    <h3 id="stat-battery">0</h3>
-                    <p>Months of standby power without solar input.</p>
-                </div>
-                <div class="test-stat">
-                    <span class="test-stat-label">LATENCY</span>
-                    <h3 id="stat-latency">0</h3>
-                    <p>Milliseconds average hop time between nodes.</p>
-                </div>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="tech.html" class="cta-large">Explore Tech & Research Data &rarr;</a>
             </div>
         </div>
     </section>
@@ -304,37 +313,53 @@
     <section id="impact" class="reveal" style="background-color: #0F172A; color: white;">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 40px;">Deployment Scenarios</h2>
+            
             <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Strategic Operations</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised.</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised or intercepted.</p>
                 </div>
+
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
                 </div>
+
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
                 </div>
+
                 <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
                     <h4 style="color: white; margin-bottom: 10px;">NGO / Aid</h4>
                     <p style="font-size: 0.9rem; color: #94a3b8;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
     <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 20px;">
         <div class="container" style="max-width: 800px; text-align: center;">
+            
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
+            
             <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
                 If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
             </h3>
+
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
+            
             <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
-            <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
+            
+            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">
+                Ryoma Yamamoto
+            </p>
+            <p style="font-size: 0.8rem; color: #64748b;">
+                Master of Communications and Computer Engineering, Kyoto University<br>
+                Former Apple Pay Japan Lead
+            </p>
         </div>
     </section>
 
@@ -354,52 +379,65 @@
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        gsap.registerPlugin(ScrollTrigger);
 
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. LOADER LOGIC (Force 1s)
+            // 1. LOADER LOGIC (Force 2s wait)
             const loader = document.getElementById('loader');
+            
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
+                    // Trigger scroll refresh after loader vanishes
                     ScrollTrigger.refresh();
                 }, 500);
-            }, 1000); 
+            }, 1000); // 2 Seconds Force Wait
 
             // 2. SCROLL PROMPT LOGIC
+            // Only reveal prompt AFTER loader is gone (2100ms)
             const prompt = document.getElementById('scroll-prompt');
             setTimeout(() => {
-                if(window.scrollY < 10) prompt.style.opacity = '1';
+                prompt.style.opacity = '1';
             }, 2100);
 
+            // Hide prompt on scroll
             window.addEventListener('scroll', () => {
                 prompt.style.opacity = '0';
             }, { once: true });
 
-            // *** HERO ANIMATIONS ***
-            const anchors = { hero: {x:0.5, y:0.5}, hub:{x:0.5, y:0.5}, node:{x:0.5, y:0.5}, rep:{x:0.5, y:0.5}, hand:{x:0.5, y:0.5} };
+
+            // ANCHORS (0.5 = Center)
+            const anchors = {
+                hero: { x: 0.5, y: 0.5 }, 
+                hub:  { x: 0.5, y: 0.5 }, 
+                node: { x: 0.5, y: 0.5 }, 
+                rep:  { x: 0.5, y: 0.5 }, 
+                hand: { x: 0.5, y: 0.5 }  
+            };
+
             const connections = [
-                {from:'hero-node-wrapper', to:'hub-wrapper', fa:anchors.hero, ta:anchors.hub},
-                {from:'hero-node-wrapper', to:'std-1-wrapper', fa:anchors.hero, ta:anchors.node},
-                {from:'hero-node-wrapper', to:'std-2-wrapper', fa:anchors.hero, ta:anchors.node},
-                {from:'hub-wrapper', to:'rep-2-wrapper', fa:anchors.hub, ta:anchors.rep},
-                {from:'std-1-wrapper', to:'rep-1-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-1-wrapper', to:'rep-3-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-2-wrapper', to:'rep-2-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-2-wrapper', to:'rep-4-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'rep-1-wrapper', to:'rep-5-wrapper', fa:anchors.rep, ta:anchors.rep},
-                {from:'rep-5-wrapper', to:'rep-3-wrapper', fa:anchors.rep, ta:anchors.rep},
-                {from:'rep-3-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-4-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-2-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-4-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand}
+                { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
+                { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
             ];
 
             const svg = document.getElementById('mesh-lines-svg');
             const lines = [];
+
             connections.forEach((conn) => {
                 const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 line.setAttribute("class", "mesh-line");
@@ -415,10 +453,12 @@
                     if(fromEl && toEl) {
                         const r1 = fromEl.getBoundingClientRect();
                         const r2 = toEl.getBoundingClientRect();
+                        
                         const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
                         const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
                         const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
                         const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
+                        
                         obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
                         obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
                         obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
@@ -427,70 +467,84 @@
                 });
             }
 
+            // *** SCROLL ANIMATION LOGIC ***
+            // Use ScrollTrigger to drive the timeline
             const tl = gsap.timeline({ 
                 scrollTrigger: {
                     trigger: "#intro-trigger-wrapper",
                     start: "top top",
-                    end: "bottom bottom", 
-                    scrub: 1,
-                    pin: true,
-                    onUpdate: updateMeshLines 
+                    end: "+=4000", // Scroll distance (4000px) controls animation speed
+                    scrub: 1,      // Smooth scrubbing
+                    pin: true,     // Pin the section while animating
+                    onUpdate: updateMeshLines // Update lines on every scroll frame
                 }
             });
 
+            // Map Positions
             const pos = {
-                hub: {x:'35vw', y:'-20vh'}, std1:{x:'-20vw', y:'10vh'}, std2:{x:'20vw', y:'10vh'},
-                rep1:{x:'-35vw', y:'-5vh'}, rep2:{x:'40vw', y:'-10vh'}, rep3:{x:'-25vw', y:'30vh'},
-                rep4:{x:'25vw', y:'30vh'}, rep5:{x:'-40vw', y:'15vh'}, hand1:{x:'0vw', y:'40vh'}, hand2:{x:'45vw', y:'20vh'}
+                hub:  { x: '35vw',  y: '-20vh' }, 
+                std1: { x: '-20vw', y: '10vh' },  
+                std2: { x: '20vw',  y: '10vh' },  
+                rep1: { x: '-35vw', y: '-5vh' },  
+                rep2: { x: '40vw',  y: '-10vh' }, 
+                rep3: { x: '-25vw', y: '30vh' },  
+                rep4: { x: '25vw',  y: '30vh' },  
+                rep5: { x: '-40vw', y: '15vh' },  
+                hand1:{ x: '0vw',   y: '40vh' },  
+                hand2:{ x: '45vw',  y: '20vh' },  
             };
 
+            // *** ANIMATION STEPS ***
+            
+            // 1. ZOOM IN & TEXT FADE
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
               .add("zoomLabel")
               .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
+              
+              // Text Fades In then Out
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
               .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
+
+              // 2. EXPLODE TO MAP (Immediately after text)
               .add("explodeLabel", "zoomLabel+=3.0")
+              
+              // Hero Node: Shrinks & Moves UP (-20vh) to fix overlap
               .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")
+              
+              // Secondary Devices: Fade in & Move Out
               .fromTo("#hub-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hub.x, y: pos.hub.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
               .fromTo("#rep-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.rep1.x, y: pos.rep1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
               .fromTo("#hand-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hand1.x, y: pos.hand1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
+              
               .fromTo(["#std-1-wrapper", "#std-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
+              
               .fromTo(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
+              
               .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
-              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
+
+              // Draw Lines
+              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5")
+              
+              // Final Step: Reveal Scroll Button
+              .to("#scroll-btn", {opacity: 1, duration: 1});
         });
 
-        // 3. SCROLL REVEAL
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
-            });
-        });
-
-        // 4. STATS ANIMATION
-        gsap.to("#stat-range", { scrollTrigger: ".testing-stat-grid", innerText: 15, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
-        gsap.to("#stat-battery", { scrollTrigger: ".testing-stat-grid", innerText: 6, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
-        gsap.to("#stat-latency", { scrollTrigger: ".testing-stat-grid", innerText: 250, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
-
-        // 5. OSCILLATING WAVE (JS Loop)
-        const wavePath = document.getElementById("wave-path");
-        let waveTime = 0;
-        function animateWave() {
-            waveTime += 0.05;
-            // Draw a sine wave that spans 1200px width
-            let d = "M0,150"; 
-            for(let i=0; i<=1200; i+=20) { // Step by 20px
-                const x = i;
-                const y = 150 + Math.sin(i * 0.01 + waveTime) * 40; // Amplitude 40
-                d += ` L${x},${y}`;
+        // 2. SCROLL REVEAL (Standard Sections)
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) {
+                    reveals[i].classList.add('active');
+                }
             }
-            wavePath.setAttribute("d", d);
-            requestAnimationFrame(animateWave);
         }
-        animateWave();
+        reveal();
 
-        function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
+        // 3. MENU
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("active");
+        }
     </script>
 
 </body>

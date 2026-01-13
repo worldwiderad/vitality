@@ -38,7 +38,7 @@
         #loader {
             position: fixed;
             inset: 0;
-            background-color: #020617; /* Deep Blue Page Background */
+            background-color: #020617;
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -108,15 +108,11 @@
             text-align: center;
             transition: opacity 0.5s ease;
         }
+        /* Removed bounce animation as requested */
         #scroll-prompt span {
             display: block;
             font-size: 1.5rem;
-            animation: bounce 1.5s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
+            margin-top: 5px;
         }
 
         /* --- NEW TESTING SECTION STYLES --- */
@@ -136,6 +132,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            z-index: 2;
         }
 
         .test-stat h3 {
@@ -163,10 +160,11 @@
         /* Orange Line Animation SVG */
         .line-anim-svg {
             position: absolute;
-            top: 0;
+            top: 50%;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 200px;
+            transform: translateY(-50%);
             pointer-events: none;
             z-index: 1; 
         }
@@ -174,8 +172,8 @@
         .anim-path {
             fill: none;
             stroke: var(--primary-color);
-            stroke-width: 2;
-            opacity: 0.5;
+            stroke-width: 3;
+            opacity: 0.3;
         }
 
         .cta-large {
@@ -239,10 +237,6 @@
                 <h1 id="text-line-1">THE GRID IS</h1>
                 <h2 id="text-line-2">FRAGILE.</h2>
                 <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
-            </div>
-
-            <div id="scroll-btn" class="scroll-indicator" style="opacity: 0;">
-                <a href="#hero-home-anchor" style="color: inherit; text-decoration: none;">[ LEARN MORE ]</a>
             </div>
 
             <div id="hero-stage">
@@ -388,8 +382,8 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #0F172A; padding-top: 60px; position: relative; overflow: hidden;">
-        <svg class="line-anim-svg" id="test-anim-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+    <section class="reveal" style="background-color: #0F172A; padding-top: 60px; padding-bottom: 80px; position: relative; overflow: hidden;">
+        <svg class="line-anim-svg" id="test-anim-svg" viewBox="0 0 800 200" preserveAspectRatio="none"></svg>
 
         <div class="container" style="position: relative; z-index: 2;">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
@@ -509,13 +503,16 @@
             }, 1000); // 2 Seconds Force Wait
 
             // 2. SCROLL PROMPT LOGIC
-            // Only reveal prompt AFTER loader is gone (2100ms)
+            // Wait 2 seconds before showing
             const prompt = document.getElementById('scroll-prompt');
             setTimeout(() => {
-                prompt.style.opacity = '1';
-            }, 2100);
+                // Only show if user hasn't scrolled yet
+                if (window.scrollY < 10) {
+                    prompt.style.opacity = '1';
+                }
+            }, 2000);
 
-            // Hide prompt on scroll
+            // Hide prompt immediately on scroll
             window.addEventListener('scroll', () => {
                 prompt.style.opacity = '0';
             }, { once: true });
@@ -635,10 +632,7 @@
               .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
 
               // Draw Lines
-              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5")
-              
-              // Final Step: Reveal Scroll Button
-              .to("#scroll-btn", {opacity: 1, duration: 1});
+              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
         // 2. SCROLL REVEAL (Standard Sections)
@@ -678,21 +672,29 @@
         });
 
         // Orange Line Animation Background
+        // FIX: Ensure path is long enough and offset matches
         const svg = document.getElementById("test-anim-svg");
         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", "M0,50 Q25,0 50,50 T100,50"); // Simple wave
+        
+        // Define a wider path to cover typical screens (800x200 viewBox matches SVG)
+        // M start, Q control end, T continues smooth curve
+        path.setAttribute("d", "M-100,100 Q100,0 300,100 T700,100 T1100,100"); 
+        
         path.setAttribute("class", "anim-path");
         path.setAttribute("vector-effect", "non-scaling-stroke");
         svg.appendChild(path);
 
-        gsap.to(path, {
-            strokeDasharray: "1000",
-            strokeDashoffset: "1000",
-            duration: 0
+        // Get total length for perfect looping
+        const length = path.getTotalLength();
+
+        gsap.set(path, {
+            strokeDasharray: length,
+            strokeDashoffset: length
         });
+
         gsap.to(path, {
             strokeDashoffset: 0,
-            duration: 3,
+            duration: 4,
             repeat: -1,
             ease: "none"
         });

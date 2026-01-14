@@ -88,7 +88,7 @@
         }
 
         /* Images */
-        .hero-img, .footer-img {
+        .hero-img {
             width: 50%;
             height: auto;
             display: block;
@@ -98,15 +98,28 @@
             border: 5px solid #fff;
         }
 
-        .footer-img {
-            margin-top: 2rem;
-        }
-
         .inline-img {
             width: 100%;
             border-radius: 2px;
             margin: 1.5rem 0;
             border: 1px solid #ddd;
+        }
+
+        /* Footer Images Container */
+        .footer-images {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .footer-images img {
+            width: 48%; /* occupy slightly less than half to fit gap */
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 5px solid #fff;
+            object-fit: cover;
         }
 
         /* Event Grid */
@@ -226,7 +239,9 @@
         @media (max-width: 600px) {
             header h1 { font-size: 2.2rem; }
             .stats-row { flex-direction: column; gap: 20px; }
-            .hero-img, .footer-img { width: 90%; }
+            .hero-img { width: 90%; }
+            .footer-images { flex-direction: column; }
+            .footer-images img { width: 100%; margin-bottom: 1rem; }
         }
     </style>
 </head>
@@ -361,7 +376,10 @@
         </div>
     </section>
 
-    <img src="assets/img/wsc2.jpg" alt="CIS Team Community" class="footer-img">
+    <div class="footer-images">
+        <img src="assets/img/wsc2.jpg" alt="CIS Team Community">
+        <img src="assets/img/wsc4.jpg" alt="WSC Experience">
+    </div>
 
 </div>
 

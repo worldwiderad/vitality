@@ -6,161 +6,299 @@
     <title>CIS World Scholar's Cup 2026</title>
     <style>
         :root {
-            --cis-red: #c1272d;
-            --wsc-gold: #d4af37;
-            --dark-grey: #333;
-            --light-grey: #f4f4f4;
+            /* Defined richer color palette */
+            --cis-red: #A81B21; /* Slightly deeper red */
+            --cis-red-light: #d63a40;
+            --wsc-gold: #C5A027; /* A more metallic gold */
+            --wsc-cream: #FAF8F0; /* Warmer off-white for backgrounds */
+            --dark-grey: #2C2C2C;
+            --medium-grey: #666;
             --white: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Switched to Serif font stack for academic feel */
+            font-family: Georgia, 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--dark-grey);
-            background-color: var(--light-grey);
+            background-color: #f0f2f5;
+            background-image: radial-gradient(#bfc5ce 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         /* Header / Hero Section */
         header {
-            background: linear-gradient(135deg, var(--cis-red), #8a1c20);
+            background: linear-gradient(135deg, var(--cis-red) 0%, #7a1317 100%);
             color: var(--white);
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         header h1 {
             margin: 0;
-            font-size: 3rem;
-            letter-spacing: 2px;
+            font-size: 3.5rem;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             max-width: 800px;
-            margin: 1rem auto 2rem auto;
+            margin: 1rem auto 2.5rem auto;
+            font-style: italic;
+            opacity: 0.9;
         }
 
         .cta-button {
             display: inline-block;
             background-color: var(--wsc-gold);
-            color: var(--dark-grey);
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            color: #3d3005;
+            padding: 18px 35px;
+            font-size: 1.3rem;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 50px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 4px; /* Slightly more formal radius */
+            transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            border: 2px solid var(--wsc-gold);
+            font-family: 'Segoe UI', Tahoma, sans-serif; /* Keep button sans-serif for clarity */
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background-color: transparent;
+            color: var(--wsc-gold);
+            box-shadow: 0 6px 15px rgba(197, 160, 39, 0.4);
+            transform: translateY(-3px);
         }
 
         /* Main Container */
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem;
+            max-width: 1000px;
+            margin: -3rem auto 2rem auto; /* Overlap header slightly */
+            padding: 0 2rem;
+            position: relative;
         }
 
         /* Sections */
         section {
             background: var(--white);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2.5rem;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         h2 {
             color: var(--cis-red);
-            border-bottom: 2px solid var(--wsc-gold);
-            padding-bottom: 0.5rem;
+            font-size: 2.2rem;
+            border-bottom: 3px solid var(--wsc-gold);
+            padding-bottom: 0.8rem;
+            margin-top: 0;
             display: inline-block;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Image Styling */
+        .content-img-full {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 1.5rem;
+        }
+
+        .float-img-right {
+            float: right;
+            width: 40%;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 3px solid var(--wsc-cream);
         }
 
         /* Grid for Events */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
         }
 
         .card {
-            background: var(--light-grey);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--wsc-gold);
+            background: var(--wsc-cream);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 5px solid var(--wsc-gold);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+             transform: translateY(-5px);
         }
 
         .card h3 {
             margin-top: 0;
+            color: var(--cis-red);
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            color: var(--medium-grey);
         }
 
         /* Highlight Box for History */
         .history-box {
-            background-color: #fff8e1; /* Light yellow/gold tint */
-            border-left: 5px solid var(--cis-red);
+            background-color: #fffdf5; /* Very subtle gold tint */
+            border: 1px solid #efe3c2;
+            position: relative;
+            overflow: hidden; /* Clears floats */
         }
 
         .stats {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            margin-top: 2rem;
             text-align: center;
+            clear: both; /* Ensures stats sit below floating image */
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
         }
 
         .stat-item {
-            margin: 10px;
+            margin: 15px;
+            padding: 1rem;
         }
 
         .stat-number {
             display: block;
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.8rem;
+            font-weight: 700;
             color: var(--cis-red);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Segoe UI', Tahoma, sans-serif; /* Keep numbers clean sans-serif */
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--medium-grey);
+        }
+
+        /* Journey Ordered List */
+        ol.journey-list {
+            counter-reset: journey-counter;
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        ol.journey-list li {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+        }
+
+        ol.journey-list li::before {
+            counter-increment: journey-counter;
+            content: counter(journey-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background-color: var(--wsc-gold);
+            color: #3d3005;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        
+        ol.journey-list strong {
+            color: var(--cis-red);
+            font-size: 1.2rem;
         }
 
         /* Logistics List */
         ul.logistics {
             list-style: none;
             padding: 0;
+            background-color: var(--wsc-cream);
+            padding: 2rem;
+            border-radius: 8px;
         }
 
         ul.logistics li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        ul.logistics li:last-child {
+            border-bottom: none;
         }
 
         ul.logistics li strong {
-            min-width: 120px;
+            min-width: 140px;
             color: var(--cis-red);
+            font-weight: 700;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             background-color: var(--dark-grey);
-            color: var(--white);
-            margin-top: 2rem;
+            color: #aaa;
+            margin-top: 3rem;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
         }
 
         footer a {
             color: var(--wsc-gold);
             text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        footer a:hover {
+            color: var(--white);
         }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .float-img-right {
+                float: none;
+                width: 100%;
+                margin-left: 0;
+                margin-bottom: 1.5rem;
+            }
+            ul.logistics li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            ul.logistics li strong {
+                margin-bottom: 5px;
+            }
+             .container {
+                margin-top: 0;
+            }
         }
     </style>
 </head>
@@ -179,13 +317,13 @@
         <p>
             The World Scholar's Cup (WSC) is more than just a competition; it is a celebration of learning. 
             It brings together top scholars from around the globe to demonstrate their skills, connect with other students, 
-            and engage in critical thinking. It is widely considered one of the most enjoyable extracurricular activities 
-            available, blending academic rigor with social events like cultural fairs, scavenger hunts, and the famous Scholar's Ball.
+            and engage in critical thinking. 
         </p>
         <p>
-            You will compete in teams of three, exploring a specific theme that changes every year, covering subjects 
-            ranging from Science and History to Literature and The Arts.
+            It is widely considered one of the most enjoyable extracurricular activities 
+            available, blending academic rigor with social events like cultural fairs, scavenger hunts, and the famous Scholar's Ball. You will compete in teams of three, exploring a specific theme that changes every year, covering subjects ranging from Science and History to Literature and The Arts.
         </p>
+        <img src="assets/img/wsc1.jpg" alt="Students celebrating at World Scholar's Cup" class="content-img-full">
     </section>
 
     <section>
@@ -213,39 +351,43 @@
 
     <section class="history-box">
         <h2>Our History & Success</h2>
+        
+        <img src="assets/img/wsc2.jpg" alt="CIS Team at a Global Round" class="float-img-right">
+        
         <p>
             The CIS team has a proud tradition of excellence on the global stage. We don't just participate; we compete at the highest levels.
         </p>
         <p>
-            <strong>The 2026 club is led by the reigning champions:</strong> Mina, Zoe, and Radek. 
-            Their team secured <strong>1st place overall</strong> in both the Singapore Regional Round and the Bangkok Global Round against hundreds of other teams.
+            <strong>The 2026 club is led by experienced WSC veterans:</strong> Mina, Zoe, and Radek. 
+            Their team achieved top honors in both the 2025 Singapore Regional Round and the Bangkok Global Round against hundreds of other teams.
         </p>
         <p>
-            Most recently, the team returned from the <strong>Tournament of Champions at Yale University</strong> with incredible results:
+            Most recently, the team returned from the final <strong>Tournament of Champions at Yale University</strong> with incredible results:
         </p>
+        
         <div class="stats">
             <div class="stat-item">
                 <span class="stat-number">5th</span>
-                Overall Team at Yale
+                <span class="stat-label">Overall Team at Yale</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">1st</span>
-                Place in Debate
+                <span class="stat-label">Place in Debate</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">Top 20</span>
-                Individual Global Rankings
+                <span class="stat-label">Individual Global Rankings</span>
             </div>
         </div>
-        <p style="margin-top: 1rem; font-style: italic;">
-            By joining the club, you will be trained by students who have navigated every stage of the competition successfully.
+        <p style="margin-top: 2rem; font-style: italic; text-align: center; clear: both;">
+            By joining the club, you will be trained by students who have successfully navigated every stage of the competition.
         </p>
     </section>
 
     <section>
         <h2>The Journey to Yale</h2>
         <p>Your season begins here at CIS, but it can take you around the world.</p>
-        <ol style="line-height: 2;">
+        <ol class="journey-list">
             <li><strong>The Regional Round (May):</strong> Compete right here in Singapore. Top teams qualify for the Global Round.</li>
             <li><strong>The Global Round (Summer):</strong> Travel with the CIS team! In previous years, we have traveled to <strong>Bangkok</strong> to compete against thousands of scholars from dozens of countries.</li>
             <li><strong>The Tournament of Champions (November):</strong> The best of the best are invited to the final round hosted on the historic campus of <strong>Yale University</strong> in New Haven, USA.</li>
@@ -261,7 +403,7 @@
             <li><strong>Leadership:</strong> Mina, Zoe, and Radek</li>
             <li><strong>Goal:</strong> Prepare for the Regional Round in May</li>
         </ul>
-        <div style="text-align: center; margin-top: 2rem;">
+        <div style="text-align: center; margin-top: 3rem;">
             <a href="https://forms.gle/gksqQst13AsAzi8w9" target="_blank" class="cta-button">Register for the 2026 Season</a>
         </div>
     </section>

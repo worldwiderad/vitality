@@ -135,6 +135,8 @@
             padding: 1.5rem;
             border-top: 3px solid var(--cis-red);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .card h3 {
@@ -147,8 +149,9 @@
 
         .card p {
             font-size: 0.95rem;
-            margin-bottom: 0;
+            margin-bottom: 1rem;
             color: var(--text-light);
+            flex-grow: 1; 
         }
 
         /* Badge for Global Events */
@@ -162,7 +165,29 @@
             font-family: Arial, sans-serif;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
-            vertical-align: middle;
+            align-self: flex-start;
+        }
+
+        /* Card Button */
+        .card-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--cis-red);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.2s;
+            box-sizing: border-box;
+        }
+
+        .card-btn:hover {
+            background-color: #7a1317;
         }
 
         /* Stats Row */
@@ -273,6 +298,7 @@
             <div class="card">
                 <h3>Team Debate</h3>
                 <p>You collaborate with your team to argue motions on global issues. You will debate three times per round.</p>
+                <a href="https://docs.google.com/document/d/1tyEY_zrMPZfjoFO0DhBzn-l811kLu2XqoVzhEj1DFqQ/edit?usp=sharing" target="_blank" class="card-btn">Read Our Debate Guide</a>
             </div>
             <div class="card">
                 <h3>Collaborative Writing</h3>
@@ -367,7 +393,8 @@
     <section>
         <h2>Join Us</h2>
         <p>
-            We will be meeting every Monday SMART starting January 19th until May.
+            We will be meeting every Monday SMART starting January 19th until May. 
+            <strong>Ms. Jancosko's room is in the level 4 English pod, KB417.</strong>
         </p>
         <p>
             Join with friends this 2026 season to build your experience in debate and writing. You will get a chance to compete at Yale.

@@ -33,132 +33,94 @@
             --text-muted: #94a3b8;
         }
 
-        /* --- PRELOADER STYLES --- */
+        body {
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER --- */
         #loader {
-            position: fixed;
-            inset: 0;
-            background-color: #020617;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
+            position: fixed; inset: 0; background-color: #020617; z-index: 9999;
+            display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out;
         }
         .loader-content { text-align: center; width: 300px; }
-        .loader-logo {
-            font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; color: white; margin-bottom: 20px; letter-spacing: 2px;
-        }
-        .loader-bar {
-            width: 100%; height: 2px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden;
-        }
-        .loader-progress {
-            position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: var(--primary-color); animation: loadProgress 2s infinite; transform-origin: left;
-        }
-        .loader-text {
-            font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 0.7rem; margin-top: 10px; opacity: 0.7;
-        }
-        @keyframes loadProgress {
-            0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); }
-        }
+        .loader-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; color: white; margin-bottom: 20px; letter-spacing: 2px; }
+        .loader-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
+        .loader-progress { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: var(--primary-color); animation: loadProgress 1s infinite; transform-origin: left; }
+        .loader-text { font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 0.7rem; margin-top: 10px; opacity: 0.7; }
+        @keyframes loadProgress { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
 
         /* --- SCROLL PROMPT --- */
         #scroll-prompt {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--primary-color);
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem;
-            opacity: 0; /* Hidden by default */
-            pointer-events: none;
-            z-index: 1000;
-            text-align: center;
-            transition: opacity 0.5s ease;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: var(--primary-color); font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem; opacity: 0; pointer-events: none; z-index: 1000;
+            text-align: center; transition: opacity 0.5s ease;
         }
-        #scroll-prompt span {
-            display: block; font-size: 1.5rem; margin-top: 5px;
-        }
+        #scroll-prompt span { display: block; font-size: 1.5rem; margin-top: 5px; }
 
-        /* --- NEW TESTING SECTION STYLES --- */
-        .testing-section {
-            background-color: #0F172A;
-            padding: 100px 0;
+        /* --- GLASSMORPHISM CARD STYLE --- */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65); /* Dark blue tint */
+            backdrop-filter: blur(12px); /* The "Glass" blur */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-        
-        /* The Wave Canvas */
-        #wave-canvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.6;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .testing-content {
-            position: relative;
-            z-index: 2; /* Sit on top of the wave */
-        }
-
-        .testing-stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .test-stat {
-            background: rgba(15, 23, 42, 0.7); /* Slight transparency */
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .test-stat:hover {
+        .glass-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-color);
+            border-color: rgba(255, 87, 34, 0.5); /* Orange border on hover */
+            box-shadow: 0 10px 40px rgba(255, 87, 34, 0.15);
         }
 
+        /* --- RADAR ANIMATION (Problem Section) --- */
+        .radar-bg {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,87,34,0.05) 0%, transparent 70%);
+            z-index: 0; pointer-events: none;
+        }
+        .radar-sweep {
+            position: absolute; top: 50%; left: 50%; width: 50%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color));
+            transform-origin: left;
+            animation: radarSpin 4s linear infinite;
+            opacity: 0.2;
+        }
+        @keyframes radarSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- WAVE & NETWORK CANVAS --- */
+        .anim-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.5;
+        }
+
+        /* --- TYPOGRAPHY & LAYOUT TWEAKS --- */
         .test-stat h3 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            line-height: 1;
+            font-size: 3.5rem; color: var(--primary-color); margin-bottom: 5px;
+            font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1;
         }
-
-        .test-stat p { color: var(--text-muted); font-size: 0.9rem; }
         .test-stat-label {
             font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: white; opacity: 0.8; margin-bottom: 10px; display: block; letter-spacing: 1px;
         }
-
-        /* Large CTA Button */
+        
         .cta-large {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 60px;
-            padding: 20px 50px;
-            font-size: 1.1rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 60px;
+            padding: 20px 50px; font-size: 1.1rem; background: var(--primary-color);
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 700;
+            transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .cta-large:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.4);
-            background: #ff7043;
+        .cta-large:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 87, 34, 0.4); background: #ff7043; }
+
+        .testing-stat-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; position: relative; z-index: 2;
         }
     </style>
 </head>
@@ -177,7 +139,7 @@
         <span>&darr;</span>
     </div>
 
-    <nav>
+    <nav style="background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="logo">VITALITY</div>
         <div class="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
@@ -194,32 +156,25 @@
 
     <div id="intro-trigger-wrapper">
         <header class="aegis-intro">
-            
             <div id="hero-text-container" style="padding-bottom: 80px;">
                 <h1 id="text-line-1">THE GRID IS</h1>
                 <h2 id="text-line-2">FRAGILE.</h2>
                 <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
             </div>
-
+            
             <div id="hero-stage">
-                <div class="bg-map-container">
-                    <img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map">
-                </div>
-
+                <div class="bg-map-container"><img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
                 <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-
-                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
-                <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
                 
-                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-
+                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Node"></div>
+                <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
+                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
                 <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-
                 <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
                 <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
             </div>
@@ -242,8 +197,10 @@
         <div class="hero-label">&bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS</div>
     </header>
 
-    <section id="problem" class="reveal">
-        <div class="container">
+    <section id="problem" class="reveal" style="position: relative; overflow: hidden;">
+        <div class="radar-bg"><div class="radar-sweep"></div></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
             <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
             <p class="lead" style="color: #94a3b8; max-width: 800px;">
                 Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
@@ -253,21 +210,21 @@
                 <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
             </blockquote>
             <div class="grid-2" style="margin-top: 50px;">
-                <div class="card">
+                <div class="glass-card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
                     <h3>Civilian Fragility</h3>
-                    <p>Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
+                    <p style="color: #94a3b8;">Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
                 </div>
-                <div class="card">
+                <div class="glass-card">
                     <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
                     <h3>Strategic Vulnerability</h3>
-                    <p>Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid. Tactical units require a terrestrial layer that works without external dependencies.</p>
+                    <p style="color: #94a3b8;">Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #1E293B;">
+    <section class="reveal" style="background-color: #1E293B; padding-bottom: 60px;">
         <div class="container">
             <div class="grid-2" style="align-items: flex-start; gap: 50px;">
                 <div>
@@ -278,15 +235,15 @@
                     <ul style="list-style: none; padding: 0; color: white;">
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation and AES-256 security.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh.</li>
                     </ul>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
                         <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
                     </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                    <div class="glass-card" style="text-align: center;">
                         <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">$150</div>
                         <p style="color: white; margin-top: 10px;">Per Public Node</p>
                         <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
@@ -296,59 +253,61 @@
         </div>
     </section>
 
-    <section class="reveal testing-section">
-        <canvas id="wave-canvas"></canvas>
+    <section class="reveal testing-section" style="padding-top: 80px; padding-bottom: 100px; position: relative;">
+        <canvas id="wave-canvas" class="anim-canvas"></canvas>
 
         <div class="container testing-content">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// FIELD DATA</p>
+                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// V4 FIELD DATA</p>
                 <h2 style="color: white; margin-bottom: 20px;">Proven in the Field.</h2>
                 <p style="color: #94a3b8;">Our hardware isn't just theoretical. We've pushed the Aegis V4 nodes to their absolute limits in dense urban and forest environments.</p>
             </div>
 
             <div class="testing-stat-grid">
-                <div class="test-stat">
+                <div class="glass-card test-stat">
                     <span class="test-stat-label">MAX RANGE (LOS)</span>
                     <h3 id="stat-range">0</h3>
                     <p>Kilometers achieved in line-of-sight testing.</p>
                 </div>
-                <div class="test-stat">
+                <div class="glass-card test-stat">
                     <span class="test-stat-label">BATTERY LIFE</span>
                     <h3 id="stat-battery">0</h3>
                     <p>Months of standby power without solar input.</p>
                 </div>
-                <div class="test-stat">
+                <div class="glass-card test-stat">
                     <span class="test-stat-label">LATENCY</span>
                     <h3 id="stat-latency">0</h3>
                     <p>Milliseconds average hop time between nodes.</p>
                 </div>
             </div>
 
-            <div style="text-align: center;">
-                <a href="tech.html" class="cta-large">Explore Tech & Research Results &rarr;</a>
+            <div class="cta-wrapper" style="text-align: center;">
+                <a href="tech.html" class="cta-large">Explore Tech & Research Data &rarr;</a>
             </div>
         </div>
     </section>
 
-    <section id="impact" class="reveal" style="background-color: #0F172A; color: white;">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 40px;">Deployment Scenarios</h2>
+    <section id="impact" class="reveal" style="background-color: #0F172A; position: relative; overflow: hidden;">
+        <canvas id="network-canvas" class="anim-canvas"></canvas>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <h2 style="text-align: center; margin-bottom: 40px; color: white;">Deployment Scenarios</h2>
             <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Strategic Operations</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised or intercepted.</p>
+                <div class="glass-card">
+                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Strategic Operations</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised.</p>
                 </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Local Government</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
+                <div class="glass-card">
+                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Local Government</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
                 </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">Search & Rescue</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
+                <div class="glass-card">
+                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Search & Rescue</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
                 </div>
-                <div style="padding: 20px; border-left: 2px solid var(--primary-color);">
-                    <h4 style="color: white; margin-bottom: 10px;">NGO / Aid</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
+                <div class="glass-card">
+                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">NGO / Aid</h4>
+                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
                 </div>
             </div>
         </div>
@@ -388,14 +347,15 @@
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. LOADER LOGIC
+            // 1. LOADER LOGIC (Force 1s)
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
                     ScrollTrigger.refresh();
-                    initWave(); // Start wave animation after load
+                    initWave(); // Start Wave
+                    initNetwork(); // Start Particles
                 }, 500);
             }, 1000); 
 
@@ -410,27 +370,26 @@
             }, { once: true });
 
             // *** HERO ANIMATIONS ***
-            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
+            const anchors = { hero: {x:0.5, y:0.5}, hub:{x:0.5, y:0.5}, node:{x:0.5, y:0.5}, rep:{x:0.5, y:0.5}, hand:{x:0.5, y:0.5} };
             const connections = [
-                { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
-                { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
-                { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
-                { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
-                { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
-                { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
-                { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
+                {from:'hero-node-wrapper', to:'hub-wrapper', fa:anchors.hero, ta:anchors.hub},
+                {from:'hero-node-wrapper', to:'std-1-wrapper', fa:anchors.hero, ta:anchors.node},
+                {from:'hero-node-wrapper', to:'std-2-wrapper', fa:anchors.hero, ta:anchors.node},
+                {from:'hub-wrapper', to:'rep-2-wrapper', fa:anchors.hub, ta:anchors.rep},
+                {from:'std-1-wrapper', to:'rep-1-wrapper', fa:anchors.node, ta:anchors.rep},
+                {from:'std-1-wrapper', to:'rep-3-wrapper', fa:anchors.node, ta:anchors.rep},
+                {from:'std-2-wrapper', to:'rep-2-wrapper', fa:anchors.node, ta:anchors.rep},
+                {from:'std-2-wrapper', to:'rep-4-wrapper', fa:anchors.node, ta:anchors.rep},
+                {from:'rep-1-wrapper', to:'rep-5-wrapper', fa:anchors.rep, ta:anchors.rep},
+                {from:'rep-5-wrapper', to:'rep-3-wrapper', fa:anchors.rep, ta:anchors.rep},
+                {from:'rep-3-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
+                {from:'rep-4-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
+                {from:'rep-2-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand},
+                {from:'rep-4-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand}
             ];
 
             const svg = document.getElementById('mesh-lines-svg');
             const lines = [];
-
             connections.forEach((conn) => {
                 const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 line.setAttribute("class", "mesh-line");
@@ -446,12 +405,10 @@
                     if(fromEl && toEl) {
                         const r1 = fromEl.getBoundingClientRect();
                         const r2 = toEl.getBoundingClientRect();
-                        
                         const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
                         const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
                         const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
                         const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
-                        
                         obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
                         obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
                         obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
@@ -464,17 +421,17 @@
                 scrollTrigger: {
                     trigger: "#intro-trigger-wrapper",
                     start: "top top",
-                    end: "+=4000", 
+                    end: "bottom bottom", 
                     scrub: 1,
                     pin: true,
-                    onUpdate: updateMeshLines
+                    onUpdate: updateMeshLines 
                 }
             });
 
             const pos = {
-                hub:  { x: '35vw',  y: '-20vh' }, std1: { x: '-20vw', y: '10vh' }, std2: { x: '20vw',  y: '10vh' },
-                rep1: { x: '-35vw', y: '-5vh' }, rep2: { x: '40vw',  y: '-10vh' }, rep3: { x: '-25vw', y: '30vh' },
-                rep4: { x: '25vw',  y: '30vh' }, rep5: { x: '-40vw', y: '15vh' }, hand1:{ x: '0vw',   y: '40vh' }, hand2:{ x: '45vw',  y: '20vh' },  
+                hub: {x:'35vw', y:'-20vh'}, std1:{x:'-20vw', y:'10vh'}, std2:{x:'20vw', y:'10vh'},
+                rep1:{x:'-35vw', y:'-5vh'}, rep2:{x:'40vw', y:'-10vh'}, rep3:{x:'-25vw', y:'30vh'},
+                rep4:{x:'25vw', y:'30vh'}, rep5:{x:'-40vw', y:'15vh'}, hand1:{x:'0vw', y:'40vh'}, hand2:{x:'45vw', y:'20vh'}
             };
 
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
@@ -493,83 +450,76 @@
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 2. SCROLL REVEAL (Standard Sections)
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
-        // 3. MENU
-        function toggleMenu() {
-            document.getElementById("nav-links").classList.toggle("active");
-        }
+        // 3. SCROLL REVEAL
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
+            });
+        });
 
         // 4. STATS ANIMATION
-        gsap.to("#stat-range", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 15,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
-        gsap.to("#stat-battery", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 6,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
-        gsap.to("#stat-latency", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 250,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
+        gsap.to("#stat-range", { scrollTrigger: ".testing-stat-grid", innerText: 15, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
+        gsap.to("#stat-battery", { scrollTrigger: ".testing-stat-grid", innerText: 6, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
+        gsap.to("#stat-latency", { scrollTrigger: ".testing-stat-grid", innerText: 250, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
 
-        // 5. OSCILLATING WAVE (Canvas Version for Performance)
+        // 5. WAVE ANIMATION (Canvas)
         function initWave() {
             const canvas = document.getElementById('wave-canvas');
             const ctx = canvas.getContext('2d');
-            let width, height;
-            let time = 0;
-
-            function resize() {
-                width = canvas.width = canvas.parentElement.offsetWidth;
-                height = canvas.height = canvas.parentElement.offsetHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
+            let width, height, time = 0;
+            function resize() { width = canvas.width = canvas.parentElement.offsetWidth; height = canvas.height = canvas.parentElement.offsetHeight; }
+            window.addEventListener('resize', resize); resize();
             function draw() {
                 ctx.clearRect(0, 0, width, height);
                 ctx.beginPath();
-                
                 const centerY = height / 2;
-                const amplitude = 30;
-                const frequency = 0.01;
-                
                 ctx.moveTo(0, centerY);
                 for(let x = 0; x < width; x++) {
-                    const y = centerY + Math.sin(x * frequency + time) * amplitude;
+                    const y = centerY + Math.sin(x * 0.01 + time) * 30;
                     ctx.lineTo(x, y);
                 }
-                
-                ctx.strokeStyle = '#FF5722';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
+                ctx.strokeStyle = '#FF5722'; ctx.lineWidth = 2; ctx.stroke();
                 time += 0.05;
                 requestAnimationFrame(draw);
             }
             draw();
         }
+
+        // 6. NETWORK ANIMATION (Canvas - Impact Section)
+        function initNetwork() {
+            const canvas = document.getElementById('network-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height, particles = [];
+            function resize() { width = canvas.width = canvas.parentElement.offsetWidth; height = canvas.height = canvas.parentElement.offsetHeight; }
+            window.addEventListener('resize', resize); resize();
+
+            class Particle {
+                constructor() { this.x = Math.random()*width; this.y = Math.random()*height; this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5; }
+                update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>width) this.vx*=-1; if(this.y<0||this.y>height) this.vy*=-1; }
+                draw() { ctx.fillStyle = '#FF5722'; ctx.fillRect(this.x, this.y, 2, 2); }
+            }
+            for(let i=0; i<30; i++) particles.push(new Particle());
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach((p, i) => {
+                    p.update(); p.draw();
+                    for(let j=i; j<particles.length; j++) {
+                        const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if(dist < 100) {
+                            ctx.beginPath(); ctx.strokeStyle = `rgba(255, 87, 34, ${1 - dist/100})`;
+                            ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                        }
+                    }
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
     </script>
 
 </body>

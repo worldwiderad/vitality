@@ -347,7 +347,7 @@
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. LOADER LOGIC (Force 1s)
+            // 1. LOADER LOGIC
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.style.opacity = '0';
@@ -370,22 +370,22 @@
             }, { once: true });
 
             // *** HERO ANIMATIONS ***
-            const anchors = { hero: {x:0.5, y:0.5}, hub:{x:0.5, y:0.5}, node:{x:0.5, y:0.5}, rep:{x:0.5, y:0.5}, hand:{x:0.5, y:0.5} };
+            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
             const connections = [
-                {from:'hero-node-wrapper', to:'hub-wrapper', fa:anchors.hero, ta:anchors.hub},
-                {from:'hero-node-wrapper', to:'std-1-wrapper', fa:anchors.hero, ta:anchors.node},
-                {from:'hero-node-wrapper', to:'std-2-wrapper', fa:anchors.hero, ta:anchors.node},
-                {from:'hub-wrapper', to:'rep-2-wrapper', fa:anchors.hub, ta:anchors.rep},
-                {from:'std-1-wrapper', to:'rep-1-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-1-wrapper', to:'rep-3-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-2-wrapper', to:'rep-2-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'std-2-wrapper', to:'rep-4-wrapper', fa:anchors.node, ta:anchors.rep},
-                {from:'rep-1-wrapper', to:'rep-5-wrapper', fa:anchors.rep, ta:anchors.rep},
-                {from:'rep-5-wrapper', to:'rep-3-wrapper', fa:anchors.rep, ta:anchors.rep},
-                {from:'rep-3-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-4-wrapper', to:'hand-1-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-2-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand},
-                {from:'rep-4-wrapper', to:'hand-2-wrapper', fa:anchors.rep, ta:anchors.hand}
+                { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
+                { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
+                { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
+                { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
+                { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
+                { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
             ];
 
             const svg = document.getElementById('mesh-lines-svg');
@@ -421,17 +421,17 @@
                 scrollTrigger: {
                     trigger: "#intro-trigger-wrapper",
                     start: "top top",
-                    end: "bottom bottom", 
+                    end: "+=4000", 
                     scrub: 1,
                     pin: true,
-                    onUpdate: updateMeshLines 
+                    onUpdate: updateMeshLines
                 }
             });
 
             const pos = {
-                hub: {x:'35vw', y:'-20vh'}, std1:{x:'-20vw', y:'10vh'}, std2:{x:'20vw', y:'10vh'},
-                rep1:{x:'-35vw', y:'-5vh'}, rep2:{x:'40vw', y:'-10vh'}, rep3:{x:'-25vw', y:'30vh'},
-                rep4:{x:'25vw', y:'30vh'}, rep5:{x:'-40vw', y:'15vh'}, hand1:{x:'0vw', y:'40vh'}, hand2:{x:'45vw', y:'20vh'}
+                hub:  { x: '35vw',  y: '-20vh' }, std1: { x: '-20vw', y: '10vh' }, std2: { x: '20vw',  y: '10vh' },
+                rep1: { x: '-35vw', y: '-5vh' }, rep2: { x: '40vw',  y: '-10vh' }, rep3: { x: '-25vw', y: '30vh' },
+                rep4: { x: '25vw',  y: '30vh' }, rep5: { x: '-40vw', y: '15vh' }, hand1:{ x: '0vw',   y: '40vh' }, hand2:{ x: '45vw',  y: '20vh' },  
             };
 
             tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
@@ -450,36 +450,78 @@
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 3. SCROLL REVEAL
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
-            });
-        });
+        // 2. SCROLL REVEAL (Standard Sections)
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal();
+
+        // 3. MENU
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("active");
+        }
 
         // 4. STATS ANIMATION
-        gsap.to("#stat-range", { scrollTrigger: ".testing-stat-grid", innerText: 15, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
-        gsap.to("#stat-battery", { scrollTrigger: ".testing-stat-grid", innerText: 6, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
-        gsap.to("#stat-latency", { scrollTrigger: ".testing-stat-grid", innerText: 250, duration: 2, snap: { innerText: 1 }, ease: "power2.out" });
+        gsap.to("#stat-range", {
+            scrollTrigger: ".testing-stat-grid",
+            innerText: 15,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power2.out"
+        });
+        gsap.to("#stat-battery", {
+            scrollTrigger: ".testing-stat-grid",
+            innerText: 6,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power2.out"
+        });
+        gsap.to("#stat-latency", {
+            scrollTrigger: ".testing-stat-grid",
+            innerText: 250,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power2.out"
+        });
 
-        // 5. WAVE ANIMATION (Canvas)
+        // 5. OSCILLATING WAVE (Canvas Version for Performance)
         function initWave() {
             const canvas = document.getElementById('wave-canvas');
             const ctx = canvas.getContext('2d');
-            let width, height, time = 0;
-            function resize() { width = canvas.width = canvas.parentElement.offsetWidth; height = canvas.height = canvas.parentElement.offsetHeight; }
-            window.addEventListener('resize', resize); resize();
+            let width, height;
+            let time = 0;
+
+            function resize() {
+                width = canvas.width = canvas.parentElement.offsetWidth;
+                height = canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
             function draw() {
                 ctx.clearRect(0, 0, width, height);
                 ctx.beginPath();
+                
                 const centerY = height / 2;
+                const amplitude = 30;
+                const frequency = 0.01;
+                
                 ctx.moveTo(0, centerY);
                 for(let x = 0; x < width; x++) {
-                    const y = centerY + Math.sin(x * 0.01 + time) * 30;
+                    const y = centerY + Math.sin(x * frequency + time) * amplitude;
                     ctx.lineTo(x, y);
                 }
-                ctx.strokeStyle = '#FF5722'; ctx.lineWidth = 2; ctx.stroke();
+                
+                ctx.strokeStyle = '#FF5722';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
                 time += 0.05;
                 requestAnimationFrame(draw);
             }
@@ -518,8 +560,6 @@
             }
             animate();
         }
-
-        function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
     </script>
 
 </body>

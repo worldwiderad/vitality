@@ -176,7 +176,7 @@ header.hero, header.hero-home {
     color: white;
     padding: 120px 20px;
     text-align: center;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none; /* REMOVED BORDER */
 }
 
 /* Fullscreen Hero specific */
@@ -283,7 +283,7 @@ header.hero p, header.hero-home p {
 /* --- 7. SECTIONS (ALL DARK) --- */
 section {
     padding: 100px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none; /* REMOVED BORDER */
 }
 
 /* Alternating dark shades */
@@ -340,7 +340,7 @@ footer {
     text-align: center;
     padding: 60px 20px;
     font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
+    border-top: none; /* REMOVED BORDER */
 }
 
 /* --- 10. TABLES (DARK MODE) --- */
@@ -390,7 +390,7 @@ footer {
 /* Ensure Global Impact stays dark */
 #impact {
     background-color: var(--bg-body) !important;
-    border-top: 1px solid var(--border-color);
+    border-top: none; /* REMOVED BORDER */
 }
 
 /* --- 13. MOBILE RESPONSIVENESS --- */
@@ -450,7 +450,7 @@ header.aegis-intro {
     width: 100vw;
     position: relative; 
     background-color: #020617;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none; /* REMOVED BORDER */
     overflow: hidden;
     display: flex;
     justify-content: center;

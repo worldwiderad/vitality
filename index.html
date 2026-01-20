@@ -166,7 +166,7 @@
                 <div class="bg-map-container"><img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
                 <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
                 
-                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Node"></div>
+                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
                 <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
                 <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
                 <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
@@ -236,7 +236,7 @@
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.</li>
                     </ul>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 30px;">
@@ -451,16 +451,12 @@
         });
 
         // 2. SCROLL REVEAL (Standard Sections)
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
+            });
+        });
 
         // 3. MENU
         function toggleMenu() {

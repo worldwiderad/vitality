@@ -70,11 +70,59 @@
             color: var(--text-muted);
         }
 
+        /* --- PAPER DOWNLOAD CARDS (NEW) --- */
+        .paper-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            margin-top: 40px;
+        }
+        .paper-card {
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--border-color); 
+            padding: 25px; 
+            border-radius: 8px;
+            transition: transform 0.2s, border-color 0.2s; 
+            text-decoration: none; 
+            display: block;
+        }
+        .paper-card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--primary-color); 
+        }
+        .paper-type { 
+            font-family: 'Courier Prime', monospace; 
+            color: var(--primary-color); 
+            font-size: 0.8rem; 
+            margin-bottom: 10px; 
+            display: block; 
+        }
+        .paper-title { 
+            font-size: 1.2rem; 
+            color: white; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+            display: block; 
+        }
+        .paper-desc { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+            display: block; 
+            margin-bottom: 20px; 
+        }
+        .paper-link { 
+            color: white; 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 0.9rem; 
+        }
+
         /* --- ENCRYPTION DEMO STYLES (Integrated) --- */
         .encryption-stage-wrapper {
             position: relative;
-            /* FIX: Set to 100vh so it fits the screen exactly. 
-               We control the "scroll length" via JS now. */
             height: 100vh; 
             background: #020617;
             width: 100%;
@@ -263,10 +311,28 @@
             <h1 style="font-size: 3.5rem;">System Architecture.</h1>
             <p style="max-width: 600px; opacity: 0.8; color: var(--text-muted); margin-bottom: 30px;">A breakdown of the long-range modulation, mesh topology, and security protocols powering the Aegis ecosystem.</p>
             
-            <a href="assets/paper.pdf" download class="btn" style="display: inline-flex; align-items: center; gap: 10px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download Technical Whitepaper (PDF)
-            </a>
+            <div class="paper-grid">
+                <a href="assets/paper.pdf" download class="paper-card">
+                    <span class="paper-type">TECHNICAL SUMMARY</span>
+                    <span class="paper-title">Whitepaper: V4 Testing</span>
+                    <span class="paper-desc">A concise 3-page overview of field testing results, range metrics, battery endurance data, and hardware specifications.</span>
+                    <div class="paper-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download PDF (3 Pages)
+                    </div>
+                </a>
+
+                <a href="assets/research.pdf" download class="paper-card">
+                    <span class="paper-type">IEEE-STYLE RESEARCH</span>
+                    <span class="paper-title">Advanced Protocol Analysis</span>
+                    <span class="paper-desc">10-page IEEE-style analysis featuring original research on the Urban Waveguide Effect (n≈1.95), mathematical derivations of LoRa processing gain, and NLOS diffraction models.</span>
+                    <div class="paper-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download Research (10 Pages)
+                    </div>
+                </a>
+            </div>
+            
         </div>
     </header>
 
@@ -533,9 +599,6 @@
             scrollTrigger: {
                 trigger: ".encryption-stage-wrapper",
                 start: "top top",
-                // FIX: Use Javascript to define the scroll distance (+4000px).
-                // This makes the scroll slower (more distance to cover)
-                // but keeps the container visually tight (100vh height).
                 end: "+=4000", 
                 scrub: 1,
                 pin: true 

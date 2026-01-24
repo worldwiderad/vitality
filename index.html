@@ -79,7 +79,7 @@
             box-shadow: 0 10px 40px rgba(255, 87, 34, 0.15);
         }
 
-        /* --- PROBLEM SECTION BACKGROUND (New) --- */
+        /* --- PROBLEM SECTION BACKGROUND --- */
         #problem {
             position: relative;
             /* Heavy Dark Gradient Overlay + Image */
@@ -88,6 +88,19 @@
             background-position: center !important;
             background-repeat: no-repeat !important;
             overflow: hidden;
+        }
+
+         /* --- QUOTE SECTION BACKGROUND (New) --- */
+         #quote-section {
+            position: relative;
+            /* Heavy Dark Gradient Overlay + Image - Using same style as #problem */
+            background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/military-comms.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 20px;
         }
 
         /* --- RADAR ANIMATION --- */
@@ -182,7 +195,7 @@
                 <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
                 
                 <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
 
                 <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
@@ -328,7 +341,7 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 20px;">
+    <section id="quote-section" class="reveal">
         <div class="container" style="max-width: 800px; text-align: center;">
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
             <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">

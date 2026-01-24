@@ -33,90 +33,31 @@
             --text-muted: #94a3b8;
         }
 
-        /* --- PRELOADER STYLES --- */
+        body {
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER --- */
         #loader {
-            position: fixed;
-            inset: 0;
-            background-color: #020617; /* Deep Blue Page Background */
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
+            position: fixed; inset: 0; background-color: #020617; z-index: 9999;
+            display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out;
         }
+        .loader-content { text-align: center; width: 300px; }
+        .loader-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2rem; color: white; margin-bottom: 20px; letter-spacing: 2px; }
+        .loader-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
+        .loader-progress { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: var(--primary-color); animation: loadProgress 1s infinite; transform-origin: left; }
+        .loader-text { font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 0.7rem; margin-top: 10px; opacity: 0.7; }
+        @keyframes loadProgress { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
 
-        .loader-content {
-            text-align: center;
-            width: 300px;
-        }
-
-        .loader-logo {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .loader-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loader-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: var(--primary-color);
-            animation: loadProgress 2s infinite;
-            transform-origin: left;
-        }
-
-        .loader-text {
-            font-family: 'Courier Prime', monospace;
-            color: var(--primary-color);
-            font-size: 0.7rem;
-            margin-top: 10px;
-            opacity: 0.7;
-        }
-
-        @keyframes loadProgress {
-            0% { transform: scaleX(0); }
-            50% { transform: scaleX(0.7); }
-            100% { transform: scaleX(1); }
-        }
-
-        /* Scroll Prompt Styles */
+        /* --- SCROLL PROMPT --- */
         #scroll-prompt {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--primary-color);
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem;
-            opacity: 0; /* Hidden by default */
-            pointer-events: none;
-            z-index: 1000;
-            text-align: center;
-            transition: opacity 0.5s ease;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: var(--primary-color); font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem; opacity: 0; pointer-events: none; z-index: 1000;
+            text-align: center; transition: opacity 0.5s ease;
         }
-        #scroll-prompt span {
-            display: block;
-            font-size: 1.5rem;
-            animation: bounce 1.5s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
+        #scroll-prompt span { display: block; font-size: 1.5rem; margin-top: 5px; }
 
         /* --- GLASSMORPHISM CARD STYLE --- */
         .glass-card {
@@ -138,7 +79,18 @@
             box-shadow: 0 10px 40px rgba(255, 87, 34, 0.15);
         }
 
-        /* --- RADAR ANIMATION (Problem Section) --- */
+        /* --- PROBLEM SECTION BACKGROUND (New) --- */
+        #problem {
+            position: relative;
+            /* Heavy Dark Gradient Overlay + Image */
+            background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/emerg-comms.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            overflow: hidden;
+        }
+
+        /* --- RADAR ANIMATION --- */
         .radar-bg {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 600px; height: 600px;
@@ -180,17 +132,6 @@
 
         .testing-stat-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; position: relative; z-index: 2;
-        }
-
-        /* --- NEW PROBLEM SECTION IMAGE --- */
-        #problem {
-            position: relative;
-            background-image: url('assets/img/emerg-comms.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            /* Overlay to darken image heavily */
-            box-shadow: inset 0 0 0 1000px rgba(2, 6, 23, 0.85); 
         }
     </style>
 </head>
@@ -241,7 +182,7 @@
                 <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
                 
                 <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Node"></div>
 
                 <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
                 <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
@@ -272,7 +213,9 @@
     </header>
 
     <section id="problem" class="reveal">
-        <div class="container">
+        <div class="radar-bg"><div class="radar-sweep"></div></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
             <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
             <p class="lead" style="color: #94a3b8; max-width: 800px;">
                 Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.

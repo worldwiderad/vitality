@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MPYQN17QH8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPYQN17QH8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -99,8 +98,8 @@
             overflow: hidden;
         }
 
-         /* --- QUOTE SECTION BACKGROUND (New) --- */
-         #quote-section {
+          /* --- QUOTE SECTION BACKGROUND (New) --- */
+          #quote-section {
             position: relative;
             /* Heavy Dark Gradient Overlay + Image - Using same style as #problem */
             background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/military-comms.png') !important;
@@ -261,7 +260,7 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #1E293B; padding-bottom: 60px;">
+    <section class="reveal" style="background-color: #020617; padding-bottom: 60px;">
         <div class="container">
             <div class="grid-2" style="align-items: flex-start; gap: 50px;">
                 <div>
@@ -287,6 +286,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="height: 100vh; min-height: 600px; background: url('assets/img/mil-mesh.png') no-repeat center center; background-size: cover; position: relative;">
+        <div style="position: absolute; bottom: 30px; right: 40px; text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--primary-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase;">
+            &bull; Mesh networking for military operations is incredibly important
         </div>
     </section>
 
@@ -407,7 +412,7 @@
             }, { once: true });
 
             // *** HERO ANIMATIONS ***
-            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
+            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
             const connections = [
                 { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
                 { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },

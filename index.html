@@ -96,7 +96,7 @@
             overflow: hidden;
         }
 
-        /* --- QUOTE SECTION BACKGROUND (RESTORED) --- */
+        /* --- QUOTE SECTION BACKGROUND (Fixed "Slit") --- */
         #quote-section {
             position: relative;
             background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/military-comms.png') !important;
@@ -104,7 +104,8 @@
             background-position: center !important;
             background-repeat: no-repeat !important;
             overflow: hidden;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            /* Removed border-top that was causing the slit */
+            border-top: none;
             padding: 80px 20px;
         }
 
@@ -418,7 +419,7 @@
             }, { once: true });
 
             // *** HERO ANIMATIONS ***
-            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
+            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
             const connections = [
                 { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
                 { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },

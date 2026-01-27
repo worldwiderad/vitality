@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPYQN17QH8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MPYQN17QH8');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MPYQN17QH8');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vitality | Aegis - Conrad Challenge</title>
@@ -90,7 +89,6 @@
         /* --- PROBLEM SECTION BACKGROUND --- */
         #problem {
             position: relative;
-            /* Heavy Dark Gradient Overlay + Image */
             background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/emerg-comms.png') !important;
             background-size: cover !important;
             background-position: center !important;
@@ -98,10 +96,9 @@
             overflow: hidden;
         }
 
-          /* --- QUOTE SECTION BACKGROUND (New) --- */
-          #quote-section {
+        /* --- QUOTE SECTION BACKGROUND (RESTORED) --- */
+        #quote-section {
             position: relative;
-            /* Heavy Dark Gradient Overlay + Image - Using same style as #problem */
             background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/military-comms.png') !important;
             background-size: cover !important;
             background-position: center !important;
@@ -300,7 +297,7 @@
         </div>
 
         <div style="position: absolute; bottom: 30px; right: 40px; text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--primary-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase; z-index: 2;">
-            &bull; Mesh networking for military operations is secure and resilient
+            &bull; Mesh networking for military operations is incredibly important
         </div>
     </section>
 
@@ -364,7 +361,7 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 20px;">
+    <section id="quote-section" class="reveal">
         <div class="container" style="max-width: 800px; text-align: center;">
             <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
             <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">

@@ -672,18 +672,6 @@
             }
         }
 
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
 
         // --- MESH SIMULATOR LOGIC ---
         let seed = 12345;
@@ -821,6 +809,7 @@
         initGrid();
         animate();
     </script>
+<script src="js/reveal.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

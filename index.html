@@ -416,13 +416,6 @@
               .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
         });
 
-        // 2. SCROLL REVEAL (Standard Sections)
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
-            });
-        });
 
         // 4. STATS ANIMATION
         gsap.to("#stat-range", {
@@ -518,6 +511,7 @@
             animate();
         }
     </script>
+    <script src="js/reveal.js"></script>
     <script src="js/nav.js"></script>
 </body>
 </html>

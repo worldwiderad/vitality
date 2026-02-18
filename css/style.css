@@ -583,8 +583,39 @@ footer {
 /* Mission CTA */
 .cta-section-mission {
     background: linear-gradient(180deg, var(--bg-body) 0%, #0f172a 100%);
-    padding: 120px 20px;
+    padding: 100px 20px;
     border-top: 1px solid var(--border-color);
+}
+
+.mission-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mission-cta-text {
+    text-align: left;
+}
+
+.mission-cta-visual {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    /* Constraint for image size */
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.mission-cta-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.9);
 }
 
 .cta-heading {
@@ -597,10 +628,26 @@ footer {
     color: #94a3b8;
     font-size: 1.2rem;
     line-height: 1.6;
-    margin-bottom: 50px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 40px;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .mission-cta-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .mission-cta-text {
+        text-align: center;
+        order: 1; /* Text first */
+    }
+
+    .mission-cta-visual {
+        order: 2; /* Image second */
+        max-width: 100%;
+    }
 }
 
 .btn-large-glow {

@@ -22,542 +22,311 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <style>
-        /* Calculator Styles */
-        #customInputContainer { transition: all 0.3s ease; overflow: hidden; }
-        
-        /* --- MISSION CONTROL ANIMATION STYLES --- */
-        
-        /* 1. The Map (Fixed Background) */
-        .fixed-map-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; 
-            background-image: url('assets/img/hero-map-dark-anim.jpg');
-            background-size: cover; background-position: center;
-            opacity: 0.4;
-            filter: grayscale(100%) contrast(110%) invert(1) brightness(0.6);
-            pointer-events: none;
-        }
-
-        /* 2. The Lines (SVG Layer) */
-        .connections-svg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none;
-        }
-        .mesh-line {
-            stroke: #FF5722; stroke-width: 2px;
-            vector-effect: non-scaling-stroke; opacity: 0.8;
-        }
-        .bridge-line {
-            stroke: #FF5722; stroke-width: 1px;
-            stroke-dasharray: 5, 5; opacity: 0.5;
-        }
-
-        /* 3. The Sections (CRITICAL FIX: Force Transparent) */
-        .product-section {
-            position: relative;
-            height: 140vh; 
-            z-index: 5;
-            background-color: transparent !important; 
-            background: transparent !important;
-            border-bottom: none !important;
-        }
-
-        /* 4. Modules */
-        .modules-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
-            pointer-events: none; z-index: 2;
-        }
-        .module-img {
-            position: absolute; width: 14vw;
-            filter: drop-shadow(0 0 30px rgba(255, 87, 34, 0.3));
-        }
-
-        /* 5. Cards */
-        .card-track {
-            position: relative; width: 100%; height: 100%;
-            display: flex; justify-content: center; align-items: center;
-            pointer-events: none; z-index: 10;
-        }
-
-        .glass-card-anim {
-            pointer-events: auto; width: 450px;
-            background: rgba(15, 23, 42, 0.95); /* Dark Glass */
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #FF5722;
-            padding: 35px; border-radius: 12px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-            text-align: left;
-        }
-        
-        .glass-card-anim h3 { color: white; font-size: 1.8rem; margin-bottom: 10px; font-weight: 700; }
-        .glass-card-anim p { font-size: 1rem; line-height: 1.6; margin-bottom: 15px; color: #94a3b8; }
-        .glass-card-anim ul { margin: 15px 0; padding-left: 20px; color: #94a3b8; font-size: 0.95rem; }
-        .glass-card-anim li { margin-bottom: 5px; }
-        
-        .price-tag { font-size: 1.4rem; font-weight: 800; color: white; margin: 10px 0; }
-        .price-sub { font-size: 0.8rem; font-weight: 400; color: #64748b; }
-
-        .learn-more-link {
-            margin-top: 20px; color: #FF5722; font-weight: 600; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem;
-        }
-        .learn-more-link:hover { text-decoration: underline; }
-
-        .mono-tag { font-family: 'Courier Prime', monospace; color: #FF5722; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 15px; display: block; }
-
-        /* Header Styling - DEEPER GRADIENT */
-        header.intro-anim { 
-            height: 35vh; display: flex; align-items: center; justify-content: center; 
-            position: relative; z-index: 20; padding-top: 60px;
-            /* Gradient now extends deeper (60%) for better contrast */
-            background: linear-gradient(180deg, #020617 0%, rgba(2, 6, 23, 0.95) 50%, rgba(2, 6, 23, 0.6) 80%, transparent 100%);
-            border-bottom: none !important;
-        }
-
-        /* Mobile Hide */
-        @media (max-width: 768px) {
-            .anim-wrapper { display: none; }
-            .mobile-fallback { display: block; }
-        }
-        @media (min-width: 769px) {
-            .mobile-fallback { display: none; }
-        }
-    </style>
 </head>
 <body>
     <nav style="z-index: 1000; position: relative; background: #020617;"></nav>
 
-    <div class="anim-wrapper">
-        <div class="fixed-map-bg skeleton-bg"></div>
-        <svg class="connections-svg" id="main-svg"></svg>
+    <main>
+        <div class="anim-wrapper">
+            <div class="fixed-map-bg skeleton-bg"></div>
+            <svg class="connections-svg" id="main-svg"></svg>
 
-        <header class="intro-anim">
-            <div style="text-align: center;">
-                <p class="mono-tag" style="color: white; opacity: 0.7;">// THE AEGIS PLATFORM</p>
-                <h1 style="font-size: 4rem; color: white; margin-bottom: 0;">Hardware Ecosystem.</h1>
-            </div>
-        </header>
+            <header class="intro-anim">
+                <div style="text-align: center;">
+                    <p class="mono-tag" style="color: white; opacity: 0.7;">// THE AEGIS PLATFORM</p>
+                    <h1 style="font-size: 4rem; color: white; margin-bottom: 0;">Hardware Ecosystem.</h1>
+                </div>
+            </header>
 
-        <section class="product-section" id="section-node">
-            <div class="modules-layer">
-                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-1" style="left: 5%; top: 15%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-2" style="left: 10%; top: 65%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-3" style="right: 5%; top: 10%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-4" style="right: 8%; top: 70%;">
-            </div>
-            <div class="card-track">
-                <div class="glass-card-anim" id="card-node">
-                    <span class="mono-tag">01 // BACKBONE</span>
+            <section class="product-section" id="section-node">
+                <div class="modules-layer">
+                    <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-1" style="left: 5%; top: 15%;">
+                    <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-2" style="left: 10%; top: 65%;">
+                    <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-3" style="right: 5%; top: 10%;">
+                    <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-4" style="right: 8%; top: 70%;">
+                </div>
+                <div class="card-track">
+                    <div class="glass-card-anim" id="card-node">
+                        <span class="mono-tag">01 // BACKBONE</span>
+                        <h3>Aegis Public Node</h3>
+                        <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
+                        <div class="price-tag">$150 <span class="price-sub">/ unit</span></div>
+                        <ul>
+                            <li>80,000mAh Battery</li>
+                            <li>Integrated Screen & Keyboard</li>
+                            <li>Wi-Fi Bridge for Civilians</li>
+                        </ul>
+                        <a href="node-details.html" style="display: block; width: 100%; text-align: center; margin-top: 25px; padding: 15px 0; background: #FF5722; color: white; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-radius: 6px; text-decoration: none; border: 1px solid #FF5722; transition: all 0.3s;" onmouseover="this.style.background='#e64a19'; this.style.borderColor='#e64a19'" onmouseout="this.style.background='#FF5722'; this.style.borderColor='#FF5722'">
+                            View Exploded Specs &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-section" id="section-handheld">
+                <div class="modules-layer">
+                    <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-1" style="left: 5%; top: 20%;">
+                    <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-3" style="right: 5%; top: 25%;">
+                    <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-2" style="left: 20%; top: 80%;">
+                </div>
+                <div class="card-track">
+                    <div class="glass-card-anim" id="card-handheld">
+                        <span class="mono-tag">02 // MOBILE UNIT</span>
+                        <h3>Aegis Handheld</h3>
+                        <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
+                        <div class="price-tag">$100 <span class="price-sub">/ unit</span></div>
+                        <ul>
+                            <li>Pocket-Sized Form Factor</li>
+                            <li>GPS Tracking Enabled</li>
+                            <li>Tactile "Glove-Ready" Buttons</li>
+                        </ul>
+                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-section" id="section-repeater">
+                <div class="modules-layer">
+                    <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-1" style="left: 10%; top: 15%;">
+                    <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-2" style="right: 15%; top: 20%;">
+                    <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-3" style="left: 25%; top: 75%;">
+                    <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-4" style="right: 10%; top: 80%;">
+                </div>
+                <div class="card-track">
+                    <div class="glass-card-anim" id="card-repeater">
+                        <span class="mono-tag">03 // RANGE EXTENDER</span>
+                        <h3>Solar Repeater</h3>
+                        <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
+                        <div class="price-tag">$50 - $80 <span class="price-sub">/ unit</span></div>
+                        <ul>
+                            <li>100% Solar Autonomous</li>
+                            <li>Weatherproof IP67</li>
+                            <li>Zero Maintenance</li>
+                        </ul>
+                        <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mobile-fallback" style="padding: 100px 20px; text-align: center;">
+            <h1 style="margin-bottom: 20px;">Hardware Ecosystem</h1>
+            <p style="color: #94a3b8; margin-bottom: 40px;">Please view on desktop for full interactive experience.</p>
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="glass-card">
                     <h3>Aegis Public Node</h3>
-                    <p>The backbone of the network. A solar-ready, fixed infrastructure unit designed for community access.</p>
-                    <div class="price-tag">$150 <span class="price-sub">/ unit</span></div>
-                    <ul>
-                        <li>80,000mAh Battery</li>
-                        <li>Integrated Screen & Keyboard</li>
-                        <li>Wi-Fi Bridge for Civilians</li>
-                    </ul>
-                    <a href="node-details.html" style="display: block; width: 100%; text-align: center; margin-top: 25px; padding: 15px 0; background: #FF5722; color: white; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-radius: 6px; text-decoration: none; border: 1px solid #FF5722; transition: all 0.3s;" onmouseover="this.style.background='#e64a19'; this.style.borderColor='#e64a19'" onmouseout="this.style.background='#FF5722'; this.style.borderColor='#FF5722'">
-                        View Exploded Specs &rarr;
-                    </a>
+                    <p>The backbone of the network.</p>
+                    <a href="node-details.html" class="btn">View Specs</a>
+                </div>
+                <div class="glass-card">
+                    <h3>Handheld & Repeater</h3>
+                    <p>Mobile and range extension units.</p>
+                    <a href="tech.html" class="btn btn-outline">Tech Specs</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="reveal" style="position: relative; z-index: 20; background: transparent; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div class="container">
+                <h2 style="text-align: center;">Command Infrastructure</h2>
+                <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
+
+                <div class="grid-2" style="align-items: center;">
+                    <div>
+                        <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
+                        <p style="color: #94a3b8;">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
+                        <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
+
+                        <ul style="margin-top: 20px; list-style: none; padding: 0; color: #94a3b8;">
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                                <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                                <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <span style="color: #FF5722; font-weight: bold;">&bull;</span>
+                                <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
+                            </li>
+                        </ul>
+
+                        <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid #FF5722; border-radius: 4px;">
+                            <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
+                                <strong>NOT a Single Point of Failure:</strong><br>
+                                If the Hub is destroyed, the local mesh network remains 100% operational.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; border-bottom: 4px solid #FF5722;">
+                        <img src="assets/img/hub.png" alt="Aegis Hub" style="width: 100%; height: auto; border-radius: 8px;">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="product-section" id="section-handheld">
-            <div class="modules-layer">
-                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-1" style="left: 5%; top: 20%;">
-                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-3" style="right: 5%; top: 25%;">
-                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-2" style="left: 20%; top: 80%;">
-            </div>
-            <div class="card-track">
-                <div class="glass-card-anim" id="card-handheld">
-                    <span class="mono-tag">02 // MOBILE UNIT</span>
-                    <h3>Aegis Handheld</h3>
-                    <p>Portable communicator for first responders and mobile teams. Ruggedized and lightweight.</p>
-                    <div class="price-tag">$100 <span class="price-sub">/ unit</span></div>
-                    <ul>
-                        <li>Pocket-Sized Form Factor</li>
-                        <li>GPS Tracking Enabled</li>
-                        <li>Tactile "Glove-Ready" Buttons</li>
-                    </ul>
-                    <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
-                </div>
-            </div>
-        </section>
+        <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 20;">
+            <div class="container">
+                <h2 style="text-align: center; color: white;">Mission Planner</h2>
+                <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
 
-        <section class="product-section" id="section-repeater">
-            <div class="modules-layer">
-                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-1" style="left: 10%; top: 15%;">
-                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-2" style="right: 15%; top: 20%;">
-                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-3" style="left: 25%; top: 75%;">
-                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-4" style="right: 10%; top: 80%;">
-            </div>
-            <div class="card-track">
-                <div class="glass-card-anim" id="card-repeater">
-                    <span class="mono-tag">03 // RANGE EXTENDER</span>
-                    <h3>Solar Repeater</h3>
-                    <p>"Headless" relay unit. Mount on mountains or towers to extend network range by miles.</p>
-                    <div class="price-tag">$50 - $80 <span class="price-sub">/ unit</span></div>
-                    <ul>
-                        <li>100% Solar Autonomous</li>
-                        <li>Weatherproof IP67</li>
-                        <li>Zero Maintenance</li>
-                    </ul>
-                    <a href="tech.html" class="learn-more-link">View Tech Specs &rarr;</a>
-                </div>
-            </div>
-        </section>
-    </div>
+                <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
 
-    <section class="reveal" style="position: relative; z-index: 20; background: transparent; border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
-            <h2 style="text-align: center;">Command Infrastructure</h2>
-            <p class="lead" style="text-align: center; margin-bottom: 40px;">The link between the radio mesh and the digital world.</p>
+                    <div style="margin-bottom: 30px;">
+                        <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
+                        <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+                            <option value="5">Village / Small Town (5 km²)</option>
+                            <option value="50">City Center (50 km²)</option>
+                            <option value="200">National Park / Rural Region (200 km²)</option>
+                            <option value="9000">Disaster Zone (Puerto Rico size)</option>
+                            <option value="japan">Japan (National Coverage)</option>
+                            <option value="usa">Continental USA (National Defense)</option>
+                            <option value="custom">Custom Area (Enter Amount)</option>
+                        </select>
 
-            <div class="grid-2" style="align-items: center;">
-                <div>
-                    <h3 style="color: white; font-size: 2rem;">Aegis Hub (Base Station)</h3>
-                    <p style="color: #94a3b8;">The "Gateway" device. It sits at the Command Center, receiving LoRa signals from the field and pushing them to the dashboard via Ethernet or Wi-Fi.</p>
-                    <div class="price-tag">$500 <span style="font-size: 0.9rem; font-weight: 400; color: #94a3b8;">/ unit</span></div>
-                    
-                    <ul style="margin-top: 20px; list-style: none; padding: 0; color: #94a3b8;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>High-Performance Compute:</strong> Powered by Raspberry Pi 5.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Multi-Channel Gateway:</strong> Uses SX1302 Concentrator.</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
-                            <span style="color: #FF5722; font-weight: bold;">&bull;</span>
-                            <span><strong>Local Hosting:</strong> Can run offline (Air-Gapped).</span>
-                        </li>
-                    </ul>
+                        <div id="customInputContainer" style="display: none; margin-top: 15px;">
+                            <label style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 5px; display: block;">Enter Area Size (km²):</label>
+                            <input type="number" id="customAreaInput" placeholder="e.g. 500" oninput="calculateCost()" style="width: 100%; padding: 15px; background: #0F172A; border: 1px solid #FF5722; color: white; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                    </div>
 
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 87, 34, 0.1); border-left: 4px solid #FF5722; border-radius: 4px;">
-                        <p style="font-size: 0.9rem; color: #e2e8f0; margin-bottom: 0;">
-                            <strong>NOT a Single Point of Failure:</strong><br>
-                            If the Hub is destroyed, the local mesh network remains 100% operational.
+                    <div class="grid-2" style="margin-top: 0; gap: 20px;">
+                        <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Infrastructure Units</div>
+                            <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
+                        </div>
+                        <div style="background: rgba(255,87,34,0.1); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,87,34,0.3);">
+                            <div style="font-size: 0.9rem; color: #FF5722; text-transform: uppercase; letter-spacing: 1px;">Est. Hardware Cost</div>
+                            <div id="totalCost" style="font-size: 2.5rem; font-weight: 800; color: #FF5722; margin-top: 5px;">--</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
+                        <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
+                            *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
                         </p>
                     </div>
                 </div>
-                
-                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; border-bottom: 4px solid #FF5722;">
-                    <img src="assets/img/hub.png" alt="Aegis Hub" style="width: 100%; height: auto; border-radius: 8px;">
+            </div>
+        </section>
+
+        <section class="reveal" style="background: #020617; position: relative; z-index: 20;">
+            <div class="container">
+                <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
+                <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
+
+
+                <div style="overflow-x: auto;">
+                    <table class="software-table">
+                        <tbody>
+                            <tr>
+                                <th>Tier</th>
+                                <td style="font-weight: bold; color: white;">[A] TACTICAL</td>
+                                <td style="font-weight: bold; color: white;">[B] PROFESSIONAL</td>
+                                <td style="font-weight: bold; color: white;">[C] STRATEGIC (GOV)</td>
+                            </tr>
+                            <tr>
+                                <th>Market</th>
+                                <td>Small SAR Teams, NGOs</td>
+                                <td>Cities, Industrial (Mines)</td>
+                                <td>National Governments</td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
+                                <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
+                                <td style="color: #FF5722; font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year / block*</span></td>
+                            </tr>
+                            <tr>
+                                <th>Features</th>
+                                <td>Basic Map & Messaging</td>
+                                <td>Advanced Analytics, Support</td>
+                                <td>On-Premise, API, 24/7 Support</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                            <p style="color: #94a3b8; font-size: 1rem; text-align: center; margin-bottom: 15px; margin-top: 10px">*One block is 10 modules. Discounts in bulk.</p>
+            </div>
+        </section>
+
+        <section class="reveal" style="background: #0F172A; position: relative; z-index: 20; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div class="container">
+                <h2>The Market Gap</h2>
+                <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
+
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>[A] Hobbyist (Meshtastic)</th>
+                                <th>[B] Professional DMR (Motorola)</th>
+                                <th>[C] Vitality 'Aegis'</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Handset Cost</strong></td>
+                                <td>$50 - $120</td>
+                                <td>$2,500 - $10,000</td>
+                                <td style="color: #FF5722; font-weight: bold;">~$100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Security</strong></td>
+                                <td>Low (DIY, unvetted)</td>
+                                <td>High</td>
+                                <td style="color: #FF5722; font-weight: bold;">High (AES-256)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network Type</strong></td>
+                                <td>Mesh</td>
+                                <td>Centralized (Star Topology)</td>
+                                <td>Self-Healing Mesh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Infrastructure</strong></td>
+                                <td>None</td>
+                                <td>REQUIRED (Base Repeater)</td>
+                                <td style="color: #FF5722; font-weight: bold;">NOT REQUIRED</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Single Point of Failure?</strong></td>
+                                <td>No</td>
+                                <td>Yes (The Repeater)</td>
+                                <td style="color: #FF5722; font-weight: bold;">No</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Setup</strong></td>
+                                <td>High (Requires Phone, App)</td>
+                                <td>High (Requires Training, License)</td>
+                                <td><strong>Zero (Turnkey)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="background-color: #0F172A; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 20;">
-        <div class="container">
-            <h2 style="text-align: center; color: white;">Mission Planner</h2>
-            <p class="lead" style="text-align: center; color: #94a3b8; margin-bottom: 40px;">Estimate the infrastructure needed for your operation area.</p>
-
-            <div style="max-width: 700px; margin: 0 auto; background: #020617; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                
-                <div style="margin-bottom: 30px;">
-                    <label style="color: white; font-weight: 600; display: block; margin-bottom: 10px; font-size: 1.1rem;">Select Operation Scale:</label>
-                    <select id="areaSelect" onchange="handleSelectChange()" style="width: 100%; padding: 15px; background: #1E293B; border: 1px solid #334155; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer;">
-                        <option value="5">Village / Small Town (5 km²)</option>
-                        <option value="50">City Center (50 km²)</option>
-                        <option value="200">National Park / Rural Region (200 km²)</option>
-                        <option value="9000">Disaster Zone (Puerto Rico size)</option>
-                        <option value="japan">Japan (National Coverage)</option>
-                        <option value="usa">Continental USA (National Defense)</option>
-                        <option value="custom">Custom Area (Enter Amount)</option>
-                    </select>
-
-                    <div id="customInputContainer" style="display: none; margin-top: 15px;">
-                        <label style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 5px; display: block;">Enter Area Size (km²):</label>
-                        <input type="number" id="customAreaInput" placeholder="e.g. 500" oninput="calculateCost()" style="width: 100%; padding: 15px; background: #0F172A; border: 1px solid #FF5722; color: white; border-radius: 8px; font-size: 1rem;">
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top: 0; gap: 20px;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                        <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Infrastructure Units</div>
-                        <div id="nodeCount" style="font-size: 2.5rem; font-weight: 800; color: white; margin-top: 5px;">--</div>
-                    </div>
-                    <div style="background: rgba(255,87,34,0.1); padding: 25px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,87,34,0.3);">
-                        <div style="font-size: 0.9rem; color: #FF5722; text-transform: uppercase; letter-spacing: 1px;">Est. Hardware Cost</div>
-                        <div id="totalCost" style="font-size: 2.5rem; font-weight: 800; color: #FF5722; margin-top: 5px;">--</div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px;">
-                    <p id="calculationNote" style="font-size: 0.85rem; color: #64748b; text-align: center; line-height: 1.5;">
-                        *<strong>Calculation Logic:</strong> High density (2 nodes/km²) for urban environments. Strategic density (0.1 nodes/km²) for national backbone.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="background: #020617; position: relative; z-index: 20;">
-        <div class="container">
-            <h2 style="color: white; text-align: center;">Aegis Command Software</h2>
-            <p style="color: #94a3b8; font-size: 1.2rem; text-align: center; margin-bottom: 40px;">The "Brains" of the operation. Choose the tier that fits your mission.</p>
-            
-
-            <div style="overflow-x: auto;">
-                <table class="software-table">
-                    <tbody>
-                        <tr>
-                            <th>Tier</th>
-                            <td style="font-weight: bold; color: white;">[A] TACTICAL</td>
-                            <td style="font-weight: bold; color: white;">[B] PROFESSIONAL</td>
-                            <td style="font-weight: bold; color: white;">[C] STRATEGIC (GOV)</td>
-                        </tr>
-                        <tr>
-                            <th>Market</th>
-                            <td>Small SAR Teams, NGOs</td>
-                            <td>Cities, Industrial (Mines)</td>
-                            <td>National Governments</td>
-                        </tr>
-                        <tr>
-                            <th>Price</th>
-                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(One-Time Fee)</span></td>
-                            <td style="color: #FF5722; font-weight: bold;">$500 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ month / hub</span></td>
-                            <td style="color: #FF5722; font-weight: bold;">$5,000 <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">/ year / block*</span></td>
-                        </tr>
-                        <tr>
-                            <th>Features</th>
-                            <td>Basic Map & Messaging</td>
-                            <td>Advanced Analytics, Support</td>
-                            <td>On-Premise, API, 24/7 Support</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                        <p style="color: #94a3b8; font-size: 1rem; text-align: center; margin-bottom: 15px; margin-top: 10px">*One block is 10 modules. Discounts in bulk.</p>
-        </div>
-    </section>
-
-    <section class="reveal" style="background: #0F172A; position: relative; z-index: 20; border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
-            <h2>The Market Gap</h2>
-            <p class="lead">We bridge the gap between "Cheap Toys" and "Overpriced Mil-Spec".</p>
-
-            <div style="overflow-x: auto;">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Option</th>
-                            <th>[A] Hobbyist (Meshtastic)</th>
-                            <th>[B] Professional DMR (Motorola)</th>
-                            <th>[C] Vitality 'Aegis'</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Handset Cost</strong></td>
-                            <td>$50 - $120</td>
-                            <td>$2,500 - $10,000</td>
-                            <td style="color: #FF5722; font-weight: bold;">~$100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Security</strong></td>
-                            <td>Low (DIY, unvetted)</td>
-                            <td>High</td>
-                            <td style="color: #FF5722; font-weight: bold;">High (AES-256)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Network Type</strong></td>
-                            <td>Mesh</td>
-                            <td>Centralized (Star Topology)</td>
-                            <td>Self-Healing Mesh</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Infrastructure</strong></td>
-                            <td>None</td>
-                            <td>REQUIRED (Base Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">NOT REQUIRED</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Single Point of Failure?</strong></td>
-                            <td>No</td>
-                            <td>Yes (The Repeater)</td>
-                            <td style="color: #FF5722; font-weight: bold;">No</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Setup</strong></td>
-                            <td>High (Requires Phone, App)</td>
-                            <td>High (Requires Training, License)</td>
-                            <td><strong>Zero (Turnkey)</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <br>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="tech.html" class="btn btn-outline">See How It Works (Technical) &rarr;</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer style="background-color: #020617; border-top: 1px solid rgba(255,255,255,0.1); padding: 50px 20px; text-align: center;">
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
-    <script>
-        // GSAP ANIMATION LOGIC (Mission Control)
-        gsap.registerPlugin(ScrollTrigger);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            // 1. PINNING
-            gsap.utils.toArray(".product-section").forEach((section) => {
-                let modules = section.querySelector(".modules-layer");
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: "top top",
-                    end: "bottom bottom",
-                    pin: modules, 
-                    pinSpacing: false,
-                    scrub: true
-                });
-            });
-
-            // 2. LINES
-            const svg = document.getElementById('main-svg');
-            const lines = [];
-
-            function createLine(cls) {
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("class", cls);
-                svg.appendChild(line);
-                return line;
-            }
-
-            const connections = [
-                { from: 'node-1', to: 'card-node', type: 'card' },
-                { from: 'node-2', to: 'card-node', type: 'card' },
-                { from: 'node-3', to: 'card-node', type: 'card' },
-                { from: 'node-4', to: 'card-node', type: 'card' },
-                
-                { from: 'hand-1', to: 'card-handheld', type: 'card' },
-                { from: 'hand-2', to: 'card-handheld', type: 'card' },
-                { from: 'hand-3', to: 'card-handheld', type: 'card' },
-
-                { from: 'rep-1', to: 'card-repeater', type: 'card' },
-                { from: 'rep-2', to: 'card-repeater', type: 'card' },
-                { from: 'rep-3', to: 'card-repeater', type: 'card' },
-                { from: 'rep-4', to: 'card-repeater', type: 'card' },
-
-                // Bridges
-                { from: 'node-2', to: 'hand-1', type: 'bridge' },
-                { from: 'node-4', to: 'hand-3', type: 'bridge' },
-                { from: 'hand-2', to: 'rep-1', type: 'bridge' },
-                { from: 'hand-2', to: 'rep-2', type: 'bridge' } 
-            ];
-
-            connections.forEach(c => {
-                const lineEl = createLine(c.type === 'bridge' ? 'bridge-line' : 'mesh-line');
-                lines.push({ el: lineEl, from: c.from, to: c.to });
-            });
-
-            function updateLines() {
-                lines.forEach(line => {
-                    const fromEl = document.getElementById(line.from);
-                    const toEl = document.getElementById(line.to);
-
-                    if (fromEl && toEl) {
-                        const r1 = fromEl.getBoundingClientRect();
-                        const r2 = toEl.getBoundingClientRect();
-                        const x1 = r1.left + r1.width / 2;
-                        const y1 = r1.top + r1.height / 2;
-                        const x2 = r2.left + r2.width / 2;
-                        const y2 = r2.top + r2.height / 2;
-                        line.el.setAttribute("x1", x1);
-                        line.el.setAttribute("y1", y1);
-                        line.el.setAttribute("x2", x2);
-                        line.el.setAttribute("y2", y2);
-                    }
-                });
-            }
-            gsap.ticker.add(updateLines);
-        }
-
-        // SCROLL REVEAL (Restored for Static Content)
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
-        // STANDARD CALCULATOR
-        function handleSelectChange() {
-            const selectValue = document.getElementById('areaSelect').value;
-            const customContainer = document.getElementById('customInputContainer');
-            if (selectValue === 'custom') {
-                customContainer.style.display = 'block';
-                calculateCost();
-            } else {
-                customContainer.style.display = 'none';
-                calculateCost();
-            }
-        }
-
-        function calculateCost() {
-            const selectValue = document.getElementById('areaSelect').value;
-            let area = 0;
-            let density = 0.5; 
-            let nodes, price, note;
-
-            if (selectValue === "japan") {
-                nodes = 5000; price = 500000;
-                note = "*<strong>Strategic Backbone Logic:</strong> Uses 10km grid spacing with mountaintop solar repeaters. Cost reflects a mix of 40% Public Nodes ($150) and 60% low-cost Repeaters ($50). <strong>Total cost is less than one fire truck.</strong>";
-            } 
-            else if (selectValue === "usa") {
-                nodes = 130000; price = 13000000;
-                note = "*<strong>National Defense Logic:</strong> Continental backbone coverage. Uses 60% low-cost repeaters ($50) on towers/peaks and 40% hardened nodes ($150). Provides nationwide emergency comms for less than the cost of one fighter jet.";
-            } 
-            else {
-                if (selectValue === 'custom') {
-                    area = parseFloat(document.getElementById('customAreaInput').value) || 0;
-                } else {
-                    area = parseInt(selectValue);
-                }
-
-                if(area <= 5) density = 3.0; 
-                else if(area <= 50) density = 2.0; 
-                else if(area <= 200) density = 0.5; 
-                else if(area > 100000) density = 0.1; 
-                else density = 0.15; 
-
-                nodes = Math.ceil(area * density);
-                if(nodes < 2 && area > 0) nodes = 2; 
-                if(area === 0) nodes = 0;
-
-                let costPerUnit = (area > 1000) ? 100 : 150;
-                price = nodes * costPerUnit;
-                
-                let densityText = (density < 0.2) ? "Strategic Backbone" : "High Density";
-                note = `*<strong>${densityText}:</strong> Based on ${density} nodes/km² for this scale.`;
-            }
-
-            document.getElementById('nodeCount').innerText = nodes.toLocaleString();
-            document.getElementById('totalCost').innerText = "$" + price.toLocaleString();
-            document.getElementById('calculationNote').innerHTML = note;
-        }
-        
-        handleSelectChange();
-    </script>
-<script src="js/nav.js"></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/reveal.js" defer></script>
+    <script src="js/product.js" defer></script>
 </body>
 </html>

@@ -404,19 +404,31 @@ footer {
     .hamburger { display: flex; }
     
     nav ul {
-        display: none; 
+        display: flex;
         flex-direction: column;
         width: 100%;
         position: absolute;
         top: 70px;
         left: 0;
         background-color: var(--bg-card); /* Dark menu background */
-        padding: 20px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         border-top: 1px solid var(--border-color);
         border-bottom: 1px solid var(--border-color);
+
+        /* Animation Props */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0 20px; /* Padding animated via height or kept 0 when closed */
+        transition: all 0.4s ease-in-out;
+        pointer-events: none; /* Prevent clicks when closed */
     }
-    nav ul.active { display: flex; }
+    nav ul.active {
+        max-height: 500px;
+        opacity: 1;
+        padding: 20px;
+        pointer-events: auto;
+    }
 
     /* Text Sizing */
     header.hero h1, header.hero-home h1 { 

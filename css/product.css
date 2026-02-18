@@ -1,0 +1,101 @@
+/* Calculator Styles */
+#customInputContainer { transition: all 0.3s ease; overflow: hidden; }
+
+/* --- MISSION CONTROL ANIMATION STYLES --- */
+
+/* 1. The Map (Fixed Background) */
+.fixed-map-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    background-image: url('../assets/img/hero-map-dark-anim.jpg');
+    background-size: cover; background-position: center;
+    opacity: 0.4;
+    filter: grayscale(100%) contrast(110%) invert(1) brightness(0.6);
+    pointer-events: none;
+}
+
+/* 2. The Lines (SVG Layer) */
+.connections-svg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; pointer-events: none;
+}
+.mesh-line {
+    stroke: #FF5722; stroke-width: 2px;
+    vector-effect: non-scaling-stroke; opacity: 0.8;
+}
+.bridge-line {
+    stroke: #FF5722; stroke-width: 1px;
+    stroke-dasharray: 5, 5; opacity: 0.5;
+}
+
+/* 3. The Sections (CRITICAL FIX: Force Transparent) */
+.product-section {
+    position: relative;
+    height: 140vh;
+    z-index: 5;
+    background-color: transparent !important;
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+/* 4. Modules */
+.modules-layer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+    pointer-events: none; z-index: 2;
+}
+.module-img {
+    position: absolute; width: 14vw;
+    filter: drop-shadow(0 0 30px rgba(255, 87, 34, 0.3));
+}
+
+/* 5. Cards */
+.card-track {
+    position: relative; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    pointer-events: none; z-index: 10;
+}
+
+.glass-card-anim {
+    pointer-events: auto; width: 450px;
+    background: rgba(15, 23, 42, 0.95); /* Dark Glass */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #FF5722;
+    padding: 35px; border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    text-align: left;
+}
+
+.glass-card-anim h3 { color: white; font-size: 1.8rem; margin-bottom: 10px; font-weight: 700; }
+.glass-card-anim p { font-size: 1rem; line-height: 1.6; margin-bottom: 15px; color: #94a3b8; }
+.glass-card-anim ul { margin: 15px 0; padding-left: 20px; color: #94a3b8; font-size: 0.95rem; }
+.glass-card-anim li { margin-bottom: 5px; }
+
+.price-tag { font-size: 1.4rem; font-weight: 800; color: white; margin: 10px 0; }
+.price-sub { font-size: 0.8rem; font-weight: 400; color: #64748b; }
+
+.learn-more-link {
+    margin-top: 20px; color: #FF5722; font-weight: 600; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem;
+}
+.learn-more-link:hover { text-decoration: underline; }
+
+.mono-tag { font-family: 'Courier Prime', monospace; color: #FF5722; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+
+/* Header Styling - DEEPER GRADIENT */
+header.intro-anim {
+    height: 35vh; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 20; padding-top: 60px;
+    /* Gradient now extends deeper (60%) for better contrast */
+    background: linear-gradient(180deg, #020617 0%, rgba(2, 6, 23, 0.95) 50%, rgba(2, 6, 23, 0.6) 80%, transparent 100%);
+    border-bottom: none !important;
+}
+
+/* Mobile Hide */
+@media (max-width: 768px) {
+    .anim-wrapper { display: none; }
+    .mobile-fallback { display: block; }
+}
+@media (min-width: 769px) {
+    .mobile-fallback { display: none; }
+}

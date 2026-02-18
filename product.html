@@ -131,19 +131,10 @@
     </style>
 </head>
 <body>
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-logo">VITALITY</div>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-        <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
-    </div>
-</div>
     <nav style="z-index: 1000; position: relative; background: #020617;"></nav>
 
     <div class="anim-wrapper">
-        <div class="fixed-map-bg"></div>
+        <div class="fixed-map-bg skeleton-bg"></div>
         <svg class="connections-svg" id="main-svg"></svg>
 
         <header class="intro-anim">
@@ -155,10 +146,10 @@
 
         <section class="product-section" id="section-node">
             <div class="modules-layer">
-                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-1" style="left: 5%; top: 15%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-2" style="left: 10%; top: 65%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-3" style="right: 5%; top: 10%;">
-                <img src="assets/img/node_hero-anim.png" class="module-img" id="node-4" style="right: 8%; top: 70%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-1" style="left: 5%; top: 15%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-2" style="left: 10%; top: 65%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-3" style="right: 5%; top: 10%;">
+                <img src="assets/img/node_hero-anim.png" class="module-img img-fade-in" id="node-4" style="right: 8%; top: 70%;">
             </div>
             <div class="card-track">
                 <div class="glass-card-anim" id="card-node">
@@ -180,9 +171,9 @@
 
         <section class="product-section" id="section-handheld">
             <div class="modules-layer">
-                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-1" style="left: 5%; top: 20%;">
-                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-3" style="right: 5%; top: 25%;">
-                <img src="assets/img/handheld-anim.png" class="module-img" id="hand-2" style="left: 20%; top: 80%;">
+                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-1" style="left: 5%; top: 20%;">
+                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-3" style="right: 5%; top: 25%;">
+                <img src="assets/img/handheld-anim.png" class="module-img img-fade-in" id="hand-2" style="left: 20%; top: 80%;">
             </div>
             <div class="card-track">
                 <div class="glass-card-anim" id="card-handheld">
@@ -202,10 +193,10 @@
 
         <section class="product-section" id="section-repeater">
             <div class="modules-layer">
-                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-1" style="left: 10%; top: 15%;">
-                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-2" style="right: 15%; top: 20%;">
-                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-3" style="left: 25%; top: 75%;">
-                <img src="assets/img/repeater-anim.png" class="module-img" id="rep-4" style="right: 10%; top: 80%;">
+                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-1" style="left: 10%; top: 15%;">
+                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-2" style="right: 15%; top: 20%;">
+                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-3" style="left: 25%; top: 75%;">
+                <img src="assets/img/repeater-anim.png" class="module-img img-fade-in" id="rep-4" style="right: 10%; top: 80%;">
             </div>
             <div class="card-track">
                 <div class="glass-card-anim" id="card-repeater">
@@ -567,17 +558,6 @@
         
         handleSelectChange();
     </script>
-<script>
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-        }, 1000); // 2 Seconds Force Wait
-    });
-</script>
 <script src="js/nav.js"></script>
 </body>
 </html>

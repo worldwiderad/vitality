@@ -293,19 +293,6 @@
             initCanvas(); // Start animation only after load
         });
 
-        // --- 3. SCROLL REVEAL ---
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
 
         // --- 4. CONSTELLATION MESH BACKGROUND (The "Motif") ---
         const canvas = document.getElementById('team-canvas');
@@ -379,6 +366,7 @@
             requestAnimationFrame(animateCanvas);
         }
     </script>
+    <script src="js/reveal.js"></script>
     <script src="js/nav.js"></script>
 </body>
 </html>

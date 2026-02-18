@@ -22,172 +22,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
-    <style>
-        /* Component List Styling */
-        .component-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 30px;
-        }
-        .component-list li {
-            margin-bottom: 25px;
-            padding-left: 60px;
-            position: relative;
-        }
-        .component-list li::before {
-            content: attr(data-number);
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-family: 'Courier Prime', monospace;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            line-height: 1;
-        }
-        .component-header {
-            font-weight: 700;
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .component-desc {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/node-details.css">
 </head>
 <body>
     <nav></nav>
 
-    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: #020617;">
-        <div class="container">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-                <a href="product.html" style="color: var(--primary-color); text-decoration: none; font-family: 'Courier Prime'; font-size: 0.9rem;">&larr; Back to Products</a>
+    <main>
+        <header class="hero" style="padding: 100px 20px; background-image: none; background-color: #020617;">
+            <div class="container">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <a href="product.html" style="color: var(--primary-color); text-decoration: none; font-family: 'Courier Prime'; font-size: 0.9rem;">&larr; Back to Products</a>
+                </div>
+                <h1 style="font-size: 3.5rem;">The Aegis Node.</h1>
+                <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    The permanent, solar-autonomous backbone of the mesh network. Engineered for indefinite operation in zero-infrastructure environments.
+                </p>
             </div>
-            <h1 style="font-size: 3.5rem;">The Aegis Node.</h1>
-            <p style="opacity: 0.9; max-width: 600px; margin: 0 auto;">
-                The permanent, solar-autonomous backbone of the mesh network. Engineered for indefinite operation in zero-infrastructure environments.
-            </p>
-        </div>
-    </header>
+        </header>
 
-    <section class="reveal" style="background-color: #0F172A;">
-        <div class="container">
-            <div class="grid-2" style="align-items: start; gap: 50px;">
-                <div style="position: sticky; top: 100px;">
-                    <div style="background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-                        <img src="assets/img/node-exploded.png" alt="Aegis Node Exploded View" style="width: 100%; height: auto; display: block;">
+        <section class="reveal" style="background-color: #0F172A;">
+            <div class="container">
+                <div class="grid-2" style="align-items: start; gap: 50px;">
+                    <div style="position: sticky; top: 100px;">
+                        <div style="background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                            <img src="assets/img/node-exploded.png" alt="Aegis Node Exploded View" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <p style="text-align: center; font-family: 'Courier Prime'; color: var(--primary-color); margin-top: 15px; font-size: 0.8rem;">// FIG 1.0: MODULAR INTERNAL ARCHITECTURE</p>
                     </div>
-                    <p style="text-align: center; font-family: 'Courier Prime'; color: var(--primary-color); margin-top: 15px; font-size: 0.8rem;">// FIG 1.0: MODULAR INTERNAL ARCHITECTURE</p>
-                </div>
 
-                <div>
-                    <h2 style="color: white; margin-bottom: 20px;">System Architecture</h2>
-                    <p class="lead" style="color: #94a3b8;">Key subsystems powering the independent mesh.</p>
+                    <div>
+                        <h2 style="color: white; margin-bottom: 20px;">System Architecture</h2>
+                        <p class="lead" style="color: #94a3b8;">Key subsystems powering the independent mesh.</p>
 
-                    <ul class="component-list">
-                        <li data-number="01">
-                            <span class="component-header">Housing (Development Phase)</span>
-                            <span class="component-desc">Current V4 field units utilize 3D-printed reinforced ABS for rapid iteration. Final production tooling will transition to IP67-rated, UV-stabilized injection molding with integrated gaskets.</span>
-                        </li>
-                        <li data-number="02">
-                            <span class="component-header">High-Gain LoRa Antenna</span>
-                            <span class="component-desc">Omnidirectional dipole tuned for the 915/868 MHz band. Mounted externally to maximize Fresnel zone clearance and ensure 15km+ line-of-sight propagation.</span>
-                        </li>
-                        <li data-number="03">
-                            <span class="component-header">Core Logic Board (ARM Cortex)</span>
-                            <span class="component-desc">Low-power quad-core processor. Manages packet deduplication, encryption keys, and the local Wi-Fi bridge for connecting civilian smartphones.</span>
-                        </li>
-                        <li data-number="04">
-                            <span class="component-header">LoRa Transceiver (SX1262)</span>
-                            <span class="component-desc">Primary radio module. Handles the chirp spread spectrum modulation, allowing the system to demodulate signals significantly below the RF noise floor.</span>
-                        </li>
-                        <li data-number="05">
-                            <span class="component-header">LiFePO4 Energy Storage</span>
-                            <span class="component-desc">80,000mAh capacity. Selected for thermal stability and high cycle life (2000+). Provides operational continuity during extended periods of low solar irradiance.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <div class="container">
-            <div class="grid-2" style="gap: 60px;">
-                <div>
-                    <h2>Engineering Specifications</h2>
-                    <p style="color: #94a3b8; margin-bottom: 30px;">Detailed metrics for system integrators.</p>
-                    
-                    <table class="spec-table">
-                        <tbody>
-                            <tr><td>RF Protocol</td><td>LoRaWAN L2 (Modified Mesh)</td></tr>
-                            <tr><td>Frequency Bands</td><td>US915, EU868, AS923</td></tr>
-                            <tr><td>Tx Power</td><td>Regional Limit (Hardware Max: +22 dBm)</td></tr>
-                            <tr><td>Rx Sensitivity</td><td>-148 dBm</td></tr>
-                            <tr><td>Processor</td><td>Broadcom BCM2711, Quad-core Cortex-A72</td></tr>
-                            <tr><td>Memory</td><td>2GB LPDDR4-3200 SDRAM</td></tr>
-                            <tr><td>Storage</td><td>32GB Industrial eMMC</td></tr>
-                            <tr><td>Local Connectivity</td><td>Wi-Fi 5 (802.11ac), Bluetooth 5.0</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div>
-                    <h2>Power & Environment</h2>
-                    <p style="color: #94a3b8; margin-bottom: 30px;">Operational limits and autonomy.</p>
-                    
-                    <table class="spec-table">
-                        <tbody>
-                            <tr><td>Battery Capacity</td><td>80 Ah (256 Wh) @ 3.2V</td></tr>
-                            <tr><td>Solar Input</td><td>12-24V DC MPPT Controller (Max 60W)</td></tr>
-                            <tr><td>Autonomy (No Sun)</td><td>~6 Months (Deep Sleep Beacon Mode)</td></tr>
-                            <tr><td>Operating Temp</td><td>-30°C to +65°C (-22°F to 149°F)</td></tr>
-                            <tr><td>Dimensions</td><td>280mm x 180mm x 90mm (Approx.)</td></tr>
-                            <tr><td>Weight</td><td>3.5 kg (7.7 lbs)</td></tr>
-                        </tbody>
-                    </table>
+                        <ul class="component-list">
+                            <li data-number="01">
+                                <span class="component-header">Housing (Development Phase)</span>
+                                <span class="component-desc">Current V4 field units utilize 3D-printed reinforced ABS for rapid iteration. Final production tooling will transition to IP67-rated, UV-stabilized injection molding with integrated gaskets.</span>
+                            </li>
+                            <li data-number="02">
+                                <span class="component-header">High-Gain LoRa Antenna</span>
+                                <span class="component-desc">Omnidirectional dipole tuned for the 915/868 MHz band. Mounted externally to maximize Fresnel zone clearance and ensure 15km+ line-of-sight propagation.</span>
+                            </li>
+                            <li data-number="03">
+                                <span class="component-header">Core Logic Board (ARM Cortex)</span>
+                                <span class="component-desc">Low-power quad-core processor. Manages packet deduplication, encryption keys, and the local Wi-Fi bridge for connecting civilian smartphones.</span>
+                            </li>
+                            <li data-number="04">
+                                <span class="component-header">LoRa Transceiver (SX1262)</span>
+                                <span class="component-desc">Primary radio module. Handles the chirp spread spectrum modulation, allowing the system to demodulate signals significantly below the RF noise floor.</span>
+                            </li>
+                            <li data-number="05">
+                                <span class="component-header">LiFePO4 Energy Storage</span>
+                                <span class="component-desc">80,000mAh capacity. Selected for thermal stability and high cycle life (2000+). Provides operational continuity during extended periods of low solar irradiance.</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal" style="background-color: #0F172A; text-align: center; padding: 80px 20px;">
-        <div class="container" style="max-width: 800px;">
-            <h2 style="color: white; margin-bottom: 30px;">Why 80,000mAh?</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;">
-                Standard IoT devices are designed for predictable solar cycles. We design for worst-case scenarios. Following a major event, ash or heavy cloud cover can reduce solar efficiency to near zero for weeks.
-            </p>
-            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7;">
-                The Aegis Node's battery reservoir ensures the network backbone remains active and beaconing for half a year without recharge. This ensures a viable signal is available immediately after a disaster, not just when the weather clears.
-            </p>
-        </div>
-    </section>
+        <section class="reveal">
+            <div class="container">
+                <div class="grid-2" style="gap: 60px;">
+                    <div>
+                        <h2>Engineering Specifications</h2>
+                        <p style="color: #94a3b8; margin-bottom: 30px;">Detailed metrics for system integrators.</p>
+
+                        <table class="spec-table">
+                            <tbody>
+                                <tr><td>RF Protocol</td><td>LoRaWAN L2 (Modified Mesh)</td></tr>
+                                <tr><td>Frequency Bands</td><td>US915, EU868, AS923</td></tr>
+                                <tr><td>Tx Power</td><td>Regional Limit (Hardware Max: +22 dBm)</td></tr>
+                                <tr><td>Rx Sensitivity</td><td>-148 dBm</td></tr>
+                                <tr><td>Processor</td><td>Broadcom BCM2711, Quad-core Cortex-A72</td></tr>
+                                <tr><td>Memory</td><td>2GB LPDDR4-3200 SDRAM</td></tr>
+                                <tr><td>Storage</td><td>32GB Industrial eMMC</td></tr>
+                                <tr><td>Local Connectivity</td><td>Wi-Fi 5 (802.11ac), Bluetooth 5.0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h2>Power & Environment</h2>
+                        <p style="color: #94a3b8; margin-bottom: 30px;">Operational limits and autonomy.</p>
+
+                        <table class="spec-table">
+                            <tbody>
+                                <tr><td>Battery Capacity</td><td>80 Ah (256 Wh) @ 3.2V</td></tr>
+                                <tr><td>Solar Input</td><td>12-24V DC MPPT Controller (Max 60W)</td></tr>
+                                <tr><td>Autonomy (No Sun)</td><td>~6 Months (Deep Sleep Beacon Mode)</td></tr>
+                                <tr><td>Operating Temp</td><td>-30°C to +65°C (-22°F to 149°F)</td></tr>
+                                <tr><td>Dimensions</td><td>280mm x 180mm x 90mm (Approx.)</td></tr>
+                                <tr><td>Weight</td><td>3.5 kg (7.7 lbs)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="background-color: #0F172A; text-align: center; padding: 80px 20px;">
+            <div class="container" style="max-width: 800px;">
+                <h2 style="color: white; margin-bottom: 30px;">Why 80,000mAh?</h2>
+                <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;">
+                    Standard IoT devices are designed for predictable solar cycles. We design for worst-case scenarios. Following a major event, ash or heavy cloud cover can reduce solar efficiency to near zero for weeks.
+                </p>
+                <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.7;">
+                    The Aegis Node's battery reservoir ensures the network backbone remains active and beaconing for half a year without recharge. This ensures a viable signal is available immediately after a disaster, not just when the weather clears.
+                </p>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
-    </script>
-<script src="js/nav.js"></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/reveal.js" defer></script>
 </body>
 </html>

@@ -101,14 +101,6 @@
 </head>
 <body> 
 
-    <div id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">VITALITY</div>
-            <div class="loader-bar"><div class="loader-progress"></div></div>
-            <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
-        </div>
-    </div>
-
     <div id="scroll-prompt">
         SCROLL TO BEGIN
         <span>&darr;</span>
@@ -126,23 +118,23 @@
             </div>
 
             <div id="hero-stage">
-                <div class="bg-map-container"><img id="city-map" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
+                <div class="bg-map-container skeleton-bg"><img id="city-map" class="img-fade-in" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
                 <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
 
-                <div id="hero-node-wrapper" class="device"><img class="device-img" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
-                <div id="hub-wrapper" class="device secondary-device"><img class="device-img offset-hub" src="assets/img/hub-anim.png" alt="Hub"></div>
+                <div id="hero-node-wrapper" class="device skeleton-bg"><img class="device-img img-fade-in" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
+                <div id="hub-wrapper" class="device secondary-device skeleton-bg"><img class="device-img offset-hub img-fade-in" src="assets/img/hub-anim.png" alt="Hub"></div>
                 
-                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper"><img class="device-img offset-node" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
 
-                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper"><img class="device-img offset-rep" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
 
-                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
-                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper"><img class="device-img offset-hand" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
             </div>
         </header>
     </div>
@@ -328,17 +320,10 @@
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
 
-            // 1. LOADER LOGIC
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    ScrollTrigger.refresh();
-                    initWave(); // Start Wave
-                    initNetwork(); // Start Particles
-                }, 500);
-            }, 1000); 
+            // Trigger animations without loader delay
+            ScrollTrigger.refresh();
+            initWave(); // Start Wave
+            initNetwork(); // Start Particles
 
             // 2. SCROLL PROMPT LOGIC
             const prompt = document.getElementById('scroll-prompt');

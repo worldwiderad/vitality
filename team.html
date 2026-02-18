@@ -190,16 +190,6 @@
 </head>
 <body>
 
-    <div id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">VITALITY</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
-        </div>
-    </div>
-
     <canvas id="team-canvas"></canvas>
 
     <nav></nav>
@@ -300,16 +290,7 @@
     <script>
         // --- 1. LOADER LOGIC (1 Second) ---
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            
-            // Force 1s wait, then clear
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    initCanvas(); // Start animation only after load
-                }, 500);
-            }, 1000);
+            initCanvas(); // Start animation only after load
         });
 
         // --- 3. SCROLL REVEAL ---

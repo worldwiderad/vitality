@@ -22,82 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    
-    <style>
-        /* --- SCROLL PROMPT --- */
-        #scroll-prompt {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            color: var(--primary-color); font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem; opacity: 0; pointer-events: none; z-index: 1000;
-            text-align: center; transition: opacity 0.5s ease;
-        }
-        #scroll-prompt span { display: block; font-size: 1.5rem; margin-top: 5px; }
-
-        /* --- PROBLEM SECTION BACKGROUND --- */
-        #problem {
-            position: relative;
-            background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/emerg-comms.png') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            overflow: hidden;
-        }
-
-        /* --- QUOTE SECTION BACKGROUND (Fixed "Slit") --- */
-        #quote-section {
-            position: relative;
-            background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.85)), url('assets/img/military-comms.png') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            overflow: hidden;
-            /* Removed border-top that was causing the slit */
-            border-top: none;
-            padding: 80px 20px;
-        }
-
-        /* --- RADAR ANIMATION --- */
-        .radar-bg {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255,87,34,0.05) 0%, transparent 70%);
-            z-index: 0; pointer-events: none;
-        }
-        .radar-sweep {
-            position: absolute; top: 50%; left: 50%; width: 50%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-color));
-            transform-origin: left;
-            animation: radarSpin 4s linear infinite;
-            opacity: 0.2;
-        }
-        @keyframes radarSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* --- TYPOGRAPHY & LAYOUT TWEAKS --- */
-        .test-stat h3 {
-            font-size: 3.5rem; color: var(--primary-color); margin-bottom: 5px;
-            font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1;
-        }
-        .test-stat-label {
-            font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: white; opacity: 0.8; margin-bottom: 10px; display: block; letter-spacing: 1px;
-        }
-        
-        .cta-large {
-            display: inline-flex; align-items: center; gap: 10px; margin-top: 60px;
-            padding: 20px 50px; font-size: 1.1rem; background: var(--primary-color);
-            color: white; text-decoration: none; border-radius: 4px; font-weight: 700;
-            transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .cta-large:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 87, 34, 0.4); background: #ff7043; }
-
-        .testing-stat-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; position: relative; z-index: 2;
-        }
-    </style>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body> 
 
@@ -108,416 +33,220 @@
 
     <nav style="background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);"></nav>
 
-    <div id="intro-trigger-wrapper">
-        <header class="aegis-intro">
-            
-            <div id="hero-text-container" style="padding-bottom: 80px;">
-                <h1 id="text-line-1">THE GRID IS</h1>
-                <h2 id="text-line-2">FRAGILE.</h2>
-                <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
-            </div>
-
-            <div id="hero-stage">
-                <div class="bg-map-container skeleton-bg"><img id="city-map" class="img-fade-in" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
-                <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-
-                <div id="hero-node-wrapper" class="device skeleton-bg"><img class="device-img img-fade-in" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
-                <div id="hub-wrapper" class="device secondary-device skeleton-bg"><img class="device-img offset-hub img-fade-in" src="assets/img/hub-anim.png" alt="Hub"></div>
+    <main>
+        <div id="intro-trigger-wrapper">
+            <header class="aegis-intro">
                 
-                <div id="std-1-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                <div id="std-2-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+                <div id="hero-text-container" style="padding-bottom: 80px;">
+                    <h1 id="text-line-1">THE GRID IS</h1>
+                    <h2 id="text-line-2">FRAGILE.</h2>
+                    <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
+                </div>
 
-                <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                <div id="hero-stage">
+                    <div class="bg-map-container skeleton-bg"><img id="city-map" class="img-fade-in" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
+                    <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
 
-                <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
-                <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                    <div id="hero-node-wrapper" class="device skeleton-bg"><img class="device-img img-fade-in" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
+                    <div id="hub-wrapper" class="device secondary-device skeleton-bg"><img class="device-img offset-hub img-fade-in" src="assets/img/hub-anim.png" alt="Hub"></div>
+
+                    <div id="std-1-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+                    <div id="std-2-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
+
+                    <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                    <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                    <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                    <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+                    <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
+
+                    <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                    <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
+                </div>
+            </header>
+        </div>
+
+        <div id="hero-home-anchor"></div>
+        
+        <header class="hero-home">
+            <div class="container">
+                <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
+                <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
+                    <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
+                </p>
+                <div class="hero-btns" style="margin-top: 40px;">
+                    <a href="product.html" class="btn">See The Hardware</a>
+                    <a href="mission.html" class="btn btn-outline">The Mission</a>
+                </div>
             </div>
+            <div class="hero-label">&bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS</div>
         </header>
-    </div>
 
-    <div id="hero-home-anchor"></div>
-    
-    <header class="hero-home">
-        <div class="container">
-            <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
-            <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
-                <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
-            </p>
-            <div class="hero-btns" style="margin-top: 40px;">
-                <a href="product.html" class="btn">See The Hardware</a>
-                <a href="mission.html" class="btn btn-outline">The Mission</a>
-            </div>
-        </div>
-        <div class="hero-label">&bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS</div>
-    </header>
+        <section id="problem" class="reveal">
+            <div class="radar-bg"><div class="radar-sweep"></div></div>
 
-    <section id="problem" class="reveal">
-        <div class="radar-bg"><div class="radar-sweep"></div></div>
-        
-        <div class="container" style="position: relative; z-index: 2;">
-            <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
-            <p class="lead" style="color: #94a3b8; max-width: 800px;">
-                Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
-            </p>
-            <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
-                "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
-                <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
-            </blockquote>
-            <div class="grid-2" style="margin-top: 50px;">
-                <div class="glass-card">
-                    <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
-                    <h3>Civilian Fragility</h3>
-                    <p style="color: #94a3b8;">Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
-                </div>
-                <div class="glass-card">
-                    <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
-                    <h3>Strategic Vulnerability</h3>
-                    <p style="color: #94a3b8;">Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="background-color: #020617; padding-bottom: 60px;">
-        <div class="container">
-            <div class="grid-2" style="align-items: flex-start; gap: 50px;">
-                <div>
-                    <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
-                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-                        Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
-                    </p>
-                    <ul style="list-style: none; padding: 0; color: white;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.</li>
-                    </ul>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 30px;">
-                    <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                        <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
+            <div class="container" style="position: relative; z-index: 2;">
+                <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
+                <p class="lead" style="color: #94a3b8; max-width: 800px;">
+                    Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
+                </p>
+                <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
+                    "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
+                    <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
+                </blockquote>
+                <div class="grid-2" style="margin-top: 50px;">
+                    <div class="glass-card">
+                        <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
+                        <h3>Civilian Fragility</h3>
+                        <p style="color: #94a3b8;">Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
                     </div>
-                    <div class="glass-card" style="text-align: center;">
-                        <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">$150</div>
-                        <p style="color: white; margin-top: 10px;">Per Public Node</p>
-                        <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
+                    <div class="glass-card">
+                        <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
+                        <h3>Strategic Vulnerability</h3>
+                        <p style="color: #94a3b8;">Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal" style="position: relative; height: 65vh; min-height: 500px; background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.8)), url('assets/img/mil-mesh.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center;">
-        
-        <div class="container" style="text-align: center; max-width: 800px; z-index: 2;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 15px; letter-spacing: 2px;">// TACTICAL RESILIENCE</p>
-            <h2 style="font-size: 3.5rem; margin-bottom: 30px; color: white;">Electronic Warfare Ready.</h2>
-            <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.6;">
-                In modern conflicts, centralized comms are the first target. Aegis creates a stealthy, self-healing mesh that maintains unit cohesion even when GPS and satellite uplinks are denied.
-            </p>
-        </div>
-
-        <div style="position: absolute; bottom: 30px; right: 40px; text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--primary-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase; z-index: 2;">
-            &bull; Mesh networking for military operations is incredibly important
-        </div>
-    </section>
-
-    <section class="reveal testing-section" style="padding-top: 80px; padding-bottom: 100px; position: relative;">
-        <canvas id="wave-canvas" class="anim-canvas"></canvas>
-
-        <div class="container testing-content">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// V4 FIELD DATA</p>
-                <h2 style="color: white; margin-bottom: 20px;">Proven in the Field.</h2>
-                <p style="color: #94a3b8;">Our hardware isn't just theoretical. We've pushed the Aegis V4 nodes to their absolute limits in dense urban and forest environments.</p>
-            </div>
-
-            <div class="testing-stat-grid">
-                <div class="glass-card test-stat">
-                    <span class="test-stat-label">MAX RANGE (LOS)</span>
-                    <h3 id="stat-range">0</h3>
-                    <p>Kilometers achieved in line-of-sight testing.</p>
-                </div>
-                <div class="glass-card test-stat">
-                    <span class="test-stat-label">BATTERY LIFE</span>
-                    <h3 id="stat-battery">0</h3>
-                    <p>Months of standby power without solar input.</p>
-                </div>
-                <div class="glass-card test-stat">
-                    <span class="test-stat-label">LATENCY</span>
-                    <h3 id="stat-latency">0</h3>
-                    <p>Milliseconds average hop time between nodes.</p>
+        <section class="reveal" style="background-color: #020617; padding-bottom: 60px;">
+            <div class="container">
+                <div class="grid-2" style="align-items: flex-start; gap: 50px;">
+                    <div>
+                        <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
+                        <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+                            Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
+                        </p>
+                        <ul style="list-style: none; padding: 0; color: white;">
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 30px;">
+                        <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                            <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
+                        </div>
+                        <div class="glass-card" style="text-align: center;">
+                            <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">$150</div>
+                            <p style="color: white; margin-top: 10px;">Per Public Node</p>
+                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="cta-wrapper" style="text-align: center;">
-                <a href="tech.html" class="cta-large">Explore Tech & Research Data &rarr;</a>
+        <section class="reveal" style="position: relative; height: 65vh; min-height: 500px; background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.8)), url('assets/img/mil-mesh.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center;">
+
+            <div class="container" style="text-align: center; max-width: 800px; z-index: 2;">
+                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 15px; letter-spacing: 2px;">// TACTICAL RESILIENCE</p>
+                <h2 style="font-size: 3.5rem; margin-bottom: 30px; color: white;">Electronic Warfare Ready.</h2>
+                <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.6;">
+                    In modern conflicts, centralized comms are the first target. Aegis creates a stealthy, self-healing mesh that maintains unit cohesion even when GPS and satellite uplinks are denied.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <section id="impact" class="reveal" style="background-color: #0F172A; position: relative; overflow: hidden;">
-        <canvas id="network-canvas" class="anim-canvas"></canvas>
+            <div style="position: absolute; bottom: 30px; right: 40px; text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--primary-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase; z-index: 2;">
+                &bull; Mesh networking for military operations is incredibly important
+            </div>
+        </section>
 
-        <div class="container" style="position: relative; z-index: 2;">
-            <h2 style="text-align: center; margin-bottom: 40px; color: white;">Deployment Scenarios</h2>
-            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                <div class="glass-card">
-                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Strategic Operations</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised.</p>
+        <section class="reveal testing-section" style="padding-top: 80px; padding-bottom: 100px; position: relative;">
+            <canvas id="wave-canvas" class="anim-canvas"></canvas>
+
+            <div class="container testing-content">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// V4 FIELD DATA</p>
+                    <h2 style="color: white; margin-bottom: 20px;">Proven in the Field.</h2>
+                    <p style="color: #94a3b8;">Our hardware isn't just theoretical. We've pushed the Aegis V4 nodes to their absolute limits in dense urban and forest environments.</p>
                 </div>
-                <div class="glass-card">
-                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Local Government</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
+
+                <div class="testing-stat-grid">
+                    <div class="glass-card test-stat">
+                        <span class="test-stat-label">MAX RANGE (LOS)</span>
+                        <h3 id="stat-range">0</h3>
+                        <p>Kilometers achieved in line-of-sight testing.</p>
+                    </div>
+                    <div class="glass-card test-stat">
+                        <span class="test-stat-label">BATTERY LIFE</span>
+                        <h3 id="stat-battery">0</h3>
+                        <p>Months of standby power without solar input.</p>
+                    </div>
+                    <div class="glass-card test-stat">
+                        <span class="test-stat-label">LATENCY</span>
+                        <h3 id="stat-latency">0</h3>
+                        <p>Milliseconds average hop time between nodes.</p>
+                    </div>
                 </div>
-                <div class="glass-card">
-                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Search & Rescue</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
-                </div>
-                <div class="glass-card">
-                    <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">NGO / Aid</h4>
-                    <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
+
+                <div class="cta-wrapper" style="text-align: center;">
+                    <a href="tech.html" class="cta-large">Explore Tech & Research Data &rarr;</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="quote-section" class="reveal">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
-            <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
-                If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
-            </h3>
-            <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
-            <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
-            <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
-        </div>
-    </section>
+        <section id="impact" class="reveal" style="background-color: #0F172A; position: relative; overflow: hidden;">
+            <canvas id="network-canvas" class="anim-canvas"></canvas>
 
-    <section class="reveal" style="text-align: center; padding: 100px 20px;">
-        <div class="container" style="max-width: 700px;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// STUDENT INNOVATION</p>
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ensure Mission Continuity.</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
-                Developed by students for the Conrad Challenge, we are currently field testing our fourth generation hardware. Vitality Communications is ready to present our findings.
-            </p>
-            <a href="contact.html" class="btn">Contact Our Team</a>
-        </div>
-    </section>
+            <div class="container" style="position: relative; z-index: 2;">
+                <h2 style="text-align: center; margin-bottom: 40px; color: white;">Deployment Scenarios</h2>
+                <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                    <div class="glass-card">
+                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Strategic Operations</h4>
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Local Government</h4>
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Search & Rescue</h4>
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">NGO / Aid</h4>
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote-section" class="reveal">
+            <div class="container" style="max-width: 800px; text-align: center;">
+                <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
+                <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
+                    If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
+                </h3>
+                <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
+                <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
+                <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
+            </div>
+        </section>
+
+        <section class="reveal" style="text-align: center; padding: 100px 20px;">
+            <div class="container" style="max-width: 700px;">
+                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// STUDENT INNOVATION</p>
+                <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ensure Mission Continuity.</h2>
+                <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
+                    Developed by students for the Conrad Challenge, we are currently field testing our fourth generation hardware. Vitality Communications is ready to present our findings.
+                </p>
+                <a href="contact.html" class="btn">Contact Our Team</a>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js" defer></script>
 
-        window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
-
-            // Trigger animations without loader delay
-            ScrollTrigger.refresh();
-            initWave(); // Start Wave
-            initNetwork(); // Start Particles
-
-            // 2. SCROLL PROMPT LOGIC
-            const prompt = document.getElementById('scroll-prompt');
-            setTimeout(() => {
-                if(window.scrollY < 10) prompt.style.opacity = '1';
-            }, 2100);
-
-            window.addEventListener('scroll', () => {
-                prompt.style.opacity = '0';
-            }, { once: true });
-
-            // *** HERO ANIMATIONS ***
-            const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
-            const connections = [
-                { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
-                { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
-                { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
-                { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
-                { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
-                { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
-                { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
-                { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
-                { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
-            ];
-
-            const svg = document.getElementById('mesh-lines-svg');
-            const lines = [];
-            connections.forEach((conn) => {
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("class", "mesh-line");
-                svg.appendChild(line);
-                lines.push({ el: line, ...conn });
-            });
-
-            function updateMeshLines() {
-                const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
-                lines.forEach(obj => {
-                    const fromEl = document.getElementById(obj.from);
-                    const toEl = document.getElementById(obj.to);
-                    if(fromEl && toEl) {
-                        const r1 = fromEl.getBoundingClientRect();
-                        const r2 = toEl.getBoundingClientRect();
-                        const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
-                        const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
-                        const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
-                        const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
-                        obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
-                        obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
-                        obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
-                        obj.el.setAttribute("y2", (y2 / stageRect.height) * 100);
-                    }
-                });
-            }
-
-            const tl = gsap.timeline({ 
-                scrollTrigger: {
-                    trigger: "#intro-trigger-wrapper",
-                    start: "top top",
-                    end: "+=4000", 
-                    scrub: 1,
-                    pin: true,
-                    onUpdate: updateMeshLines
-                }
-            });
-
-            const pos = {
-                hub:  { x: '35vw',  y: '-20vh' }, std1: { x: '-20vw', y: '10vh' }, std2: { x: '20vw',  y: '10vh' },
-                rep1: { x: '-35vw', y: '-5vh' }, rep2: { x: '40vw',  y: '-10vh' }, rep3: { x: '-25vw', y: '30vh' },
-                rep4: { x: '25vw',  y: '30vh' }, rep5: { x: '-40vw', y: '15vh' }, hand1:{ x: '0vw',   y: '40vh' }, hand2:{ x: '45vw',  y: '20vh' },  
-            };
-
-            tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
-              .add("zoomLabel")
-              .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
-              .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
-              .add("explodeLabel", "zoomLabel+=3.0")
-              .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")
-              .fromTo("#hub-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hub.x, y: pos.hub.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-              .fromTo("#rep-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.rep1.x, y: pos.rep1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-              .fromTo("#hand-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hand1.x, y: pos.hand1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-              .fromTo(["#std-1-wrapper", "#std-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
-              .fromTo(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
-              .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
-              .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
-        });
-
-        // 2. SCROLL REVEAL (Standard Sections)
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
-            });
-        });
-
-        // 4. STATS ANIMATION
-        gsap.to("#stat-range", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 15,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
-        gsap.to("#stat-battery", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 6,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
-        gsap.to("#stat-latency", {
-            scrollTrigger: ".testing-stat-grid",
-            innerText: 250,
-            duration: 2,
-            snap: { innerText: 1 },
-            ease: "power2.out"
-        });
-
-        // 5. OSCILLATING WAVE (Canvas Version for Performance)
-        function initWave() {
-            const canvas = document.getElementById('wave-canvas');
-            const ctx = canvas.getContext('2d');
-            let width, height;
-            let time = 0;
-
-            function resize() {
-                width = canvas.width = canvas.parentElement.offsetWidth;
-                height = canvas.height = canvas.parentElement.offsetHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                ctx.beginPath();
-                
-                const centerY = height / 2;
-                const amplitude = 30;
-                const frequency = 0.01;
-                
-                ctx.moveTo(0, centerY);
-                for(let x = 0; x < width; x++) {
-                    const y = centerY + Math.sin(x * frequency + time) * amplitude;
-                    ctx.lineTo(x, y);
-                }
-                
-                ctx.strokeStyle = '#FF5722';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
-                time += 0.05;
-                requestAnimationFrame(draw);
-            }
-            draw();
-        }
-
-        // 6. NETWORK ANIMATION (Canvas - Impact Section)
-        function initNetwork() {
-            const canvas = document.getElementById('network-canvas');
-            const ctx = canvas.getContext('2d');
-            let width, height, particles = [];
-            function resize() { width = canvas.width = canvas.parentElement.offsetWidth; height = canvas.height = canvas.parentElement.offsetHeight; }
-            window.addEventListener('resize', resize); resize();
-
-            class Particle {
-                constructor() { this.x = Math.random()*width; this.y = Math.random()*height; this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5; }
-                update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>width) this.vx*=-1; if(this.y<0||this.y>height) this.vy*=-1; }
-                draw() { ctx.fillStyle = '#FF5722'; ctx.fillRect(this.x, this.y, 2, 2); }
-            }
-            for(let i=0; i<30; i++) particles.push(new Particle());
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                particles.forEach((p, i) => {
-                    p.update(); p.draw();
-                    for(let j=i; j<particles.length; j++) {
-                        const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
-                        const dist = Math.sqrt(dx*dx + dy*dy);
-                        if(dist < 100) {
-                            ctx.beginPath(); ctx.strokeStyle = `rgba(255, 87, 34, ${1 - dist/100})`;
-                            ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
-                        }
-                    }
-                });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-    </script>
-    <script src="js/nav.js"></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/reveal.js" defer></script>
+    <script src="js/index.js" defer></script>
 </body>
 </html>

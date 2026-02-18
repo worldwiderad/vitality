@@ -113,29 +113,38 @@
 <body>
     <nav></nav>
 
-    <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
-        <div class="container" style="text-align: center;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 10px;">// THE DOCTRINE</p>
-            <h1 style="font-size: 3.5rem;">Our Mission.</h1>
-            <p style="max-width: 600px; margin: 0 auto; opacity: 0.8; color: var(--text-muted);">
-                We build the nervous system for the next century of disaster response.
-            </p>
+    <header class="mission-hero skeleton-bg">
+        <div class="hero-overlay"></div>
+        <img class="hero-bg-img img-fade-in" src="assets/img/disaster.jpg" alt="Disaster Response">
+
+        <div class="container hero-content">
+            <p class="tagline">// THE DOCTRINE</p>
+            <h1 class="mission-title">Our Mission.</h1>
+            <p class="mission-lead">We build the nervous system for the next century of disaster response.</p>
+        </div>
+
+        <div class="scroll-indicator">
+            SCROLL TO EXPLORE
+            <span>&darr;</span>
         </div>
     </header>
 
-    <section class="reveal" style="background-color: #1E293B;">
-        <div class="container" style="max-width: 800px;">
-            <h2 style="color: white; margin-bottom: 30px; border-left: 4px solid var(--primary-color); padding-left: 20px;">Redundancy is Survival.</h2>
-            
-            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
-                Modern infrastructure is efficient, but it is brittle. We optimize our cities for speed and cost, but rarely for failure. When the grid goes down, the chaos that follows isn't caused by the disaster itself, but by the inability to coordinate a response.
-            </p>
-            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
-                Vitality was founded on a simple engineering truth: <strong>Centralization is a single point of failure.</strong>
-            </p>
-            <p style="color: #94a3b8; line-height: 1.8; font-size: 1.1rem;">
-                We cannot rely on stronger towers. Nature—or a determined adversary—will always find a way to break concrete. We must build smarter networks. Systems that act like water, flowing around obstacles and maintaining continuity when the main line is severed.
-            </p>
+    <section class="reveal statement-section">
+        <div class="container">
+            <div class="statement-card glass-card">
+                <h2 class="statement-heading">Redundancy is Survival.</h2>
+                <div class="statement-body">
+                    <p>
+                        Modern infrastructure is efficient, but it is brittle. We optimize our cities for speed and cost, but rarely for failure. When the grid goes down, the chaos that follows isn't caused by the disaster itself, but by the inability to coordinate a response.
+                    </p>
+                    <p class="highlight-text">
+                        Vitality was founded on a simple engineering truth: <span style="color: white;">Centralization is a single point of failure.</span>
+                    </p>
+                    <p>
+                        We cannot rely on stronger towers. Nature—or a determined adversary—will always find a way to break concrete. We must build smarter networks. Systems that act like water, flowing around obstacles and maintaining continuity when the main line is severed.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -198,14 +207,14 @@
         </div>
     </section>
 
-    <section class="reveal" style="background-color: #0F172A; text-align: center; padding: 100px 20px;">
-        <div class="container" style="max-width: 700px;">
-            <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// THE NEW STANDARD</p>
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">We cannot predict the next disaster.<br>But we can prepare our response.</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px;">
+    <section class="reveal cta-section-mission">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <p class="tagline">// THE NEW STANDARD</p>
+            <h2 class="cta-heading">We cannot predict the next disaster.<br>But we can prepare our response.</h2>
+            <p class="cta-text">
                 Reliance on a single grid is a strategic error. Whether facing climate instability or kinetic threats, the only way to ensure continuity is decentralization. Aegis provides the fallback layer that ensures the chain of command—and the supply chain—remains unbroken.
             </p>
-            <a href="contact.html" class="btn">Join the Network</a>
+            <a href="contact.html" class="btn btn-large-glow">Join the Network</a>
         </div>
     </section>
 

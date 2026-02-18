@@ -64,6 +64,14 @@
     --text-main: #F8FAFC;       /* White (Headings) */
     --text-muted: #94A3B8;      /* Grey (Paragraphs) */
     
+    /* STATUS COLORS */
+    --success-color: #10B981;
+    --danger-color: #EF4444;
+    --group-color: #3B82F6;
+
+    /* ALIASES */
+    --bg-dark: var(--bg-body);
+
     /* BORDERS */
     --border-color: rgba(255, 255, 255, 0.1); /* Subtle white lines */
 
@@ -158,6 +166,9 @@ nav .btn-nav:hover {
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
 }
 .hamburger span {
     display: block;
@@ -309,13 +320,15 @@ p.lead {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     margin-top: 40px;
+    width: 100%;
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    width: 100%;
 }
 
 .card, .feature, .product-card {
@@ -344,7 +357,7 @@ footer {
 }
 
 /* --- 10. TABLES (DARK MODE) --- */
-.comparison-table, .software-table {
+.comparison-table, .software-table, .spec-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
@@ -362,10 +375,25 @@ footer {
     font-weight: 600;
 }
 
-.comparison-table td, .software-table td {
+.comparison-table td, .software-table td, .spec-table td {
     padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-muted);
+}
+
+/* Spec Table Specifics */
+.spec-table {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    background: transparent; /* Override card background if needed, or keep consistent */
+    border: none;
+    box-shadow: none;
+}
+.spec-table td:first-child {
+    font-weight: 700;
+    color: var(--primary-color);
+    width: 30%;
 }
 
 /* --- 11. ANIMATIONS --- */
@@ -379,7 +407,33 @@ footer {
     transform: translateY(0);
 }
 
-/* --- 12. SPECIFIC OVERRIDES --- */
+/* --- 12. SPECIFIC OVERRIDES & UTILITIES --- */
+
+/* GLASSMORPHISM CARD STYLE */
+.glass-card {
+    background: rgba(15, 23, 42, 0.65); /* Dark blue tint */
+    backdrop-filter: blur(12px); /* The "Glass" blur */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 87, 34, 0.5); /* Orange border on hover */
+    box-shadow: 0 10px 40px rgba(255, 87, 34, 0.15);
+}
+
+/* WAVE & NETWORK CANVAS */
+.anim-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; opacity: 0.5;
+}
 
 /* Fix Product Card Images for Dark Mode */
 .product-img-container, .product-img-placeholder {

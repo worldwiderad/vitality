@@ -27,62 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* --- LOADER CSS --- */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background-color: #020617;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
-        }
-        .loader-content { text-align: center; width: 300px; }
-        .loader-logo {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        .loader-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .loader-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: #FF5722;
-            animation: loadProgress 1s infinite;
-            transform-origin: left;
-        }
-        .loader-text {
-            font-family: 'Courier Prime', monospace;
-            color: #FF5722;
-            font-size: 0.7rem;
-            margin-top: 10px;
-            opacity: 0.7;
-        }
-        @keyframes loadProgress {
-            0% { transform: scaleX(0); }
-            50% { transform: scaleX(0.7); }
-            100% { transform: scaleX(1); }
-        }
-
         /* --- PAGE SPECIFIC STYLES --- */
-        body {
-            background-color: #020617;
-            overflow-x: hidden;
-        }
-
         /* The Mesh Background Canvas */
         #team-canvas {
             position: fixed;
@@ -100,6 +45,7 @@
             padding-bottom: 60px;
             position: relative;
             z-index: 2; /* Sit above canvas */
+            background-color: transparent !important; /* Ensure canvas is visible */
         }
 
         .leaders-grid {
@@ -256,22 +202,7 @@
 
     <canvas id="team-canvas"></canvas>
 
-    <nav>
-        <div class="logo">VITALITY</div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html" class="active">Team</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="contact.html" class="btn-nav">Contact</a></li>
-        </ul>
-    </nav>
+    <nav></nav>
 
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: transparent; position: relative; z-index: 2;">
         <div class="container" style="text-align: center;">
@@ -381,11 +312,6 @@
             }, 1000);
         });
 
-        // --- 2. MENU ---
-        function toggleMenu() {
-            document.getElementById("nav-links").classList.toggle("active");
-        }
-
         // --- 3. SCROLL REVEAL ---
         window.addEventListener('scroll', reveal);
         function reveal() {
@@ -472,5 +398,6 @@
             requestAnimationFrame(animateCanvas);
         }
     </script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+/* Component List Styling */
+.component-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+.component-list li {
+    margin-bottom: 25px;
+    padding-left: 60px;
+    position: relative;
+}
+.component-list li::before {
+    content: attr(data-number);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    line-height: 1;
+}
+.component-header {
+    font-weight: 700;
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+.component-desc {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}

@@ -22,228 +22,130 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
-    <style>
-        /* TIMELINE STYLES */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
-
-        /* The Vertical Line */
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: #334155;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        .left { left: 0; text-align: right; }
-        .right { left: 50%; text-align: left; }
-
-        /* The Dots */
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: #0F172A;
-            border: 4px solid var(--primary-color);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            transition: all 0.3s ease;
-        }
-
-        .right::after { left: -10px; }
-
-        .timeline-item:hover::after {
-            background-color: var(--primary-color);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        .content {
-            padding: 20px 30px;
-            background-color: var(--bg-card);
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-item:hover .content {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        .year-tag {
-            font-family: 'Courier Prime', monospace;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        @media screen and (max-width: 768px) {
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .left { text-align: left; }
-            .left::after, .right::after { left: 21px; }
-            .right { left: 0%; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/mission.css">
 </head>
 <body>
     <nav></nav>
 
-    <header class="mission-hero skeleton-bg">
-        <div class="hero-overlay"></div>
-        <img class="hero-bg-img img-fade-in" src="assets/img/disaster.jpg" alt="Disaster Response">
+    <main>
+        <header class="mission-hero skeleton-bg">
+            <div class="hero-overlay"></div>
+            <img class="hero-bg-img img-fade-in" src="assets/img/disaster.jpg" alt="Disaster Response">
 
-        <div class="container hero-content">
-            <p class="tagline">// THE DOCTRINE</p>
-            <h1 class="mission-title">Our Mission.</h1>
-            <p class="mission-lead">We build the nervous system for the next century of disaster response.</p>
-        </div>
+            <div class="container hero-content">
+                <p class="tagline">// THE DOCTRINE</p>
+                <h1 class="mission-title">Our Mission.</h1>
+                <p class="mission-lead">We build the nervous system for the next century of disaster response.</p>
+            </div>
 
-        <div class="scroll-indicator">
-            SCROLL TO EXPLORE
-            <span>&darr;</span>
-        </div>
-    </header>
+            <div class="scroll-indicator">
+                SCROLL TO EXPLORE
+                <span>&darr;</span>
+            </div>
+        </header>
 
-    <section class="reveal statement-section">
-        <div class="container">
-            <div class="statement-card glass-card">
-                <h2 class="statement-heading">Redundancy is Survival.</h2>
-                <div class="statement-body">
-                    <p>
-                        Modern infrastructure is efficient, but it is brittle. We optimize our cities for speed and cost, but rarely for failure. When the grid goes down, the chaos that follows isn't caused by the disaster itself, but by the inability to coordinate a response.
-                    </p>
-                    <p class="highlight-text">
-                        Vitality was founded on a simple engineering truth: <span style="color: white;">Centralization is a single point of failure.</span>
-                    </p>
-                    <p>
-                        We cannot rely on stronger towers. Nature—or a determined adversary—will always find a way to break concrete. We must build smarter networks. Systems that act like water, flowing around obstacles and maintaining continuity when the main line is severed.
-                    </p>
+        <section class="reveal statement-section">
+            <div class="container">
+                <div class="statement-card glass-card">
+                    <h2 class="statement-heading">Redundancy is Survival.</h2>
+                    <div class="statement-body">
+                        <p>
+                            Modern infrastructure is efficient, but it is brittle. We optimize our cities for speed and cost, but rarely for failure. When the grid goes down, the chaos that follows isn't caused by the disaster itself, but by the inability to coordinate a response.
+                        </p>
+                        <p class="highlight-text">
+                            Vitality was founded on a simple engineering truth: <span style="color: white;">Centralization is a single point of failure.</span>
+                        </p>
+                        <p>
+                            We cannot rely on stronger towers. Nature—or a determined adversary—will always find a way to break concrete. We must build smarter networks. Systems that act like water, flowing around obstacles and maintaining continuity when the main line is severed.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reveal">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">The Timeline of Failure</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item left">
-                    <div class="content">
-                        <span class="year-tag">2011 // JAPAN</span>
-                        <h3 style="color: white;">The Tohoku Collapse</h3>
-                        <p style="color: #94a3b8; font-size: 0.9rem;">
-                            The tsunami triggered a cascade failure. 29,000 towers lost power immediately. With no backup layer, self-defense forces and medical teams were unable to coordinate effectively for the first critical 72 hours.
-                        </p>
+        <section class="reveal">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 50px;">The Timeline of Failure</h2>
+                <div class="timeline">
+
+                    <div class="timeline-item left">
+                        <div class="content">
+                            <span class="year-tag">2011 // JAPAN</span>
+                            <h3 style="color: white;">The Tohoku Collapse</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">
+                                The tsunami triggered a cascade failure. 29,000 towers lost power immediately. With no backup layer, self-defense forces and medical teams were unable to coordinate effectively for the first critical 72 hours.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item right">
-                    <div class="content">
-                        <span class="year-tag">2017 // PUERTO RICO</span>
-                        <h3 style="color: white;">Hurricane Maria</h3>
-                        <p style="color: #94a3b8; font-size: 0.9rem;">
-                            Total grid collapse. With 95% of cell sites down, supply chains froze. Food and water sat in shipping containers at the port because truck drivers couldn't receive dispatch orders.
-                        </p>
+                    <div class="timeline-item right">
+                        <div class="content">
+                            <span class="year-tag">2017 // PUERTO RICO</span>
+                            <h3 style="color: white;">Hurricane Maria</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">
+                                Total grid collapse. With 95% of cell sites down, supply chains froze. Food and water sat in shipping containers at the port because truck drivers couldn't receive dispatch orders.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item left">
-                    <div class="content">
-                        <span class="year-tag">2022 // MODERN CONFLICT</span>
-                        <h3 style="color: white;">Electronic Warfare</h3>
-                        <p style="color: #94a3b8; font-size: 0.9rem;">
-                            The modern battlefield proved that cell towers are targets, not assets. Adversaries jam standard frequencies and map active phones for artillery. Centralized infrastructure became a liability.
-                        </p>
+                    <div class="timeline-item left">
+                        <div class="content">
+                            <span class="year-tag">2022 // MODERN CONFLICT</span>
+                            <h3 style="color: white;">Electronic Warfare</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">
+                                The modern battlefield proved that cell towers are targets, not assets. Adversaries jam standard frequencies and map active phones for artillery. Centralized infrastructure became a liability.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item right">
-                    <div class="content">
-                        <span class="year-tag">2023 // MAUI, USA</span>
-                        <h3 style="color: white;">Lahaina Wildfires</h3>
-                        <p style="color: #94a3b8; font-size: 0.9rem;">
-                            The sirens failed because the fiber optic lines melted. Residents received no evacuation orders. A physical layer failure led directly to preventable casualties.
-                        </p>
+                    <div class="timeline-item right">
+                        <div class="content">
+                            <span class="year-tag">2023 // MAUI, USA</span>
+                            <h3 style="color: white;">Lahaina Wildfires</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">
+                                The sirens failed because the fiber optic lines melted. Residents received no evacuation orders. A physical layer failure led directly to preventable casualties.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item left">
-                    <div class="content" style="border-color: var(--primary-color); background: rgba(255, 87, 34, 0.05);">
-                        <span class="year-tag">2026 // THE SOLUTION</span>
-                        <h3 style="color: white;">The Aegis Protocol</h3>
-                        <p style="color: #94a3b8; font-size: 0.9rem;">
-                            We stop relying on the grid. We build a decentralized, self-healing mesh that works when the towers fall.
-                        </p>
+                    <div class="timeline-item left">
+                        <div class="content" style="border-color: var(--primary-color); background: rgba(255, 87, 34, 0.05);">
+                            <span class="year-tag">2026 // THE SOLUTION</span>
+                            <h3 style="color: white;">The Aegis Protocol</h3>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">
+                                We stop relying on the grid. We build a decentralized, self-healing mesh that works when the towers fall.
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal cta-section-mission">
-        <div class="container">
-            <div class="mission-cta-grid">
-                <div class="mission-cta-text">
-                    <p class="tagline">// THE NEW STANDARD</p>
-                    <h2 class="cta-heading">We cannot predict the next disaster.<br>But we can prepare our response.</h2>
-                    <p class="cta-text">
-                        Reliance on a single grid is a strategic error. Whether facing climate instability or kinetic threats, the only way to ensure continuity is decentralization. Aegis provides the fallback layer that ensures the chain of command—and the supply chain—remains unbroken.
-                    </p>
-                    <a href="contact.html" class="btn btn-large-glow">Join the Network</a>
-                </div>
-                <div class="mission-cta-visual skeleton-bg">
-                    <img src="assets/img/redcross-with-product.jpg" alt="Red Cross deployment using Aegis" class="mission-cta-img img-fade-in">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="reveal cta-section-mission">
+            <div class="container">
+                <div class="mission-cta-grid">
+                    <div class="mission-cta-text">
+                        <p class="tagline">// THE NEW STANDARD</p>
+                        <h2 class="cta-heading">We cannot predict the next disaster.<br>But we can prepare our response.</h2>
+                        <p class="cta-text">
+                            Reliance on a single grid is a strategic error. Whether facing climate instability or kinetic threats, the only way to ensure continuity is decentralization. Aegis provides the fallback layer that ensures the chain of command—and the supply chain—remains unbroken.
+                        </p>
+                        <a href="contact.html" class="btn btn-large-glow">Join the Network</a>
+                    </div>
+                    <div class="mission-cta-visual skeleton-bg">
+                        <img src="assets/img/redcross-with-product.jpg" alt="Red Cross deployment using Aegis" class="mission-cta-img img-fade-in">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
-    </script>
-<script src="js/nav.js"></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/reveal.js" defer></script>
 </body>
 </html>

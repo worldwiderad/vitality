@@ -19,84 +19,86 @@ window.addEventListener('load', () => {
     }, { once: true });
 
     // *** HERO ANIMATIONS ***
-    const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
-    const connections = [
-        { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
-        { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
-        { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
-        { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
-        { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
-        { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
-        { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
-        { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
-        { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
-        { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
-        { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-        { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
-        { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
-        { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
-    ];
+    if (window.innerWidth > 768) {
+        const anchors = { hero: { x: 0.5, y: 0.5 }, hub:  { x: 0.5, y: 0.5 }, node: { x: 0.5, y: 0.5 }, rep:  { x: 0.5, y: 0.5 }, hand: { x: 0.5, y: 0.5 } };
+        const connections = [
+            { from: 'hero-node-wrapper', to: 'hub-wrapper', fa: anchors.hero, ta: anchors.hub },
+            { from: 'hero-node-wrapper', to: 'std-1-wrapper', fa: anchors.hero, ta: anchors.node },
+            { from: 'hero-node-wrapper', to: 'std-2-wrapper', fa: anchors.hero, ta: anchors.node },
+            { from: 'hub-wrapper', to: 'rep-2-wrapper', fa: anchors.hub, ta: anchors.rep },
+            { from: 'std-1-wrapper', to: 'rep-1-wrapper', fa: anchors.node, ta: anchors.rep },
+            { from: 'std-1-wrapper', to: 'rep-3-wrapper', fa: anchors.node, ta: anchors.rep },
+            { from: 'std-2-wrapper', to: 'rep-2-wrapper', fa: anchors.node, ta: anchors.rep },
+            { from: 'std-2-wrapper', to: 'rep-4-wrapper', fa: anchors.node, ta: anchors.rep },
+            { from: 'rep-1-wrapper', to: 'rep-5-wrapper', fa: anchors.rep, ta: anchors.rep },
+            { from: 'rep-5-wrapper', to: 'rep-3-wrapper', fa: anchors.rep, ta: anchors.rep },
+            { from: 'rep-3-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+            { from: 'rep-4-wrapper', to: 'hand-1-wrapper', fa: anchors.rep, ta: anchors.hand },
+            { from: 'rep-2-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand },
+            { from: 'rep-4-wrapper', to: 'hand-2-wrapper', fa: anchors.rep, ta: anchors.hand }
+        ];
 
-    const svg = document.getElementById('mesh-lines-svg');
-    const lines = [];
-    connections.forEach((conn) => {
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("class", "mesh-line");
-        svg.appendChild(line);
-        lines.push({ el: line, ...conn });
-    });
+        const svg = document.getElementById('mesh-lines-svg');
+        const lines = [];
+        connections.forEach((conn) => {
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("class", "mesh-line");
+            svg.appendChild(line);
+            lines.push({ el: line, ...conn });
+        });
 
-    function updateMeshLines() {
-        const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
-        lines.forEach(obj => {
-            const fromEl = document.getElementById(obj.from);
-            const toEl = document.getElementById(obj.to);
-            if(fromEl && toEl) {
-                const r1 = fromEl.getBoundingClientRect();
-                const r2 = toEl.getBoundingClientRect();
-                const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
-                const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
-                const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
-                const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
-                obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
-                obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
-                obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
-                obj.el.setAttribute("y2", (y2 / stageRect.height) * 100);
+        function updateMeshLines() {
+            const stageRect = document.getElementById('hero-stage').getBoundingClientRect();
+            lines.forEach(obj => {
+                const fromEl = document.getElementById(obj.from);
+                const toEl = document.getElementById(obj.to);
+                if(fromEl && toEl) {
+                    const r1 = fromEl.getBoundingClientRect();
+                    const r2 = toEl.getBoundingClientRect();
+                    const x1 = (r1.left - stageRect.left) + (r1.width * obj.fa.x);
+                    const y1 = (r1.top - stageRect.top) + (r1.height * obj.fa.y);
+                    const x2 = (r2.left - stageRect.left) + (r2.width * obj.ta.x);
+                    const y2 = (r2.top - stageRect.top) + (r2.height * obj.ta.y);
+                    obj.el.setAttribute("x1", (x1 / stageRect.width) * 100);
+                    obj.el.setAttribute("y1", (y1 / stageRect.height) * 100);
+                    obj.el.setAttribute("x2", (x2 / stageRect.width) * 100);
+                    obj.el.setAttribute("y2", (y2 / stageRect.height) * 100);
+                }
+            });
+        }
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#intro-trigger-wrapper",
+                start: "top top",
+                end: "+=4000",
+                scrub: 1,
+                pin: true,
+                onUpdate: updateMeshLines
             }
         });
+
+        const pos = {
+            hub:  { x: '35vw',  y: '-20vh' }, std1: { x: '-20vw', y: '10vh' }, std2: { x: '20vw',  y: '10vh' },
+            rep1: { x: '-35vw', y: '-5vh' }, rep2: { x: '40vw',  y: '-10vh' }, rep3: { x: '-25vw', y: '30vh' },
+            rep4: { x: '25vw',  y: '30vh' }, rep5: { x: '-40vw', y: '15vh' }, hand1:{ x: '0vw',   y: '40vh' }, hand2:{ x: '45vw',  y: '20vh' },
+        };
+
+        tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
+          .add("zoomLabel")
+          .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
+          .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
+          .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
+          .add("explodeLabel", "zoomLabel+=3.0")
+          .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")
+          .fromTo("#hub-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hub.x, y: pos.hub.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
+          .fromTo("#rep-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.rep1.x, y: pos.rep1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
+          .fromTo("#hand-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hand1.x, y: pos.hand1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
+          .fromTo(["#std-1-wrapper", "#std-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
+          .fromTo(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
+          .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
+          .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
     }
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#intro-trigger-wrapper",
-            start: "top top",
-            end: "+=4000",
-            scrub: 1,
-            pin: true,
-            onUpdate: updateMeshLines
-        }
-    });
-
-    const pos = {
-        hub:  { x: '35vw',  y: '-20vh' }, std1: { x: '-20vw', y: '10vh' }, std2: { x: '20vw',  y: '10vh' },
-        rep1: { x: '-35vw', y: '-5vh' }, rep2: { x: '40vw',  y: '-10vh' }, rep3: { x: '-25vw', y: '30vh' },
-        rep4: { x: '25vw',  y: '30vh' }, rep5: { x: '-40vw', y: '15vh' }, hand1:{ x: '0vw',   y: '40vh' }, hand2:{ x: '45vw',  y: '20vh' },
-    };
-
-    tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
-      .add("zoomLabel")
-      .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-      .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
-      .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
-      .add("explodeLabel", "zoomLabel+=3.0")
-      .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")
-      .fromTo("#hub-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hub.x, y: pos.hub.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-      .fromTo("#rep-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.rep1.x, y: pos.rep1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-      .fromTo("#hand-1-wrapper", {scale:0, opacity:0, x:0, y:0}, {x: pos.hand1.x, y: pos.hand1.y, scale: 1, opacity: 1, duration: 3}, "explodeLabel")
-      .fromTo(["#std-1-wrapper", "#std-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => i === 0 ? pos.std1.x : pos.std2.x, y: (i) => i === 0 ? pos.std1.y : pos.std2.y}, "explodeLabel")
-      .fromTo(["#rep-2-wrapper", "#rep-3-wrapper", "#rep-4-wrapper", "#rep-5-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, stagger: 0.1, x: (i) => pos[`rep${i+2}`].x, y: (i) => pos[`rep${i+2}`].y}, "explodeLabel+=0.2")
-      .fromTo(["#hand-2-wrapper"], {scale:0, opacity:0, x:0, y:0}, {opacity: 1, scale: 1, duration: 3, x: pos.hand2.x, y: pos.hand2.y}, "explodeLabel+=0.4")
-      .to(".mesh-line", {opacity: 1, duration: 3, stagger: 0.05, ease: "power2.inOut"}, "explodeLabel+=1.5");
 });
 
 // 4. STATS ANIMATION

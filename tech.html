@@ -91,7 +91,7 @@
             </div>
         </section>
 
-        <section class="reveal" style="background-color: #0F172A; color: white;">
+        <section class="reveal topology-section" style="background-color: #0F172A; color: white;">
             <div class="container">
                 <h2 style="color: white;">2. The Topology: Distributed Mesh</h2>
                 <p class="lead" style="color: rgba(255,255,255,0.7);">Why the network survives when half the devices are destroyed.</p>
@@ -138,7 +138,7 @@
             </div>
         </section>
 
-        <section class="reveal" style="padding-bottom: 40px;">
+        <section class="reveal" id="protocol-intro" style="padding-bottom: 40px;">
             <div class="container">
                 <h2 style="text-align: center; color: var(--primary-color); font-size: 1.5rem; letter-spacing: 2px;">// LIVE PROTOCOL DEMONSTRATION</h2>
                 <p style="text-align: center; color: var(--text-muted);">Scroll down to visualize the Asymmetric and Hybrid encryption flow.</p>
@@ -244,23 +244,27 @@
                 <div class="grid-2">
                     <div>
                         <h3 style="color: var(--primary-color); margin-top: 30px;">Aegis Public Node (V4)</h3>
-                        <table class="spec-table" style="color: rgba(255,255,255,0.8);">
-                            <tr><td>MCU</td><td>Quad-Core ARM Cortex-A53 @ 1GHz</td></tr>
-                            <tr><td>Radio Module</td><td>SX1262 LoRa Transceiver</td></tr>
-                            <tr><td>Frequency</td><td>915 MHz (US) / 868 MHz (EU) / 923 MHz (Asia)</td></tr>
-                            <tr><td>Sensitivity</td><td>-148 dBm (High Sensitivity)</td></tr>
-                            <tr><td>Power Source</td><td>80,000mAh LiFePO4 + 20W Solar Input</td></tr>
-                            <tr><td>Operational Endurance</td><td><strong>6+ Months (Battery) / Years (Solar)</strong></td></tr>
-                        </table>
+                        <div class="table-wrapper">
+                            <table class="spec-table" style="color: rgba(255,255,255,0.8);">
+                                <tr><td>MCU</td><td>Quad-Core ARM Cortex-A53 @ 1GHz</td></tr>
+                                <tr><td>Radio Module</td><td>SX1262 LoRa Transceiver</td></tr>
+                                <tr><td>Frequency</td><td>915 MHz (US) / 868 MHz (EU) / 923 MHz (Asia)</td></tr>
+                                <tr><td>Sensitivity</td><td>-148 dBm (High Sensitivity)</td></tr>
+                                <tr><td>Power Source</td><td>80,000mAh LiFePO4 + 20W Solar Input</td></tr>
+                                <tr><td>Operational Endurance</td><td><strong>6+ Months (Battery) / Years (Solar)</strong></td></tr>
+                            </table>
+                        </div>
                     </div>
                     <div>
                         <h3 style="color: var(--primary-color); margin-top: 30px;">Efficiency & Limits</h3>
-                        <table class="spec-table" style="color: rgba(255,255,255,0.8);">
-                            <tr><td>Tx Efficiency</td><td>100+ Msgs/day with negligible drain.</td></tr>
-                            <tr><td>Main Power Draw</td><td>OLED Screen (Active only during user input)</td></tr>
-                            <tr><td>IP Rating</td><td>IP67 (Dust Tight, Immersion up to 1m)</td></tr>
-                            <tr><td>Encryption</td><td>AES-256 GCM</td></tr>
-                        </table>
+                        <div class="table-wrapper">
+                            <table class="spec-table" style="color: rgba(255,255,255,0.8);">
+                                <tr><td>Tx Efficiency</td><td>100+ Msgs/day with negligible drain.</td></tr>
+                                <tr><td>Main Power Draw</td><td>OLED Screen (Active only during user input)</td></tr>
+                                <tr><td>IP Rating</td><td>IP67 (Dust Tight, Immersion up to 1m)</td></tr>
+                                <tr><td>Encryption</td><td>AES-256 GCM</td></tr>
+                            </table>
+                        </div>
                         <div style="margin-top: 30px; border: 1px solid var(--primary-color); padding: 15px; border-radius: 4px;">
                             <p style="color: var(--primary-color); font-weight: bold; margin-bottom: 5px;">NOTE ON PROPRIETARY TECH:</p>
                             <p style="font-size: 0.8rem; opacity: 0.7;">Detailed hardware configurations and firmware architectures are omitted from public documentation to protect intellectual property.</p>

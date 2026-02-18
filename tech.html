@@ -30,33 +30,6 @@
     
     <style>
         /* --- MAIN SITE OVERRIDES --- */
-        :root {
-            --primary-color: #FF5722;
-            --success-color: #10B981;
-            --danger-color: #EF4444;
-            --group-color: #3B82F6;
-            --bg-dark: #020617;
-            --bg-card: #0F172A;
-            --border-color: rgba(255,255,255,0.1);
-            --text-muted: #94a3b8;
-        }
-
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-        .spec-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .spec-table td:first-child {
-            font-weight: 700;
-            color: var(--primary-color);
-            width: 30%;
-        }
         .tech-compare {
             width: 100%;
             border-collapse: collapse;
@@ -298,22 +271,7 @@
         <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
     </div>
 </div>
-    <nav>
-        <div class="logo">VITALITY</div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="tech.html" class="active">The Tech</a></li>
-            <li><a href="team.html">Team</a></li> 
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="contact.html" class="btn-nav">Contact</a></li>
-        </ul>
-    </nav>
+    <nav></nav>
 
     <header class="hero" style="padding: 100px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: left;">
@@ -736,11 +694,6 @@
         }
         reveal();
 
-        function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
-        }
-
         // --- MESH SIMULATOR LOGIC ---
         let seed = 12345;
         function seededRandom() {
@@ -888,5 +841,6 @@
         }, 1000); // 1 Seconds Force Wait
     });
 </script>
+<script src="js/nav.js"></script>
 </body>
 </html>

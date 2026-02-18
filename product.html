@@ -27,29 +27,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        /* --- SAFETY CSS (OVERRIDES) --- */
-        body { background-color: #020617; overflow-x: hidden; color: #94A3B8; font-family: 'Inter', sans-serif; }
-        
-        /* Force 3-Column Grid for fallback/standard sections */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            width: 100%;
-        }
-
-        /* Force 2-Column Sections */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            width: 100%;
-        }
-        @media(min-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr 1fr; }
-        }
-
         /* Calculator Styles */
         #customInputContainer { transition: all 0.3s ease; overflow: hidden; }
         
@@ -163,20 +140,7 @@
         <div class="loader-text">INITIALIZING AEGIS PROTOCOL...</div>
     </div>
 </div>
-    <nav style="z-index: 1000; position: relative; background: #020617;">
-        <div class="logo">VITALITY</div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html" class="active">Products</a></li>
-            <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html">Team</a></li> 
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="contact.html" class="btn-nav">Contact</a></li>
-        </ul>
-    </nav>
+    <nav style="z-index: 1000; position: relative; background: #020617;"></nav>
 
     <div class="anim-wrapper">
         <div class="fixed-map-bg"></div>
@@ -545,12 +509,7 @@
         }
         reveal();
 
-        // STANDARD CALCULATOR & MENU LOGIC
-        function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
-        }
-
+        // STANDARD CALCULATOR
         function handleSelectChange() {
             const selectValue = document.getElementById('areaSelect').value;
             const customContainer = document.getElementById('customInputContainer');
@@ -619,5 +578,6 @@
         }, 1000); // 2 Seconds Force Wait
     });
 </script>
+<script src="js/nav.js"></script>
 </body>
 </html>

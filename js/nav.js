@@ -18,7 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         highlightActiveLink();
     }
+
+    // Initialize Progressive Image Loading
+    initImageLoaders();
 });
+
+function initImageLoaders() {
+    const images = document.querySelectorAll('.img-fade-in');
+
+    images.forEach(img => {
+        const parent = img.closest('.skeleton-bg');
+
+        if (img.complete) {
+            img.classList.add('img-loaded');
+            if (parent) parent.classList.remove('skeleton-bg');
+        } else {
+            img.addEventListener('load', () => {
+                img.classList.add('img-loaded');
+                if (parent) parent.classList.remove('skeleton-bg');
+            });
+        }
+    });
+}
 
 function toggleMenu() {
     const navLinks = document.getElementById("nav-links");

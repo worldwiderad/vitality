@@ -34,22 +34,7 @@
     </div>
 </div>
 
-    <nav>
-        <div class="logo">VITALITY</div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="tech.html">The Tech</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <nav></nav>
 
     <header class="hero" style="padding: 120px 20px; background-image: none; background-color: var(--bg-body);">
         <div class="container" style="text-align: center;">
@@ -121,11 +106,7 @@
         }
         reveal();
 
-        function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            menu.classList.toggle("active");
-        }
     </script>
-
+    <script src="js/nav.js"></script>
 </body>
 </html>

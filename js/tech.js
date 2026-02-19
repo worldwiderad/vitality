@@ -1,7 +1,6 @@
 // --- GSAP ANIMATION LOGIC (Integrated) ---
 gsap.registerPlugin(ScrollTrigger, TextPlugin, MotionPathPlugin);
 
-// Wrap animation in matchMedia so it only runs on desktop
 let mm = gsap.matchMedia();
 
 mm.add("(min-width: 769px)", () => {
@@ -108,7 +107,7 @@ mm.add("(min-width: 769px)", () => {
 });
 
 
-// --- ORIGINAL SITE LOGIC (FAQ, SCROLL REVEAL, MESH) ---
+// --- ORIGINAL SITE LOGIC (FAQ, MESH) ---
 function toggleFaq(element) {
     element.classList.toggle('active');
     const answer = element.querySelector('.faq-answer');
@@ -134,130 +133,132 @@ function seededRandom() {
 }
 
 const canvas = document.getElementById('meshCanvas');
-const ctx = canvas.getContext('2d');
-let nodes = [];
-let waves = [];
-const SPACING = 60;
-const WAVE_SPEED = 2;
-const MAX_WAVE_RADIUS = 80;
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let waves = [];
+    const SPACING = 60;
+    const WAVE_SPEED = 2;
+    const MAX_WAVE_RADIUS = 80;
 
-function initGrid() {
-    seed = 12345;
-    nodes = [];
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
+    function initGrid() {
+        seed = 12345;
+        nodes = [];
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
 
-    const cols = Math.ceil(canvas.width / SPACING) + 2;
-    const rows = Math.ceil(canvas.height / (SPACING * 0.866)) + 2;
+        const cols = Math.ceil(canvas.width / SPACING) + 2;
+        const rows = Math.ceil(canvas.height / (SPACING * 0.866)) + 2;
 
-    for(let r=0; r<rows; r++) {
-        for(let c=0; c<cols; c++) {
-            let x = c * SPACING;
-            let y = r * (SPACING * 0.866);
-            if(r % 2 !== 0) x += SPACING / 2;
-            x -= 30; y -= 30;
-            x += (seededRandom() - 0.5) * 20;
-            y += (seededRandom() - 0.5) * 20;
+        for(let r=0; r<rows; r++) {
+            for(let c=0; c<cols; c++) {
+                let x = c * SPACING;
+                let y = r * (SPACING * 0.866);
+                if(r % 2 !== 0) x += SPACING / 2;
+                x -= 30; y -= 30;
+                x += (seededRandom() - 0.5) * 20;
+                y += (seededRandom() - 0.5) * 20;
 
-            if (x > 0 && x < canvas.width && y > 0 && y < canvas.height) {
-                let n = new Node(x, y);
-                nodes.push(n);
+                if (x > 0 && x < canvas.width && y > 0 && y < canvas.height) {
+                    let n = new Node(x, y);
+                    nodes.push(n);
+                }
+            }
+        }
+        let sorted = [...nodes].sort((a,b) => a.x - b.x);
+        if(sorted.length > 0) {
+            sorted[Math.floor(sorted.length * 0.05)].isSource = true;
+            sorted[Math.floor(sorted.length * 0.95)].isDest = true;
+        }
+    }
+
+    class Node {
+        constructor(x, y) {
+            this.x = x; this.y = y; this.exists = true; this.functional = true;
+            this.hasBroadcasted = false; this.isSource = false; this.isDest = false; this.msgReceived = false;
+        }
+        draw() {
+            if(!this.exists) return;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+            if (this.isSource) { ctx.fillStyle = '#FF5722'; ctx.shadowBlur = 10; ctx.shadowColor = '#FF5722'; }
+            else if (this.isDest) { ctx.fillStyle = this.msgReceived ? '#FFFFFF' : '#10B981'; ctx.shadowBlur = this.msgReceived ? 20 : 10; ctx.shadowColor = '#10B981'; }
+            else if (!this.functional) { ctx.fillStyle = '#334155'; ctx.shadowBlur = 0; }
+            else if (this.hasBroadcasted) { ctx.fillStyle = '#94A3B8'; ctx.shadowBlur = 0; }
+            else { ctx.fillStyle = '#FFFFFF'; ctx.shadowBlur = 0; }
+            ctx.fill(); ctx.shadowBlur = 0;
+
+            if(this.isDest && this.msgReceived) {
+                ctx.beginPath(); ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
+                ctx.strokeStyle = '#10B981'; ctx.lineWidth = 2; ctx.stroke();
             }
         }
     }
-    let sorted = [...nodes].sort((a,b) => a.x - b.x);
-    if(sorted.length > 0) {
-        sorted[Math.floor(sorted.length * 0.05)].isSource = true;
-        sorted[Math.floor(sorted.length * 0.95)].isDest = true;
-    }
-}
 
-class Node {
-    constructor(x, y) {
-        this.x = x; this.y = y; this.exists = true; this.functional = true;
-        this.hasBroadcasted = false; this.isSource = false; this.isDest = false; this.msgReceived = false;
-    }
-    draw() {
-        if(!this.exists) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
-        if (this.isSource) { ctx.fillStyle = '#FF5722'; ctx.shadowBlur = 10; ctx.shadowColor = '#FF5722'; }
-        else if (this.isDest) { ctx.fillStyle = this.msgReceived ? '#FFFFFF' : '#10B981'; ctx.shadowBlur = this.msgReceived ? 20 : 10; ctx.shadowColor = '#10B981'; }
-        else if (!this.functional) { ctx.fillStyle = '#334155'; ctx.shadowBlur = 0; }
-        else if (this.hasBroadcasted) { ctx.fillStyle = '#94A3B8'; ctx.shadowBlur = 0; }
-        else { ctx.fillStyle = '#FFFFFF'; ctx.shadowBlur = 0; }
-        ctx.fill(); ctx.shadowBlur = 0;
-
-        if(this.isDest && this.msgReceived) {
-            ctx.beginPath(); ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
-            ctx.strokeStyle = '#10B981'; ctx.lineWidth = 2; ctx.stroke();
+    class Wave {
+        constructor(x, y) { this.x = x; this.y = y; this.radius = 0; this.active = true; }
+        update() { this.radius += WAVE_SPEED; if(this.radius > MAX_WAVE_RADIUS) this.active = false; }
+        draw() {
+            if(!this.active) return;
+            ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(255, 87, 34, ${1 - this.radius/MAX_WAVE_RADIUS})`;
+            ctx.lineWidth = 2; ctx.stroke();
         }
     }
-}
 
-class Wave {
-    constructor(x, y) { this.x = x; this.y = y; this.radius = 0; this.active = true; }
-    update() { this.radius += WAVE_SPEED; if(this.radius > MAX_WAVE_RADIUS) this.active = false; }
-    draw() {
-        if(!this.active) return;
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(255, 87, 34, ${1 - this.radius/MAX_WAVE_RADIUS})`;
-        ctx.lineWidth = 2; ctx.stroke();
-    }
-}
+    window.applyScenario = function(type) {
+        const centerX = canvas.width / 2; const centerY = canvas.height / 2;
+        const source = nodes.find(n => n.isSource); const dest = nodes.find(n => n.isDest);
+        seed = 67890;
+        nodes.forEach(n => { n.exists = true; n.functional = true; n.hasBroadcasted = false; n.msgReceived = false; });
+        waves = [];
 
-function applyScenario(type) {
-    const centerX = canvas.width / 2; const centerY = canvas.height / 2;
-    const source = nodes.find(n => n.isSource); const dest = nodes.find(n => n.isDest);
-    seed = 67890;
-    nodes.forEach(n => { n.exists = true; n.functional = true; n.hasBroadcasted = false; n.msgReceived = false; });
-    waves = [];
-
-    if (type === 'mountain') {
-        const mountW = 120; const mountH = 150;
-        nodes.forEach(n => { if (Math.abs(n.x - centerX) < mountW && Math.abs(n.y - centerY) < mountH) n.exists = false; });
-    } else if (type === 'chaos') {
-        nodes.forEach(n => {
-            let distToSource = Math.hypot(n.x - source.x, n.y - source.y);
-            let distToDest = Math.hypot(n.x - dest.x, n.y - dest.y);
-            if (distToSource > 80 && distToDest > 80) { if(seededRandom() < 0.3) n.functional = false; }
-        });
-    }
-    startWave();
-}
-
-function startWave() {
-    const source = nodes.find(n => n.isSource);
-    if(source) {
-        nodes.forEach(n => { n.hasBroadcasted = false; n.msgReceived = false; });
-        source.hasBroadcasted = true; waves.push(new Wave(source.x, source.y));
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    waves.forEach(w => {
-        if(w.active) {
-            w.update();
+        if (type === 'mountain') {
+            const mountW = 120; const mountH = 150;
+            nodes.forEach(n => { if (Math.abs(n.x - centerX) < mountW && Math.abs(n.y - centerY) < mountH) n.exists = false; });
+        } else if (type === 'chaos') {
             nodes.forEach(n => {
-                if (n.exists && n.functional) {
-                    let d = Math.hypot(w.x - n.x, w.y - n.y);
-                    if(Math.abs(d - w.radius) < 5) {
-                        if (n.isDest) n.msgReceived = true;
-                        if(!n.hasBroadcasted && !n.isDest) {
-                            n.hasBroadcasted = true;
-                            setTimeout(() => { waves.push(new Wave(n.x, n.y)); }, 50);
-                        }
-                    }
-                }
+                let distToSource = Math.hypot(n.x - source.x, n.y - source.y);
+                let distToDest = Math.hypot(n.x - dest.x, n.y - dest.y);
+                if (distToSource > 80 && distToDest > 80) { if(seededRandom() < 0.3) n.functional = false; }
             });
         }
-        w.draw();
-    });
-    nodes.forEach(n => n.draw());
-    requestAnimationFrame(animate);
-}
+        startWave();
+    }
 
-window.addEventListener('resize', () => { initGrid(); });
-initGrid();
-animate();
+    window.startWave = function() {
+        const source = nodes.find(n => n.isSource);
+        if(source) {
+            nodes.forEach(n => { n.hasBroadcasted = false; n.msgReceived = false; });
+            source.hasBroadcasted = true; waves.push(new Wave(source.x, source.y));
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        waves.forEach(w => {
+            if(w.active) {
+                w.update();
+                nodes.forEach(n => {
+                    if (n.exists && n.functional) {
+                        let d = Math.hypot(w.x - n.x, w.y - n.y);
+                        if(Math.abs(d - w.radius) < 5) {
+                            if (n.isDest) n.msgReceived = true;
+                            if(!n.hasBroadcasted && !n.isDest) {
+                                n.hasBroadcasted = true;
+                                setTimeout(() => { waves.push(new Wave(n.x, n.y)); }, 50);
+                            }
+                        }
+                    }
+                });
+            }
+            w.draw();
+        });
+        nodes.forEach(n => n.draw());
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => { initGrid(); });
+    initGrid();
+    animate();
+}

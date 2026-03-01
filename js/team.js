@@ -7,12 +7,21 @@ window.addEventListener('load', () => {
     const ctx = canvas.getContext('2d');
     let particles = [];
 
+    // Debounce Utility
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
     // Resize Logic
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', debounce(resizeCanvas, 100));
     resizeCanvas(); // Initial resize
 
     // Particle Class

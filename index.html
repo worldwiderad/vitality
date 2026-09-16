@@ -1,252 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPYQN17QH8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MPYQN17QH8');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitality | Aegis - Conrad Challenge</title>
-    
-    <meta property="og:title" content="Vitality Communications | Conrad Challenge">
-    <meta property="og:description" content="Off-grid mesh radio comms. Student innovation for the 2025-2026 Conrad Challenge.">
-    <meta property="og:image" content="https://signalvitality.com/assets/img/hero.png">
-    
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/index.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070907">
+  <title>Vitality — Aegis resilient communications</title>
+  <meta name="description" content="Aegis is an off-grid, encrypted mesh network built to keep people connected when conventional infrastructure fails.">
+  <meta property="og:title" content="Vitality Communications — Aegis">
+  <meta property="og:description" content="Communication that outlives the grid.">
+  <meta property="og:image" content="https://signalvitality.com/assets/img/hero.png">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
-<body> 
+<body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav aria-label="Primary navigation"></nav>
 
-    <div id="scroll-prompt">
-        SCROLL TO BEGIN
-        <span>&darr;</span>
-    </div>
-
-    <nav style="background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);"></nav>
-
-    <main>
-        <div id="intro-trigger-wrapper">
-            <header class="aegis-intro">
-                
-                <div id="hero-text-container" style="padding-bottom: 80px;">
-                    <h1 id="text-line-1">THE GRID IS</h1>
-                    <h2 id="text-line-2">FRAGILE.</h2>
-                    <h3 id="text-line-3">AEGIS FORGES UNBREAKABLE RESILIENCE.</h3>
-                </div>
-
-                <div id="hero-stage">
-                    <div class="bg-map-container skeleton-bg"><img id="city-map" class="img-fade-in" src="assets/img/hero-map-dark-anim.jpg" alt="Dark City Map"></div>
-                    <svg id="mesh-lines-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-
-                    <div id="hero-node-wrapper" class="device skeleton-bg"><img class="device-img img-fade-in" src="assets/img/node_hero-anim.png" alt="Aegis Node"></div>
-                    <div id="hub-wrapper" class="device secondary-device skeleton-bg"><img class="device-img offset-hub img-fade-in" src="assets/img/hub-anim.png" alt="Hub"></div>
-
-                    <div id="std-1-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-                    <div id="std-2-wrapper" class="device secondary-device std-node-wrapper skeleton-bg"><img class="device-img offset-node img-fade-in" src="assets/img/node_hero-anim.png" alt="Std Node"></div>
-
-                    <div id="rep-1-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                    <div id="rep-2-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                    <div id="rep-3-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                    <div id="rep-4-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-                    <div id="rep-5-wrapper" class="device secondary-device repeater-wrapper skeleton-bg"><img class="device-img offset-rep img-fade-in" src="assets/img/repeater-anim.png" alt="Repeater"></div>
-
-                    <div id="hand-1-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
-                    <div id="hand-2-wrapper" class="device secondary-device handheld-wrapper skeleton-bg"><img class="device-img offset-hand img-fade-in" src="assets/img/handheld-anim.png" alt="Handheld"></div>
-                </div>
-            </header>
+  <main id="main">
+    <section class="hero-new" aria-labelledby="hero-title">
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="signal-field" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="hero-inner">
+        <div class="eyebrow hero-eyebrow"><span></span> AEGIS / FIELD NETWORK V4</div>
+        <h1 id="hero-title">When everything<br>goes <em>offline.</em><br>We don’t.</h1>
+        <p class="hero-copy">A self-healing, encrypted mesh network built to keep communities and response teams connected—far beyond the grid.</p>
+        <div class="hero-actions">
+          <a href="product.html" class="button button-bright">Explore Aegis <span>↗</span></a>
+          <a href="#system" class="text-link">See how it works <span>↓</span></a>
         </div>
+      </div>
+      <div class="hero-telemetry" aria-label="Key performance figures">
+        <div><b>15</b><small>KM RANGE</small></div>
+        <div><b>AES</b><small>256 ENCRYPTED</small></div>
+        <div><b>6</b><small>MONTHS STANDBY</small></div>
+      </div>
+      <div class="hero-index">01 <span></span> 05</div>
+    </section>
 
-        <div id="hero-home-anchor"></div>
-        
-        <header class="hero-home">
-            <div class="container">
-                <h1 style="font-size: 4.5rem; margin-bottom: 15px; letter-spacing: -2px;">The grid is fragile.</h1>
-                <p style="font-size: 1.4rem; font-weight: 400; color: rgba(255,255,255,0.8); max-width: 650px;">
-                    <strong style="color: white;">Vitality Communications presents Aegis:</strong> A decentralized mesh network built for total infrastructure failure. We use long range radio and AES-256 encryption to keep people connected when towers and satellites are unavailable.
-                </p>
-                <div class="hero-btns" style="margin-top: 40px;">
-                    <a href="product.html" class="btn">See The Hardware</a>
-                    <a href="mission.html" class="btn btn-outline">The Mission</a>
-                </div>
-            </div>
-            <div class="hero-label">&bull; CONRAD CHALLENGE 2025-2026 // VITALITY COMMS</div>
-        </header>
+    <section class="manifesto observe">
+      <div class="section-shell manifesto-grid">
+        <div class="section-kicker">01 / THE PROBLEM</div>
+        <div>
+          <h2>Disaster doesn’t wait<br>for a <span>signal.</span></h2>
+          <p class="large-copy">When towers fall and power disappears, information becomes the most critical resource. Aegis creates an independent communications layer in minutes—not days.</p>
+        </div>
+        <div class="blackout-card">
+          <div class="card-top"><span>INFRASTRUCTURE STATUS</span><span class="status-dot">CRITICAL</span></div>
+          <div class="blackout-map" aria-hidden="true">
+            <span class="pulse p1"></span><span class="pulse p2"></span><span class="pulse p3"></span>
+            <svg viewBox="0 0 500 260" preserveAspectRatio="none"><path d="M-20 190C80 160 90 66 187 94s116 131 198 55 78-80 137-75"/><path d="M-20 225c126-6 141-85 231-61s103 72 176 25 72-92 135-93"/></svg>
+          </div>
+          <div class="card-bottom"><span>CELLULAR</span><b>OFFLINE</b><span>SATELLITE</span><b>UNAVAILABLE</b></div>
+        </div>
+      </div>
+    </section>
 
-        <section id="problem" class="reveal">
-            <div class="radar-bg"><div class="radar-sweep"></div></div>
+    <section id="system" class="system observe">
+      <div class="section-shell">
+        <div class="section-head">
+          <div class="section-kicker">02 / THE SYSTEM</div>
+          <div><h2>Every node makes<br>the network <span>stronger.</span></h2><p>Switch it on. Aegis discovers nearby devices, builds the best route, and reroutes automatically when conditions change.</p></div>
+        </div>
+        <div class="system-grid">
+          <div class="product-stage">
+            <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+            <img src="assets/img/node_hero-anim.png" alt="Aegis portable mesh node">
+            <div class="annotation ann-a"><i></i><span>LONG-RANGE<br><b>LORA RADIO</b></span></div>
+            <div class="annotation ann-b"><i></i><span>OFF-GRID<br><b>POWER SYSTEM</b></span></div>
+            <div class="stage-label">AEGIS / STANDARD NODE</div>
+          </div>
+          <div class="feature-stack">
+            <article><span>01</span><div><h3>Self-healing by design</h3><p>No central tower. Every Aegis device relays traffic and automatically finds a new path around failure.</p></div></article>
+            <article><span>02</span><div><h3>Private from end to end</h3><p>AES-256 encryption protects every message across the network—without relying on cloud services.</p></div></article>
+            <article><span>03</span><div><h3>Built for the field</h3><p>Low-power radio, solar charging, and rugged portable hardware enable sustained deployment.</p></div></article>
+            <a class="system-link" href="tech.html">Explore the technology <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="container" style="position: relative; z-index: 2;">
-                <h2 style="margin-bottom: 20px;">The First 72 Hours.</h2>
-                <p class="lead" style="color: #94a3b8; max-width: 800px;">
-                    Major natural disasters prove that the initial event is rarely the only cause of death. The information blackout that follows prevents rescue and stops the coordination of food and water.
-                </p>
-                <blockquote style="border-left: 4px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-style: italic; color: #cbd5e1;">
-                    "In the 2011 earthquake, there was a complete communication gap. People could only wait. If the communication issue was resolved first, the food and water issues would have been resolved much sooner."<br>
-                    <span style="font-size: 0.8rem; color: var(--primary-color); font-style: normal; margin-top: 10px; display: block;">— Ryoma Yamamoto, Master of Communications and Computer Engineering, Kyoto University; Former Apple Pay Japan Lead</span>
-                </blockquote>
-                <div class="grid-2" style="margin-top: 50px;">
-                    <div class="glass-card">
-                        <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">01.</div>
-                        <h3>Civilian Fragility</h3>
-                        <p style="color: #94a3b8;">Standard communication relies on single towers. When a tower loses power or is physically destroyed, the entire network stops. This is a single point of failure that leaves civilians in the dark for weeks.</p>
-                    </div>
-                    <div class="glass-card">
-                        <div style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px;">02.</div>
-                        <h3>Strategic Vulnerability</h3>
-                        <p style="color: #94a3b8;">Centralized networks are primary targets for malicious activity. When a military or government unit relies on a fixed backbone, they share the vulnerabilities of the civilian grid.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="proof observe">
+      <div class="proof-image" aria-hidden="true"></div>
+      <div class="proof-overlay"></div>
+      <div class="section-shell proof-content">
+        <div class="section-kicker light">03 / FIELD PROVEN</div>
+        <h2>Designed in the lab.<br><span>Tested outside it.</span></h2>
+        <p>Four generations of working hardware, tested across dense urban environments and open terrain.</p>
+        <div class="proof-stats">
+          <div><strong data-count="15">15</strong><sup>km</sup><span>LINE-OF-SIGHT RANGE</span></div>
+          <div><strong data-count="250">250</strong><sup>ms</sup><span>AVERAGE HOP LATENCY</span></div>
+          <div><strong data-count="98">98</strong><sup>%</sup><span>LOWER INFRASTRUCTURE COST</span></div>
+        </div>
+      </div>
+    </section>
 
-        <section class="reveal" style="background-color: #020617; padding-bottom: 60px;">
-            <div class="container">
-                <div class="grid-2" style="align-items: flex-start; gap: 50px;">
-                    <div>
-                        <h2 style="color: white;">Independent Mesh Infrastructure.</h2>
-                        <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-                            Aegis replaces cell towers with a distributed "Mesh." Every node acts as an encrypted relay for the others. If one part of the network fails, the signal simply finds a new path through the mesh.
-                        </p>
-                        <ul style="list-style: none; padding: 0; color: white;">
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Solar Power:</strong> Integrated panels allow for indefinite runtime in the field.</li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Crisis Endurance:</strong> Battery modules provide up to six months of power during solar failure.</li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Encrypted Range:</strong> Reliable 15km coverage using specialized radio modulation.</li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">✓</span> <strong>Zero Setup:</strong> Automatically identifies and connects to the existing mesh when turned on.</li>
-                        </ul>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 30px;">
-                        <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="assets/img/mesh-topology.jpg" alt="Mesh Network Diagram" style="width: 100%; display: block;">
-                        </div>
-                        <div class="glass-card" style="text-align: center;">
-                            <div style="font-family: 'Courier Prime', monospace; color: var(--primary-color); font-size: 3rem; font-weight: 700;">$150</div>
-                            <p style="color: white; margin-top: 10px;">Per Public Node</p>
-                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">98% cheaper than cellular infrastructure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="deploy observe">
+      <div class="section-shell">
+        <div class="section-head">
+          <div class="section-kicker">04 / DEPLOYMENT</div>
+          <div><h2>One network.<br><span>Wherever it matters.</span></h2></div>
+        </div>
+        <div class="deploy-grid">
+          <a href="mission.html" class="deploy-card deploy-large"><div><span>01</span><h3>Disaster response</h3><p>Restore coordination when conventional infrastructure is damaged or overwhelmed.</p><b>Explore mission →</b></div></a>
+          <div class="deploy-card"><div><span>02</span><h3>Search & rescue</h3><p>Extend a live network deeper into remote terrain with every team.</p></div></div>
+          <div class="deploy-card"><div><span>03</span><h3>Critical operations</h3><p>A resilient fallback channel when fixed systems are unavailable.</p></div></div>
+        </div>
+      </div>
+    </section>
 
-        <section class="reveal" style="position: relative; height: 65vh; min-height: 500px; background: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.8)), url('assets/img/mil-mesh.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center;">
+    <section class="closing observe">
+      <div class="closing-rings" aria-hidden="true"></div>
+      <div class="section-shell closing-inner">
+        <div class="section-kicker light">05 / THE NEXT SIGNAL</div>
+        <h2>Resilience starts<br>with a <span>connection.</span></h2>
+        <p>We’re building the communications layer communities can rely on when it matters most.</p>
+        <a href="contact.html" class="button button-bright">Start a conversation <span>↗</span></a>
+      </div>
+    </section>
+  </main>
 
-            <div class="container" style="text-align: center; max-width: 800px; z-index: 2;">
-                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 15px; letter-spacing: 2px;">// TACTICAL RESILIENCE</p>
-                <h2 style="font-size: 3.5rem; margin-bottom: 30px; color: white;">Electronic Warfare Ready.</h2>
-                <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.6;">
-                    In modern conflicts, centralized comms are the first target. Aegis creates a stealthy, self-healing mesh that maintains unit cohesion even when GPS and satellite uplinks are denied.
-                </p>
-            </div>
-
-            <div style="position: absolute; bottom: 30px; right: 40px; text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--primary-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase; z-index: 2;">
-                &bull; Mesh networking for military operations is incredibly important
-            </div>
-        </section>
-
-        <section class="reveal testing-section" style="padding-top: 80px; padding-bottom: 100px; position: relative;">
-            <canvas id="wave-canvas" class="anim-canvas"></canvas>
-
-            <div class="container testing-content">
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace;">// V4 FIELD DATA</p>
-                    <h2 style="color: white; margin-bottom: 20px;">Proven in the Field.</h2>
-                    <p style="color: #94a3b8;">Our hardware isn't just theoretical. We've pushed the Aegis V4 nodes to their absolute limits in dense urban and forest environments.</p>
-                </div>
-
-                <div class="testing-stat-grid">
-                    <div class="glass-card test-stat">
-                        <span class="test-stat-label">MAX RANGE (LOS)</span>
-                        <h3 id="stat-range">0</h3>
-                        <p>Kilometers achieved in line-of-sight testing.</p>
-                    </div>
-                    <div class="glass-card test-stat">
-                        <span class="test-stat-label">BATTERY LIFE</span>
-                        <h3 id="stat-battery">0</h3>
-                        <p>Months of standby power without solar input.</p>
-                    </div>
-                    <div class="glass-card test-stat">
-                        <span class="test-stat-label">LATENCY</span>
-                        <h3 id="stat-latency">0</h3>
-                        <p>Milliseconds average hop time between nodes.</p>
-                    </div>
-                </div>
-
-                <div class="cta-wrapper" style="text-align: center;">
-                    <a href="tech.html" class="cta-large">Explore Tech & Research Data &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="impact" class="reveal" style="background-color: #0F172A; position: relative; overflow: hidden;">
-            <canvas id="network-canvas" class="anim-canvas"></canvas>
-
-            <div class="container" style="position: relative; z-index: 2;">
-                <h2 style="text-align: center; margin-bottom: 40px; color: white;">Deployment Scenarios</h2>
-                <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                    <div class="glass-card">
-                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Strategic Operations</h4>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">A secure, encrypted fallback for units operating in environments where traditional communication backbones are compromised.</p>
-                    </div>
-                    <div class="glass-card">
-                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Local Government</h4>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Pre-deploying encrypted nodes on lamp posts creates a permanent emergency channel for citizens.</p>
-                    </div>
-                    <div class="glass-card">
-                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">Search & Rescue</h4>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Teams drop repeaters as they move to extend the mesh into deep wilderness or urban dead zones.</p>
-                    </div>
-                    <div class="glass-card">
-                        <h4 style="color: white; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">NGO / Aid</h4>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 10px;">Rapidly deploying comms in refugee camps or post-conflict zones where infrastructure has been destroyed.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="quote-section" class="reveal">
-            <div class="container" style="max-width: 800px; text-align: center;">
-                <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-bottom: 10px;">“</div>
-                <h3 style="font-size: 1.5rem; color: white; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0;">
-                    If this type of infrastructure-free networking is developed in a stable way, millions of lives could be saved... I really [want] this to be real.
-                </h3>
-                <div style="color: var(--primary-color); opacity: 0.5; font-size: 3rem; line-height: 1; margin-top: 10px; margin-bottom: 30px;">”</div>
-                <div style="width: 50px; height: 2px; background: var(--primary-color); margin: 0 auto 20px auto;"></div>
-                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 700;">Ryoma Yamamoto</p>
-                <p style="font-size: 0.8rem; color: #64748b;">Master of Communications and Computer Engineering, Kyoto University<br>Former Apple Pay Japan Lead</p>
-            </div>
-        </section>
-
-        <section class="reveal" style="text-align: center; padding: 100px 20px;">
-            <div class="container" style="max-width: 700px;">
-                <p style="color: var(--primary-color); font-family: 'Courier Prime', monospace; margin-bottom: 20px;">// STUDENT INNOVATION</p>
-                <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ensure Mission Continuity.</h2>
-                <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px;">
-                    Developed by students for the Conrad Challenge, we are currently field testing our fourth generation hardware. Vitality Communications is ready to present our findings.
-                </p>
-                <a href="contact.html" class="btn">Contact Our Team</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Vitality Communications. Built for the Conrad Challenge.</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js" defer></script>
-
-    <script src="js/nav.js" defer></script>
-    <script src="js/reveal.js" defer></script>
-    <script src="js/index.js" defer></script>
+  <footer class="home-footer"><a href="index.html" class="footer-mark">VITALITY<span>•</span></a><p>OFF-GRID COMMUNICATIONS / BUILT FOR THE CONRAD CHALLENGE</p><p>© 2026</p></footer>
+  <script src="js/nav.js" defer></script>
+  <script src="js/index.js" defer></script>
 </body>
 </html>

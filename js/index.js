@@ -87,7 +87,7 @@ window.addEventListener('load', () => {
         tl.to("#hero-node-wrapper", {scale: "+=0.03", duration: 1.5, ease: "sine.inOut"})
           .add("zoomLabel")
           .to("#city-map", {scale: 1, filter: "blur(0px) invert(1) hue-rotate(180deg) brightness(0.8)", opacity: 1, duration: 6}, "zoomLabel")
-          .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#000000", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
+          .to(["#text-line-1", "#text-line-2", "#text-line-3"], { color: "#F8FAFC", textShadow: "0 4px 28px rgba(2, 6, 23, 0.95)", duration: 1, ease: "power2.in" }, "zoomLabel+=1.5")
           .to(["#text-line-1", "#text-line-2", "#text-line-3"], { opacity: 0, duration: 1 }, "zoomLabel+=2.5")
           .add("explodeLabel", "zoomLabel+=3.0")
           .to("#hero-node-wrapper", {width: "8vw", y: "-20vh", duration: 3}, "explodeLabel")

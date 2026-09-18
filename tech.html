@@ -15,6 +15,7 @@
     <title>Technical Architecture | Aegis</title>
     
     <meta property="og:title" content="Aegis Technical Architecture">
+    <meta name="description" content="Deep dive into LoRa modulation, Mesh Topology, and AES-256 Encryption.">
     <meta property="og:description" content="Deep dive into LoRa modulation, Mesh Topology, and AES-256 Encryption.">
     <meta property="og:image" content="https://signalvitality.com/assets/img/clean.png">
     
@@ -28,6 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js" defer></script>
+    <link rel="stylesheet" href="css/refinement.css">
 </head>
 <body>
     <nav></nav>
@@ -63,6 +65,13 @@
 
             </div>
         </header>
+
+        <div class="data-band" style="--columns: 4" aria-label="Technical system summary">
+            <div class="data-band-item"><span>RF LAYER</span><b>LoRa CSS</b></div>
+            <div class="data-band-item"><span>LINK SECURITY</span><b>AES-256</b></div>
+            <div class="data-band-item"><span>TESTED RANGE</span><b>15 km LOS</b></div>
+            <div class="data-band-item"><span>TOPOLOGY</span><b>Decentralized mesh</b></div>
+        </div>
 
         <section class="reveal">
             <div class="container">
